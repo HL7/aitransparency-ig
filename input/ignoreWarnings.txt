@@ -1,0 +1,8 @@
+== Suppressed Messages ==
+
+# Add warning and/or information messages here after you've confirmed that they aren't really a problem
+# (And include comments like this justifying why)
+# See https://github.com/FHIR/sample-ig/blob/master/input/ignoreWarnings.txt for examples
+
+%This IG is version 6.0.0-ballot2, while the IG 'hl7.terminology.r5' is from version 5.0.0%
+%There is no jira specification file defined with the expected name of FHIR-aitof in the xml folder of the https://github.com/HL7/Jira-Spec-Artifacts project. This must exist before ballot or publication.%
