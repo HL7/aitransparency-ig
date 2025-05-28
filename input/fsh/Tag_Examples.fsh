@@ -74,7 +74,7 @@ as well as a ServiceRequest.
 - The `DiagnosticReport.conclusion` and `DiagnosticReport.conclusionCode` elements are tagged with the AI Asserted security label `AIAST`.
 """
 Usage: #example
-* meta.security[+] = http://terminology.hl7.org/CodeSystem/v3-ActReason#PROCESSINLINELABEL
+* meta.security[+] = http://terminology.hl7.org/CodeSystem/v3-ActCode#PROCESSINLINELABEL
 // Not clear we need this extension
 //* extension[0].url = "http://hl7.org/fhir/uv/security-label-ds4p/StructureDefinition/extension-has-inline-sec-label"
 //* extension[0].valueBoolean = true
