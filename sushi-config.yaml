@@ -32,8 +32,9 @@ publisher:
 #
 dependencies:
 #  hl7.fhir.r6.core: latest
-  hl7.fhir.uv.extensions: latest
-  hl7.terminology: latest
+  hl7.fhir.uv.extensions.r4: latest
+  hl7.terminology.r4: latest
+  hl7.fhir.uv.security-label-ds4p: latest
 #
 #
 # The pages property corresponds to IG.definition.page. SUSHI can
