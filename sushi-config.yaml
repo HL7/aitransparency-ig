@@ -5,14 +5,14 @@
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: hl7.fhir.uv.aitransparency
 canonical: http://hl7.org/fhir/uv/aitransparency
-name: aitransparency
+name: AITransparency
 title: AI Transparency on FHIR
 # description: Example Implementation Guide for getting started with SUSHI
 status: draft # draft | active | retired | unknown
 version: 0.1.0
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 copyrightYear: 2024+
-releaseLabel: draft # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
+releaseLabel: ci-build # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
 # license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
 # jurisdiction: urn:iso:std:iso:3166#US "United States of America" # https://www.hl7.org/fhir/valueset-jurisdiction.html
 jurisdiction: http://unstats.un.org/unsd/methods/m49/m49.htm#001
@@ -20,6 +20,10 @@ jurisdiction: http://unstats.un.org/unsd/methods/m49/m49.htm#001
 extension:
   - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-wg  
     valueCode: ehr
+#  - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+#    valueCode: draft
+  - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+    valueInteger: 0
 publisher:
   name: HL7 International / Electronic Health Records
   url: http://www.hl7.org/Special/committees/ehr
@@ -31,10 +35,10 @@ publisher:
 # use cases, the value can be an object with keys for id, uri, and version.
 #
 dependencies:
-#  hl7.fhir.r6.core: latest
-  hl7.fhir.uv.extensions.r4: latest
-  hl7.terminology.r4: latest
-  hl7.fhir.uv.security-label-ds4p: latest
+  hl7.fhir.uv.extensions.r4: current
+  hl7.terminology.r4: current
+  hl7.fhir.uv.security-label-ds4p: current
+
 #
 #
 # The pages property corresponds to IG.definition.page. SUSHI can
@@ -66,6 +70,7 @@ pages:
 #
 parameters:
    excludettl: true
+   path-binary: input/attachment
 #   validation: [allow-any-extensions, no-broken-links]
 #
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
