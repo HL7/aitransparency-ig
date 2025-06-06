@@ -54,6 +54,7 @@ Description: "An example of a Model Card DocumentReference that contains the mod
 
 using example from HuggingFace.
 "
+Usage: #example
 * status = #current
 /* would like to use the ig-loader, but it doesn't understand .md files
 * content.attachment.id = "ig-loader-sample_datasetcard_simple.txt"
@@ -66,3 +67,47 @@ using example from HuggingFace.
 * category = AImodelCardCS#AIModelCard "AI Model Card"
 * identifier.system = "https://github.com/huggingface/huggingface_hub/tree/main/tests/fixtures/cards"
 * identifier.value = "sample_datasetcard_simple.md"
+
+
+Instance: Device-ModelCard
+InstanceOf: Device
+Title: "Device Model Card"
+Description: """
+A Device that has a Model Card.
+Given that it is understood that ModelCards are Markdown, this could simply go into the .note.
+"""
+Usage: #example
+* identifier.system = "http://example.org/ehr/client-ids"
+* identifier.value = "goodhealth"
+* manufacturer = "Acme Devices, Inc"
+* type.text = "AI/LLM"
+* version.value = "10.23-23423"
+* contact.system = #url
+* contact.value = "http://example.org"
+* note.time = "2023-10-01T00:00:00Z"
+* note.text = """
+---
+language:
+- en
+license:
+- bsd-3-clause
+annotations_creators:
+- crowdsourced
+- expert-generated
+language_creators:
+- found
+multilinguality:
+- monolingual
+size_categories:
+- n<1K
+task_categories:
+- image-segmentation
+task_ids:
+- semantic-segmentation
+pretty_name: Sample Segmentation
+---
+
+# Dataset Card for Sample Segmentation
+
+This is a sample dataset card for a semantic segmentation dataset.
+"""
