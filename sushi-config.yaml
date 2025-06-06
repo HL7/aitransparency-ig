@@ -101,8 +101,8 @@ menu:
 # it with the correct canonical when generating the IG JSON.
 #
 # global:
-#   Patient: http://example.org/fhir/StructureDefinition/my-patient-profile
-#   Encounter: http://example.org/fhir/StructureDefinition/my-encounter-profile
+#   Patient: http://hl7.org/fhir/uv/aitransparency/my-patient-profile
+#   Encounter: http://hl7.org/fhir/uv/aitransparency/my-encounter-profile
 #
 #
 # The resources property corresponds to IG.definition.resource.
