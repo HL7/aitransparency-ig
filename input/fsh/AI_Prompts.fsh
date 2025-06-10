@@ -16,6 +16,7 @@ This is a full example of how to capture the AI process in FHIR.
 
 - Two outputs that this Provenance resource is documenting:
     - an Observation resource (e.g., lab result)
+        - with Observation.interpretation being attributed to this Povenance
     - a CarePlan resource (e.g., follow-up care plan)
 - Two agents
     - a verifier (human) who verifies the AI output
@@ -31,6 +32,8 @@ This is a full example of how to capture the AI process in FHIR.
 """
 Usage: #example
 * target[+].reference = "http://example.org/fhir/Observation/14"
+* target[=].extension.url = "http://hl7.org/fhir/StructureDefinition/targetPath"
+* target[=].extension.valueString = "Observation.interpretation"
 * target[+].reference = "http://example.org/fhir/CarePlan/19"
 * occurredDateTime = "2023-10-01T00:00:00Z"
 * recorded = "2023-10-01T00:00:00Z"

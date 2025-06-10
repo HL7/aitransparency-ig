@@ -68,6 +68,8 @@ Usage: #example
 
 Instance: proc
 InstanceOf: Procedure
+Title: "Appendectomy Procedure"
+Description: " "
 Usage: #example
 * meta.versionId = "1"
 * status = #completed
@@ -83,6 +85,8 @@ Usage: #example
 
 Instance: f206
 InstanceOf: Observation
+Title: "Blood Culture Result"
+Description: "A lab result Observation resource that is created by an AI system and verified by a human."
 Usage: #example
 * status = #final
 * code.coding[0] = http://acmelabs.org#104177 "Blood culture"
