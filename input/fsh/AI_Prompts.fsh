@@ -50,7 +50,7 @@ Usage: #example
 * contained[+] = Input-Prompt
 * entity[=].what = Reference(Input-Prompt)
 * entity[=].agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author "Author"
-* entity[=].agent[=].who = Reference(Device/Device-ModelCard)
+* entity[=].agent[=].who.reference = "http://example.org/fhir/Practitioner/pract"
 
 
 Instance: Input-Prompt
