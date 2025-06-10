@@ -44,7 +44,7 @@ Description: "This CodeSystem contains codes for the DocumentReference.type and 
 * ^caseSensitive = true
 * ^experimental = false
 * #AIModelCard "AI Model Card"
-
+* #AIInputPrompt "AI Input Prompt"
 
 
 Instance: ModelCard-sample-datasetcard-simple

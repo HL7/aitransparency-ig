@@ -35,8 +35,6 @@ publisher:
 # use cases, the value can be an object with keys for id, uri, and version.
 #
 dependencies:
-  hl7.fhir.uv.extensions.r4: current
-  hl7.terminology.r4: current
   hl7.fhir.uv.security-label-ds4p: current
 
 #
