@@ -69,7 +69,7 @@ Usage: #example
 Instance: proc
 InstanceOf: Procedure
 Title: "Appendectomy Procedure"
-Description: " "
+Description: "A Procedure resource that is created by an AI system and verified by a human."
 Usage: #example
 * meta.versionId = "1"
 * status = #completed
@@ -89,7 +89,7 @@ Title: "Blood Culture Result"
 Description: "A lab result Observation resource that is created by an AI system and verified by a human."
 Usage: #example
 * status = #final
-* code.coding[0] = http://acmelabs.org#104177 "Blood culture"
+* code.coding[0] = http://example.org/codes/foobar#104177 "Blood culture"
 * code.coding[+] = $loinc#600-7 "Bacteria identified in Blood by Culture"
 * subject.reference = "http://example.org/fhir/Patient/f201"
 * issued = "2013-03-11T10:28:00+01:00"

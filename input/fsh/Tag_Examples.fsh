@@ -3,7 +3,6 @@ Alias: $sct = http://snomed.info/sct
 Alias: $v2-0074 = http://terminology.hl7.org/CodeSystem/v2-0074
 Alias: $loinc = http://loinc.org
 Alias: $codes = http://example.org/codes
-Alias: $acmelabs = http://acmelabs.org
 Alias: $v3-ObservationInterpretation = http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
 Alias: $organization-type = http://terminology.hl7.org/CodeSystem/organization-type
 Alias: $v3-ActCode = http://terminology.hl7.org/CodeSystem/v3-ActCode
@@ -27,6 +26,7 @@ Title: "Added Provenance Codes"
 Description: "This CodeSystem contains codes for the provenance indications used in .meta.security and elsewhere that indicate that the AI system has been involved."
 * ^caseSensitive = true
 * ^experimental = false
+* ^status = #active
 * #AIRPT "AI Reported"
 * #CLINAST_AIRPT "Clinician Asserted from AI Reported"
 * #AIAST_CLINRPT "AI Asserted from Clinician Reported"

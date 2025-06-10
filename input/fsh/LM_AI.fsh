@@ -43,6 +43,7 @@ Title: "Added DocumentReference.code for AI ModelCard"
 Description: "This CodeSystem contains codes for the DocumentReference.type and DocumentReference.category that indicate that the DocumentReference is a Model Card."
 * ^caseSensitive = true
 * ^experimental = false
+* ^status = #active
 * #AIModelCard "AI Model Card"
 * #AIInputPrompt "AI Input Prompt"
 
