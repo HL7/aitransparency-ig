@@ -27,7 +27,7 @@ This is a full example of how to capture the AI process in FHIR.
 - One entity that is the AI Input Prompt
     - Where the Input Prompt is a DocumentReference resource that contains the input prompt provided to the AI system.
     - Where the Input Prompt is a contained resource in the Provenance resource.
-    - Where the Input Prompt is associated with the AI Device to which it was provided
+    - Where the Input Prompt is associated with the clinician which provided it
 """
 Usage: #example
 * target[+].reference = "http://example.org/fhir/Observation/14"
