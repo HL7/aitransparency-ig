@@ -1,0 +1,73 @@
+{
+  "resourceType": "Bundle",
+    "id": "b3c1f2d4-5c8e-4b0a-9f6d-7c8e1f2d4b5c",
+    "type": "transaction",
+    "entry": [
+      {
+        "fullUrl": "urn:uuid:730779b1-7952-470a-8ea3-8f1ad87ff18f",
+        "resource": {
+          "resourceType": "Patient",
+          "id": "730779b1-7952-470a-8ea3-8f1ad87ff18f",
+          "gender": "male",
+          "identifier": [
+            {
+              "system": "http://hl7.org/fhir/sid/us-medicare",
+              "value": "230b1ffe-aa8a-35ba-0be6428831b5c4e5"
+            }
+          ],
+          "name": [
+            {
+              "text": "ALTON WALSH",
+              "family": "WALSH",
+              "given": [
+                "ALTON"
+              ]
+            }
+          ],
+          "birthDate": "1969-04-13"
+        },
+        "request": {
+          "method": "PUT",
+          "url": "Patient?identifier=http://hl7.org/fhir/sid/us-medicare|230b1ffe-aa8a-35ba-0be6428831b5c4e5"
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:608c4de1-1ab6-4bfe-b2e4-dca6b19223f0",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "608c4de1-1ab6-4bfe-b2e4-dca6b19223f0",
+          "status": "final",
+          "subject": {
+            "reference": "urn:uuid:730779b1-7952-470a-8ea3-8f1ad87ff18f"
+          },
+          "effectiveDateTime": "2025-02-18",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "41995-2",
+                "display": "Hemoglobin A1c [Mass/volume] in Blood"
+              }
+            ],
+            "text": "Hemoglobin A1c [Mass/volume] in Blood"
+          },
+          "valueQuantity": {
+            "value": 9.4,
+            "unit": "%",
+            "system": "http://unitsofmeasure.org",
+            "code": "%"
+          },
+          "note": [
+            {
+              "text": "Reference Range: 4.0-6.0%"
+            }
+          ]
+        },
+        "request": {
+          "method": "POST",
+          "url": "Observation"
+        }
+      }
+    ]
+
+}

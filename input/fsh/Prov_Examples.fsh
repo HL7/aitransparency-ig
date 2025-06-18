@@ -9,9 +9,9 @@ Alias: $loinc = http://loinc.org
  I have taken that example and modified it to indicate that the Biocompute object was the AI system providing input to the MolecularSequence.
 */
 
-Instance: AI-Authored
+Instance: AI-Authored-Element
 InstanceOf: Provenance
-Title: "AI Authored Provenance"
+Title: "Provenance of AI Authored Procedure.followup.text"
 Description: """
 A Provenance resource that documents the addition of followUp text in a Procedure by an AI system.
 """
@@ -45,7 +45,7 @@ Usage: #example
 
 Instance: AI-Contributed
 InstanceOf: Provenance
-Title: "Lab Observation Provenance"
+Title: "Provenance of AI authored Lab Observation"
 Description: """
 A Provenance resource that documents the creation of a Lab result Observation resource by an AI (device), verified by a human.
 The AI system is represented as a Device resource.
@@ -68,6 +68,8 @@ Usage: #example
 
 Instance: proc
 InstanceOf: Procedure
+Title: "Appendectomy Procedure"
+Description: "A Procedure resource that is created by an AI system and verified by a human."
 Usage: #example
 * meta.versionId = "1"
 * status = #completed
@@ -83,9 +85,11 @@ Usage: #example
 
 Instance: f206
 InstanceOf: Observation
+Title: "Blood Culture Result"
+Description: "A lab result Observation resource that is created by an AI system and verified by a human."
 Usage: #example
 * status = #final
-* code.coding[0] = http://acmelabs.org#104177 "Blood culture"
+* code.coding[0] = http://example.org/codes/foobar#104177 "Blood culture"
 * code.coding[+] = $loinc#600-7 "Bacteria identified in Blood by Culture"
 * subject.reference = "http://example.org/fhir/Patient/f201"
 * issued = "2013-03-11T10:28:00+01:00"
