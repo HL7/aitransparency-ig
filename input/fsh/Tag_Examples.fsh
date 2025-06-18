@@ -99,6 +99,7 @@ Usage: #example
 
 Instance: DiagnosticeReport-Instance-for-f202-1
 InstanceOf: DiagnosticReport
+Title: "DiagnosticReport with Inline AI Security Labels"
 Description: """
 This DiagnosticeReport is derived from FHIR Core R4 DiagnosticReport id **f202**. 
 This use contains a DiagnosticReport with inline Artificial Intelligence asserted security labels for the conclusion and conclusionCode, 

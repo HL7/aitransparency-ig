@@ -1,0 +1,67 @@
+{
+ "resourceType": "Patient",
+ "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+ "meta": {
+   "profile": [
+     "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+   ]
+ },
+ "extension": [
+   {
+     "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
+     "extension": [
+       {
+         "url": "ombCategory",
+         "valueCoding": {
+           "system": "urn:oid:2.16.840.1.113883.6.238",
+           "code": "2106-3",
+           "display": "White"
+         }
+       },
+       {
+         "url": "text",
+         "valueString": "White"
+       }
+     ]
+   }
+ ],
+ "identifier": [
+   {
+     "use": "usual",
+     "type": {
+       "coding": [
+         {
+           "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+           "code": "MR",
+           "display": "Medical Record Number"
+         }
+       ]
+     },
+     "system": "http://hospital.example.org/patient-id",
+     "value": "MRN123456789"
+   }
+ ],
+ "name": [
+   {
+     "use": "official",
+     "family": "Doe",
+     "given": [
+       "Jane"
+     ]
+   }
+ ],
+ "gender": "female",
+ "birthDate": "1950-11-15",
+ "address": [
+   {
+     "use": "home",
+     "line": [
+       "123 Main Street"
+     ],
+     "city": "Anytown",
+     "state": "MI",
+     "postalCode": "12345",
+     "country": "US"
+   }
+ ]
+}
