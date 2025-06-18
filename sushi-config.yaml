@@ -57,6 +57,8 @@ dependencies:
 pages:
   index.md:
     title: Overview
+  general_guidance.md:
+    title: General Guidance
   use_cases.md:
     title: Use Cases
   explainer.md:
@@ -87,7 +89,9 @@ parameters:
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
   Home: index.html
-  Use Cases: use_cases.html
+  Guidance:
+    General: general_guidance.html
+    Use Cases: use_cases.html
   Explainer: explainer.html
   Artifacts: artifacts.html
 
