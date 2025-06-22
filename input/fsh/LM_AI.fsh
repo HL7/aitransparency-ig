@@ -38,40 +38,10 @@ I do find other examples that are PDF, and not in markdown or having yaml in the
 
 */
 
-CodeSystem: AImodelCardCS
-Title: "Added DocumentReference.code for AI ModelCard"
-Description: "This CodeSystem contains codes for the DocumentReference.type and DocumentReference.category that indicate that the DocumentReference is a Model Card."
-* ^caseSensitive = true
-* ^experimental = false
-* #AIModelCard "AI Model Card"
 
-
-
-Instance: ModelCard-sample-datasetcard-simple
-InstanceOf: DocumentReference
-Title: "Example Model Card DocumentReference"
-Description: "An example of a Model Card DocumentReference that contains the model card in YAML and Markdown formats.
-
-using example from HuggingFace.
-"
-Usage: #example
-* status = #current
-/* would like to use the ig-loader, but it doesn't understand .md files
-* content.attachment.id = "ig-loader-sample_datasetcard_simple.txt"
- note that ig-loader fills out the rest of the attachment.
-*/
-* content.attachment.data =   "LS0tDQpsYW5ndWFnZToNCi0gZW4NCmxpY2Vuc2U6DQotIGJzZC0zLWNsYXVzZQ0KYW5ub3RhdGlvbnNfY3JlYXRvcnM6DQotIGNyb3dkc291cmNlZA0KLSBleHBlcnQtZ2VuZXJhdGVkDQpsYW5ndWFnZV9jcmVhdG9yczoNCi0gZm91bmQNCm11bHRpbGluZ3VhbGl0eToNCi0gbW9ub2xpbmd1YWwNCnNpemVfY2F0ZWdvcmllczoNCi0gbjwxSw0KdGFza19jYXRlZ29yaWVzOg0KLSBpbWFnZS1zZWdtZW50YXRpb24NCnRhc2tfaWRzOg0KLSBzZW1hbnRpYy1zZWdtZW50YXRpb24NCnByZXR0eV9uYW1lOiBTYW1wbGUgU2VnbWVudGF0aW9uDQotLS0NCg0KIyBEYXRhc2V0IENhcmQgZm9yIFNhbXBsZSBTZWdtZW50YXRpb24NCg0KVGhpcyBpcyBhIHNhbXBsZSBkYXRhc2V0IGNhcmQgZm9yIGEgc2VtYW50aWMgc2VnbWVudGF0aW9uIGRhdGFzZXQu"
-
-* content.attachment.contentType = #text/markdown
-* type = AImodelCardCS#AIModelCard "AI Model Card"
-* category = AImodelCardCS#AIModelCard "AI Model Card"
-* identifier.system = "https://github.com/huggingface/huggingface_hub/tree/main/tests/fixtures/cards"
-* identifier.value = "sample_datasetcard_simple.md"
-
-
-Instance: Device-ModelCard
+Instance: Note-ModelCard
 InstanceOf: Device
-Title: "Device Model Card"
+Title: "Device with Model-Card in Device.note.text"
 Description: """
 A Device that has a Model Card.
 Given that it is understood that ModelCards are Markdown, this could simply go into the .note.
@@ -111,3 +81,60 @@ pretty_name: Sample Segmentation
 
 This is a sample dataset card for a semantic segmentation dataset.
 """
+
+CodeSystem: AImodelCardCS
+Title: "Added DocumentReference.code for AI ModelCard"
+Description: "This CodeSystem contains codes for the DocumentReference.type and DocumentReference.category that indicate that the DocumentReference is a Model Card."
+* ^caseSensitive = true
+* ^experimental = false
+* ^status = #active
+* #AIModelCard "AI Model Card"
+* #AIInputPrompt "AI Input Prompt"
+
+
+Instance: ModelCard-sample-datasetcard-simple
+InstanceOf: DocumentReference
+Title: "DocumentReference Model-Card"
+Description: "An example of a Model Card DocumentReference that contains the model card in YAML and Markdown formats.
+
+using example from HuggingFace.
+"
+Usage: #example
+* status = #current
+/* would like to use the ig-loader, but it doesn't understand .md files
+* content.attachment.id = "ig-loader-sample_datasetcard_simple.txt"
+ note that ig-loader fills out the rest of the attachment.
+*/
+* content.attachment.data =   "LS0tDQpsYW5ndWFnZToNCi0gZW4NCmxpY2Vuc2U6DQotIGJzZC0zLWNsYXVzZQ0KYW5ub3RhdGlvbnNfY3JlYXRvcnM6DQotIGNyb3dkc291cmNlZA0KLSBleHBlcnQtZ2VuZXJhdGVkDQpsYW5ndWFnZV9jcmVhdG9yczoNCi0gZm91bmQNCm11bHRpbGluZ3VhbGl0eToNCi0gbW9ub2xpbmd1YWwNCnNpemVfY2F0ZWdvcmllczoNCi0gbjwxSw0KdGFza19jYXRlZ29yaWVzOg0KLSBpbWFnZS1zZWdtZW50YXRpb24NCnRhc2tfaWRzOg0KLSBzZW1hbnRpYy1zZWdtZW50YXRpb24NCnByZXR0eV9uYW1lOiBTYW1wbGUgU2VnbWVudGF0aW9uDQotLS0NCg0KIyBEYXRhc2V0IENhcmQgZm9yIFNhbXBsZSBTZWdtZW50YXRpb24NCg0KVGhpcyBpcyBhIHNhbXBsZSBkYXRhc2V0IGNhcmQgZm9yIGEgc2VtYW50aWMgc2VnbWVudGF0aW9uIGRhdGFzZXQu"
+
+* content.attachment.contentType = #text/markdown
+* type = AImodelCardCS#AIModelCard "AI Model Card"
+* category = AImodelCardCS#AIModelCard "AI Model Card"
+* identifier.system = "https://github.com/huggingface/huggingface_hub/tree/main/tests/fixtures/cards"
+* identifier.value = "sample_datasetcard_simple.md"
+
+Extension: ModelCardDescription
+Id: aitransparency.modelCardDescription
+Title: "Model Card"
+Description: "When the Device is described by a Model Card, this extension can be used to reference the Model Card."
+* ^context[+].type = #element
+* ^context[=].expression = "Device"
+* value[x] only Reference(DocumentReference) 
+* valueReference 1..1
+
+Instance: Attached-ModelCard
+InstanceOf: Device
+Title: "Device with attached Model-Card"
+Description: """
+A Device that has an attached Model Card.
+"""
+Usage: #example
+* identifier.system = "http://example.org/ehr/client-ids"
+* identifier.value = "goodhealth"
+* manufacturer = "Acme Devices, Inc"
+* type.text = "AI/LLM"
+* version.value = "10.23-23423"
+* contact.system = #url
+* contact.value = "http://example.org"
+* extension[+].url = Canonical(aitransparency.modelCardDescription)
+* extension[=].valueReference.reference = "DocumentReference/ModelCard-sample-datasetcard-simple"
