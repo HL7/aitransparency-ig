@@ -1,43 +1,23 @@
 ### Observability Levels
 
+These four observability factors in the table below offer distinct considerations and approaches for tracking and documenting AI processing within FHIR healthcare resources when algorithms generate, modify, or enhance clinical data. Rather than sequential steps, each level addresses different transparency needs: basic identification of AI-influenced data (Tagging), detailed model documentation (Models), comprehensive input tracking (Data Sources), and human-AI collaboration governance (Process). This flexible framework allows implementers to select one or more levels based on their specific requirements and organizational capabilities for representing AI-generated content.
+
 Observability Factors for FHIR AI Representation
 
 | 1: Tagging | 2: Model(s) | 3: Data sources | 4. Process (human-machine-interaction) |
-|------------|-------------|-----------------|----------------------------------------|
-| Tagging data influenced by AI<br><br>• resource-level<br>• field / element -level | Describing the characteristics of the model:<br><br>• Name and version of the AI algorithm / model<br>• algorithm deterministic vs. non-deterministic vs. hybrid<br><br>• Training set data<br>• Working memory | • Request input (to AI)<br>  ○ e.g.: Patient data<br><br>• Reference input<br>  ○ e.g.: clinical guidelines<br><br>• Operations<br>  ○ Model Context Protocol (MCP)<br>  ○ Agent to Agent (A2A)<br><br>• Data quality<br>• Data qualification | • Provenance - indicating<br>  ○ multiple actors, including the human<br>  ○ role<br><br>• Bias reduction strategies<br>  ○ e.g.: MCP to redirect to a controlled terminology corpus<br>  ○ tie back to Provenance |
+|:------------|:-------------|:-----------------|:----------------------------------------|
+| Tagging data influenced by AI<br><br>• resource-level<br>• field / element -level | Describing the characteristics of the model:<br><br>• Name and version of the AI algorithm / model<br>• algorithm deterministic vs. non-deterministic vs. hybrid<br><br>• Training set data<br>• Working memory | • Request input (to AI)<br>  - e.g.: Patient data<br><br>• Reference input<br>  - e.g.: clinical guidelines<br><br>• Operations<br>  - Model Context Protocol (MCP)<br>  - Agent to Agent (A2A)<br><br>• Data quality<br>• Data qualification | • Provenance - indicating<br>  - multiple actors, including the human<br>  - role<br><br>• Bias reduction strategies<br>  - e.g.: MCP to redirect to a controlled terminology corpus<br>  - tie back to Provenance |
 
-#### Summary of Observability Factors
 
-#### 1: Tagging
-**Tagging data influenced by AI**: Marks healthcare data at resource or field level to identify AI involvement in generation or modification.
+#### Tagging
+Tagging establishes systematic identification and marking of FHIR resources that have been processed or influenced by AI systems. Resource-level tagging marks entire FHIR resources (such as a complete Patient record or Observation) as having been processed by AI, providing a high-level indicator of AI involvement. Field or element-level tagging provides more granular marking, identifying specific data elements within a resource that have been generated, modified, or enhanced by AI algorithms, such as individual diagnosis codes, medication recommendations, or calculated risk scores.
 
-**Resource-level**: Tags entire FHIR resources (e.g., Patient, Observation) when AI contributed to their creation or content.
+#### Model(s)
+Model Documentation captures comprehensive information about the AI algorithms used in processing healthcare data. The name and version specification ensures precise identification of the specific AI model and its iteration used, enabling reproducibility and version control. Algorithm classification distinguishes between deterministic systems (rule-based, predictable outputs), non-deterministic systems (machine learning models with probabilistic outputs), and hybrid approaches that combine both methodologies. Training set data documentation provides transparency about the datasets used to develop the AI model, including information about data sources, population demographics, and potential biases. Working memory refers to the contextual information and temporary data that the AI model maintains during processing, which can influence decision-making and outputs.
 
-**Field/element-level**: Tags specific data elements within resources where AI influenced individual values or recommendations.
+#### Data sources
+Data Sources documents all inputs and operational frameworks involved in AI processing. Request input encompasses the primary healthcare data submitted to the AI system, such as patient demographics, clinical notes, laboratory results, and imaging data. Reference input includes supplementary information provided to enhance AI decision-making, such as clinical practice guidelines, drug interaction databases, treatment protocols, and evidence-based medicine resources. Operations tracking covers the technical protocols used for AI interactions, including Model Context Protocol (MCP) for structured communication with AI systems and Agent-to-Agent (A2A) protocols for communication between different AI systems. Data quality assessment evaluates the completeness, accuracy, consistency, and reliability of input data, while data qualification addresses the validation, certification, and regulatory compliance status of data sources.
 
-#### 2: Model(s)
-**Describing the characteristics of the model**: Documents AI system properties including identification, algorithm type, and operational parameters.
+#### Process (human-machine-interaction)
+Process focuses on human-AI collaboration and governance aspects of AI-augmented healthcare workflows. Provenance tracking creates a comprehensive audit trail that identifies all contributors to the final clinical output, documenting both human healthcare providers and AI systems involved in the decision-making process. Role definition clarifies the specific responsibilities, authority levels, and decision-making boundaries of each contributor, whether human or artificial. Bias reduction strategies encompass active measures implemented to minimize algorithmic bias and ensure equitable healthcare outcomes, such as using MCP to redirect AI systems to controlled medical terminology corpuses that promote standardized and unbiased language. The connection between bias reduction efforts and provenance documentation ensures that mitigation strategies are traceable and accountable, linking specific interventions back to documented decision trails and outcome assessments.
 
-**Name and version of AI algorithm/model**: Identifies specific AI system used, including version numbers for reproducibility and accountability.
-
-**Algorithm deterministic vs. non-deterministic vs. hybrid**: Categorizes AI behavior predictability affecting consistency and reliability of outputs.
-
-**Training set data**: Documents datasets used to train AI models, affecting bias, accuracy, and applicability.
-
-**Working memory**: Describes AI system's active memory and context retention capabilities during operation.
-
-#### 3: Data sources
-**Request input (to AI)**: Patient-specific data provided to AI systems for processing, analysis, or decision support.
-
-**Reference input**: External knowledge sources like clinical guidelines that inform AI decision-making processes.
-
-**Operations**: Technical protocols governing AI system interactions, including Model Context Protocol and Agent-to-Agent communications.
-
-**Data quality**: Assessment of input data completeness, accuracy, and reliability affecting AI system performance.
-
-**Data qualification**: Validation and certification processes ensuring data meets standards for AI system use.
-
-#### 4: Process (human-machine-interaction)
-**Provenance - indicating multiple actors and role**: Tracks all contributors (human and AI) and their specific roles in data creation.
-
-**Bias reduction strategies**: Methods to minimize AI bias, including controlled terminology and provenance linking for accountability.
