@@ -83,3 +83,22 @@ Data Sources documents all inputs and operational frameworks involved in AI proc
 #### Process (human-machine-interaction)
 Process focuses on human-AI collaboration and governance aspects of AI-augmented healthcare workflows. Provenance tracking creates a comprehensive audit trail that identifies all contributors to the final clinical output, documenting both human healthcare providers and AI systems involved in the decision-making process. Role definition clarifies the specific responsibilities, authority levels, and decision-making boundaries of each contributor, whether human or artificial. Bias reduction strategies encompass active measures implemented to minimize algorithmic bias and ensure equitable healthcare outcomes, such as using MCP to redirect AI systems to controlled medical terminology corpuses that promote standardized and unbiased language. The connection between bias reduction efforts and provenance documentation ensures that mitigation strategies are traceable and accountable, linking specific interventions back to documented decision trails and outcome assessments.
 
+### Full Process example
+
+[This is a full example](Provenance-AI-full-lorem-ipsum.html) of how to capture the AI process in FHIR.
+
+- Two outputs that this Provenance resource is documenting:
+    - an Observation resource (e.g., lab result)
+        - with Observation.interpretation being attributed to this Provenance
+    - a CarePlan resource (e.g., follow-up care plan)
+- Two agents
+    - a verifier (human) who verifies the AI output
+    - an author (AI system) who generated the output
+- Two entities that were clinical resources provided to the AI system
+    - a DocumentReference resource (e.g., patient summary)
+    - an Observation resource (e.g., lab result)
+- One entity that is a PlanDefinition resource (e.g., care plan definition)
+- One entity that is the AI Input Prompt
+    - Where the Input Prompt is a DocumentReference resource that contains the input prompt provided to the AI system.
+    - Where the Input Prompt is a contained resource in the Provenance resource.
+    - Where the Input Prompt is associated with the clinician which provided it

@@ -9,41 +9,6 @@ Tagging uses simple codeSystem vocabulary. There is one code defined already tod
 
 Discussion has indicated that a few more codes might be useful. For this we create a local [codeSystem](CodeSystem-AddedProvenanceCS.html) to allow us to experiment. Eventually useful codes would be proposed to HL7 Terminology (THO). For example `AIAST` does not indicate if a clinician was involved in the use of the AI, or reviewed the output of the AI. 
 
-We include a [valueSet](ValueSet-ProvenanceVS.html) that assembles our codes and those defined elsewhere.
-
-
-### Element tag within a Resource
-
-The tagging can be done at a more finegrain level, that is to indicate that a few elements within a Resource were influenced by AI. For this the top level meta.security does not hold the `AIAST` code, but rather holds a code defined in [DS4P Inline Security Labels]({{site.data.fhir.ds4p}}/inline_security_labels.html) - `PROCESSINLINE`; and then on each element that was influenced by AI, they have the `inline-sec-label` extension to indicate `AIAST`.
-
-- [DiagnosticReport with Inline AI Security Labels](DiagnosticReport-f202.html)
-
-One of the key portions of that Resource is
-
-```json
-  "conclusionCode" : [
-    {
-      "extension" : [
-        {
-          "url" : "http://hl7.org/fhir/uv/security-label-ds4p/StructureDefinition/extension-inline-sec-label",
-          "valueCoding" : {
-            "system" : "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
-            "code" : "AIAST",
-            "display" : "Artificial Intelligence asserted"
-          }
-        }
-      ],
-      "coding" : [
-        {
-          "system" : "http://snomed.info/sct",
-          "code" : "428763004",
-          "display" : "Staphylococcus aureus bacteraemia"
-        }
-      ]
-    }
-  ]
-```
-
 ## Provenance
 
 Provenance is a Resource in FHIR that is designed to support full concept of Provenance. In the case of AI, the Provenance can carry far more detail about how the AI was used, which AI was used, what input parameters it was given, what came out, and how was that used to create or update resources.
