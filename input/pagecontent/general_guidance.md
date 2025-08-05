@@ -77,6 +77,63 @@ One of the key portions of that Resource is
 #### Model(s)
 Model Documentation captures comprehensive information about the AI algorithms used in processing healthcare data. The name and version specification ensures precise identification of the specific AI model and its iteration used, enabling reproducibility and version control. Algorithm classification distinguishes between deterministic systems (rule-based, predictable outputs), non-deterministic systems (machine learning models with probabilistic outputs), and hybrid approaches that combine both methodologies. Training set data documentation provides transparency about the datasets used to develop the AI model, including information about data sources, population demographics, and potential biases. Working memory refers to the contextual information and temporary data that the AI model maintains during processing, which can influence decision-making and outputs.
 
+### Defining the AI
+
+An AI is defined using the Device resource. The Device resource is defined in FHIR to be much broader than physical devices, and specifically includes software, and thus AI. Thus an AI would be identified by some kind of identifier, manufacture, type, version, web location, etc.
+
+- [The AI System](Device-TheAI.html)
+
+This example is not defined more than any software might be.
+
+#### Using Model-Card
+
+The AI community is defining standards for describing an AI model. This is a Model Card. The Model Card is a combination of YAML that defines in codeable terms the details, and a Markdown that describes it in narrative. Given that Markdown can carry YAML, the overall object is Markdown.
+
+Example Model Card from https://github.com/huggingface/huggingface_hub/tree/main/tests/fixtures/cards
+
+Here is an example given:
+
+```markdown
+---
+language:
+- en
+license:
+- bsd-3-clause
+annotations_creators:
+- crowdsourced
+- expert-generated
+language_creators:
+- found
+multilinguality:
+- monolingual
+size_categories:
+- n<1K
+task_categories:
+- image-segmentation
+task_ids:
+- semantic-segmentation
+pretty_name: Sample Segmentation
+---
+
+# Dataset Card for Sample Segmentation
+
+This is a sample dataset card for a semantic segmentation dataset.
+```
+
+##### Simply put the Model-Card markdown into the note.text of the Device.
+
+One choice is to just put that Markdown Model-Card into the Device.note.text element. This is not wrong from the definition of that element, but it may not be obvious to one looking at the Device resource that there is meaning to the markdown given.
+
+- [Device with Model-Card in Device.note.text](Device-Note-ModelCard.html)
+
+##### Attachment for the Model-Card
+
+One could encode the Model-Card in a resource designed for carrying any mime-type, the DocumentReference. To make this more clear and searchable we define a [codeSystem](CodeSystem-AImodelCardCS.html) that has some codes to be used to identify that the DocumentReference is specifically an AI Model Card or an AI Input Prompt
+
+- [DocumentReference Model-Card](DocumentReference-ModelCard-sample-datasetcard-simple.html)
+- [Extension for including the Model-Card in a Device](StructureDefinition-aitransparency.modelCardDescription.html)
+- [Device with attached Model-Card](Device-Attached-ModelCard.html)
+
 #### Data sources
 Data Sources documents all inputs and operational frameworks involved in AI processing. Request input encompasses the primary healthcare data submitted to the AI system, such as patient demographics, clinical notes, laboratory results, and imaging data. Reference input includes supplementary information provided to enhance AI decision-making, such as clinical practice guidelines, drug interaction databases, treatment protocols, and evidence-based medicine resources. Operations tracking covers the technical protocols used for AI interactions, including Model Context Protocol (MCP) for structured communication with AI systems and Agent-to-Agent (A2A) protocols for communication between different AI systems. Data quality assessment evaluates the completeness, accuracy, consistency, and reliability of input data, while data qualification addresses the validation, certification, and regulatory compliance status of data sources.
 
