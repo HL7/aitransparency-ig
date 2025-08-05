@@ -11,30 +11,6 @@ Discussion has indicated that a few more codes might be useful. For this we crea
 
 We include a [valueSet](ValueSet-ProvenanceVS.html) that assembles our codes and those defined elsewhere.
 
-### Gross Resource tag
-
-Gross Resource tagging will indicate that the whole Resource is influenced by the code assigned. This might be useful when an example is completely authored by an AI.
-
-- [Example Observation with AI Assisted security labels](Observation-glasgow.html)
-
-The key portion of that Resource is the following meta.security element holding the `AIAST` code.
-
-```json
-{
-  "resourceType" : "Observation",
-  "id" : "glasgow",
-  "meta" : {
-    "security" : [
-      {
-        "system" : "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
-        "code" : "AIAST",
-        "display" : "Artificial Intelligence asserted"
-      }
-    ]
-  },
-  "text" : {
-    ...
-```
 
 ### Element tag within a Resource
 

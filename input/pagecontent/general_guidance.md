@@ -12,6 +12,68 @@ Observability Factors for FHIR AI Representation
 #### Tagging
 Tagging establishes systematic identification and marking of FHIR resources that have been processed or influenced by AI systems. Resource-level tagging marks entire FHIR resources (such as a complete Patient record or Observation) as having been processed by AI, providing a high-level indicator of AI involvement. Field or element-level tagging provides more granular marking, identifying specific data elements within a resource that have been generated, modified, or enhanced by AI algorithms, such as individual diagnosis codes, medication recommendations, or calculated risk scores.
 
+We include a [valueSet](ValueSet-ProvenanceVS.html) that assembles our codes and those defined elsewhere.
+
+##### Tagging Examples
+
+**Gross Resource tag**
+
+Gross Resource tagging will indicate that the whole Resource is influenced by the code assigned. 
+Use when an example is completely authored by an AI.
+
+- [Example Observation with AI Assisted security labels](Observation-glasgow.html)
+
+The key portion of that Resource is the following meta.security element holding the `AIAST` code.
+
+```json
+{
+  "resourceType" : "Observation",
+  "id" : "glasgow",
+  "meta" : {
+    "security" : [
+      {
+        "system" : "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+        "code" : "AIAST",
+        "display" : "Artificial Intelligence asserted"
+      }
+    ]
+  },
+  "text" : {
+    ...
+```
+
+**Element tag within a Resource**
+
+The tagging can be done at a more finegrain level, that is to indicate that a few elements within a Resource were influenced by AI. For this the top level meta.security does not hold the `AIAST` code, but rather holds a code defined in [DS4P Inline Security Labels]({{site.data.fhir.ds4p}}/inline_security_labels.html) - `PROCESSINLINE`; and then on each element that was influenced by AI, they have the `inline-sec-label` extension to indicate `AIAST`.
+
+- [DiagnosticReport with Inline AI Security Labels](DiagnosticReport-f202.html)
+
+One of the key portions of that Resource is
+
+```json
+  "conclusionCode" : [
+    {
+      "extension" : [
+        {
+          "url" : "http://hl7.org/fhir/uv/security-label-ds4p/StructureDefinition/extension-inline-sec-label",
+          "valueCoding" : {
+            "system" : "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+            "code" : "AIAST",
+            "display" : "Artificial Intelligence asserted"
+          }
+        }
+      ],
+      "coding" : [
+        {
+          "system" : "http://snomed.info/sct",
+          "code" : "428763004",
+          "display" : "Staphylococcus aureus bacteraemia"
+        }
+      ]
+    }
+  ]
+```
+
 #### Model(s)
 Model Documentation captures comprehensive information about the AI algorithms used in processing healthcare data. The name and version specification ensures precise identification of the specific AI model and its iteration used, enabling reproducibility and version control. Algorithm classification distinguishes between deterministic systems (rule-based, predictable outputs), non-deterministic systems (machine learning models with probabilistic outputs), and hybrid approaches that combine both methodologies. Training set data documentation provides transparency about the datasets used to develop the AI model, including information about data sources, population demographics, and potential biases. Working memory refers to the contextual information and temporary data that the AI model maintains during processing, which can influence decision-making and outputs.
 
