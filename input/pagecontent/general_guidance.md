@@ -83,7 +83,7 @@ Data Sources documents all inputs and operational frameworks involved in AI proc
 #### Process (human-machine-interaction)
 Process focuses on human-AI collaboration and governance aspects of AI-augmented healthcare workflows. Provenance tracking creates a comprehensive audit trail that identifies all contributors to the final clinical output, documenting both human healthcare providers and AI systems involved in the decision-making process. Role definition clarifies the specific responsibilities, authority levels, and decision-making boundaries of each contributor, whether human or artificial. Bias reduction strategies encompass active measures implemented to minimize algorithmic bias and ensure equitable healthcare outcomes, such as using MCP to redirect AI systems to controlled medical terminology corpuses that promote standardized and unbiased language. The connection between bias reduction efforts and provenance documentation ensures that mitigation strategies are traceable and accountable, linking specific interventions back to documented decision trails and outcome assessments.
 
-### Full Process example
+##### Full Process example
 
 [This is a full example](Provenance-AI-full-lorem-ipsum.html) of how to capture the AI process in FHIR.
 
@@ -102,3 +102,26 @@ Process focuses on human-AI collaboration and governance aspects of AI-augmented
     - Where the Input Prompt is a DocumentReference resource that contains the input prompt provided to the AI system.
     - Where the Input Prompt is a contained resource in the Provenance resource.
     - Where the Input Prompt is associated with the clinician which provided it
+
+
+##### Using Input Prompt
+
+One useful thing to record is the Input Prompt given to the AI. This input prompt can be very important to the output, and the interpretation of the output. The Input Prompt is recorded as an attachment, using the DocumentReference, and using a code as defined above
+
+- [Input Prompt lorem ipsum](DocumentReference-Input-Prompt-lorem-ipsum.html)
+- [Input Prompt to create a Patient](DocumentReference-Input-Prompt-create-patient.html)
+
+The first example is just showing the encapsulating mechanism. The Second example is a prompt that might be used to have the AI create a given Patient resource that meets the input requirements.
+
+- [Provenance of creating a Patient from Input Prompt](Provenance-AI-generated-patient-resource.html)
+- [Patient resource created](Patient-a1b2c3d4-e5f6-7890-abcd-ef1234567890.html)
+
+##### PDF interpreted by AI into FHIR
+
+Use Case: A provider receives a [PDF of lab result(s)](DocumentReference-Lab-Results-PDF.html) for a patient. This PDF is examined by an AI which generates a [Bundle with a Patient resource and Observation resource(s)](Bundle-b3c1f2d4-5c8e-4b0a-9f6d-7c8e1f2d4b5c.html).
+
+In the attached example the patient's name is Alton Walsh and the lab test is an HbA1C. All the FHIR resources in the bundle have been created by the AI, so they should be tagged accordingly.
+
+- [Provenance of AI Generated Lab Results](Provenance-AI-Generated-Lab-Results.html)
+
+TODO: Note, the validator found some syntax and semantic errors in the json that I had to fix manually

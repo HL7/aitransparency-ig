@@ -82,38 +82,6 @@ One could encode the Model-Card in a resource designed for carrying any mime-typ
 - [Extension for including the Model-Card in a Device](StructureDefinition-aitransparency.modelCardDescription.html)
 - [Device with attached Model-Card](Device-Attached-ModelCard.html)
 
-### Using Input Prompt
-
-One useful thing to record is the Input Prompt given to the AI. This input prompt can be very important to the output, and the interpretation of the output. The Input Prompt is recorded as an attachment, using the DocumentReference, and using a code as defined above
-
-- [Input Prompt lorem ipsum](DocumentReference-Input-Prompt-lorem-ipsum.html)
-- [Input Prompt to create a Patient](DocumentReference-Input-Prompt-create-patient.html)
-
-The first example is just showing the encapsulating mechanism. The Second example is a prompt that might be used to have the AI create a given Patient resource that meets the input requirements.
-
-- [Provenance of creating a Patient from Input Prompt](Provenance-AI-generated-patient-resource.html)
-- [Patient resource created](Patient-a1b2c3d4-e5f6-7890-abcd-ef1234567890.html)
-
-### Full Provenance example
-
-[This is a full example](Provenance-AI-full-lorem-ipsum.html) of how to capture the AI process in FHIR.
-
-- Two outputs that this Provenance resource is documenting:
-    - an Observation resource (e.g., lab result)
-        - with Observation.interpretation being attributed to this Provenance
-    - a CarePlan resource (e.g., follow-up care plan)
-- Two agents
-    - a verifier (human) who verifies the AI output
-    - an author (AI system) who generated the output
-- Two entities that were clinical resources provided to the AI system
-    - a DocumentReference resource (e.g., patient summary)
-    - an Observation resource (e.g., lab result)
-- One entity that is a PlanDefinition resource (e.g., care plan definition)
-- One entity that is the AI Input Prompt
-    - Where the Input Prompt is a DocumentReference resource that contains the input prompt provided to the AI system.
-    - Where the Input Prompt is a contained resource in the Provenance resource.
-    - Where the Input Prompt is associated with the clinician which provided it
-
 ### PDF interpreted by AI into FHIR
 
 Use Case: A provider receives a [PDF of lab result(s)](DocumentReference-Lab-Results-PDF.html) for a patient. This PDF is examined by an AI which generates a [Bundle with a Patient resource and Observation resource(s)](Bundle-b3c1f2d4-5c8e-4b0a-9f6d-7c8e1f2d4b5c.html).
