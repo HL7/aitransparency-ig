@@ -1,6 +1,13 @@
 ## Observability Levels
 
-These four observability factors in the table below offer distinct considerations and approaches for tracking and documenting AI processing within FHIR healthcare resources when algorithms generate, modify, or enhance clinical data. Rather than sequential steps, each level addresses different transparency needs: basic identification of AI-influenced data (Tagging), detailed model documentation (Models), comprehensive input tracking (Data Sources), and human-AI collaboration governance (Process). This flexible framework allows implementers to select one or more levels based on their specific requirements and organizational capabilities for representing AI-generated content.
+Four observability levels can track and document when AI algorithms generate, modify, or enhance clinical data within FHIR healthcare resources. Each level addresses different transparency needs: 
+
+- basic identification of AI-influenced data (Tagging), 
+- detailed model documentation (Models), 
+- comprehensive input tracking (Data Sources), and 
+- human-AI collaboration governance (Process). 
+
+Implementers can select one or more levels from this framework based on their specific requirements and organizational capabilities for representing AI-generated content.
 
 Observability Factors for FHIR AI Representation
 
