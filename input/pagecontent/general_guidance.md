@@ -17,20 +17,27 @@ Observability Factors for FHIR AI Representation
 
 
 ### Tagging
-Tagging establishes systematic identification and marking of FHIR resources that have been processed or influenced by AI systems. Resource-level tagging marks entire FHIR resources (such as a complete Patient record or Observation) as having been processed by AI, providing a high-level indicator of AI involvement. Field or element-level tagging provides more granular marking, identifying specific data elements within a resource that have been generated, modified, or enhanced by AI algorithms, such as individual diagnosis codes, medication recommendations, or calculated risk scores.
+Tagging establishes systematic identification and marking of FHIR resources that have been processed or influenced by AI systems. Tagging can be done at different levels. Resource-level tagging provides a high-level indicator of AI involvement by marking entire FHIR resources, like a complete Patient record or Observation, as having been processed by AI. For more granular marking, Field or Element-leve tagging identifies specific data elements within a resource that have been generated, modificed or enhanced by AI algorithms. Examples of Field or Element-level tags include individual diagnosis codes, medication recommendations, and calculated risk scores.
 
+<!---
+The following link was included in the Tagging Explainer but links to provenance. Not sure if this is correct.
 We include a [valueSet](ValueSet-ProvenanceVS.html) that assembles our codes and those defined elsewhere.
+-->
 
 #### Tagging Examples
 
-**Gross Resource tag**
+**Resource tag**
 
-Gross Resource tagging will indicate that the whole Resource is influenced by the code assigned. 
+A gross Resource tag will indicate that the whole Resource is influenced by the code assigned. 
 Use when an example is completely authored by an AI.
 
 - [Example Observation with AI Assisted security labels](Observation-glasgow.html)
 
-The key portion of that Resource is the following meta.security element holding the `AIAST` code.
+The key portion of that Resource is the following meta.security element holding the `AIAST` code. `AIAST` is an HL7 Observation value for metadata that indicates that AI was invovled in producing the data or information. 
+
+<!---
+Note, I don't think the description I added for AIAST is the best so including it more as a placeholder for now.
+-->
 
 ```json
 {
@@ -51,7 +58,10 @@ The key portion of that Resource is the following meta.security element holding 
 
 **Element tag within a Resource**
 
-The tagging can be done at a more finegrain level, that is to indicate that a few elements within a Resource were influenced by AI. For this the top level meta.security does not hold the `AIAST` code, but rather holds a code defined in [DS4P Inline Security Labels]({{site.data.fhir.ds4p}}/inline_security_labels.html) - `PROCESSINLINE`; and then on each element that was influenced by AI, they have the `inline-sec-label` extension to indicate `AIAST`.
+An Element tag will indicate that an element or a few elements wihtin a Resource were influenced by AI, but not the whole Resource.
+Use when components of an example were authored by AI, but not the whole Resource.
+
+meta.security holds a code defined in [DS4P Inline Security Labels]({{site.data.fhir.ds4p}}/inline_security_labels.html) - `PROCESSINLINE`, and the `inline-sec-label` extension is on each element that was influenced by AI to indicate it is an AI asserted value. 
 
 - [DiagnosticReport with Inline AI Security Labels](DiagnosticReport-f202.html)
 
