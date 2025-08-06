@@ -92,7 +92,7 @@ One of the key portions of that Resource is
 ```
 
 ### Model(s)
-Model Documentation captures comprehensive information about the AI algorithms used in processing healthcare data. The name and version specification ensures precise identification of the specific AI model and its iteration used, enabling reproducibility and version control. Algorithm classification distinguishes between deterministic systems (rule-based, predictable outputs), non-deterministic systems (machine learning models with probabilistic outputs), and hybrid approaches that combine both methodologies. Training set data documentation provides transparency about the datasets used to develop the AI model, including information about data sources, population demographics, and potential biases. Working memory refers to the contextual information and temporary data that the AI model maintains during processing, which can influence decision-making and outputs.
+Model documentation captures comprehensive information about the AI algorithms used in processing healthcare data. The name and version specification ensures precise identification of the specific AI model and its iteration used, enabling reproducibility and version control. Algorithm classification distinguishes between deterministic systems (rule-based, predictable outputs), non-deterministic systems (machine learning models with probabilistic outputs), and hybrid approaches that combine both methodologies. Training set data documentation provides transparency about the datasets used to develop the AI model, including information about data sources, population demographics, and potential biases. Working memory refers to the contextual information and temporary data that the AI model maintains during processing, which can influence decision-making and outputs.
 
 #### Defining the AI
 
@@ -151,8 +151,18 @@ One could encode the Model-Card in a resource designed for carrying any mime-typ
 - [Extension for including the Model-Card in a Device](StructureDefinition-aitransparency.modelCardDescription.html)
 - [Device with attached Model-Card](Device-Attached-ModelCard.html)
 
-### Data sources
-Data Sources documents all inputs and operational frameworks involved in AI processing. Request input encompasses the primary healthcare data submitted to the AI system, such as patient demographics, clinical notes, laboratory results, and imaging data. Reference input includes supplementary information provided to enhance AI decision-making, such as clinical practice guidelines, drug interaction databases, treatment protocols, and evidence-based medicine resources. Operations tracking covers the technical protocols used for AI interactions, including Model Context Protocol (MCP) for structured communication with AI systems and Agent-to-Agent (A2A) protocols for communication between different AI systems. Data quality assessment evaluates the completeness, accuracy, consistency, and reliability of input data, while data qualification addresses the validation, certification, and regulatory compliance status of data sources.
+### Data Sources
+Data Sources documents all inputs and operational frameworks involved in AI processing. 
+
+<!---
+Example scenarios for using data source documentation? 
+-->
+
+- **Request input**: the primary healthcare data submitted to the AI system, including patient demographics, clinical notes, laboratory results, and imaging data
+- **Reference input**: supplementary information provided to enhance AI decision-making, including clinical practice guidelines, drug interaction databases, treatment protocols, and evidence-based medicine resources
+- **Operations**: the technical protocols used for AI interactions, including Model Context Protocol (MCP) for structured communication with AI systems and Agent-to-Agent (A2A) protocols for communication between different AI systems 
+- **Data quality**: evaluates the completeness, accuracy, consistency, and reliability of input data 
+- **Data qualification**: addresses the validation, certification, and regulatory compliance status of data sources
 
 ### Process (human-machine-interaction)
 Process focuses on human-AI collaboration and governance aspects of AI-augmented healthcare workflows. Provenance tracking creates a comprehensive audit trail that identifies all contributors to the final clinical output, documenting both human healthcare providers and AI systems involved in the decision-making process. Role definition clarifies the specific responsibilities, authority levels, and decision-making boundaries of each contributor, whether human or artificial. Bias reduction strategies encompass active measures implemented to minimize algorithmic bias and ensure equitable healthcare outcomes, such as using MCP to redirect AI systems to controlled medical terminology corpuses that promote standardized and unbiased language. The connection between bias reduction efforts and provenance documentation ensures that mitigation strategies are traceable and accountable, linking specific interventions back to documented decision trails and outcome assessments.
