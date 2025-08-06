@@ -1,13 +1,13 @@
 ## Observability Levels
 
-Four observability levels can track and document when AI algorithms generate, modify, or enhance clinical data within FHIR healthcare resources. Each level addresses different transparency needs: 
+Four Observability Levels track and document when AI algorithms generate, modify, or enhance clinical data within FHIR healthcare resources. Each level addresses different transparency needs: 
 
 - basic identification of AI-influenced data (Tagging), 
 - detailed model documentation (Models), 
 - comprehensive input tracking (Data Sources), and 
-- human-AI collaboration governance (Process). 
+- human-AI collaboration governance (Process)
 
-Implementers can select one or more levels from this framework based on their specific requirements and organizational capabilities for representing AI-generated content.
+Implementers can utilize one or more levels from this framework based on their specific requirements and organizational capabilities for representing AI-generated content.
 
 Observability Factors for FHIR AI Representation
 
@@ -18,7 +18,11 @@ Observability Factors for FHIR AI Representation
 ![Four overlapping circles labeled Tagging, Models, Data Sources, Process showing the complementary nature of the four observability levels.](/input/images/levels-icons.png "Observability Levels")
 
 ### Tagging
-Tagging establishes systematic identification and marking of FHIR resources that have been processed or influenced by AI systems. Tagging can be done at different levels. Resource-level tagging provides a high-level indicator of AI involvement by marking entire FHIR resources, like a complete Patient record or Observation, as having been processed by AI. For more granular marking, Field or Element-leve tagging identifies specific data elements within a resource that have been generated, modificed or enhanced by AI algorithms. Examples of Field or Element-level tags include individual diagnosis codes, medication recommendations, and calculated risk scores.
+Tagging establishes systematic identification and marking of FHIR resources that have been processed or influenced by AI systems. Tagging can be done at different levels. 
+
+- **Resource-level** tagging provides a high-level indicator of AI involvement by marking entire FHIR resources, like a complete Patient record or Observation, as having been processed by AI. 
+
+- **Field or Element-level** tagging identifies specific data elements within a resource that have been generated, modified or enhanced by AI algorithms. Examples of Field or Element-level tags include individual diagnosis codes, medication recommendations, and calculated risk scores.
 
 <!---
 The following link was included in the Tagging Explainer but links to provenance. Not sure if this is correct.
@@ -29,7 +33,7 @@ We include a [valueSet](ValueSet-ProvenanceVS.html) that assembles our codes and
 
 **Resource tag**
 
-A gross Resource tag will indicate that the whole Resource is influenced by the code assigned. 
+A Resource tag indicates that the whole Resource is influenced by the code assigned. 
 Use when an example is completely authored by an AI.
 
 - [Example Observation with AI Assisted security labels](Observation-glasgow.html)
@@ -59,7 +63,7 @@ Note, I don't think the description I added for AIAST is the best so including i
 
 **Element tag within a Resource**
 
-An Element tag will indicate that an element or a few elements wihtin a Resource were influenced by AI, but not the whole Resource.
+An Element tag will indicate that an element or a few elements within a Resource were influenced by AI, but not the whole Resource.
 Use when components of an example were authored by AI, but not the whole Resource.
 
 meta.security holds a code defined in [DS4P Inline Security Labels]({{site.data.fhir.ds4p}}/inline_security_labels.html) - `PROCESSINLINE`, and the `inline-sec-label` extension is on each element that was influenced by AI to indicate it is an AI asserted value. 
