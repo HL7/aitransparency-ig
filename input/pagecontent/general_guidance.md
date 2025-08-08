@@ -16,7 +16,11 @@ Implementers can utilize one or more levels from this framework based on their s
 **Tagging**
 
 Marks or identifies information that has been influenced by AI.
-Can be used broadly at the Resource-level, or more granularly at the field or element-level.
+Tagging can be done broadly at the Resource-level, or more granularly at the field or element-level.
+
+**Resource-level** tagging provides a high-level indicator of AI involvement by marking entire FHIR resources, like a complete Patient record or Observation, as having been processed by AI. 
+
+**Field or Element-level** tagging identifies specific data elements within a resource that have been generated, modified or enhanced by AI algorithms. Examples of Field or Element-level tags include individual diagnosis codes, medication recommendations, and calculated risk scores.
 
 >💡 Tip
 >
@@ -41,13 +45,13 @@ Information in the Model field could include:
 
 Identifies the related inputs to an AI model and operations used to [convey, produce, other?] information.
 
-Information in the Data Sources field could include:
+Information in the Data Sources field includes:
 
-- Request input (also referred to as a prompt) sent to AI, like patient data
-- Reference input like clinical guidelines that shape the model's decision-making or reasoning
-- Operations, including Model Context Protocol (MCP) and Agent to Agent (A2A) Protocol
-- Data quality [is this referring to ]
-- Data qualification
+- **Request input**: Also referred to as a prompt, the primary healthcare data submitted to the AI system, including patient demographics, clinical notes, laboratory results, and imaging data
+- **Reference input**: supplementary information provided to enhance AI decision-making, including clinical practice guidelines, drug interaction databases, treatment protocols, and evidence-based medicine resources
+- **Operations**: the technical protocols used for AI interactions, including Model Context Protocol (MCP) for structured communication with AI systems and Agent-to-Agent (A2A) protocols for communication between different AI systems 
+- **Data quality**: evaluates the completeness, accuracy, consistency, and reliability of input data 
+- **Data qualification**: addresses the validation, certification, and regulatory compliance status of data sources
 
 >💡 Tip
 >
@@ -55,7 +59,11 @@ Information in the Data Sources field could include:
 
 **Process**
 
-Denotes the actions taken and human-machine interactions that may have influenced the AI model.
+Process documents human-AI collaboration and governance aspects of AI-augmented healthcare workflows. There are two main components documented in Process: provenance and bias reduction strategies. 
+
+**Provenance** is a comprehensive audit trail that identifies all contributors to the final clinical output, documenting both human healthcare providers and AI systems involved in the decision-making process. Role definition clarifies the specific responsibilities, authority levels, and decision-making boundaries of each contributor, whether human or artificial. 
+
+**Bias reduction strategies** encompass active measures implemented to minimize algorithmic bias and ensure equitable healthcare outcomes, such as using MCP to redirect AI systems to controlled medical terminology corpuses that promote standardized and unbiased language. The connection between bias reduction efforts and provenance documentation ensures that mitigation strategies are traceable and accountable, linking specific interventions back to documented decision trails and outcome assessments.
 
 Information in the Process field could include:
 
@@ -70,11 +78,6 @@ Information in the Process field could include:
 ## Examples
 
 ### Tagging
-Tagging establishes systematic identification and marking of FHIR resources that have been processed or influenced by AI systems. Tagging can be done at different levels. 
-
-- **Resource-level** tagging provides a high-level indicator of AI involvement by marking entire FHIR resources, like a complete Patient record or Observation, as having been processed by AI. 
-
-- **Field or Element-level** tagging identifies specific data elements within a resource that have been generated, modified or enhanced by AI algorithms. Examples of Field or Element-level tags include individual diagnosis codes, medication recommendations, and calculated risk scores.
 
 <!---
 The following link was included in the Tagging Explainer but links to provenance. Not sure if this is correct.
@@ -211,21 +214,21 @@ One could encode the Model-Card in a resource designed for carrying any mime-typ
 ### Data Sources
 Data Sources documents all inputs and operational frameworks involved in AI processing. 
 
-<!---
-Example scenarios for using data source documentation? 
--->
+*Insert example scenarios for using data source documentation*
 
-- **Request input**: the primary healthcare data submitted to the AI system, including patient demographics, clinical notes, laboratory results, and imaging data
-- **Reference input**: supplementary information provided to enhance AI decision-making, including clinical practice guidelines, drug interaction databases, treatment protocols, and evidence-based medicine resources
-- **Operations**: the technical protocols used for AI interactions, including Model Context Protocol (MCP) for structured communication with AI systems and Agent-to-Agent (A2A) protocols for communication between different AI systems 
-- **Data quality**: evaluates the completeness, accuracy, consistency, and reliability of input data 
-- **Data qualification**: addresses the validation, certification, and regulatory compliance status of data sources
+#### Using Input Prompt
 
-### Process (human-machine-interaction)
-Process documents human-AI collaboration and governance aspects of AI-augmented healthcare workflows. There are two main components documented in Process: provenance and bias reduction strategies. 
+One useful thing to record is the Input Prompt given to the AI. This input prompt can be very important to the output, and the interpretation of the output. The Input Prompt is recorded as an attachment, using the DocumentReference, and using a code as defined above
 
-- **Provenance**: a comprehensive audit trail that identifies all contributors to the final clinical output, documenting both human healthcare providers and AI systems involved in the decision-making process. Role definition clarifies the specific responsibilities, authority levels, and decision-making boundaries of each contributor, whether human or artificial. 
-- **Bias reduction strategies**: encompass active measures implemented to minimize algorithmic bias and ensure equitable healthcare outcomes, such as using MCP to redirect AI systems to controlled medical terminology corpuses that promote standardized and unbiased language. The connection between bias reduction efforts and provenance documentation ensures that mitigation strategies are traceable and accountable, linking specific interventions back to documented decision trails and outcome assessments.
+- [Input Prompt lorem ipsum](DocumentReference-Input-Prompt-lorem-ipsum.html)
+- [Input Prompt to create a Patient](DocumentReference-Input-Prompt-create-patient.html)
+
+The first example is just showing the encapsulating mechanism. The Second example is a prompt that might be used to have the AI create a given Patient resource that meets the input requirements.
+
+- [Provenance of creating a Patient from Input Prompt](Provenance-AI-generated-patient-resource.html)
+- [Patient resource created](Patient-a1b2c3d4-e5f6-7890-abcd-ef1234567890.html)
+
+### Process
 
 #### Full Process example
 
@@ -246,19 +249,6 @@ Process documents human-AI collaboration and governance aspects of AI-augmented 
     - Where the Input Prompt is a DocumentReference resource that contains the input prompt provided to the AI system.
     - Where the Input Prompt is a contained resource in the Provenance resource.
     - Where the Input Prompt is associated with the clinician which provided it
-
-
-#### Using Input Prompt
-
-One useful thing to record is the Input Prompt given to the AI. This input prompt can be very important to the output, and the interpretation of the output. The Input Prompt is recorded as an attachment, using the DocumentReference, and using a code as defined above
-
-- [Input Prompt lorem ipsum](DocumentReference-Input-Prompt-lorem-ipsum.html)
-- [Input Prompt to create a Patient](DocumentReference-Input-Prompt-create-patient.html)
-
-The first example is just showing the encapsulating mechanism. The Second example is a prompt that might be used to have the AI create a given Patient resource that meets the input requirements.
-
-- [Provenance of creating a Patient from Input Prompt](Provenance-AI-generated-patient-resource.html)
-- [Patient resource created](Patient-a1b2c3d4-e5f6-7890-abcd-ef1234567890.html)
 
 #### PDF interpreted by AI into FHIR
 
