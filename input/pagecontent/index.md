@@ -3,9 +3,9 @@
 
 Transparency is necessary to establish standards for documenting and tracking the use of outputs from AI systems or inference algorithms, including generative Artificial Intelligence (AI) and Large Language Models (LLMs), within FHIR resources and operations.
 
-AI represents amazing potential to improve outcomes in healthcare. However, it comes with a number of challenges, such as it is generally probabilistic in nature, can be influence by bias, and can suffer from hallucinations. It is critical that we provide guidance for how to tag data coming from AI in a way that it can be used responsibly by downstream systems and users.
+AI represents amazing potential to improve outcomes in healthcare. However, it comes with a number of challenges, such as it is generally probabilistic in nature, can be influenced by bias, and can suffer from hallucinations. It is critical that we provide guidance for how to tag data coming from AI in a way that it can be used responsibly by downstream systems and users.
 
-This FHIR Implementation Guide (IG) aims to define standard methods for representing the use of generative AI and LLMs in FHIR resources and operations. The IG will address two main areas:
+This FHIR Implementation Guide (IG) defines standard methods for representing the use of generative AI and LLMs in FHIR resources and operations. Two topics are covered in this IG:
 
 #### AI Content Transparency
 
