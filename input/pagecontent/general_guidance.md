@@ -9,13 +9,65 @@ Four Observability Levels track and document when AI algorithms generate, modify
 
 Implementers can utilize one or more levels from this framework based on their specific requirements and organizational capabilities for representing AI-generated content.
 
-Observability Factors for FHIR AI Representation
-
-| 1: Tagging | 2: Model(s) | 3: Data sources | 4. Process (human-machine-interaction) |
-|:------------|:-------------|:-----------------|:----------------------------------------|
-| Tagging data influenced by AI<br><br>• resource-level<br>• field / element -level | Describing the characteristics of the model:<br><br>• Name and version of the AI algorithm / model<br>• algorithm deterministic vs. non-deterministic vs. hybrid<br><br>• Training set data<br>• Working memory | • Request input (to AI)<br>  - e.g.: Patient data<br><br>• Reference input<br>  - e.g.: clinical guidelines<br><br>• Operations<br>  - Model Context Protocol (MCP)<br>  - Agent to Agent (A2A)<br><br>• Data quality<br>• Data qualification | • Provenance - indicating<br>  - multiple actors, including the human<br>  - role<br><br>• Bias reduction strategies<br>  - e.g.: MCP to redirect to a controlled terminology corpus<br>  - tie back to Provenance |
+### About the Observability Factor/Levels for FHIR AI Transparency
 
 ![Four overlapping circles labeled Tagging, Models, Data Sources, Process showing the complementary nature of the four observability levels.](/input/images/levels-icons.png "Observability Levels")
+
+**Tagging**
+
+Marks or identifies information that has been influenced by AI.
+Can be used broadly at the Resource-level, or more granularly at the field or element-level.
+
+>💡 Tip
+>
+> Use When...
+
+**Models**
+
+Describes characteristics of the AI model used to produce or influence the data.
+
+Information in the Model field could include:
+
+- name and version of the AI algorithm/model
+- whether the algorithm is deterministic, non-deterministic, or a hybrid of the two
+- training set data
+- working memory
+
+>💡 Tip
+>
+> Use When...
+
+**Data Sources**
+
+Identifies the related inputs to an AI model and operations used to [convey, produce, other?] information.
+
+Information in the Data Sources field could include:
+
+- Request input (also referred to as a prompt) sent to AI, like patient data
+- Reference input like clinical guidelines that shape the model's decision-making or reasoning
+- Operations, including Model Context Protocol (MCP) and Agent to Agent (A2A) Protocol
+- Data quality [is this referring to ]
+- Data qualification
+
+>💡 Tip
+>
+> Use When...
+
+**Process**
+
+Denotes the actions taken and human-machine interactions that may have influenced the AI model.
+
+Information in the Process field could include:
+
+- Actor(s), including the human, and their roles
+- Bias reduction strategies 
+- Redirection to a controlled terminology corpus
+
+>💡 Tip
+>
+> Use When...
+
+## Examples
 
 ### Tagging
 Tagging establishes systematic identification and marking of FHIR resources that have been processed or influenced by AI systems. Tagging can be done at different levels. 
