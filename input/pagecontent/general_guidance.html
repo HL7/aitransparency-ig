@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>general_guidance</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="general_guidance_files/libs/clipboard/clipboard.min.js"></script>
+<script src="general_guidance_files/libs/quarto-html/quarto.js"></script>
+<script src="general_guidance_files/libs/quarto-html/popper.min.js"></script>
+<script src="general_guidance_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="general_guidance_files/libs/quarto-html/anchor.min.js"></script>
+<link href="general_guidance_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="general_guidance_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="general_guidance_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="general_guidance_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="general_guidance_files/libs/bootstrap/bootstrap-973236bd072d72a04ee9cd82dcc9cb29.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="observability-levels" class="level2">
+<h2 class="anchored" data-anchor-id="observability-levels">Observability Levels</h2>
+<!-- kmb: Consider Observability Dimensions instead of levels? -->
+<p>Four Observability Levels track and document when AI algorithms generate, modify, or enhance clinical data within FHIR healthcare resources. Each level addresses different transparency needs:</p>
+<ul>
+<li>basic identification of AI-influenced data (Tagging),</li>
+<li>detailed model documentation (Models),</li>
+<li>comprehensive input tracking (Data Sources), and</li>
+<li>human-AI collaboration governance (Process)</li>
+</ul>
+<p>Implementers can utilize one or more levels from this framework based on their specific requirements and organizational capabilities for representing AI-generated content.</p>
+<section id="about-the-observability-factorlevels-for-fhir-ai-transparency" class="level3">
+<h3 class="anchored" data-anchor-id="about-the-observability-factorlevels-for-fhir-ai-transparency">About the Observability Factor/Levels for FHIR AI Transparency</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./input/images/levels-icons.png" title="Observability Levels" class="img-fluid figure-img"></p>
+<figcaption>Four overlapping circles labeled Tagging, Models, Data Sources, Process showing the complementary nature of the four observability levels.</figcaption>
+</figure>
+</div>
+<p align="center">
+<img src="./levels-icons.png" alt="Four overlapping circles labeled Tagging, Models, Data Sources, Process showing the complementary nature of the four observability levels." style="width: 30%; float: none; vertical-align: middle;">
+</p>
+<p><strong>Tagging</strong></p>
+<p>Marks or identifies information that has been influenced by AI. Tagging can be done broadly at the Resource-level, or more granularly at the field or element-level.</p>
+<p><strong>Resource-level</strong> tagging provides a high-level indicator of AI involvement by marking entire FHIR resources, like a complete Patient record or Observation, as having been processed by AI.</p>
+<p><strong>Field or Element-level</strong> tagging identifies specific data elements within a resource that have been generated, modified or enhanced by AI algorithms. Examples of Field or Element-level tags include individual diagnosis codes, medication recommendations, and calculated risk scores.</p>
+<blockquote class="blockquote">
+<p>💡 Tip</p>
+<p>Use When…</p>
+</blockquote>
+<!---
+Hyperlink to see example for tagging
+-->
+<p>See <a href="#tagging-examples">Tagging Examples</a> for more details on how to use this Observability Dimension.</p>
+<p><strong>Models</strong></p>
+<p>Describes characteristics of the AI model used to produce or influence the data.</p>
+<p>Information in the Model field could include:</p>
+<ul>
+<li>name and version of the AI algorithm/model</li>
+<li>whether the algorithm is deterministic, non-deterministic, or a hybrid of the two</li>
+<li>training set data</li>
+<li>working memory</li>
+</ul>
+<blockquote class="blockquote">
+<p>💡 Tip</p>
+<p>Use When…</p>
+</blockquote>
+<p>See <a href="#Model(s)-examples">Model Examples</a> for more details on how to use this Observability Dimension.</p>
+<p><strong>Data Sources</strong></p>
+<p>Identifies the related inputs to an AI model and operations used to [convey, produce, other?] information.</p>
+<p>Information in the Data Sources field includes:</p>
+<ul>
+<li><strong>Request input</strong>: Also referred to as a prompt, the primary healthcare data submitted to the AI system, including patient demographics, clinical notes, laboratory results, and imaging data</li>
+<li><strong>Reference input</strong>: supplementary information provided to enhance AI decision-making, including clinical practice guidelines, drug interaction databases, treatment protocols, and evidence-based medicine resources</li>
+<li><strong>Operations</strong>: the technical protocols used for AI interactions, including Model Context Protocol (MCP) for structured communication with AI systems and Agent-to-Agent (A2A) protocols for communication between different AI systems</li>
+<li><strong>Data quality</strong>: evaluates the completeness, accuracy, consistency, and reliability of input data</li>
+<li><strong>Data qualification</strong>: addresses the validation, certification, and regulatory compliance status of data sources</li>
+</ul>
+<blockquote class="blockquote">
+<p>💡 Tip</p>
+<p>Use When…</p>
+</blockquote>
+<p>See <a href="#data-source-examples">Data Source Examples</a> for more details on how to use this Observability Dimension.</p>
+<p><strong>Process</strong></p>
+<p>Process documents human-AI collaboration and governance aspects of AI-augmented healthcare workflows. There are two main components documented in Process: provenance and bias reduction strategies.</p>
+<p><strong>Provenance</strong> is a comprehensive audit trail that identifies all contributors to the final clinical output, documenting both human healthcare providers and AI systems involved in the decision-making process. Role definition clarifies the specific responsibilities, authority levels, and decision-making boundaries of each contributor, whether human or artificial.</p>
+<p><strong>Bias reduction strategies</strong> encompass active measures implemented to minimize algorithmic bias and ensure equitable healthcare outcomes, such as using MCP to redirect AI systems to controlled medical terminology corpuses that promote standardized and unbiased language. The connection between bias reduction efforts and provenance documentation ensures that mitigation strategies are traceable and accountable, linking specific interventions back to documented decision trails and outcome assessments.</p>
+<p>Information in the Process field could include:</p>
+<ul>
+<li>Actor(s), including the human, and their roles</li>
+<li>Bias reduction strategies</li>
+<li>Redirection to a controlled terminology corpus</li>
+</ul>
+<blockquote class="blockquote">
+<p>💡 Tip</p>
+<p>Use When…</p>
+</blockquote>
+<p>See <a href="#process-examples">Process</a> for more details on how to use this Observability Dimension.</p>
+</section>
+</section>
+<section id="examples" class="level2">
+<h2 class="anchored" data-anchor-id="examples">Examples</h2>
+<section id="tagging" class="level3">
+<h3 class="anchored" data-anchor-id="tagging">Tagging</h3>
+<!---
+The following link was included in the Tagging Explainer but links to provenance. Not sure if this is correct.
+We include a [valueSet](ValueSet-ProvenanceVS.html) that assembles our codes and those defined elsewhere.
+
+Consider finding more descriptive label
+-->
+<section id="tagging-examples" class="level4">
+<h4 class="anchored" data-anchor-id="tagging-examples">Tagging Examples</h4>
+<p><strong>Resource tag</strong></p>
+<p>A Resource tag indicates that the whole Resource is influenced by the code assigned. Use when an example is completely authored by an AI.</p>
+<ul>
+<li><a href="Observation-glasgow.html">Example Observation with AI Assisted security labels</a></li>
+</ul>
+<p>The key portion of that Resource is the following meta.security element holding the <code>AIAST</code> code. <code>AIAST</code> is an HL7 Observation value for metadata that indicates that AI was invovled in producing the data or information.</p>
+<!---
+Note, I don't think the description I added for AIAST is the best so including it more as a placeholder for now.
+-->
+<p>Discussion has indicated that a few more codes might be useful. For this we create a local <a href="CodeSystem-AddedProvenanceCS.html">codeSystem</a> to allow us to experiment. Eventually useful codes would be proposed to HL7 Terminology (THO). For example <code>AIAST</code> does not indicate if a clinician was involved in the use of the AI, or reviewed the output of the AI.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"resourceType"</span> <span class="fu">:</span> <span class="st">"Observation"</span><span class="fu">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"id"</span> <span class="fu">:</span> <span class="st">"glasgow"</span><span class="fu">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"meta"</span> <span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"security"</span> <span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"system"</span> <span class="fu">:</span> <span class="st">"http://terminology.hl7.org/CodeSystem/v3-ObservationValue"</span><span class="fu">,</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"code"</span> <span class="fu">:</span> <span class="st">"AIAST"</span><span class="fu">,</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"display"</span> <span class="fu">:</span> <span class="st">"Artificial Intelligence asserted"</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"text"</span> <span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="er">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Element tag within a Resource</strong></p>
+<p>An Element tag will indicate that an element or a few elements within a Resource were influenced by AI, but not the whole Resource. Use when components of an example were authored by AI, but not the whole Resource.</p>
+<p>meta.security holds a code defined in <a href="%7B%7Bsite.data.fhir.ds4p%7D%7D/inline_security_labels.html">DS4P Inline Security Labels</a> - <code>PROCESSINLINE</code>, and the <code>inline-sec-label</code> extension is on each element that was influenced by AI to indicate it is an AI asserted value.</p>
+<ul>
+<li><a href="DiagnosticReport-f202.html">DiagnosticReport with Inline AI Security Labels</a></li>
+</ul>
+<p>One of the key portions of that Resource is</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  <span class="er">"conclusionCode"</span> <span class="er">:</span> <span class="ot">[</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"extension"</span> <span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">{</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"url"</span> <span class="fu">:</span> <span class="st">"http://hl7.org/fhir/uv/security-label-ds4p/StructureDefinition/extension-inline-sec-label"</span><span class="fu">,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"valueCoding"</span> <span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"system"</span> <span class="fu">:</span> <span class="st">"http://terminology.hl7.org/CodeSystem/v3-ObservationValue"</span><span class="fu">,</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"code"</span> <span class="fu">:</span> <span class="st">"AIAST"</span><span class="fu">,</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"display"</span> <span class="fu">:</span> <span class="st">"Artificial Intelligence asserted"</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>          <span class="fu">}</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>      <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"coding"</span> <span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">{</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"system"</span> <span class="fu">:</span> <span class="st">"http://snomed.info/sct"</span><span class="fu">,</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"code"</span> <span class="fu">:</span> <span class="st">"428763004"</span><span class="fu">,</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"display"</span> <span class="fu">:</span> <span class="st">"Staphylococcus aureus bacteraemia"</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>      <span class="ot">]</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="models-examples" class="level3">
+<h3 class="anchored" data-anchor-id="models-examples">Model(s) Examples</h3>
+<p>Model documentation captures comprehensive information about the AI algorithms used in processing healthcare data. The name and version specification ensures precise identification of the specific AI model and its iteration used, enabling reproducibility and version control. Algorithm classification distinguishes between deterministic systems (rule-based, predictable outputs), non-deterministic systems (machine learning models with probabilistic outputs), and hybrid approaches that combine both methodologies. Training set data documentation provides transparency about the datasets used to develop the AI model, including information about data sources, population demographics, and potential biases. Working memory refers to the contextual information and temporary data that the AI model maintains during processing, which can influence decision-making and outputs.</p>
+<section id="defining-the-ai" class="level4">
+<h4 class="anchored" data-anchor-id="defining-the-ai">Defining the AI</h4>
+<p>An AI is defined using the Device resource. The Device resource is defined in FHIR to be much broader than physical devices, and specifically includes software, and thus AI. Thus an AI would be identified by some kind of identifier, manufacture, type, version, web location, etc.</p>
+<ul>
+<li><a href="Device-TheAI.html">The AI System</a></li>
+</ul>
+<p>This example is not defined more than any software might be.</p>
+</section>
+<section id="using-model-card" class="level4">
+<h4 class="anchored" data-anchor-id="using-model-card">Using Model-Card</h4>
+<p>The AI community is defining standards for describing an AI model. This is a Model Card. The Model Card is a combination of YAML that defines in codeable terms the details, and a Markdown that describes it in narrative. Given that Markdown can carry YAML, the overall object is Markdown.</p>
+<p>Example Model Card from https://github.com/huggingface/huggingface_hub/tree/main/tests/fixtures/cards</p>
+<p>Here is an example given:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">language:</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">- en</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="an">license:</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">- bsd-3-clause</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="an">annotations_creators:</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">- crowdsourced</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">- expert-generated</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="an">language_creators:</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">- found</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="an">multilinguality:</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">- monolingual</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="an">size_categories:</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">- n&lt;1K</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="an">task_categories:</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">- image-segmentation</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="an">task_ids:</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">- semantic-segmentation</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="an">pretty_name:</span><span class="co"> Sample Segmentation</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Dataset Card for Sample Segmentation</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>This is a sample dataset card for a semantic segmentation dataset.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="simply-put-the-model-card-markdown-into-the-note.text-of-the-device." class="level5">
+<h5 class="anchored" data-anchor-id="simply-put-the-model-card-markdown-into-the-note.text-of-the-device.">Simply put the Model-Card markdown into the note.text of the Device.</h5>
+<p>One choice is to just put that Markdown Model-Card into the Device.note.text element. This is not wrong from the definition of that element, but it may not be obvious to one looking at the Device resource that there is meaning to the markdown given.</p>
+<ul>
+<li><a href="Device-Note-ModelCard.html">Device with Model-Card in Device.note.text</a></li>
+</ul>
+</section>
+<section id="attachment-for-the-model-card" class="level5">
+<h5 class="anchored" data-anchor-id="attachment-for-the-model-card">Attachment for the Model-Card</h5>
+<p>One could encode the Model-Card in a resource designed for carrying any mime-type, the DocumentReference. To make this more clear and searchable we define a <a href="CodeSystem-AImodelCardCS.html">codeSystem</a> that has some codes to be used to identify that the DocumentReference is specifically an AI Model Card or an AI Input Prompt</p>
+<ul>
+<li><a href="DocumentReference-ModelCard-sample-datasetcard-simple.html">DocumentReference Model-Card</a></li>
+<li><a href="StructureDefinition-aitransparency.modelCardDescription.html">Extension for including the Model-Card in a Device</a></li>
+<li><a href="Device-Attached-ModelCard.html">Device with attached Model-Card</a></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="data-source-examples" class="level3">
+<h3 class="anchored" data-anchor-id="data-source-examples">Data Source Examples</h3>
+<p>Data Sources documents all inputs and operational frameworks involved in AI processing.</p>
+<p><em>Insert example scenarios for using data source documentation</em></p>
+<section id="using-input-prompt" class="level4">
+<h4 class="anchored" data-anchor-id="using-input-prompt">Using Input Prompt</h4>
+<p>One useful thing to record is the Input Prompt given to the AI. This input prompt can be very important to the output, and the interpretation of the output. The Input Prompt is recorded as an attachment, using the DocumentReference, and using a code as defined above</p>
+<ul>
+<li><a href="DocumentReference-Input-Prompt-lorem-ipsum.html">Input Prompt lorem ipsum</a></li>
+<li><a href="DocumentReference-Input-Prompt-create-patient.html">Input Prompt to create a Patient</a></li>
+</ul>
+<p>The first example is just showing the encapsulating mechanism. The Second example is a prompt that might be used to have the AI create a given Patient resource that meets the input requirements.</p>
+<ul>
+<li><a href="Provenance-AI-generated-patient-resource.html">Provenance of creating a Patient from Input Prompt</a></li>
+<li><a href="Patient-a1b2c3d4-e5f6-7890-abcd-ef1234567890.html">Patient resource created</a></li>
+</ul>
+</section>
+</section>
+<section id="process-examples" class="level3">
+<h3 class="anchored" data-anchor-id="process-examples">Process Examples</h3>
+<section id="resource-level" class="level4">
+<h4 class="anchored" data-anchor-id="resource-level">Resource-level</h4>
+<p>As with tagging, a Provenance can point at a whole Resource. In this way one can carry details in the Provenance, such as what AI was used and how.</p>
+<ul>
+<li><a href="Provenance-AI-Contributed.html">Provenance of AI authored Lab Observation</a></li>
+</ul>
+</section>
+<section id="element-level" class="level4">
+<h4 class="anchored" data-anchor-id="element-level">Element-level</h4>
+<p>Provenance can be just about some elements within a Resource. This is a normal part of Provenance, but it is important for AI use-cases.</p>
+<ul>
+<li><a href="Provenance-AI-Authored-Element.html">Provenance of AI Authored Procedure.followup.text</a></li>
+</ul>
+</section>
+<section id="full-process-example" class="level4">
+<h4 class="anchored" data-anchor-id="full-process-example">Full Process example</h4>
+<p><a href="Provenance-AI-full-lorem-ipsum.html">This is a full example</a> of how to capture the AI process in FHIR.</p>
+<ul>
+<li>Two outputs that this Provenance resource is documenting:
+<ul>
+<li>an Observation resource (e.g., lab result)
+<ul>
+<li>with Observation.interpretation being attributed to this Provenance</li>
+</ul></li>
+<li>a CarePlan resource (e.g., follow-up care plan)</li>
+</ul></li>
+<li>Two agents
+<ul>
+<li>a verifier (human) who verifies the AI output</li>
+<li>an author (AI system) who generated the output</li>
+</ul></li>
+<li>Two entities that were clinical resources provided to the AI system
+<ul>
+<li>a DocumentReference resource (e.g., patient summary)</li>
+<li>an Observation resource (e.g., lab result)</li>
+</ul></li>
+<li>One entity that is a PlanDefinition resource (e.g., care plan definition)</li>
+<li>One entity that is the AI Input Prompt
+<ul>
+<li>Where the Input Prompt is a DocumentReference resource that contains the input prompt provided to the AI system.</li>
+<li>Where the Input Prompt is a contained resource in the Provenance resource.</li>
+<li>Where the Input Prompt is associated with the clinician which provided it</li>
+</ul></li>
+</ul>
+</section>
+<section id="pdf-interpreted-by-ai-into-fhir" class="level4">
+<h4 class="anchored" data-anchor-id="pdf-interpreted-by-ai-into-fhir">PDF interpreted by AI into FHIR</h4>
+<p>Use Case: A provider receives a <a href="DocumentReference-Lab-Results-PDF.html">PDF of lab result(s)</a> for a patient. This PDF is examined by an AI which generates a <a href="Bundle-b3c1f2d4-5c8e-4b0a-9f6d-7c8e1f2d4b5c.html">Bundle with a Patient resource and Observation resource(s)</a>.</p>
+<p>In the attached example the patient’s name is Alton Walsh and the lab test is an HbA1C. All the FHIR resources in the bundle have been created by the AI, so they should be tagged accordingly.</p>
+<ul>
+<li><a href="Provenance-AI-Generated-Lab-Results.html">Provenance of AI Generated Lab Results</a></li>
+</ul>
+<p>TODO: Note, the validator found some syntax and semantic errors in the json that I had to fix manually</p>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

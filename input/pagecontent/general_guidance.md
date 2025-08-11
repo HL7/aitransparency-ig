@@ -1,6 +1,6 @@
 ## Observability Levels
 
-<!-- kmb: dimensions instead of levels for observability levels? -->
+<!-- kmb: Consider Observability Dimensions instead of levels? -->
 
 Four Observability Levels track and document when AI algorithms generate, modify, or enhance clinical data within FHIR healthcare resources. Each level addresses different transparency needs: 
 
@@ -13,7 +13,13 @@ Implementers can utilize one or more levels from this framework based on their s
 
 ### About the Observability Factor/Levels for FHIR AI Transparency
 
-![Four overlapping circles labeled Tagging, Models, Data Sources, Process showing the complementary nature of the four observability levels.](/input/images/levels-icons.png "Observability Levels")
+<!---
+Image is a temporary placeholder! Consider updating with something that contains more descriptive information about the levels.
+-->
+
+<p align="center">
+    <img src="../images/levels-icons.png" alt="Four overlapping circles labeled Tagging, Models, Data Sources, Process showing the complementary nature of the four observability levels." style="width: 30%; float: none; vertical-align: middle;"/>
+</p>
 
 **Tagging**
 
@@ -27,6 +33,12 @@ Tagging can be done broadly at the Resource-level, or more granularly at the fie
 >💡 Tip
 >
 > Use When...
+
+<!---
+Hyperlink to see example for tagging
+-->
+
+See [Tagging Examples](#tagging-examples) for more details on how to use this Observability Dimension.
 
 **Models**
 
@@ -43,6 +55,8 @@ Information in the Model field could include:
 >
 > Use When...
 
+See [Model Examples](#Model(s)-examples) for more details on how to use this Observability Dimension.
+
 **Data Sources**
 
 Identifies the related inputs to an AI model and operations used to [convey, produce, other?] information.
@@ -58,6 +72,8 @@ Information in the Data Sources field includes:
 >💡 Tip
 >
 > Use When...
+
+See [Data Source Examples](#data-source-examples) for more details on how to use this Observability Dimension.
 
 **Process**
 
@@ -77,6 +93,8 @@ Information in the Process field could include:
 >
 > Use When...
 
+See [Process](#process-examples) for more details on how to use this Observability Dimension.
+
 ## Examples
 
 ### Tagging
@@ -84,6 +102,8 @@ Information in the Process field could include:
 <!---
 The following link was included in the Tagging Explainer but links to provenance. Not sure if this is correct.
 We include a [valueSet](ValueSet-ProvenanceVS.html) that assembles our codes and those defined elsewhere.
+
+Consider finding more descriptive label
 -->
 
 #### Tagging Examples
@@ -100,6 +120,8 @@ The key portion of that Resource is the following meta.security element holding 
 <!---
 Note, I don't think the description I added for AIAST is the best so including it more as a placeholder for now.
 -->
+
+Discussion has indicated that a few more codes might be useful. For this we create a local [codeSystem](CodeSystem-AddedProvenanceCS.html) to allow us to experiment. Eventually useful codes would be proposed to HL7 Terminology (THO). For example `AIAST` does not indicate if a clinician was involved in the use of the AI, or reviewed the output of the AI. 
 
 ```json
 {
@@ -153,7 +175,7 @@ One of the key portions of that Resource is
   ]
 ```
 
-### Model(s)
+### Model(s) Examples
 Model documentation captures comprehensive information about the AI algorithms used in processing healthcare data. The name and version specification ensures precise identification of the specific AI model and its iteration used, enabling reproducibility and version control. Algorithm classification distinguishes between deterministic systems (rule-based, predictable outputs), non-deterministic systems (machine learning models with probabilistic outputs), and hybrid approaches that combine both methodologies. Training set data documentation provides transparency about the datasets used to develop the AI model, including information about data sources, population demographics, and potential biases. Working memory refers to the contextual information and temporary data that the AI model maintains during processing, which can influence decision-making and outputs.
 
 #### Defining the AI
@@ -213,7 +235,7 @@ One could encode the Model-Card in a resource designed for carrying any mime-typ
 - [Extension for including the Model-Card in a Device](StructureDefinition-aitransparency.modelCardDescription.html)
 - [Device with attached Model-Card](Device-Attached-ModelCard.html)
 
-### Data Sources
+### Data Source Examples
 Data Sources documents all inputs and operational frameworks involved in AI processing. 
 
 *Insert example scenarios for using data source documentation*
@@ -230,7 +252,17 @@ The first example is just showing the encapsulating mechanism. The Second exampl
 - [Provenance of creating a Patient from Input Prompt](Provenance-AI-generated-patient-resource.html)
 - [Patient resource created](Patient-a1b2c3d4-e5f6-7890-abcd-ef1234567890.html)
 
-### Process
+### Process Examples
+
+#### Resource-level
+As with tagging, a Provenance can point at a whole Resource. In this way one can carry details in the Provenance, such as what AI was used and how.
+
+- [Provenance of AI authored Lab Observation](Provenance-AI-Contributed.html)
+
+#### Element-level
+Provenance can be just about some elements within a Resource. This is a normal part of Provenance, but it is important for AI use-cases.
+
+- [Provenance of AI Authored Procedure.followup.text](Provenance-AI-Authored-Element.html)
 
 #### Full Process example
 
