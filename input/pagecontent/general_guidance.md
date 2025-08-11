@@ -1,5 +1,7 @@
 ## Observability Levels
 
+<!-- kmb: dimensions instead of levels for observability levels? -->
+
 Four Observability Levels track and document when AI algorithms generate, modify, or enhance clinical data within FHIR healthcare resources. Each level addresses different transparency needs: 
 
 - basic identification of AI-influenced data (Tagging), 
