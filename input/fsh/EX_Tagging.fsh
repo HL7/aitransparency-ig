@@ -41,7 +41,7 @@ Description:  "Subset from HL7, plus those defined here"
 * http://terminology.hl7.org/CodeSystem/v3-ObservationValue#CLINRPT "clinician reported from AI Reported"
 
 
-//=====================================Example of Resource Level tagging ===  
+//========Example of Resource Level tagging ===  
 
 
 Instance: glasgow

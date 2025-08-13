@@ -18,7 +18,7 @@ Image is a temporary placeholder! Consider updating with something that contains
 -->
 
 <p align="center">
-    <img src="../images/levels-icons.png" alt="Four overlapping circles labeled Tagging, Models, Data Sources, Process showing the complementary nature of the four observability levels." style="width: 30%; float: none; vertical-align: middle;"/>
+    <img src="./levels-icons.png" alt="Four overlapping circles labeled Tagging, Models, Data Sources, Process showing the complementary nature of the four observability levels." style="width: 30%; float: none; vertical-align: middle;"/>
 </p>
 
 **Tagging**
