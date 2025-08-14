@@ -61,8 +61,7 @@ pages:
     title: General Guidance
   use_cases.md:
     title: Use Cases
-  explainer.md:
-    title: Explainer
+
 #
 #
 # The parameters property represents IG.definition.parameter. Rather
@@ -92,7 +91,6 @@ menu:
   Guidance:
     General: general_guidance.html
     Use Cases: use_cases.html
-  Explainer: explainer.html
   Artifacts: artifacts.html
 
 # ╭───────────────────────────Less Common Implementation Guide Properties──────────────────────────╮
