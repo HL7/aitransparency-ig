@@ -215,3 +215,25 @@ table.lmap td {
     "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
 }
+
+/* Global table styling - borders and top alignment for all tables */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1rem auto;
+  text-align: left;
+}
+
+table th, 
+table td {
+  vertical-align: top;
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+table th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+  vertical-align: top;
+}
