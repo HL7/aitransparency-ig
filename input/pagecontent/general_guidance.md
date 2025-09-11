@@ -272,7 +272,7 @@ The first example is just showing the encapsulating mechanism. The Second exampl
 #### Resource-level
 As with tagging, a Provenance can point at a whole Resource. In this way one can carry details in the Provenance, such as what AI was used and how.
 
-- [Provenance of AI authored Lab Observation](Provenance-AI-Contributed.html)
+- [Provenance of AI authored Lab Observation](Provenance-Provenance-AI-Contributed.html)
 
 ##### Element-level
 Provenance can be just about some elements within a Resource. This is a normal part of Provenance, but it is important for AI use-cases.

@@ -9,3 +9,11 @@ Description: "An AI Provenance is a record of the use of an AI model in generati
 * occurred[x] 0..1 MS
 * agent.who only Reference(Device or Organization) // "The AI model used in generating or enhancing the FHIR resource."
 * agent.type only CodeableConcept // "The type of AI model used, such as 'Generative AI', 'Predictive Model', etc."
+
+
+Profile: AIDevice
+Parent: Device
+Id: AI-Device
+Title: "AI Device Model Card"
+Description: "AI Device Model Card"
+

@@ -1,4 +1,3 @@
-
 // External Code Systems with a canonical recognized by terminology.hl7.org
 Alias:   $LNC = http://loinc.org
 Alias:   SCT = http://snomed.info/sct

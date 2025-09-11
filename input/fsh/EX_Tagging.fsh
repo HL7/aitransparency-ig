@@ -119,7 +119,7 @@ Usage: #example
 * subject.reference = "http://example.org/fhir/Patient/example"
 * issued = "2013-03-11T10:28:00+01:00"
 * performer.reference = "http://example.org/fhir/Organization/f201"
-* result.reference = "http://example.org/fhir/Observation/f206"
+* result.reference = "http://example.org/fhir/Observation/Example-Observation-f206"
 * conclusion = "Blood culture tested positive on staphylococcus aureus"
 * conclusion.extension[0].url = "http://hl7.org/fhir/uv/security-label-ds4p/StructureDefinition/extension-inline-sec-label"
 * conclusion.extension[0].valueCoding = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST "Artificial Intelligence asserted"
