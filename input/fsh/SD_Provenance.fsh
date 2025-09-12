@@ -19,3 +19,7 @@ Id: AI-Device
 Title: "AI Device"
 Description: "A Device resource representing an AI model used in healthcare."
 * type = http://snomed.info/sct#706689003 "Application programme software"
+/*
+TODO: Need codes in the device-type to indicate AI/LLM.
+TODO: Need codes to identify the device version for the parts of an AI?
+*/

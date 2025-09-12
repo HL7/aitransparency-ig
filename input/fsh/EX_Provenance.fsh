@@ -30,9 +30,6 @@ InstanceOf: AIDevice
 Title: "The AI System"
 Description: """
 An AI system that authored a resource.
-
-TODO: Need codes in the device-type to indicate AI/LLM.
-TODO: Need codes to identify the device version for the parts of an AI?
 """
 Usage: #example
 * identifier.system = "http://example.org/ehr/client-ids"
@@ -99,3 +96,31 @@ Usage: #example
 * valueCodeableConcept = $sct#3092008 "Staphylococcus aureus"
 * interpretation = http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation#POS
 * method = $sct#104177005 "Blood culture for bacteria, including anaerobic screen"
+
+
+// Taken from FHIR core example, replicated here to add the AIdata profile
+Instance: satO2
+InstanceOf: Observation
+Usage: #example
+* meta.profile[0] = "http://hl7.org/fhir/StructureDefinition/vitalsigns"
+//* meta.profile[1] = Canonical(AIdata) 
+* extension[+].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-imposeProfile"
+* extension[=].valueCanonical = Canonical(AIdata)
+* meta.security = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST "Artificial Intelligence asserted"
+* identifier.system = "http://example.org/observation/id"
+* identifier.value = "o1223435-10"
+* partOf.reference = "http://example.org/fhir/Procedure/ob"
+* status = #final
+* category[0] = http://terminology.hl7.org/CodeSystem/observation-category#vital-signs "Vital Signs"
+* code.coding[0] = $loinc#2708-6 "Oxygen saturation in Arterial blood"
+* code.coding[+] = $loinc#59408-5 "Oxygen saturation in Arterial blood by Pulse oximetry"
+* code.coding[+] = urn:iso:std:iso:11073:10101#150456 "MDC_PULS_OXIM_SAT_O2"
+* subject.reference = "http://example.org/fhir/Patient/f201"
+* effectiveDateTime = "2014-12-05T09:30:10+01:00"
+* valueQuantity = 95 '%' "%"
+* interpretation = http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation#N "Normal"
+* interpretation.text = "Normal (applies to non-numeric results)"
+* device = Reference(TheAI)
+* performer[+].reference = "http://example.org/fhir/Practitioner/pract"
+* referenceRange.low = 90 '%' "%"
+* referenceRange.high = 99 '%' "%"
