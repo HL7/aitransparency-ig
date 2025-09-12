@@ -40,6 +40,16 @@ Description:  "Subset from HL7, plus those defined here"
 * http://terminology.hl7.org/CodeSystem/v3-ObservationValue#CLINAST "clinician asserted from AI Reported"
 * http://terminology.hl7.org/CodeSystem/v3-ObservationValue#CLINRPT "clinician reported from AI Reported"
 
+Profile: AIdata
+Parent: Resource
+Id: AI-data
+Title: "AI Data"
+Description: "A resource that captures the input and output data used by an AI model in generating or enhancing FHIR resources."
+* meta.security ^slicing.discriminator.type = #value
+* meta.security ^slicing.discriminator.path = "$this"
+* meta.security ^slicing.rules = #open
+* meta.security contains AItags 1..*
+* meta.security[AItags] from ProvenanceVS
 
 //========Example of Resource Level tagging ===  
 
@@ -56,6 +66,7 @@ Note that the example I took, I assumed was a good one for AIAST. But I am not s
 Note that there is no .performer as that element can't hold a Device, and we are modeling this as being wholely authored by the AI. Thus I use the extension alternate-reference.
 """
 Usage: #example
+* meta.profile[0] = Canonical(AIdata)
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST "Artificial Intelligence asserted"
 * status = #final
 * code = $loinc#9269-2 "Glasgow coma score total"

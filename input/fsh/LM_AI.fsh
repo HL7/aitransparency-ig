@@ -40,7 +40,7 @@ I do find other examples that are PDF, and not in markdown or having yaml in the
 
 
 Instance: Note-ModelCard
-InstanceOf: Device
+InstanceOf: AIDevice
 Title: "Device with Model-Card in Device.note.text"
 Description: """
 A Device that has a Model Card.
@@ -51,6 +51,7 @@ Usage: #example
 * identifier.value = "goodhealth"
 * manufacturer = "Acme Devices, Inc"
 * type.text = "AI/LLM"
+* type = http://snomed.info/sct#706689003 "Application programme software"
 * version.value = "10.23-23423"
 * contact.system = #url
 * contact.value = "http://example.org"
@@ -123,7 +124,7 @@ Description: "When the Device is described by a Model Card, this extension can b
 * valueReference 1..1
 
 Instance: Attached-ModelCard
-InstanceOf: Device
+InstanceOf: AIDevice
 Title: "Device with attached Model-Card"
 Description: """
 A Device that has an attached Model Card.
@@ -133,6 +134,7 @@ Usage: #example
 * identifier.value = "goodhealth"
 * manufacturer = "Acme Devices, Inc"
 * type.text = "AI/LLM"
+* type = http://snomed.info/sct#706689003 "Application programme software"
 * version.value = "10.23-23423"
 * contact.system = #url
 * contact.value = "http://example.org"

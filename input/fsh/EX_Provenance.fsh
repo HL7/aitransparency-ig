@@ -10,7 +10,7 @@ Alias: $loinc = http://loinc.org
 */
 
 Instance: AI-Authored-Element
-InstanceOf: Provenance
+InstanceOf: AIProvenance
 Title: "Provenance of AI Authored Procedure.followup.text"
 Description: """
 A Provenance resource that documents the addition of followUp text in a Procedure by an AI system.
@@ -26,7 +26,7 @@ Usage: #example
 * agent[=].who = Reference(Device/TheAI)
 
 Instance: TheAI
-InstanceOf: Device
+InstanceOf: AIDevice
 Title: "The AI System"
 Description: """
 An AI system that authored a resource.
@@ -39,12 +39,13 @@ Usage: #example
 * identifier.value = "goodhealth"
 * manufacturer = "Acme Devices, Inc"
 * type.text = "AI/LLM"
+* type = http://snomed.info/sct#706689003 "Application programme software"
 * version.value = "10.23-23423"
 * contact.system = #url
 * contact.value = "http://example.org"
 
 Instance: AI-Contributed
-InstanceOf: Provenance
+InstanceOf: AIProvenance
 Title: "Provenance of AI authored Lab Observation"
 Description: """
 A Provenance resource that documents the creation of a Lab result Observation resource by an AI (device), verified by a human.

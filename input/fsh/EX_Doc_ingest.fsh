@@ -25,7 +25,7 @@ Usage: #example
 
 
 Instance: AI-Generated-Lab-Results
-InstanceOf: Provenance
+InstanceOf: AIProvenance
 Title: "Provenance of AI Generated Lab Results"
 Description: """
 A Provenance resource that documents the creation of a Lab result Observation resource by an AI (device), verified by a human.

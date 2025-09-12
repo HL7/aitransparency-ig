@@ -7,7 +7,7 @@
 
 
 Instance: AI-full-lorem-ipsum
-InstanceOf: Provenance
+InstanceOf: AIProvenance
 Title: "Provenance for AI with Model Card, input, and output"
 Description: """
 A Provenance resource that captures the full AI process, including the model card, input, and output.
@@ -96,7 +96,7 @@ Ensure that the text maintains a good balance between readability and the tradit
 
 
 Instance: AI-generated-patient-resource
-InstanceOf: Provenance
+InstanceOf: AIProvenance
 Title: "Provenance for AI created Patient resource"
 Description: """
 A Provenance resource that captures the full AI process, including the model card, input, and output.
