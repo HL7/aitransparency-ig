@@ -102,10 +102,7 @@ Usage: #example
 Instance: satO2
 InstanceOf: Observation
 Usage: #example
-* meta.profile[0] = "http://hl7.org/fhir/StructureDefinition/vitalsigns"
-//* meta.profile[1] = Canonical(AIdata) 
-* extension[+].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-imposeProfile"
-* extension[=].valueCanonical = Canonical(AIdata)
+//* meta.profile[+] = Canonical(AIdata) -- this does not work as AIdata is on DomainResource, and this level of IG publisher doesn't like two different resource types at the core.
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST "Artificial Intelligence asserted"
 * identifier.system = "http://example.org/observation/id"
 * identifier.value = "o1223435-10"

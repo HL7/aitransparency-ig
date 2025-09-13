@@ -21,5 +21,7 @@ Description: "A Device resource representing an AI model used in healthcare."
 * type = http://snomed.info/sct#706689003 "Application programme software"
 /*
 TODO: Need codes in the device-type to indicate AI/LLM.
+https://chat.fhir.org/#narrow/channel/323443-Artificial-Intelligence.2FMachine-Learning-.28AI.2FML.29/topic/Device.20type.20for.20AI/with/539275268
+
 TODO: Need codes to identify the device version for the parts of an AI?
 */
