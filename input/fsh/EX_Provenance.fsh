@@ -26,7 +26,7 @@ Usage: #example
 * agent[=].who = Reference(Device/TheAI)
 
 Instance: TheAI
-InstanceOf: AIDevice
+InstanceOf: AIdevice
 Title: "The AI System"
 Description: """
 An AI system that authored a resource.
@@ -35,8 +35,7 @@ Usage: #example
 * identifier.system = "http://example.org/ehr/client-ids"
 * identifier.value = "goodhealth"
 * manufacturer = "Acme Devices, Inc"
-* type.text = "AI/LLM"
-* type = http://snomed.info/sct#706689003 "Application programme software"
+* type = AIdeviceTypeCS#Large-Language-Models
 * version.value = "10.23-23423"
 * contact.system = #url
 * contact.value = "http://example.org"

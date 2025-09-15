@@ -11,17 +11,5 @@ Description: "An AI Provenance is a record of the use of an AI model in generati
 * agent ^slicing.discriminator.path = "who"
 * agent ^slicing.rules = #open
 * agent contains AIModelAgent 1..*
-* agent[AIModelAgent].who only Reference(AIDevice) // "The AI model used in generating or enhancing the FHIR resource."
+* agent[AIModelAgent].who only Reference(AIdevice) // "The AI model used in generating or enhancing the FHIR resource."
 
-Profile: AIDevice
-Parent: Device
-Id: AI-Device
-Title: "AI Device"
-Description: "A Device resource representing an AI model used in healthcare."
-* type = http://snomed.info/sct#706689003 "Application programme software"
-/*
-TODO: Need codes in the device-type to indicate AI/LLM.
-https://chat.fhir.org/#narrow/channel/323443-Artificial-Intelligence.2FMachine-Learning-.28AI.2FML.29/topic/Device.20type.20for.20AI/with/539275268
-
-TODO: Need codes to identify the device version for the parts of an AI?
-*/

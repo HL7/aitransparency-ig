@@ -40,7 +40,7 @@ I do find other examples that are PDF, and not in markdown or having yaml in the
 
 
 Instance: Note-ModelCard
-InstanceOf: AIDevice
+InstanceOf: AIdevice
 Title: "Device with Model-Card in Device.note.text"
 Description: """
 A Device that has a Model Card.
@@ -50,8 +50,7 @@ Usage: #example
 * identifier.system = "http://example.org/ehr/client-ids"
 * identifier.value = "goodhealth"
 * manufacturer = "Acme Devices, Inc"
-* type.text = "AI/LLM"
-* type = http://snomed.info/sct#706689003 "Application programme software"
+* type = AIdeviceTypeCS#Large-Language-Models
 * version.value = "10.23-23423"
 * contact.system = #url
 * contact.value = "http://example.org"
@@ -124,7 +123,7 @@ Description: "When the Device is described by a Model Card, this extension can b
 * valueReference 1..1
 
 Instance: Attached-ModelCard
-InstanceOf: AIDevice
+InstanceOf: AIdevice
 Title: "Device with attached Model-Card"
 Description: """
 A Device that has an attached Model Card.
@@ -133,10 +132,52 @@ Usage: #example
 * identifier.system = "http://example.org/ehr/client-ids"
 * identifier.value = "goodhealth"
 * manufacturer = "Acme Devices, Inc"
-* type.text = "AI/LLM"
-* type = http://snomed.info/sct#706689003 "Application programme software"
+* type = AIdeviceTypeCS#Large-Language-Models
 * version.value = "10.23-23423"
 * contact.system = #url
 * contact.value = "http://example.org"
 * extension[+].url = Canonical(aitransparency.modelCardDescription)
 * extension[=].valueReference.reference = "DocumentReference/ModelCard-sample-datasetcard-simple"
+
+
+
+Profile: AIdevice 
+Parent: Device
+Id: AI-device
+Title: "AI Device"
+Description: "A Device that represents an AI system, such as a Large Language Model (LL
+M) or other AI model. This profile includes a recommended set of codes for Device.type to indicate the type of AI system."
+* type from AIdeviceTypeVS
+
+
+
+ValueSet: AIdeviceTypeVS
+Title: "Recommended Device.type codes for AI/LLM"
+Description:  "Subset from HL7, plus those defined here"
+* ^experimental = false
+* codes from system AIdeviceTypeCS
+
+
+CodeSystem: AIdeviceTypeCS
+Title: "Added Device.type for AI/LLM"
+Description: "This CodeSystem contains codes for the Device.type that indicate that the Device is an AI/LLM."
+* ^caseSensitive = true
+* ^experimental = false
+* ^status = #active
+* #AI-By-Scenario "Classification by Application Scenario"
+  * #Intelligent-Diagnosis-and-Treatment "Intelligent Diagnosis and Treatment" "By analyzing massive volumes of medical data, these AI systems assist doctors in making more accurate diagnostic and treatment decisions."
+  * #Medical-Image-Analysis "Medical Image Analysis" "Leveraging deep learning technologies, these AI tools automatically identify lesion areas in medical images."
+  * #Personalized-Treatment "Personalized Treatment" "These AI systems create precise patient profiles to formulate personalized treatment plans."
+  * #Drug-Discovery-and-Development "Drug Discovery and Development" "AI in this category accelerates the screening of candidate drugs and optimizes the design of clinical trials."
+  * #Medical-Quality-Control "Medical Quality Control" "These AI tools are used to generate standardized medical document templates and detect defects in medical documents and images."
+  * #Patient-Services "Patient Services" "AI systems here provide patients with services such as intelligent medical guidance, symptom self-assessment, and medical consultation."
+* #AI-By-DataType "Classification by Processed Data Type"
+  * #AI-for-Medical-Imaging-Data "AI for Medical Imaging Data" "It mainly processes medical imaging data such as X-rays, MRIs, and CT scans."
+  * #AI-for-Physiological-Signal-Data "AI for Physiological Signal Data" "This type of AI deals with physiological signal data like electrocardiograms (ECG) and electroencephalograms (EEG)."
+  * #AI-for-Medical-Text-Data "AI for Medical Text Data" "It processes text data such as electronic health records (EHRs) and medical abstracts."
+* #AI-By-Model "Classification by Technical Model"
+  * #Machine-Learning-Models "Machine Learning Models" "They include supervised learning models (e.g., Support Vector Machines (SVM), Random Forests (RF)), which can be used for disease classification and risk prediction; unsupervised learning models (e.g., K-means clustering), which can discover hidden characteristics of patient subgroups; and reinforcement learning models, which can be applied in dynamic treatment plan management."
+  * #Deep-Learning-Models "Deep Learning Models" "Examples include Convolutional Neural Networks (CNNs), which perform excellently in medical image analysis; Recurrent Neural Networks (RNNs) and their variant LSTMs, which are suitable for processing time-series physiological signal data; Generative Adversarial Networks (GANs), which can be used to synthesize training data and alleviate the scarcity of medical data; and Transformer models, which are widely used in multiple tasks such as medical imaging, text analysis, and physiological signal prediction."
+  * #Large-Language-Models "Large Language Models" "These models, such as GPT-4 and PaLM, are trained on massive text datasets and can perform various natural language processing tasks, including medical text understanding, generation, and question answering."
+  * #Hybrid-Models "Hybrid Models" "These models combine multiple AI techniques to leverage their respective strengths. For instance, combining CNNs and RNNs can effectively process medical image sequences; integrating machine learning and deep learning models can enhance disease prediction accuracy; and combining rule-based systems with machine learning can improve interpretability and reliability in clinical decision support."
+  * #Other-AI-Models "Other AI Models" "This category includes other AI models not covered above, such as graph neural networks (GNNs) for modeling complex relationships in medical data, and evolutionary algorithms for optimizing treatment plans."
