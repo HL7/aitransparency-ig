@@ -164,6 +164,7 @@ Description: "This CodeSystem contains codes for the Device.type that indicate t
 * ^caseSensitive = true
 * ^experimental = false
 * ^status = #active
+* ^hierarchy = #grouped-by
 * #AI-By-Scenario "Classification by Application Scenario"
   * #Intelligent-Diagnosis-and-Treatment "Intelligent Diagnosis and Treatment" "By analyzing massive volumes of medical data, these AI systems assist doctors in making more accurate diagnostic and treatment decisions."
   * #Medical-Image-Analysis "Medical Image Analysis" "Leveraging deep learning technologies, these AI tools automatically identify lesion areas in medical images."
