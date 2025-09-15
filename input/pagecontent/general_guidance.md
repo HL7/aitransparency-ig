@@ -15,6 +15,7 @@ Four Observability Levels track and document when AI algorithms generate, modify
 | &nbsp; | • Training set data<br>• Working memory | **Reference input**<br>  • e.g.: clinical guidelines | **How was it recorded**<br>  • Bias reduction strategies<br>  - e.g.: MCP to redirect to a controlled terminology corpus<br>  - tie back to Provenance |
 | &nbsp; | &nbsp; | **Operations**<br>  • Model Context Protocol (MCP)<br>  • Agent to Agent (A2A) | &nbsp; |
 | &nbsp; | &nbsp; | • Data quality<br>• Data qualification | &nbsp; |
+{: .grid}
 
 <br />
 
@@ -37,7 +38,7 @@ Information in the Model field could include:
 >
 > Use When...
 
-See [Model Examples](#Model(s)-examples) for more details on how to use this Observability Dimension.
+See [Model Examples](#provenance) for more details on how to use this Observability Dimension.
 <br />
 
 ##### Data Sources
@@ -85,6 +86,7 @@ Implementers can utilize these methods based on their specific requirements and 
 | 1: Security Tagging | 2: Provenance |
 |---|---|
 | Tagging data influenced by AI<br><br>• resource-level<br>• field / element - level | • **Specifying**<br>  - source, target<br>  - AI Model Cards |
+{: .grid}
 
 **Tagging**
 
@@ -103,7 +105,7 @@ Tagging can be done broadly at the Resource-level, or more granularly at the fie
 Hyperlink to see example for tagging
 -->
 
-See [Tagging Examples](#tagging-examples) for more details on how to use this Observability Dimension.
+See [Tagging Examples](#tagging) for more details on how to use this Observability Dimension.
 
 ### Examples
 
@@ -183,7 +185,7 @@ One of the key portions of that Resource is
   ]
 ```
 
-#### Provenance 
+#### Provenance
 
 Model(s) Examples
 Model documentation captures comprehensive information about the AI algorithms used in processing healthcare data. The name and version specification ensures precise identification of the specific AI model and its iteration used, enabling reproducibility and version control. Algorithm classification distinguishes between deterministic systems (rule-based, predictable outputs), non-deterministic systems (machine learning models with probabilistic outputs), and hybrid approaches that combine both methodologies. Training set data documentation provides transparency about the datasets used to develop the AI model, including information about data sources, population demographics, and potential biases. Working memory refers to the contextual information and temporary data that the AI model maintains during processing, which can influence decision-making and outputs.

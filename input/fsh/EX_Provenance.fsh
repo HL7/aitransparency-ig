@@ -100,6 +100,10 @@ Usage: #example
 // Taken from FHIR core example, replicated here to add the AIdata profile
 Instance: satO2
 InstanceOf: Observation
+Title: "Oxygen Saturation example with AI device"
+Description: """
+An example of an Oxygen Saturation Observation, where the device used is an AI system.
+"""
 Usage: #example
 //* meta.profile[+] = Canonical(AIdata) -- this does not work as AIdata is on DomainResource, and this level of IG publisher doesn't like two different resource types at the core.
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST "Artificial Intelligence asserted"

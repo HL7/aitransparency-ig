@@ -37,3 +37,4 @@ th {
 | QI | What matches the desired outcomes, or desired approach to care? |
 | Safety Board | Multiple questions for root cause analysis |
 | Legal | Who is responsible? |
+{: .grid}

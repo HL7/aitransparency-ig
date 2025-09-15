@@ -7,11 +7,7 @@ output
 
 # Ignore large files and frequently changed files in input-cache #
 ##################################################################
-input-cache/org.hl7.fhir.publisher.jar
-input-cache/publisher.jar
-input-cache/schemas/
-input-cache/txcache/
-*.cache
+input-cache
 
 # OS generated files #
 ######################
@@ -19,6 +15,7 @@ Thumbs.db
 .DS_Store
 .DS_Store?
 .index.json
+.index.db
 
 # backup files #
 ################
