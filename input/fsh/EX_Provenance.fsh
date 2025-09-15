@@ -26,7 +26,7 @@ Usage: #example
 * agent[=].who = Reference(Device/TheAI)
 
 Instance: TheAI
-InstanceOf: AIdevice
+InstanceOf: AIDevice
 Title: "The AI System"
 Description: """
 An AI system that authored a resource.

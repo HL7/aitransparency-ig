@@ -40,7 +40,7 @@ I do find other examples that are PDF, and not in markdown or having yaml in the
 
 
 Instance: Note-ModelCard
-InstanceOf: AIdevice
+InstanceOf: AIDevice
 Title: "Device with Model-Card in Device.note.text"
 Description: """
 A Device that has a Model Card.
@@ -123,7 +123,7 @@ Description: "When the Device is described by a Model Card, this extension can b
 * valueReference 1..1
 
 Instance: Attached-ModelCard
-InstanceOf: AIdevice
+InstanceOf: AIDevice
 Title: "Device with attached Model-Card"
 Description: """
 A Device that has an attached Model Card.
@@ -141,7 +141,7 @@ Usage: #example
 
 
 
-Profile: AIdevice 
+Profile: AIDevice 
 Parent: Device
 Id: AI-device
 Title: "AI Device"

@@ -11,5 +11,5 @@ Description: "An AI Provenance is a record of the use of an AI model in generati
 * agent ^slicing.discriminator.path = "who"
 * agent ^slicing.rules = #open
 * agent contains AIModelAgent 1..*
-* agent[AIModelAgent].who only Reference(AIdevice) // "The AI model used in generating or enhancing the FHIR resource."
+* agent[AIModelAgent].who only Reference(AIDevice) // "The AI model used in generating or enhancing the FHIR resource."
 
