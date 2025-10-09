@@ -20,7 +20,7 @@ Usage: #example
 * content.attachment.id = "ig-loader-labreport_for_alton_walsh.pdf"
 * type = $loinc#11502-2 "Laboratory report"
 * category.coding[0] = $sct#15220000 "Laboratory test"
-* subject.reference = "http://example.org/fhir/Patient/alton-walsh"
+* subject.reference = "http://server.example.org/fhir/Patient/alton-walsh"
 * date = "2023-10-01T12:00:00+00:00"
 
 
@@ -34,11 +34,11 @@ The Input is a PDF Lab result.
 """
 Usage: #example
 * target[+] = Reference(Bundle/b3c1f2d4-5c8e-4b0a-9f6d-7c8e1f2d4b5c)
-* target[+] = Reference(Patient/730779b1-7952-470a-8ea3-8f1ad87ff18f)
-* target[+] = Reference(Observation/608c4de1-1ab6-4bfe-b2e4-dca6b19223f0)
+//* target[+] = Reference(Patient/730779b1-7952-470a-8ea3-8f1ad87ff18f)
+//* target[+] = Reference(Observation/608c4de1-1ab6-4bfe-b2e4-dca6b19223f0)
 * occurredPeriod.start = "2023-10-01T12:00:00+00:00"
 * recorded = "2023-10-01T12:05:00+00:00"
-* policy = "http://example.org/fhir/DocumentReference/AI-Generated-Lab-Results"
+* policy = "http://server.example.org/fhir/DocumentReference/AI-Generated-Lab-Results"
 * activity = http://terminology.hl7.org/CodeSystem/iso-21089-lifecycle#transform "Transform/Translate Record Lifecycle Event"
 * activity.text = "AI Generated Lab Results from PDF"
 * agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author "Author"

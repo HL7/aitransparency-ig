@@ -72,7 +72,7 @@ Usage: #example
 * status = #final
 * code = $loinc#9269-2 "Glasgow coma score total"
 * code.text = "Glasgow Coma Scale , (GCS)"
-* subject.reference = "http://example.org/fhir/Patient/example"
+* subject.reference = "http://server.example.org/fhir/Patient/example"
 * effectiveDateTime = "2014-12-11T04:44:16Z"
 * valueQuantity = 13 '{score}'
 * referenceRange[0].high = 8 '{score}'
@@ -123,15 +123,15 @@ as well as a ServiceRequest.
 Usage: #example
 * meta.security[+] = http://terminology.hl7.org/CodeSystem/v3-ActCode#PROCESSINLINELABEL "process inline security label"
 * id = "f202"
-* basedOn.reference = "http://example.org/fhir/ServiceRequest/req"
+* basedOn.reference = "http://server.example.org/fhir/ServiceRequest/req"
 * status = #final
 * category.coding[0] = $sct#15220000 "Laboratory test"
 * category.coding[+] = $v2-0074#LAB
 * code = $sct#104177005 "Blood culture for bacteria, including anaerobic screen"
-* subject.reference = "http://example.org/fhir/Patient/example"
+* subject.reference = "http://server.example.org/fhir/Patient/example"
 * issued = "2013-03-11T10:28:00+01:00"
-* performer.reference = "http://example.org/fhir/Organization/f201"
-* result.reference = "http://example.org/fhir/Observation/f206"
+* performer.reference = "http://server.example.org/fhir/Organization/f201"
+* result.reference = "http://server.example.org/fhir/Observation/f206"
 * conclusion = "Blood culture tested positive on staphylococcus aureus"
 * conclusion.extension[0].url = "http://hl7.org/fhir/uv/security-label-ds4p/StructureDefinition/extension-inline-sec-label"
 * conclusion.extension[0].valueCoding = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST "Artificial Intelligence asserted"
