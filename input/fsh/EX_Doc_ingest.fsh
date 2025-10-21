@@ -29,8 +29,9 @@ InstanceOf: AIProvenance
 Title: "Provenance of AI Generated Lab Results"
 Description: """
 A Provenance resource that documents the creation of a Lab result Observation resource by an AI (device), verified by a human.
-The AI system is represented as a Device resource.
-The Input is a PDF Lab result.
+- The AI system is represented as a Device resource.
+- No Model-Card was used.
+- The Input is a PDF Lab result.
 """
 Usage: #example
 * target[+] = Reference(Bundle/b3c1f2d4-5c8e-4b0a-9f6d-7c8e1f2d4b5c)
@@ -38,6 +39,7 @@ Usage: #example
 //* target[+] = Reference(Observation/608c4de1-1ab6-4bfe-b2e4-dca6b19223f0)
 * occurredPeriod.start = "2023-10-01T12:00:00+00:00"
 * recorded = "2023-10-01T12:05:00+00:00"
+* reason[+] = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST
 * policy = "http://server.example.org/fhir/DocumentReference/AI-Generated-Lab-Results"
 * activity = http://terminology.hl7.org/CodeSystem/iso-21089-lifecycle#transform "Transform/Translate Record Lifecycle Event"
 * activity.text = "AI Generated Lab Results from PDF"

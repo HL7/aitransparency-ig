@@ -13,13 +13,14 @@ Instance: AI-Authored-Element
 InstanceOf: AIProvenance
 Title: "Provenance of AI Authored Procedure.followup.text"
 Description: """
-A Provenance resource that documents the addition of followUp text in a Procedure by an AI system.
+A Provenance resource that documents the addition of followUp text in a Procedure by an AI system. No Model-Card was used.
 """
 Usage: #example
 * target.extension.url = "http://hl7.org/fhir/StructureDefinition/targetPath"
 * target.extension.valueString = "Procedure.followUp.text"
 * target = Reference(Procedure/proc)
 * recorded = "2021-12-08T16:54:24+11:00"
+* reason[+] = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST
 * agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author "Author"
 * agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
 * agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#informant "Informant"
@@ -46,7 +47,8 @@ InstanceOf: AIProvenance
 Title: "Provenance of AI authored Lab Observation"
 Description: """
 A Provenance resource that documents the creation of a Lab result Observation resource by an AI (device), verified by a human.
-The AI system is represented as a Device resource.
+- The AI system is represented as a Device resource.
+- No Model-Card was used.
 """
 Usage: #example
 * target = Reference(Observation/f206)
@@ -54,6 +56,7 @@ Usage: #example
 * recorded = "2016-06-09T08:12:14+10:00"
 * activity = http://terminology.hl7.org/CodeSystem/v3-DataOperation#CREATE "create"
 * activity.text = "antiviral resistance detection"
+* reason[+] = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST
 * agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#verifier "Verifier"
 * agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
 * agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author "Author"

@@ -39,6 +39,7 @@ Usage: #example
 * recorded = "2023-10-01T00:00:00Z"
 * policy = "http://example.org/policies/ai-authorized-CDS"
 * reason[+] = http://terminology.hl7.org/CodeSystem/v3-ActReason#TREAT
+* reason[+] = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST
 * agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#verifier "Verifier"
 * agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
 * agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author "Author"
@@ -76,11 +77,12 @@ Ensure that the text maintains a good balance between readability and the tradit
 """
 Usage: #example
 * status = #current
-* content.attachment.data =   "R2VuZXJhdGUgYSBsb3JlbSBpcHN1bSB0ZXh0IHRvIHNlcnZlIGFzIHBsYWNlaG9sZGVyIGNvcHkgZm9yIHVzZSBpbiBkZXNpZ24sIGRldmVsb3BtZW50LCBhbmQgcHVibGlzaGluZy4gCgoxLiBTcGVjaWZ5IHRoZSBleGFjdCBhbW91bnQgb2YgdGV4dCBvciB0aGUgbnVtYmVyIG9mIHBhcmFncmFwaHMgcmVxdWlyZWQgKGUuZy4sIDEgcGFyYWdyYXBoLCAzIHBhcmFncmFwaHMsIGV0Yy4pLiAKMi4gQ3JlYXRlIHRoZSBsb3JlbSBpcHN1bSB0ZXh0IHVzaW5nIGEgY2xhc3NpYyBzdHlsZSBvciBpbnRyb2R1Y2Ugc2xpZ2h0IHZhcmlhdGlvbnMgd2hpbGUga2VlcGluZyB0aGUgbm9uc2Vuc2ljYWwgbmF0dXJlIHRvIHN1aXQgdGhlIHJlcXVlc3RlZCBsZW5ndGguIAoKRW5zdXJlIHRoYXQgdGhlIHRleHQgbWFpbnRhaW5zIGEgZ29vZCBiYWxhbmNlIGJldHdlZW4gcmVhZGFiaWxpdHkgYW5kIHRoZSB0cmFkaXRpb25hbCBsb3JlbSBpcHN1bSBzdHlsZSwgZ2l2aW5nIGEgcmVhbGlzdGljIGltcHJlc3Npb24gb2YgaG93IHRoZSB0ZXh0IHdpbGwgaW1wYWN0IHRoZSBvdmVyYWxsIGxheW91dCBhbmQgZGVzaWduLgoKIyBPdXRwdXQgRm9ybWF0Ci0gUHJvdmlkZSBhIGNvbnRpbnVvdXMgYmxvY2sgb2YgbG9yZW0gaXBzdW0gdGV4dCBjb3JyZXNwb25kaW5nIHRvIHRoZSBzcGVjaWZpZWQgYW1vdW50IG5lZWRlZC4="
+* content[MarkdownFormat].attachment.data =   "R2VuZXJhdGUgYSBsb3JlbSBpcHN1bSB0ZXh0IHRvIHNlcnZlIGFzIHBsYWNlaG9sZGVyIGNvcHkgZm9yIHVzZSBpbiBkZXNpZ24sIGRldmVsb3BtZW50LCBhbmQgcHVibGlzaGluZy4gCgoxLiBTcGVjaWZ5IHRoZSBleGFjdCBhbW91bnQgb2YgdGV4dCBvciB0aGUgbnVtYmVyIG9mIHBhcmFncmFwaHMgcmVxdWlyZWQgKGUuZy4sIDEgcGFyYWdyYXBoLCAzIHBhcmFncmFwaHMsIGV0Yy4pLiAKMi4gQ3JlYXRlIHRoZSBsb3JlbSBpcHN1bSB0ZXh0IHVzaW5nIGEgY2xhc3NpYyBzdHlsZSBvciBpbnRyb2R1Y2Ugc2xpZ2h0IHZhcmlhdGlvbnMgd2hpbGUga2VlcGluZyB0aGUgbm9uc2Vuc2ljYWwgbmF0dXJlIHRvIHN1aXQgdGhlIHJlcXVlc3RlZCBsZW5ndGguIAoKRW5zdXJlIHRoYXQgdGhlIHRleHQgbWFpbnRhaW5zIGEgZ29vZCBiYWxhbmNlIGJldHdlZW4gcmVhZGFiaWxpdHkgYW5kIHRoZSB0cmFkaXRpb25hbCBsb3JlbSBpcHN1bSBzdHlsZSwgZ2l2aW5nIGEgcmVhbGlzdGljIGltcHJlc3Npb24gb2YgaG93IHRoZSB0ZXh0IHdpbGwgaW1wYWN0IHRoZSBvdmVyYWxsIGxheW91dCBhbmQgZGVzaWduLgoKIyBPdXRwdXQgRm9ybWF0Ci0gUHJvdmlkZSBhIGNvbnRpbnVvdXMgYmxvY2sgb2YgbG9yZW0gaXBzdW0gdGV4dCBjb3JyZXNwb25kaW5nIHRvIHRoZSBzcGVjaWZpZWQgYW1vdW50IG5lZWRlZC4="
 
-* content.attachment.contentType = #text/markdown
+* content[MarkdownFormat].attachment.contentType = #text/markdown
 * type = AImodelCardCS#AIModelCard "AI Model Card"
 * category[AImodelCard] = AImodelCardCS#AIInputPrompt "AI Input Prompt"
+* category[AImodelCardMD] = AImodelCardCS#AImodelCardMarkdownFormat "Markdown Format"
 * description = """
 Generate a lorem ipsum text to serve as placeholder copy for use in design, development, and publishing. 
 
@@ -119,6 +121,7 @@ Usage: #example
 * recorded = "2025-06-18T00:00:00Z"
 * policy = "http://example.org/policies/ai-authorized-patient-generation"
 * reason[+] = http://terminology.hl7.org/CodeSystem/v3-ActReason#HOPERAT
+* reason[+] = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST
 * agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#verifier "Verifier"
 * agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
 * agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author "Author"
@@ -188,11 +191,12 @@ User Prompt
 """
 Usage: #example 
 * status = #current
-* content.attachment.data =   "R2VuZXJhdGUgYSBsb3JlbSBpcHN1bSB0ZXh0IHRvIHNlcnZlIGFzIHBsYWNlaG9sZGVyIGNvcHkgZm9yIHVzZSBpbiBkZXNpZ24sIGRldmVsb3BtZW50LCBhbmQgcHVibGlzaGluZy4gCgoxLiBTcGVjaWZ5IHRoZSBleGFjdCBhbW91bnQgb2YgdGV4dCBvciB0aGUgbnVtYmVyIG9mIHBhcmFncmFwaHMgcmVxdWlyZWQgKGUuZy4sIDEgcGFyYWdyYXBoLCAzIHBhcmFncmFwaHMsIGV0Yy4pLiAKMi4gQ3JlYXRlIHRoZSBsb3JlbSBpcHN1bSB0ZXh0IHVzaW5nIGEgY2xhc3NpYyBzdHlsZSBvciBpbnRyb2R1Y2Ugc2xpZ2h0IHZhcmlhdGlvbnMgd2hpbGUga2VlcGluZyB0aGUgbm9uc2Vuc2ljYWwgbmF0dXJlIHRvIHN1aXQgdGhlIHJlcXVlc3RlZCBsZW5ndGguIAoKRW5zdXJlIHRoYXQgdGhlIHRleHQgbWFpbnRhaW5zIGEgZ29vZCBiYWxhbmNlIGJldHdlZW4gcmVhZGFiaWxpdHkgYW5kIHRoZSB0cmFkaXRpb25hbCBsb3JlbSBpcHN1bSBzdHlsZSwgZ2l2aW5nIGEgcmVhbGlzdGljIGltcHJlc3Npb24gb2YgaG93IHRoZSB0ZXh0IHdpbGwgaW1wYWN0IHRoZSBvdmVyYWxsIGxheW91dCBhbmQgZGVzaWduLgoKIyBPdXRwdXQgRm9ybWF0Ci0gUHJvdmlkZSBhIGNvbnRpbnVvdXMgYmxvY2sgb2YgbG9yZW0gaXBzdW0gdGV4dCBjb3JyZXNwb25kaW5nIHRvIHRoZSBzcGVjaWZpZWQgYW1vdW50IG5lZWRlZC4="
+* content[MarkdownFormat].attachment.data =   "R2VuZXJhdGUgYSBsb3JlbSBpcHN1bSB0ZXh0IHRvIHNlcnZlIGFzIHBsYWNlaG9sZGVyIGNvcHkgZm9yIHVzZSBpbiBkZXNpZ24sIGRldmVsb3BtZW50LCBhbmQgcHVibGlzaGluZy4gCgoxLiBTcGVjaWZ5IHRoZSBleGFjdCBhbW91bnQgb2YgdGV4dCBvciB0aGUgbnVtYmVyIG9mIHBhcmFncmFwaHMgcmVxdWlyZWQgKGUuZy4sIDEgcGFyYWdyYXBoLCAzIHBhcmFncmFwaHMsIGV0Yy4pLiAKMi4gQ3JlYXRlIHRoZSBsb3JlbSBpcHN1bSB0ZXh0IHVzaW5nIGEgY2xhc3NpYyBzdHlsZSBvciBpbnRyb2R1Y2Ugc2xpZ2h0IHZhcmlhdGlvbnMgd2hpbGUga2VlcGluZyB0aGUgbm9uc2Vuc2ljYWwgbmF0dXJlIHRvIHN1aXQgdGhlIHJlcXVlc3RlZCBsZW5ndGguIAoKRW5zdXJlIHRoYXQgdGhlIHRleHQgbWFpbnRhaW5zIGEgZ29vZCBiYWxhbmNlIGJldHdlZW4gcmVhZGFiaWxpdHkgYW5kIHRoZSB0cmFkaXRpb25hbCBsb3JlbSBpcHN1bSBzdHlsZSwgZ2l2aW5nIGEgcmVhbGlzdGljIGltcHJlc3Npb24gb2YgaG93IHRoZSB0ZXh0IHdpbGwgaW1wYWN0IHRoZSBvdmVyYWxsIGxheW91dCBhbmQgZGVzaWduLgoKIyBPdXRwdXQgRm9ybWF0Ci0gUHJvdmlkZSBhIGNvbnRpbnVvdXMgYmxvY2sgb2YgbG9yZW0gaXBzdW0gdGV4dCBjb3JyZXNwb25kaW5nIHRvIHRoZSBzcGVjaWZpZWQgYW1vdW50IG5lZWRlZC4="
 
-* content.attachment.contentType = #text/markdown
+* content[MarkdownFormat].attachment.contentType = #text/markdown
 * type = AImodelCardCS#AIModelCard "AI Model Card"
 * category[AImodelCard] = AImodelCardCS#AIInputPrompt "AI Input Prompt"
+* category[AImodelCardMD] = AImodelCardCS#AImodelCardMarkdownFormat "Markdown Format"
 * description = """
 System Prompt
 

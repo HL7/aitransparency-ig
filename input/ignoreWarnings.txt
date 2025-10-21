@@ -7,3 +7,39 @@
 # we know we are using some draft resources
 MSG_DRAFT
 
+# some examples refer to the huggingface github
+No definition could be found for URL value 'https://github.com/huggingface/huggingface_hub/tree/main/tests/fixtures/cards'
+
+# some examples refer to the CHI github
+No definition could be found for URL value 'https://github.com/coalition-for-health-ai/mc-schema/blob/main/v0.1/examples/'
+
+# examples
+Type_Specific_Checks_DT_URL_Resolve
+
+# Example that uses import to binary
+WARNING: DocumentReference/ModelCard-sample-CHAI-binary: DocumentReference.content[0].attachment.url: No definition could be found for URL value 'Binary/ModelCard-sample-CHAI-binary-xml'
+WARNING: DocumentReference/ModelCard-sample-CHAI-binary: DocumentReference.content[1].attachment.url: No definition could be found for URL value 'Binary/ModelCard-sample-CHAI-binary-pdf'
+
+# these are extra content in PDF format
+INFORMATION: DocumentReference/ModelCard-sample-CHAI-attached: DocumentReference.content[1]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-ModelCard|0.1.0 (this may not be a problem, but you should check that it's not intended to match a slice)
+INFORMATION: DocumentReference/ModelCard-sample-CHAI-binary: DocumentReference.content[1]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-ModelCard|0.1.0 (this may not be a problem, but you should check that it's not intended to match a slice)
+INFORMATION: DocumentReference/ModelCard-sample-CHAI-web: DocumentReference.content[1]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-ModelCard|0.1.0 (this may not be a problem, but you should check that it's not intended to match a slice)
+
+# This is a pattern profile that can't be actually applied. It is thus purely illustrative
+WARNING: StructureDefinition.where(url = 'http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-data'): The Implementation Guide contains no examples for this profile
+
+# These are made up codesystems for examples
+UNKNOWN_CODESYSTEM
+
+# known issue in an examples
+Terminology_TX_NoValid_3_CC
+TYPE_SPECIFIC_CHECKS_DT_QTY_UCUM_ANNOTATIONS_NO_UNIT
+MSG_DEPENDS_ON_DEPRECATED_NOTE
+All_observations_should_have_a_performer
+
+# likely should pin, but not doing that at this 
+TYPE_SPECIFIC_CHECKS_DT_CANONICAL_MULTIPLE_POSSIBLE_VERSIONS
+CODESYSTEM_THO_CHECK
+
+# inherited from FHIR core 
+MSG_DEPENDS_ON_DEPRECATED
