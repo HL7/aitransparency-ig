@@ -27,9 +27,9 @@ Description: "This CodeSystem contains codes for the provenance indications used
 * ^caseSensitive = true
 * ^experimental = false
 * ^status = #active
-* #AIRPT "AI Reported"
-* #CLINAST_AIRPT "Clinician Asserted from AI Reported"
-* #AIAST_CLINRPT "AI Asserted from Clinician Reported"
+* #AIRPT "AI Reported" "Indicates that the content was reported by an AI system."
+* #CLINAST_AIRPT "Clinician Asserted from AI Reported" "Indicates that a clinician has reviewed and asserted the content that was originally reported by an AI system."
+* #AIAST_CLINRPT "AI Asserted from Clinician Reported" "Indicates that the content was asserted by an AI system based on clinician reported information."
 
 ValueSet: ProvenanceVS
 Title: "Recommended provenance codes"

@@ -52,7 +52,11 @@ In this project, AI algorithm is defined broadly to include any computer-based l
 
 ### Credits
 
-* TBD
+* Sam Schifman
+* May Terry (Mitre)
+* John Moehrke (Moehrke Research LLC)
+* Brian Alper
+* Mark Kramer
 
 ### Cross Version Analysis
 

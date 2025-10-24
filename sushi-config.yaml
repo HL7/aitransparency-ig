@@ -8,7 +8,7 @@ canonical: http://hl7.org/fhir/uv/aitransparency
 name: AITransparency
 title: AI Transparency on FHIR
 # description: Example Implementation Guide for getting started with SUSHI
-status: draft # draft | active | retired | unknown
+status: active # draft | active | retired | unknown
 version: 0.1.0
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 copyrightYear: 2024+
@@ -21,7 +21,7 @@ extension:
   - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-wg  
     valueCode: ehr
   - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
-    valueCode: draft
+    valueCode: trial-use
   - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
     valueInteger: 0
 publisher:
