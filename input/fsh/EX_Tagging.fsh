@@ -47,11 +47,12 @@ Parent: DomainResource
 Id: AI-data
 Title: "AI Data"
 Description: "A resource that captures the input and output data used by an AI model in generating or enhancing FHIR resources."
+* meta.security MS
 * meta.security ^slicing.discriminator.type = #value
 * meta.security ^slicing.discriminator.path = "$this"
 * meta.security ^slicing.rules = #open
-* meta.security contains AItags 1..*
-* meta.security[AItags] from ProvenanceVS
+* meta.security contains AItags 1..* MS
+* meta.security[AItags] from ProvenanceVS (required)
 
 //========Example of Resource Level tagging ===  
 
