@@ -46,7 +46,9 @@ Profile: AIdata
 Parent: DomainResource
 Id: AI-data
 Title: "AI Data"
-Description: "A resource that captures the input and output data used by an AI model in generating or enhancing FHIR resources."
+Description: "A resource that captures the input and output data used by an AI model in generating or enhancing FHIR resources.
+
+Given that this is a profile on DomainResource, it can't be used in an IG, but it can be used for validation purposes."
 * meta.security MS
 * meta.security ^slicing.discriminator.type = #value
 * meta.security ^slicing.discriminator.path = "$this"
