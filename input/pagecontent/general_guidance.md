@@ -296,7 +296,7 @@ The example above encoded in a [DocumentReference with Model Card encoded inside
 
 #### CHAI Applied Model Cards XML
 
-The [CHAI Applied Model](https://www.chai.org/workgroup/applied-model) utalizes XML encoding, and PDF rendering. 
+The [Coalition for Health AI (CHAI) Applied Model Card](https://www.chai.org/workgroup/applied-model) utilizes XML encoding, and PDF rendering. 
 
 An example from the [CHAI Github Examples](https://github.com/coalition-for-health-ai/mc-schema) is included here in multiple DocumentReference formats:
 
@@ -385,4 +385,3 @@ In the attached example the patient's name is Alton Walsh and the lab test is an
 
 - [Provenance of AI Generated Lab Results](Provenance-AI-Generated-Lab-Results.html)
 
-TODO: Note, the validator found some syntax and semantic errors in the json that I had to fix manually

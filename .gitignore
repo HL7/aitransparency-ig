@@ -41,3 +41,4 @@ target/*
 # Other
 FHIR-aitransparency.xml
 
+_updatePublisher.sh
