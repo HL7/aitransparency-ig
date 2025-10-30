@@ -52,11 +52,15 @@ In this project, AI algorithm is defined broadly to include any computer-based l
 
 ### Credits
 
-* Sam Schifman
-* May Terry (Mitre)
+* Sam Schifman (Vantiq)
 * John Moehrke (Moehrke Research LLC)
-* Brian Alper
-* Mark Kramer
+* May Terry (MITRE)
+* Brian Alper (Computable Publishing)
+* Michael Faughn (NIST)
+* Gregory Shemancik (CHAI)
+* Reynalda Davis (CMS)
+* Gail Winters
+* Mark Kramer (MITRE)
 
 ### Cross Version Analysis
 
