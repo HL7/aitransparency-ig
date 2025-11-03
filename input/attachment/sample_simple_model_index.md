@@ -39,4 +39,4 @@ model-index:
 
 ## Model description
 
-This is a test model card with multiple evaluations across different (dataset, metric) configurations.
+This is a test Model-Card with multiple evaluations across different (dataset, metric) configurations.

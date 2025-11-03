@@ -49,6 +49,6 @@ When in the course of using a given AI model, it may be come understood that tha
 
 All outputs from a given AI model would have traceability back to a single Device resource that describes that given model. Thus one needs to trace to all resources with a Provenance.agent referencing that Device instance, and should trace to all resources otherwise referenceing that Device instance (e.g. Observation.device, Composition.author).
 
-### Use Case 4: Discovery of output from a poorly crafted Model-Card
+### Use Case 4: Discovery of output from a poorly crafted Input (such as Prompt)
 
-When in the course of using AI, it is common to reuse Model-Card -prompts- that have been introduced as "good models", but at a later time realize that this given Model-Card has errors or improper formatting so as to cause poor AI output or dangerous output. Therefore one needs to discover all the instances where a Patient may have been impacted by this given Model-Card. 
+When in the course of using AI, it is common to reuse inputs, such as prompts, that are believed to produce "good" inference, but at a later time realize that the input is flawed and results in poor AI or dangerous output. Therefore one needs to discover all the instances where a Patient may have been impacted by this input.

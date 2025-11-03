@@ -2,15 +2,15 @@
 - The resources provided to the AI
 - The prompt provided to the AI
 - The output of the AI
-- The AI does have a model card
+- The AI does have a Model-Card
 */
 
 
 Instance: AI-full-lorem-ipsum
 InstanceOf: AIProvenance
-Title: "Provenance for AI with Model Card, input, and output"
+Title: "Provenance for AI with Model-Card, input, and output"
 Description: """
-A Provenance resource that captures the full AI process, including the model card, input, and output.
+A Provenance resource that captures the full AI process, including the Model-Card, input, and output.
 
 This is a full example of how to capture the AI process in FHIR.
 
@@ -80,7 +80,7 @@ Usage: #example
 * content[MarkdownFormat].attachment.data =   "R2VuZXJhdGUgYSBsb3JlbSBpcHN1bSB0ZXh0IHRvIHNlcnZlIGFzIHBsYWNlaG9sZGVyIGNvcHkgZm9yIHVzZSBpbiBkZXNpZ24sIGRldmVsb3BtZW50LCBhbmQgcHVibGlzaGluZy4gCgoxLiBTcGVjaWZ5IHRoZSBleGFjdCBhbW91bnQgb2YgdGV4dCBvciB0aGUgbnVtYmVyIG9mIHBhcmFncmFwaHMgcmVxdWlyZWQgKGUuZy4sIDEgcGFyYWdyYXBoLCAzIHBhcmFncmFwaHMsIGV0Yy4pLiAKMi4gQ3JlYXRlIHRoZSBsb3JlbSBpcHN1bSB0ZXh0IHVzaW5nIGEgY2xhc3NpYyBzdHlsZSBvciBpbnRyb2R1Y2Ugc2xpZ2h0IHZhcmlhdGlvbnMgd2hpbGUga2VlcGluZyB0aGUgbm9uc2Vuc2ljYWwgbmF0dXJlIHRvIHN1aXQgdGhlIHJlcXVlc3RlZCBsZW5ndGguIAoKRW5zdXJlIHRoYXQgdGhlIHRleHQgbWFpbnRhaW5zIGEgZ29vZCBiYWxhbmNlIGJldHdlZW4gcmVhZGFiaWxpdHkgYW5kIHRoZSB0cmFkaXRpb25hbCBsb3JlbSBpcHN1bSBzdHlsZSwgZ2l2aW5nIGEgcmVhbGlzdGljIGltcHJlc3Npb24gb2YgaG93IHRoZSB0ZXh0IHdpbGwgaW1wYWN0IHRoZSBvdmVyYWxsIGxheW91dCBhbmQgZGVzaWduLgoKIyBPdXRwdXQgRm9ybWF0Ci0gUHJvdmlkZSBhIGNvbnRpbnVvdXMgYmxvY2sgb2YgbG9yZW0gaXBzdW0gdGV4dCBjb3JyZXNwb25kaW5nIHRvIHRoZSBzcGVjaWZpZWQgYW1vdW50IG5lZWRlZC4="
 
 * content[MarkdownFormat].attachment.contentType = #text/markdown
-* type = AImodelCardCS#AIModelCard "AI Model Card"
+* type = AImodelCardCS#AIModelCard "AI Model-Card"
 * category[AImodelCard] = AImodelCardCS#AIInputPrompt "AI Input Prompt"
 * category[AImodelCardMD] = AImodelCardCS#AImodelCardMarkdownFormat "Markdown Format"
 * description = """
@@ -101,7 +101,7 @@ Instance: AI-generated-patient-resource
 InstanceOf: AIProvenance
 Title: "Provenance for AI created Patient resource"
 Description: """
-A Provenance resource that captures the full AI process, including the model card, input, and output.
+A Provenance resource that captures the full AI process, including the Model-Card, input, and output.
 
 This is a full example of how to capture the AI process in FHIR.
 
@@ -186,7 +186,7 @@ User Prompt
 
 - Convert the following patient information into a FHIR Patient resource conformant with US Core 6.1.0:
 
-`Jane Doe is a white female born on November 15, 1950. She lives at 123 Main Street, Anytown, Michigan, zipcode 12345.`
+`Jane Doe is a white female born on November 15, 1950. She lives at 123 Main Street, Anytown, MiCHAIgan, zipcode 12345.`
 ```
 """
 Usage: #example 
@@ -194,7 +194,7 @@ Usage: #example
 * content[MarkdownFormat].attachment.data =   "R2VuZXJhdGUgYSBsb3JlbSBpcHN1bSB0ZXh0IHRvIHNlcnZlIGFzIHBsYWNlaG9sZGVyIGNvcHkgZm9yIHVzZSBpbiBkZXNpZ24sIGRldmVsb3BtZW50LCBhbmQgcHVibGlzaGluZy4gCgoxLiBTcGVjaWZ5IHRoZSBleGFjdCBhbW91bnQgb2YgdGV4dCBvciB0aGUgbnVtYmVyIG9mIHBhcmFncmFwaHMgcmVxdWlyZWQgKGUuZy4sIDEgcGFyYWdyYXBoLCAzIHBhcmFncmFwaHMsIGV0Yy4pLiAKMi4gQ3JlYXRlIHRoZSBsb3JlbSBpcHN1bSB0ZXh0IHVzaW5nIGEgY2xhc3NpYyBzdHlsZSBvciBpbnRyb2R1Y2Ugc2xpZ2h0IHZhcmlhdGlvbnMgd2hpbGUga2VlcGluZyB0aGUgbm9uc2Vuc2ljYWwgbmF0dXJlIHRvIHN1aXQgdGhlIHJlcXVlc3RlZCBsZW5ndGguIAoKRW5zdXJlIHRoYXQgdGhlIHRleHQgbWFpbnRhaW5zIGEgZ29vZCBiYWxhbmNlIGJldHdlZW4gcmVhZGFiaWxpdHkgYW5kIHRoZSB0cmFkaXRpb25hbCBsb3JlbSBpcHN1bSBzdHlsZSwgZ2l2aW5nIGEgcmVhbGlzdGljIGltcHJlc3Npb24gb2YgaG93IHRoZSB0ZXh0IHdpbGwgaW1wYWN0IHRoZSBvdmVyYWxsIGxheW91dCBhbmQgZGVzaWduLgoKIyBPdXRwdXQgRm9ybWF0Ci0gUHJvdmlkZSBhIGNvbnRpbnVvdXMgYmxvY2sgb2YgbG9yZW0gaXBzdW0gdGV4dCBjb3JyZXNwb25kaW5nIHRvIHRoZSBzcGVjaWZpZWQgYW1vdW50IG5lZWRlZC4="
 
 * content[MarkdownFormat].attachment.contentType = #text/markdown
-* type = AImodelCardCS#AIModelCard "AI Model Card"
+* type = AImodelCardCS#AIModelCard "AI Model-Card"
 * category[AImodelCard] = AImodelCardCS#AIInputPrompt "AI Input Prompt"
 * category[AImodelCardMD] = AImodelCardCS#AImodelCardMarkdownFormat "Markdown Format"
 * description = """
@@ -241,7 +241,7 @@ User Prompt
 
 - Convert the following patient information into a FHIR Patient resource conformant with US Core 6.1.0:
 
-`Jane Doe is a white female born on November 15, 1950. She lives at 123 Main Street, Anytown, Michigan, zipcode 12345.`
+`Jane Doe is a white female born on November 15, 1950. She lives at 123 Main Street, Anytown, MiCHAIgan, zipcode 12345.`
 """
 
 

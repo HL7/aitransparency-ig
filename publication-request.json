@@ -1,0 +1,16 @@
+{
+  "package-id" : "hl7.fhir.uv.aitransparency",
+  "version" : "1.0.0-comment",
+  "path" : "http://hl7.org/fhir/uv/aitransparency/1.0.0-comment",
+  "mode" : "milestone",
+  "status" : "ballot",
+  "sequence" : "Ballot1",
+  "desc" : "This publication is for Public Comment",
+  "descmd" : "This publication is for Public Comment",
+  "changes" : "changes.html",
+  "first" : true,
+  "title" : "AI Transparency on FHIR",
+  "ci-build" : "https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/index.html",
+  "category" : "AI",
+  "introduction" : "Provides guidance for representing the usage of AI in influencing FHIR resources. Starting with how to tag FHIR resources, and expanding into how to use Provenance, Device, and other data elements, this FHIR IG provides standards that enable downstream use cases to identify such resources. This allows the informed usage of AI-inferred health data."
+}

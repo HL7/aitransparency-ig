@@ -10,11 +10,8 @@ MSG_DRAFT
 # some examples refer to the huggingface github
 No definition could be found for URL value 'https://github.com/huggingface/huggingface_hub/tree/main/tests/fixtures/cards'
 
-# some examples refer to the CHI github
+# some examples refer to the CHAI github
 No definition could be found for URL value 'https://github.com/coalition-for-health-ai/mc-schema/blob/main/v0.1/examples/'
-
-# examples
-Type_Specific_Checks_DT_URL_Resolve
 
 # Example that uses import to binary
 WARNING: DocumentReference/ModelCard-sample-CHAI-binary: DocumentReference.content[0].attachment.url: No definition could be found for URL value 'Binary/ModelCard-sample-CHAI-binary-xml'
@@ -37,9 +34,18 @@ TYPE_SPECIFIC_CHECKS_DT_QTY_UCUM_ANNOTATIONS_NO_UNIT
 MSG_DEPENDS_ON_DEPRECATED_NOTE
 All_observations_should_have_a_performer
 
-# likely should pin, but not doing that at this 
-TYPE_SPECIFIC_CHECKS_DT_CANONICAL_MULTIPLE_POSSIBLE_VERSIONS
-CODESYSTEM_THO_CHECK
-
 # inherited from FHIR core 
 MSG_DEPENDS_ON_DEPRECATED
+
+# Pinning versions when there are multiples 
+PIN_VERSION
+
+# this is okay for our use-case 
+INFORMATION: StructureDefinition/AI-ModelCard: StructureDefinition.snapshot.element[17].pattern.ofType(Coding): The repeating element has a pattern. The pattern will apply to all the repeats (this has not been clear to all users)
+INFORMATION: StructureDefinition/AI-ModelCard: StructureDefinition.snapshot.element[20].pattern.ofType(CodeableConcept): The repeating element has a pattern. The pattern will apply to all the repeats (this has not been clear to all users)
+
+# Examples with extra elements beyond minimal slices
+Details_for__matching_against_Profile_
+
+# We should do this, but after public comments. Some of the codes will go into existing codeSystems in THO and thus not new codeSystems.
+CODESYSTEM_THO_CHECK
