@@ -91,7 +91,11 @@ Note that both Security Tagging and Provenance can be applied at the whole Resou
 
 ### Tagging
 
-The use of Tagging enables distinguishing data that has not been influenced by AI from data that has been influenced by AI. The level of influence and the details about how the AI was used are not available in a Tagging methodology. However the Tagging methodology is very light weight as it indicates simply that AI was used in the creation or updating of the given resource. All FHIR Resources include the meta element which includes the security element. Thus all resources can be tagged this way regardless of the type of Resource.
+The use of Tagging enables distinguishing data that has not been influenced by AI from data that has been influenced by AI. The level of influence and the details about how the AI was used are not available in a Tagging methodology. However the Tagging methodology is very light weight as it indicates simply that AI was used in the creation or updating of the given resource.
+
+Tagging (also called [Security Labels](https://hl7.org/fhir/security-labels.html)) uses the FHIR [Resource definition](https://hl7.org/fhir/resource.html) `.meta.security` element that is at the top of all Resources, and as such can be found without Resource type specific processing. The use of security tagging follows the purpose for security tagging, as the domain of security covers protections against risks to Confidentiality, Availability, and Integrity (see [Healthcare Privacy and Security Classification System (HCS) vocabulary](https://hl7.org/fhir/security-labels.html#hcs)). In this case focusing on [Integrity](https://terminology.hl7.org/ValueSet-v3-SecurityIntegrityObservationValue.html) is defined as completeness, veracity, reliability, trustworthiness, and provenance. In the case of AI Transparency we want to mark the AI participation to convey reliability, trustworthiness, and provenance.
+
+Within the [Integrity Security Tags Vocabulary](https://terminology.hl7.org/ValueSet-v3-SecurityIntegrityObservationValue.html) is [AIAST - Artificial Intelligence Asserted](https://terminology.hl7.org/CodeSystem-v3-ObservationValue.html#v3-ObservationValue-AIAST) as a broad concept of any infuence by any kind of artificial intelligence. There is also [DICTAST - Dictation asserted](https://terminology.hl7.org/CodeSystem-v3-ObservationValue.html#v3-ObservationValue-DICTAST) for when dictation, which might be AI driven, has been involved in translating dictation to data.
 
 ```mermaid
 classDiagram
