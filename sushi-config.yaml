@@ -7,13 +7,13 @@ id: hl7.fhir.uv.aitransparency
 canonical: http://hl7.org/fhir/uv/aitransparency
 name: AITransparency
 title: AI Transparency on FHIR
-# description: Example Implementation Guide for getting started with SUSHI
+description: Provides guidance for representing the usage of AI in influencing FHIR resources. Starting with how to tag FHIR resources, and expanding into how to use Provenance, Device, and other data elements, this FHIR IG provides standards that enable downstream use cases to identify such resources. This allows the informed usage of AI-inferred health data.
 status: active # draft | active | retired | unknown
-version: 0.1.0
+version: 1.0.0-comment
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 copyrightYear: 2024+
 releaseLabel: ci-build # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
-# license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
+license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
 # jurisdiction: urn:iso:std:iso:3166#US "United States of America" # https://www.hl7.org/fhir/valueset-jurisdiction.html
 jurisdiction: http://unstats.un.org/unsd/methods/m49/m49.htm#001
 
@@ -61,6 +61,8 @@ pages:
     title: General Guidance
   use_cases.md:
     title: Use Cases
+  changes.md:
+    title: Changes
 
 #
 #
@@ -76,6 +78,7 @@ pages:
 parameters:
    excludettl: true
    path-binary: input/attachment
+   pin-canonicals: pin-multiples
 #   validation: [allow-any-extensions, no-broken-links]
 #
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮

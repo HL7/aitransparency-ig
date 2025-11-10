@@ -1,5 +1,5 @@
 
-Four Observability Levels track and document when AI algorithms generate, modify, or enhance clinical data within FHIR healthcare resources. Each level addresses different transparency needs: 
+Four levels of Observability Factors can be tracked and documented when AI influences health data. Each level addresses different transparency needs: 
 
 - basic identification of AI-influenced data (Tagging), 
 - detailed model documentation (Models), 
@@ -20,7 +20,14 @@ Four Observability Levels track and document when AI algorithms generate, modify
 
 #### AI Usage Representation
 
-Distinguishes where AI was used and not used.
+In this use-case need, there is simply a need to distinguishes where AI was used and where it was not used. In this Observability Factor there is no need for more detail. In this Observability Factor there is no indication of the AI model, the prompts, or how the AI influenced the data.
+
+>💡 Tip
+>
+> Use When one needs to quickly and easily identify Resources or elements inside a Resource that have been influenced by AI. 
+> Note that this Observability Factor can be used with the more compressive Observability Factors.
+
+See [Tagging](#tagging) for more details on how to use this Observability Factor.
 
 #### Models
 
@@ -35,9 +42,9 @@ Information in the Model field could include:
 
 >💡 Tip
 >
-> Use When...
+> Use When the AI model is important to the use-cases, such as when it may be important to understand which AI model was used.
 
-See [Model Examples](#provenance) for more details on how to use this Observability Dimension.
+See [Model Examples](#provenance) for more details on how to use this Observability Factor.
 <br />
 
 #### Data Sources
@@ -54,9 +61,9 @@ Information in the Data Sources field includes:
 
 >💡 Tip
 >
-> Use When...
+> Use When the record needs to show the data inputs, such as to understand what data the AI had to inference on, vs what data was not provided.
 
-See [Data Source Examples](#data-source-examples) for more details on how to use this Observability Dimension.
+See [Data Source Examples](#data-source-examples) for more details on how to use this Observability Factor.
 
 #### Process
 
@@ -74,9 +81,9 @@ Information in the Process field could include:
 
 >💡 Tip
 >
-> Use When...
+> Use When all possible factors are important to record. This level of Observability Factor is very comprehensive, and as such is very verbose. This level of Observability Factor capturing may not be justified beyond initial model use, while shaking out the use.
 
-See [Process](#process-examples) for more details on how to use this Observability Dimension.
+See [Process](#process-examples) for more details on how to use this Observability Factor.
 
 ### AI Representation Methods - the way you get that information
 
@@ -84,7 +91,7 @@ Implementers can utilize these methods based on their specific requirements and 
 
 | 1: Security Tagging | 2: Provenance |
 |---|---|
-| Tagging data influenced by AI | • **Specifying**<br>  - source, target<br>  - AI Model Cards |
+| Tagging data influenced by AI | • **Specifying**<br>  - source, target<br>  - AI Model-Cards |
 {: .grid}
 
 Note that both Security Tagging and Provenance can be applied at the whole Resource level or at the Element level within a resource.
@@ -252,20 +259,20 @@ An AI is defined using the Device resource. The Device resource is defined in FH
 - [Profile of Device for describing an AI](StructureDefinition-AI-device.html)
 - [The AI System](Device-TheAI.html)
 
-Where a given AI will always use a given Model-Card, that Model-Card can be included in the Device definition using a Model Card Description extension.
+Where a given AI will always use a given Model-Card, that Model-Card can be included in the Device definition using a Model-Card Description extension.
 
 ### Using Model-Card
 
 The AI community is defining standards for describing an AI model.
 There are two Model-Card formats shown in this Guide, although other formats may be used as well.
 
-The Model-Card represents the request that was made of the AI. The Model-Card can be encoded in a [AI Model Card profiled DocumentReference](StructureDefinition-AI-ModelCard.html), and these would be referenced in a [AI profiled Device](StructureDefinition-AI-Device.html) or within the [Provenance describing the AI involvement](StructureDefinition-AI-Provenance.html)
+The Model-Card represents the request that was made of the AI. The Model-Card can be encoded in a [AI Model-Card profiled DocumentReference](StructureDefinition-AI-ModelCard.html), and these would be referenced in a [AI profiled Device](StructureDefinition-AI-Device.html) or within the [Provenance describing the AI involvement](StructureDefinition-AI-Provenance.html)
 
 #### Hugging Face Markdown
 
-The Hugging Face Model Card is a combination of YAML that defines in codeable terms the details, and a Markdown that describes it in narrative. Given that Markdown can carry YAML, the overall object is Markdown.
+The Hugging Face Model-Card is a combination of YAML that defines in codeable terms the details, and a Markdown that describes it in narrative. Given that Markdown can carry YAML, the overall object is Markdown.
 
-Example Model Card from https://github.com/huggingface/huggingface_hub/tree/main/tests/fixtures/cards
+Example Model-Card from https://github.com/huggingface/huggingface_hub/tree/main/tests/fixtures/cards
 
 Here is an example given:
 
@@ -292,19 +299,19 @@ pretty_name: Sample Segmentation
 ---
 ```
 
-The example above encoded in a [DocumentReference with Model Card encoded inside](DocumentReference-ModelCard-sample-huggingface-attached.html)
+The example above encoded in a [DocumentReference with Model-Card encoded inside](DocumentReference-ModelCard-sample-huggingface-attached.html)
 
-#### CHAI Applied Model Cards XML
+#### CHAI Applied Model-Cards XML
 
 The [Coalition for Health AI (CHAI) Applied Model Card](https://www.chai.org/workgroup/applied-model) utilizes XML encoding, and PDF rendering. 
 
 An example from the [CHAI Github Examples](https://github.com/coalition-for-health-ai/mc-schema) is included here in multiple DocumentReference formats:
 
-- [DocumentReference linked to a web respository where the Model Cards exist](DocumentReference-ModelCard-sample-CHAI-web.html)
-- [DocumentReference with Model Card encoded using FHIR Binary resources](DocumentReference-ModelCard-sample-CHAI-binary.html)
-- [DocumentReference with Model Card encoded inside](DocumentReference-ModelCard-sample-CHAI-attached.html)
+- [DocumentReference linked to a web respository where the Model-Cards exist](DocumentReference-ModelCard-sample-CHAI-web.html)
+- [DocumentReference with Model-Card encoded using FHIR Binary resources](DocumentReference-ModelCard-sample-CHAI-binary.html)
+- [DocumentReference with Model-Card encoded inside](DocumentReference-ModelCard-sample-CHAI-attached.html)
 
-Note that these are all the same example Model Card, just encoded different ways depending on the needs. These three encoding methods are available for the HuggingFace format as well. Note that in the case of CHAI format, these examples include both the XML and the PDF rendering of the same as different .content entries.
+Note that these are all the same example Model-Card, just encoded different ways depending on the needs. These three encoding methods are available for the HuggingFace format as well. Note that in the case of CHAI format, these examples include both the XML and the PDF rendering of the same as different .content entries.
 
 #### R5/R6
 
@@ -318,7 +325,7 @@ One choice is to just put that Markdown Model-Card into the Device.note.text ele
 
 #### Attachment for the Model-Card
 
-One could encode the Model-Card in a resource designed for carrying any mime-type, the DocumentReference. To make this more clear and searchable we define a [codeSystem](CodeSystem-AImodelCardCS.html) that has some codes to be used to identify that the DocumentReference is specifically an AI Model Card or an AI Input Prompt
+One could encode the Model-Card in a resource designed for carrying any mime-type, the DocumentReference. To make this more clear and searchable we define a [codeSystem](CodeSystem-AImodelCardCS.html) that has some codes to be used to identify that the DocumentReference is specifically an AI Model-Card or an AI Input Prompt
 
 - [Profile of DocumentReference to carry a Model-Card](StructureDefinition-AI-ModelCard.html)
 - [DocumentReference Hugging Face Model-Card](DocumentReference-ModelCard-sample-huggingface-attached.html)
