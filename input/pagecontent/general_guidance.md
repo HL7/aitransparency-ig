@@ -8,7 +8,7 @@ Four levels of Observability Factors can be tracked and documented when AI influ
 
 ### Observability Factors for iterative IG development:
 
-| 1: AI Usage Representation | 2: Model(s) | 3: Context | 4: Process (human-maCHAIne-interaction) |
+| 1: AI Usage Representation | 2: Model(s) | 3: Context | 4: Process (human-machine-interaction) |
 |---|---|---|---|
 | • resource-level<br>• field / element -level | • Name and version of the AI algorithm / model<br>• algorithm deterministic vs. non-deterministic vs. hybrid | **Request input (to AI)**<br>  - e.g.: Patient data | **Indicating**<br>  • multiple actors, including the human<br>  • role |
 | &nbsp; | • Training set data<br>• Working memory | **Reference input**<br>  • e.g.: clinical guidelines | **How was it recorded**<br>  • Bias reduction strategies<br>  - e.g.: MCP to redirect to a controlled terminology corpus<br>  - tie back to Provenance |
@@ -190,7 +190,7 @@ One of the key portions of that Resource is
 ### Provenance
 
 Model(s) Examples
-Model documentation captures comprehensive information about the AI algorithms used in processing healthcare data. The name and version specification ensures precise identification of the specific AI model and its iteration used, enabling reproducibility and version control. Algorithm classification distinguishes between deterministic systems (rule-based, predictable outputs), non-deterministic systems (maCHAIne learning models with probabilistic outputs), and hybrid approaches that combine both methodologies. Training set data documentation provides transparency about the datasets used to develop the AI model, including information about data sources, population demographics, and potential biases. Working memory refers to the contextual information and temporary data that the AI model maintains during processing, which can influence decision-making and outputs.
+Model documentation captures comprehensive information about the AI algorithms used in processing healthcare data. The name and version specification ensures precise identification of the specific AI model and its iteration used, enabling reproducibility and version control. Algorithm classification distinguishes between deterministic systems (rule-based, predictable outputs), non-deterministic systems (machine learning models with probabilistic outputs), and hybrid approaches that combine both methodologies. Training set data documentation provides transparency about the datasets used to develop the AI model, including information about data sources, population demographics, and potential biases. Working memory refers to the contextual information and temporary data that the AI model maintains during processing, which can influence decision-making and outputs.
 
 Given some data are influenced by AI, the following diagram shows how Provenance can point at that data and indicate which AI model was used with specific Model-Card details.
 

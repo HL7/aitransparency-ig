@@ -186,7 +186,7 @@ User Prompt
 
 - Convert the following patient information into a FHIR Patient resource conformant with US Core 6.1.0:
 
-`Jane Doe is a white female born on November 15, 1950. She lives at 123 Main Street, Anytown, MiCHAIgan, zipcode 12345.`
+`Jane Doe is a white female born on November 15, 1950. She lives at 123 Main Street, Anytown, Michigan, zipcode 12345.`
 ```
 """
 Usage: #example 
@@ -241,7 +241,7 @@ User Prompt
 
 - Convert the following patient information into a FHIR Patient resource conformant with US Core 6.1.0:
 
-`Jane Doe is a white female born on November 15, 1950. She lives at 123 Main Street, Anytown, MiCHAIgan, zipcode 12345.`
+`Jane Doe is a white female born on November 15, 1950. She lives at 123 Main Street, Anytown, Michigan, zipcode 12345.`
 """
 
 
