@@ -39,7 +39,7 @@ Usage: #example
 //* target[+] = Reference(Observation/608c4de1-1ab6-4bfe-b2e4-dca6b19223f0)
 * occurredPeriod.start = "2023-10-01T12:00:00+00:00"
 * recorded = "2023-10-01T12:05:00+00:00"
-* reason[+] = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST
+* reason[+] = http://terminology.hl7.org/CodeSystem/v3-ObservationValue|4.0.0#AIAST
 * policy = "http://server.example.org/fhir/DocumentReference/AI-Generated-Lab-Results"
 * activity = http://terminology.hl7.org/CodeSystem/iso-21089-lifecycle#transform "Transform/Translate Record Lifecycle Event"
 * activity.text = "AI Generated Lab Results from PDF"

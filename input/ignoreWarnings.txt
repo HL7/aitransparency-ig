@@ -17,11 +17,6 @@ No definition could be found for URL value 'https://github.com/coalition-for-hea
 WARNING: DocumentReference/ModelCard-sample-CHAI-binary: DocumentReference.content[0].attachment.url: No definition could be found for URL value 'Binary/ModelCard-sample-CHAI-binary-xml'
 WARNING: DocumentReference/ModelCard-sample-CHAI-binary: DocumentReference.content[1].attachment.url: No definition could be found for URL value 'Binary/ModelCard-sample-CHAI-binary-pdf'
 
-# these are extra content in PDF format
-INFORMATION: DocumentReference/ModelCard-sample-CHAI-attached: DocumentReference.content[1]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-ModelCard|0.1.0 (this may not be a problem, but you should check that it's not intended to match a slice)
-INFORMATION: DocumentReference/ModelCard-sample-CHAI-binary: DocumentReference.content[1]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-ModelCard|0.1.0 (this may not be a problem, but you should check that it's not intended to match a slice)
-INFORMATION: DocumentReference/ModelCard-sample-CHAI-web: DocumentReference.content[1]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-ModelCard|0.1.0 (this may not be a problem, but you should check that it's not intended to match a slice)
-
 # This is a pattern profile that can't be actually applied. It is thus purely illustrative
 WARNING: StructureDefinition.where(url = 'http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-data'): The Implementation Guide contains no examples for this profile
 
