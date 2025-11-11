@@ -39,7 +39,7 @@ Usage: #example
 * recorded = "2023-10-01T00:00:00Z"
 * policy = "http://example.org/policies/ai-authorized-CDS"
 * reason[+] = http://terminology.hl7.org/CodeSystem/v3-ActReason#TREAT
-* reason[+] = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST
+* reason[+] = http://terminology.hl7.org/CodeSystem/v3-ObservationValue|4.0.0#AIAST
 * agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#verifier "Verifier"
 * agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
 * agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author "Author"
@@ -121,7 +121,7 @@ Usage: #example
 * recorded = "2025-06-18T00:00:00Z"
 * policy = "http://example.org/policies/ai-authorized-patient-generation"
 * reason[+] = http://terminology.hl7.org/CodeSystem/v3-ActReason#HOPERAT
-* reason[+] = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST
+* reason[+] = http://terminology.hl7.org/CodeSystem/v3-ObservationValue|4.0.0#AIAST
 * agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#verifier "Verifier"
 * agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
 * agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author "Author"

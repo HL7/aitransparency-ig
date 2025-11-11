@@ -20,7 +20,7 @@ Usage: #example
 * target.extension.valueString = "Procedure.followUp.text"
 * target = Reference(Procedure/proc)
 * recorded = "2021-12-08T16:54:24+11:00"
-* reason[+] = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST
+* reason[+] = http://terminology.hl7.org/CodeSystem/v3-ObservationValue|4.0.0#AIAST
 * agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author "Author"
 * agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
 * agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#informant "Informant"
@@ -56,7 +56,7 @@ Usage: #example
 * recorded = "2016-06-09T08:12:14+10:00"
 * activity = http://terminology.hl7.org/CodeSystem/v3-DataOperation#CREATE "create"
 * activity.text = "antiviral resistance detection"
-* reason[+] = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST
+* reason[+] = http://terminology.hl7.org/CodeSystem/v3-ObservationValue|4.0.0#AIAST
 * agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#verifier "Verifier"
 * agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
 * agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author "Author"
@@ -110,7 +110,7 @@ An example of an Oxygen Saturation Observation, where the device used is an AI s
 """
 Usage: #example
 //* meta.profile[+] = Canonical(AIdata) -- this does not work as AIdata is on DomainResource, and this level of IG publisher doesn't like two different resource types at the core.
-* meta.security = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST "Artificial Intelligence asserted"
+* meta.security = http://terminology.hl7.org/CodeSystem/v3-ObservationValue|4.0.0#AIAST "Artificial Intelligence asserted"
 * identifier.system = "http://example.org/observation/id"
 * identifier.value = "o1223435-10"
 * partOf.reference = "http://server.example.org/fhir/Procedure/ob"
