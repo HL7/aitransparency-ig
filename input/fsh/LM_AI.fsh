@@ -222,7 +222,7 @@ Usage: #example
 
 Profile: AIDevice 
 Parent: Device
-Id: AI-device
+Id: AI-Device
 Title: "AI Device"
 Description: """
 A Device that represents an AI system, such as a Large Language Model (LLM) or other AI model. This profile includes a recommended set of codes for Device.type to indicate the type of AI system. The extension AIKind is used to specify the more specific kind(s) of AI technology and techniques employed by the AI system. The extension ModelCardDescription is used to reference a Model-Card that is always used with the AI system.

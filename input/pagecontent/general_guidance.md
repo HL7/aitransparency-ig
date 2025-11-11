@@ -260,7 +260,7 @@ classDiagram
 
 An AI is defined using the Device resource. The Device resource is defined in FHIR to be much broader than physical devices, and specifically includes software, and thus AI. Thus an AI would be identified by some kind of identifier, manufacture, type, version, web location, etc.
 
-- [Profile of Device for describing an AI](StructureDefinition-AI-device.html)
+- [Profile of Device for describing an AI](StructureDefinition-AI-Device.html)
 - [The AI System](Device-TheAI.html)
 
 Where a given AI will always use a given Model-Card, that Model-Card can be included in the Device definition using a Model-Card Description extension.
