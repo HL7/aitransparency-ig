@@ -45,3 +45,5 @@ INFORMATION: StructureDefinition/AI-ModelCard: StructureDefinition.snapshot.elem
 # 13 Examples with extra elements beyond minimal slices
 Details_for__matching_against_Profile_
 
+# 14 Using a formal codesystem property of notSelectable, but IG publisher now complains
+CODESYSTEM_PROPERTY_UNDEFINED
