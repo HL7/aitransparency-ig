@@ -4,43 +4,44 @@
 # (And include comments like this justifying why)
 # See https://github.com/FHIR/sample-ig/blob/master/input/ignoreWarnings.txt for examples
 
-# we know we are using some draft resources
+# 01 We should do this, but after public comments. Some of the codes will go into existing codeSystems in THO and thus not new codeSystems.
+CODESYSTEM_THO_CHECK
+
+# 02 The AI-data profile is a pattern profile that can't be actually applied. It is thus purely illustrative
+WARNING: StructureDefinition.where(url = 'http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-data'): The Implementation Guide contains no examples for this profile
+
+# 03 we know we are using some draft resources
 MSG_DRAFT
 
-# some examples refer to the huggingface github
+# 04 some examples refer to the huggingface github
 No definition could be found for URL value 'https://github.com/huggingface/huggingface_hub/tree/main/tests/fixtures/cards'
 
-# some examples refer to the CHAI github
+# 05 some examples refer to the CHAI github
 No definition could be found for URL value 'https://github.com/coalition-for-health-ai/mc-schema/blob/main/v0.1/examples/'
 
-# Example that uses import to binary
+# 06 Example that uses import to binary ising ig-loader that has no way to provide a definition
 WARNING: DocumentReference/ModelCard-sample-CHAI-binary: DocumentReference.content[0].attachment.url: No definition could be found for URL value 'Binary/ModelCard-sample-CHAI-binary-xml'
 WARNING: DocumentReference/ModelCard-sample-CHAI-binary: DocumentReference.content[1].attachment.url: No definition could be found for URL value 'Binary/ModelCard-sample-CHAI-binary-pdf'
 
-# This is a pattern profile that can't be actually applied. It is thus purely illustrative
-WARNING: StructureDefinition.where(url = 'http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-data'): The Implementation Guide contains no examples for this profile
-
-# These are made up codesystems for examples
+# 07 These are made up codesystems for examples
 UNKNOWN_CODESYSTEM
 
-# known issue in an examples
+# 08 known issue in an examples, issues that are not important for our use-case
 Terminology_TX_NoValid_3_CC
 TYPE_SPECIFIC_CHECKS_DT_QTY_UCUM_ANNOTATIONS_NO_UNIT
 MSG_DEPENDS_ON_DEPRECATED_NOTE
 All_observations_should_have_a_performer
 
-# inherited from FHIR core 
+# 09 inherited from FHIR core 
 MSG_DEPENDS_ON_DEPRECATED
 
-# Pinning versions when there are multiples 
+# 10 Pinning versions when there are multiples 
 PIN_VERSION
 
-# this is okay for our use-case 
+# 12 These have been reviewed and are okay for our use-case
 INFORMATION: StructureDefinition/AI-ModelCard: StructureDefinition.snapshot.element[17].pattern.ofType(Coding): The repeating element has a pattern. The pattern will apply to all the repeats (this has not been clear to all users)
 INFORMATION: StructureDefinition/AI-ModelCard: StructureDefinition.snapshot.element[20].pattern.ofType(CodeableConcept): The repeating element has a pattern. The pattern will apply to all the repeats (this has not been clear to all users)
 
-# Examples with extra elements beyond minimal slices
+# 13 Examples with extra elements beyond minimal slices
 Details_for__matching_against_Profile_
 
-# We should do this, but after public comments. Some of the codes will go into existing codeSystems in THO and thus not new codeSystems.
-CODESYSTEM_THO_CHECK
