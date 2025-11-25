@@ -33,12 +33,11 @@ Description: "This CodeSystem contains codes for the provenance indications used
 
 ValueSet: ProvenanceVS
 Title: "Recommended provenance codes"
-Description:  "Subset from HL7, plus those defined here"
+Description:  "Subset from HL7, plus those defined here. For use in .meta.security to indicate AI was used in some way."
 * ^experimental = false
 * codes from system AddedProvenanceCS
 * http://terminology.hl7.org/CodeSystem/v3-ObservationValue|4.0.0#AIAST "Artificial Intelligence asserted"
-* http://terminology.hl7.org/CodeSystem/v3-ObservationValue|4.0.0#CLINAST "clinician asserted"
-* http://terminology.hl7.org/CodeSystem/v3-ObservationValue|4.0.0#CLINRPT "clinician reported"
+
 
 
 // This profile can't be used in an IG, but could be used in validator checks -- https://chat.fhir.org/#narrow/channel/179166-implementers/topic/.E2.9C.94.20Profiling.20abstract.20.28Domain.29Resource.20.2F.20.20Profile.20inheritance/with/481901358
