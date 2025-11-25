@@ -303,3 +303,20 @@ Description: "This CodeSystem contains codes for the Device.type that indicate t
   * #Hybrid-Models "Hybrid Models" "These models combine multiple AI techniques to leverage their respective strengths. For instance, combining CNNs and RNNs can effectively process medical image sequences; integrating machine learning and deep learning models can enhance disease prediction accuracy; and combining rule-based systems with machine learning can improve interpretability and reliability in clinical decision support."
 //  * #Other-AI-Models "Other AI Models" "This category includes other AI models not covered above, such as graph neural networks (GNNs) for modeling complex relationships in medical data, and evolutionary algorithms for optimizing treatment plans."
 * #Artificial-Intelligence "All kinds of Artificial Intelligence" "Any type of Artificial Intelligence system, undifferentiated."
+
+Instance:   AIdeviceTypeCS-initial-history
+InstanceOf: Provenance
+Title: "Initial creation of AIdeviceTypeCS CodeSystem"
+Usage: #definition
+* target[+] = Reference(CodeSystem/AIdeviceTypeCS)
+* recorded = "2025-09-15T13:00:00.0000Z"
+* occurredDateTime = "2025-09-15"
+* reason = http://terminology.hl7.org/CodeSystem/v3-ActReason#METAMGT
+* reason.text = "Initial CodeSystem created by Co-Pilot AI"
+* activity = http://terminology.hl7.org/CodeSystem/v3-DataOperation#CREATE
+* agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author
+* agent[=].who.display = "GitHub Copilot AI"
+* agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#verifier
+* agent[=].who.display = "John F. Moehrke"
+
+
