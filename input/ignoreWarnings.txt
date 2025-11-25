@@ -4,13 +4,13 @@
 # (And include comments like this justifying why)
 # See https://github.com/FHIR/sample-ig/blob/master/input/ignoreWarnings.txt for examples
 
-# we know we are using some draft resources
+# 01 we know we are using some draft resources
 INFORMATION: Observation/satO2: Observation.code: Reference to draft CodeSystem urn:iso:std:iso:11073:10101|2024-12-05 from fhir.tx.support.r4#0.32.0
 
-# some examples refer to the huggingface github
+# 02 some examples refer to the huggingface github
 WARNING: DocumentReference/ModelCard-sample-huggingface-attached: DocumentReference.identifier[0].system: No definition could be found for URL value 'https://github.com/huggingface/huggingface_hub/tree/main/tests/fixtures/cards'
 
-# some examples refer to the CHAI github
+# 03 some examples refer to the CHAI github
 WARNING: DocumentReference/ModelCard-sample-CHAI-attached: DocumentReference.identifier[0].system: No definition could be found for URL value 'https://github.com/coalition-for-health-ai/mc-schema/blob/main/v0.1/examples/'
 WARNING: DocumentReference/ModelCard-sample-CHAI-binary: DocumentReference.identifier[0].system: No definition could be found for URL value 'https://github.com/coalition-for-health-ai/mc-schema/blob/main/v0.1/examples/'
 WARNING: DocumentReference/ModelCard-sample-CHAI-web: DocumentReference.identifier[0].system: No definition could be found for URL value 'https://github.com/coalition-for-health-ai/mc-schema/blob/main/v0.1/examples/'
@@ -19,16 +19,16 @@ WARNING: DocumentReference/ModelCard-sample-CHAI-web: DocumentReference.identifi
 WARNING: DocumentReference/ModelCard-sample-CHAI-binary: DocumentReference.content[0].attachment.url: No definition could be found for URL value 'Binary/ModelCard-sample-CHAI-binary-xml'
 WARNING: DocumentReference/ModelCard-sample-CHAI-binary: DocumentReference.content[1].attachment.url: No definition could be found for URL value 'Binary/ModelCard-sample-CHAI-binary-pdf'
 
-# This is a pattern profile that can't be actually applied. It is thus purely illustrative
+# 07 This is a pattern profile that can't be actually applied. It is thus purely illustrative
 WARNING: StructureDefinition.where(url = 'http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-data'): The Implementation Guide contains no examples for this profile
 
-# These are made up codesystems for examples
+# 08 These are made up codesystems for examples
 WARNING: Observation/f206: Observation.code.coding[0].system: A definition for CodeSystem 'http://example.org/codes/foobar' could not be found, so the code cannot be validated
 WARNING: Observation/glasgow: Observation.component[0].value.ofType(CodeableConcept).coding[0].system: A definition for CodeSystem 'http://example.org/codes' could not be found, so the code cannot be validated
 WARNING: Observation/glasgow: Observation.component[1].value.ofType(CodeableConcept).coding[0].system: A definition for CodeSystem 'http://example.org/codes' could not be found, so the code cannot be validated
 WARNING: Observation/glasgow: Observation.component[2].value.ofType(CodeableConcept).coding[0].system: A definition for CodeSystem 'http://example.org/codes' could not be found, so the code cannot be validated
 
-# known issue in an examples
+# 09 known issue in an examples
 WARNING: Observation/glasgow: Observation.value.ofType(Quantity): UCUM Codes that contain human readable annotations like {score} can be misleading (e.g. they are ignored when comparing units). Best Practice is not to depend on annotations in the UCUM code, so this usage should be checked, and the Quantity.unit SHOULD contain the annotation
 WARNING: Observation/glasgow: Observation.referenceRange[0].high: UCUM Codes that contain human readable annotations like {score} can be misleading (e.g. they are ignored when comparing units). Best Practice is not to depend on annotations in the UCUM code, so this usage should be checked, and the Quantity.unit SHOULD contain the annotation
 WARNING: Observation/glasgow: Observation.referenceRange[1].low: UCUM Codes that contain human readable annotations like {score} can be misleading (e.g. they are ignored when comparing units). Best Practice is not to depend on annotations in the UCUM code, so this usage should be checked, and the Quantity.unit SHOULD contain the annotation
@@ -39,10 +39,10 @@ WARNING: Bundle/b3c1f2d4-5c8e-4b0a-9f6d-7c8e1f2d4b5c: Bundle.entry[1].resource: 
 INFORMATION: DiagnosticReport/f202: DiagnosticReport.code: None of the codings provided are in the value set 'LOINC Diagnostic Report Codes' (http://hl7.org/fhir/ValueSet/report-codes|4.0.1), and a coding is recommended to come from this value set (codes = http://snomed.info/sct#104177005)
 INFORMATION: Observation/glasgow: Observation.component[0].value.ofType(CodeableConcept).coding[1].extension[0]: The extension http://hl7.org/fhir/StructureDefinition/ordinalValue|5.2.0 is deprecated with the note: 'Replaced by [[[http://hl7.org/fhir/StructureDefinition/itemWeight]]]'
 
-# inherited from FHIR core 
+# 10 inherited from FHIR core 
 INFORMATION: StructureDefinition/AI-Device: StructureDefinition.snapshot.element[4].binding.extension[0]: The extension http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet|5.2.0 is deprecated
 
-# Pinning versions when there are multiples 
+# 11 Pinning versions when there are multiples 
 INFORMATION: StructureDefinition.snapshot.element[79].binding.valueSet: Pinned the version of http://terminology.hl7.org/ValueSet/v3-ActCode to 3.0.0 from choices of 2.0.0 (hl7.terminology#5.1.0), 3.0.0 (hl7.terminology.r4#7.0.0)
 INFORMATION: StructureDefinition.snapshot.element[14].binding.valueSet: Pinned the version of http://terminology.hl7.org/ValueSet/v3-PurposeOfUse to 3.1.0 from choices of 2.0.0 (hl7.terminology#5.1.0), 3.1.0 (hl7.terminology.r4#7.0.0)
 
@@ -50,14 +50,14 @@ INFORMATION: StructureDefinition.snapshot.element[14].binding.valueSet: Pinned t
 INFORMATION: StructureDefinition/AI-ModelCard: StructureDefinition.snapshot.element[17].pattern.ofType(Coding): The repeating element has a pattern. The pattern will apply to all the repeats (this has not been clear to all users)
 INFORMATION: StructureDefinition/AI-ModelCard: StructureDefinition.snapshot.element[20].pattern.ofType(CodeableConcept): The repeating element has a pattern. The pattern will apply to all the repeats (this has not been clear to all users)
 
-# Examples with extra elements beyond minimal slices
+# 13 Examples with extra elements beyond minimal slices
 INFORMATION: DocumentReference/ModelCard-sample-CHAI-attached: DocumentReference.content[1]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-ModelCard|1.0.0-comment (this may not be a problem, but you should check that it's not intended to match a slice)
 INFORMATION: DocumentReference/ModelCard-sample-CHAI-web: DocumentReference.content[1]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-ModelCard|1.0.0-comment (this may not be a problem, but you should check that it's not intended to match a slice)
 INFORMATION: Provenance/AI-full-lorem-ipsum: Provenance.reason[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-Provenance|1.0.0-comment (this may not be a problem, but you should check that it's not intended to match a slice)
 INFORMATION: Provenance/AI-generated-patient-resource: Provenance.reason[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-Provenance|1.0.0-comment (this may not be a problem, but you should check that it's not intended to match a slice)
 INFORMATION: DocumentReference/ModelCard-sample-CHAI-binary: DocumentReference.content[1]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-ModelCard|1.0.0-comment (this may not be a problem, but you should check that it's not intended to match a slice)
 
-# We should do this, but after public comments. Some of the codes will go into existing codeSystems in THO and thus not new codeSystems.
+# 14 We should do this, but after public comments. Some of the codes will go into existing codeSystems in THO and thus not new codeSystems.
 INFORMATION: CodeSystem/AIdeviceTypeCS: CodeSystem: Most code systems defined in HL7 IGs will need to move to THO later during the process. Consider giving this code system a THO URL now (See https://confluence.hl7.org/display/TSMG/Terminology+Play+Book, and/or talk to TSMG)
 INFORMATION: CodeSystem/AImodelCardCS: CodeSystem: Most code systems defined in HL7 IGs will need to move to THO later during the process. Consider giving this code system a THO URL now (See https://confluence.hl7.org/display/TSMG/Terminology+Play+Book, and/or talk to TSMG)
 INFORMATION: CodeSystem/AddedProvenanceCS: CodeSystem: Most code systems defined in HL7 IGs will need to move to THO later during the process. Consider giving this code system a THO URL now (See https://confluence.hl7.org/display/TSMG/Terminology+Play+Book, and/or talk to TSMG)
