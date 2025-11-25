@@ -276,8 +276,11 @@ Description: "This CodeSystem contains codes for the Device.type that indicate t
 * ^experimental = false
 * ^status = #active
 * ^hierarchyMeaning = #grouped-by
+* ^property[0].code = #abstract
+* ^property[0].uri = "http://hl7.org/fhir/concept-properties#notSelectable"
+* ^property[0].type = #boolean
 * #AI-By-Scenario "Classification by Application Scenario" "This category classifies AI systems based on their application scenarios in the medical field."
-* #AI-By-Scenario ^property.code = #notSelectable 
+* #AI-By-Scenario ^property.code = #abstract 
 * #AI-By-Scenario ^property.valueBoolean = true
   * #Intelligent-Diagnosis-and-Treatment "Intelligent Diagnosis and Treatment" "By analyzing massive volumes of medical data, these AI systems assist doctors in making more accurate diagnostic and treatment decisions."
   * #Medical-Image-Analysis "Medical Image Analysis" "Leveraging deep learning technologies, these AI tools automatically identify lesion areas in medical images."
@@ -286,13 +289,13 @@ Description: "This CodeSystem contains codes for the Device.type that indicate t
   * #Medical-Quality-Control "Medical Quality Control" "These AI tools are used to generate standardized medical document templates and detect defects in medical documents and images."
   * #Patient-Services "Patient Services" "AI systems here provide patients with services such as intelligent medical guidance, symptom self-assessment, and medical consultation."
 * #AI-By-DataType "Classification by Processed Data Type" "This category classifies AI systems based on the types of medical data they primarily process."
-* #AI-By-DataType ^property.code = #notSelectable 
+* #AI-By-DataType ^property.code = #abstract 
 * #AI-By-DataType ^property.valueBoolean = true
   * #AI-for-Medical-Imaging-Data "AI for Medical Imaging Data" "It mainly processes medical imaging data such as X-rays, MRIs, and CT scans."
   * #AI-for-Physiological-Signal-Data "AI for Physiological Signal Data" "This type of AI deals with physiological signal data like electrocardiograms (ECG) and electroencephalograms (EEG)."
   * #AI-for-Medical-Text-Data "AI for Medical Text Data" "It processes text data such as electronic health records (EHRs) and medical abstracts."
 * #AI-By-Model "Classification by Technical Model" "This category classifies AI systems based on the underlying technical models they employ."
-* #AI-By-Model ^property.code = #notSelectable
+* #AI-By-Model ^property.code = #abstract
 * #AI-By-Model ^property.valueBoolean = true
   * #Machine-Learning-Models "Machine Learning Models" "They include supervised learning models (e.g., Support Vector Machines (SVM), Random Forests (RF)), which can be used for disease classification and risk prediction; unsupervised learning models (e.g., K-means clustering), which can discover hidden characteristics of patient subgroups; and reinforcement learning models, which can be applied in dynamic treatment plan management."
   * #Deep-Learning-Models "Deep Learning Models" "Examples include Convolutional Neural Networks (CNNs), which perform excellently in medical image analysis; Recurrent Neural Networks (RNNs) and their variant LSTMs, which are suitable for processing time-series physiological signal data; Generative Adversarial Networks (GANs), which can be used to synthesize training data and alleviate the scarcity of medical data; and Transformer models, which are widely used in multiple tasks such as medical imaging, text analysis, and physiological signal prediction."
