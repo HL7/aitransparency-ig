@@ -272,6 +272,7 @@ Description:  "Subset from HL7, plus those defined here"
 CodeSystem: AIdeviceTypeCS
 Title: "Added Device.type for AI/LLM"
 Description: "This CodeSystem contains codes for the Device.type that indicate that the Device is an AI. The codes here were created by AI."
+* ^meta.security = http://terminology.hl7.org/CodeSystem/v3-ObservationValue|4.0.0#AIAST "Artificial Intelligence asserted"
 * ^caseSensitive = true
 * ^experimental = false
 * ^status = #active
@@ -305,18 +306,18 @@ Description: "This CodeSystem contains codes for the Device.type that indicate t
 * #Artificial-Intelligence "All kinds of Artificial Intelligence" "Any type of Artificial Intelligence system, undifferentiated."
 
 Instance:   AIdeviceTypeCS-initial-history
-InstanceOf: Provenance
+InstanceOf: AIProvenance
 Title: "Initial creation of AIdeviceTypeCS CodeSystem"
+Description: "Provenance record for the initial creation of the AIdeviceTypeCS CodeSystem by GitHub Copilot AI."
 Usage: #definition
 * target[+] = Reference(CodeSystem/AIdeviceTypeCS)
 * recorded = "2025-09-15T13:00:00.0000Z"
 * occurredDateTime = "2025-09-15"
-* reason = http://terminology.hl7.org/CodeSystem/v3-ActReason#METAMGT
-* reason.text = "Initial CodeSystem created by Co-Pilot AI"
+* reason[+] = http://terminology.hl7.org/CodeSystem/v3-ActReason#METAMGT
+* reason[=].text = "Initial CodeSystem created by Co-Pilot AI"
+* reason[AIReason] = http://terminology.hl7.org/CodeSystem/v3-ObservationValue|4.0.0#AIAST
 * activity = http://terminology.hl7.org/CodeSystem/v3-DataOperation#CREATE
-* agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author
-* agent[=].who.display = "GitHub Copilot AI"
+* agent[AIModelAgent].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author
+* agent[AIModelAgent].who.display = "GitHub Copilot AI"
 * agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#verifier
 * agent[=].who.display = "John F. Moehrke"
-
-
