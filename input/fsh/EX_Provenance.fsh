@@ -56,7 +56,7 @@ Usage: #example
 * recorded = "2016-06-09T08:12:14+10:00"
 * activity = http://terminology.hl7.org/CodeSystem/v3-DataOperation#CREATE "create"
 * activity.text = "antiviral resistance detection"
-* reason[+] = http://terminology.hl7.org/CodeSystem/v3-ObservationValue|4.0.0#AIAST
+* reason[AIReason] = http://terminology.hl7.org/CodeSystem/v3-ObservationValue|4.0.0#AIAST
 * agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#verifier "Verifier"
 * agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
 * agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author "Author"
