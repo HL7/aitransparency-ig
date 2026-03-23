@@ -1,104 +1,47 @@
 
-Four levels of Observability Factors can be tracked and documented when AI influences health data. Each level addresses different transparency needs: 
+The goal of this implementation guide is to provide observability of the use of AI in the production or manipulation of health data. To the end user, this means that in some way they can determine first that AI was involved and then discover more information about the AI and its usage. From this, we can understand that there are two levels of observability and multiple factors that can be observed within the second level. 
 
-- basic identification of AI-influenced data (Tagging), 
-- detailed model documentation (Models), 
-- comprehensive input tracking (Data Sources), and 
-- human-AI collaboration governance (Process)
+- 1st Level Observability: **Tagging** - this provides the indication that AI was involved in some way with the data. It provides no details about AI's involvement, but gives an indication that the end user may wish to investigate further. This level is intended to be lightweight, not adding significant bloat to the payload or requiring additional lookups on the part of the client system. For this, this guide details the use of Security Labels (see [Tagging](#tagging) below).
+- 2nd Level Observability: **AI Observability Factors** - there are a number of details that may be of interest to the end user about what and how AI was used. The factors covered in this IG are introduced [below](#ai-observability-factors) and then explained in the rest of this page. To provide observability into these factors, this guide details the use of the Provenance resource.
 
-### Observability Factors for iterative IG development:
+**Note:** that both Security Labels and Provenance can be applied at the whole Resource level or at the Element level within a resource.
 
-| 1: AI Usage Representation | 2: Model(s) | 3: Context | 4: Process (human-machine-interaction) |
-|---|---|---|---|
-| • resource-level<br>• field / element -level | • Name and version of the AI algorithm / model<br>• algorithm deterministic vs. non-deterministic vs. hybrid | **Request input (to AI)**<br>  - e.g.: Patient data | **Indicating**<br>  • multiple actors, including the human<br>  • role |
-| &nbsp; | • Training set data<br>• Working memory | **Reference input**<br>  • e.g.: clinical guidelines | **How was it recorded**<br>  • Bias reduction strategies<br>  - e.g.: MCP to redirect to a controlled terminology corpus<br>  - tie back to Provenance |
-| &nbsp; | &nbsp; | **Operations**<br>  • Model Context Protocol (MCP)<br>  • Agent to Agent (A2A) | &nbsp; |
-| &nbsp; | &nbsp; | • Data quality<br>• Data qualification | &nbsp; |
-{: .grid}
+<div class="stu-note">
+The use of tagging to achieve 1st level observability provides the end user or client system with a useful indicator of AI involvement without resulting in significant bloat in the payload. The presence of a tag can tell the user or system that they may want to look for a Provenance resource that will provide more details. <br/><br/>
 
-<br />
+It is possible to achieve both levels of observability by using only Provenance. In some use cases, the presence of tags may have adverse effects, so this guide does not enforce tagging. However, doing this is less interoperable because it depends on the end user or client system always checking for Provenance. <br/><br/>
 
-#### AI Usage Representation
+The presence of both tags and Provenance provides for the best interoperability because the end user or client system does not need to do an extra lookup for Provenance on every resource. This is strongly recommended by this guide.
+</div>
 
-In this use-case need, there is simply a need to distinguishes where AI was used and where it was not used. In this Observability Factor there is no need for more detail. In this Observability Factor there is no indication of the AI model, the prompts, or how the AI influenced the data.
+### AI Observability Factors
+Beyond 1st level observability, there are a number of factors that the end user or client system may be interested in knowing about. These factors can be broken down into 3 categories:
 
->💡 Tip
->
-> Use When one needs to quickly and easily identify Resources or elements inside a Resource that have been influenced by AI. 
-> Note that this Observability Factor can be used with the more compressive Observability Factors.
+1. Model(s) - definition of the AI(s) used (see [Defining the AI](#defining-the-ai-model)) 
+   * Name and version of the AI algorithm / model
+   * Ogranization that produced the model
+   * Is the algorithm deterministic or non-deterministic
+   * Data set used in training the model(s)
+   * ...
+2. Context - input data provided to the AI to produce or manipulate outputs (see [Context of AI Usage](#context-of-ai-usage))
+   * Prompts, including system and user prompts
+   * Patient data, such as health records
+   * Reference input, such as clinical practice guidelines 
+   * ...
+3. Process - the interactions between AI(s), human(s), and system(s) (see [Process Utilizing AI](#process-utilizing-ai))
+   * Human reviews (human-in-the-loop)
+   * Multi-agent interactions, such as use of Agent-to-Agent protocol (A2A)
+   * Tool calling, such as use of Model Context Protocol (MCP)
+   * Guardrails for bias reduction, inappropriate responses, undesired actions, ...
+   * ...
 
-See [Tagging](#tagging) for more details on how to use this Observability Factor.
-
-#### Models
-
-Describes characteristics of the AI model used to produce or influence the data.
-
-Information in the Model field could include:
-
-- name and version of the AI algorithm/model
-- whether the algorithm is deterministic, non-deterministic, or a hybrid of the two
-- training set data
-- working memory
-
->💡 Tip
->
-> Use When the AI model is important to the use-cases, such as when it may be important to understand which AI model was used.
-
-See [Model Examples](#provenance) for more details on how to use this Observability Factor.
-<br />
-
-#### Data Sources
-
-Data sources are information fed into a model to get an AI output (e.g.: inference, deduction, prediction) and identifies the related inputs to an AI model and operations used to [convey, produce, other?] information.
-
-Information in the Data Sources field includes:
-
-- **Request input**: Also referred to as a prompt, the primary healthcare data submitted to the AI system, including patient demographics, clinical notes, laboratory results, and imaging data
-- **Reference input**: supplementary information provided to enhance AI decision-making, including clinical practice guidelines, drug interaction databases, treatment protocols, and evidence-based medicine resources
-- **Operations**: the technical protocols used for AI interactions, including Model Context Protocol (MCP) for structured communication with AI systems and Agent-to-Agent (A2A) protocols for communication between different AI systems 
-- **Data quality**: evaluates the completeness, accuracy, consistency, and reliability of input data 
-- **Data qualification**: addresses the validation, certification, and regulatory compliance status of data sources
-
->💡 Tip
->
-> Use When the record needs to show the data inputs, such as to understand what data the AI had to inference on, vs what data was not provided.
-
-See [Data Source Examples](#data-source-examples) for more details on how to use this Observability Factor.
-
-#### Process
-
-Process documents human-AI collaboration and governance aspects of AI-augmented healthcare workflows. There are two main components documented in Process: provenance and bias reduction strategies. 
-
-**Provenance** is a comprehensive audit trail that identifies all contributors to the final clinical output, documenting both human healthcare providers and AI systems involved in the decision-making process. Role definition clarifies the specific responsibilities, authority levels, and decision-making boundaries of each contributor, whether human or artificial. 
-
-**Bias reduction strategies** encompass active measures implemented to minimize algorithmic bias and ensure equitable healthcare outcomes, such as using MCP to redirect AI systems to controlled medical terminology corpuses that promote standardized and unbiased language. The connection between bias reduction efforts and provenance documentation ensures that mitigation strategies are traceable and accountable, linking specific interventions back to documented decision trails and outcome assessments.
-
-Information in the Process field could include:
-
-- Actor(s), including the human, and their roles
-- Bias reduction strategies 
-- Redirection to a controlled terminology corpus
-
->💡 Tip
->
-> Use When all possible factors are important to record. This level of Observability Factor is very comprehensive, and as such is very verbose. This level of Observability Factor capturing may not be justified beyond initial model use, while shaking out the use.
-
-See [Process](#process-examples) for more details on how to use this Observability Factor.
-
-### AI Representation Methods - the way you get that information
-
-Implementers can utilize these methods based on their specific requirements and organizational capabilities for representing AI-generated content.
-
-| 1: Security Tagging | 2: Provenance |
-|---|---|
-| Tagging data influenced by AI | • **Specifying**<br>  - source, target<br>  - AI Model-Cards |
-{: .grid}
-
-Note that both Security Tagging and Provenance can be applied at the whole Resource level or at the Element level within a resource.
 
 ### Tagging
+The use of tagging enables distinguishing data that has not been influenced by AI from data that has been influenced by AI. The level of influence and the details about how the AI was used are not provided by simple tagging. However, tagging is very light weight and does not add significant bloat to the payload or additional lookups. Tagging can be used as an indicator that AI was used in the creation or updating of the given resource and that a client system may wish to investigate further by fetching the Resource's Provenance.
 
-The use of Tagging enables distinguishing data that has not been influenced by AI from data that has been influenced by AI. The level of influence and the details about how the AI was used are not available in a Tagging methodology. However the Tagging methodology is very light weight as it indicates simply that AI was used in the creation or updating of the given resource.
+>💡 Tip
+>
+> Use when one needs to quickly and easily identify Resources or elements inside a Resource that have been influenced by AI.
 
 Tagging (also called [Security Labels](https://hl7.org/fhir/security-labels.html)) uses the FHIR [Resource definition](https://hl7.org/fhir/resource.html) `.meta.security` element that is at the top of all Resources, and as such can be found without Resource type specific processing. The use of security tagging follows the purpose for security tagging, as the domain of security covers protections against risks to Confidentiality, Availability, and Integrity (see [Healthcare Privacy and Security Classification System (HCS) vocabulary](https://hl7.org/fhir/security-labels.html#hcs)). In this case focusing on [Integrity](https://terminology.hl7.org/ValueSet-v3-SecurityIntegrityObservationValue.html) is defined as completeness, veracity, reliability, trustworthiness, and provenance. In the case of AI Transparency we want to mark the AI participation to convey reliability, trustworthiness, and provenance.
 
@@ -123,7 +66,7 @@ Consider finding more descriptive label
 
 **Resource tag**
 
-A Resource tag indicates that the whole Resource is influenced by the code assigned. 
+A Resource tag indicates that the whole Resource is influenced by the code assigned.
 
 - [Profile on ANY resource that is tagged with AI involvement](StructureDefinition-AI-data.html)
 
@@ -131,13 +74,13 @@ Use when an example is completely authored by an AI.
 
 - [Example Observation with AI Assisted security labels](Observation-glasgow.html)
 
-The key portion of that Resource is the following meta.security element holding the `AIAST` code. `AIAST` is an HL7 Observation value for metadata that indicates that AI was invovled in producing the data or information. 
+The key portion of that Resource is the following meta.security element holding the `AIAST` code. `AIAST` is an HL7 Observation value for metadata that indicates that AI was invovled in producing the data or information.
 
 <!---
 Note, I don't think the description I added for AIAST is the best so including it more as a placeholder for now.
 -->
 
-Discussion has indicated that a few more codes might be useful. For this we create a local [codeSystem](CodeSystem-AddedProvenanceCS.html) to allow us to experiment. Eventually useful codes would be proposed to HL7 Terminology (THO). For example `AIAST` does not indicate if a clinician was involved in the use of the AI, or reviewed the output of the AI. 
+Discussion has indicated that a few more codes might be useful. For this we create a local [codeSystem](CodeSystem-AddedProvenanceCS.html) to allow us to experiment. Eventually useful codes would be proposed to HL7 Terminology (THO). For example `AIAST` does not indicate if a clinician was involved in the use of the AI, or reviewed the output of the AI.
 
 ```json
 {
@@ -161,7 +104,7 @@ Discussion has indicated that a few more codes might be useful. For this we crea
 An Element tag will indicate that an element or a few elements within a Resource were influenced by AI, but not the whole Resource.
 Use when components of an example were authored by AI, but not the whole Resource.
 
-meta.security holds a code defined in [DS4P Inline Security Labels]({{site.data.fhir.ds4p}}/inline_security_labels.html) - `PROCESSINLINE`, and the `inline-sec-label` extension is on each element that was influenced by AI to indicate it is an AI asserted value. 
+meta.security holds a code defined in [DS4P Inline Security Labels]({{site.data.fhir.ds4p}}/inline_security_labels.html) - `PROCESSINLINE`, and the `inline-sec-label` extension is on each element that was influenced by AI to indicate it is an AI asserted value.
 
 - [DiagnosticReport with Inline AI Security Labels](DiagnosticReport-f202.html)
 
@@ -191,12 +134,15 @@ One of the key portions of that Resource is
   ]
 ```
 
-### Provenance
+### Defining the AI Model
+There are a number of observability factors beyond simple tagging that are of interest to end users and downstream systems. Cheif among these is the nature of the AI itself. The user would like to understand what algorythm / model was used, who developed it, how it was trained, any certifications it has, and so on... To do this, the guide outlines the use of the Provenance resource, which can then be linked to Device and DocumentReference to point to a Model-Card.
 
-Model(s) Examples
-Model documentation captures comprehensive information about the AI algorithms used in processing healthcare data. The name and version specification ensures precise identification of the specific AI model and its iteration used, enabling reproducibility and version control. Algorithm classification distinguishes between deterministic systems (rule-based, predictable outputs), non-deterministic systems (machine learning models with probabilistic outputs), and hybrid approaches that combine both methodologies. Training set data documentation provides transparency about the datasets used to develop the AI model, including information about data sources, population demographics, and potential biases. Working memory refers to the contextual information and temporary data that the AI model maintains during processing, which can influence decision-making and outputs.
+>💡 Tip
+>
+> Use when the AI model is important to the use-cases, such as when it may be important to understand which AI model was used.
 
-Given some data are influenced by AI, the following diagram shows how Provenance can point at that data and indicate which AI model was used with specific Model-Card details.
+The industry is converging around standards for providing this information, generally called Model-Cards. Several different standards are emerging, including [Hugging Face](#hugging-face-markdown) and [CHAI Model Cards](#chai-applied-model-cards-xml). This guide does not enforce any particular Model-Card, but does show how to encode any Model-Card in a [AI Model-Card profiled DocumentReference](StructureDefinition-AI-ModelCard.html), and these would be referenced in a [AI profiled Device](StructureDefinition-AI-Device.html) or within the [Provenance describing the AI involvement](StructureDefinition-AI-Provenance.html). This looks like:
+
 
 ```mermaid
 classDiagram
@@ -254,23 +200,9 @@ classDiagram
     Provenance --> DocumentReference : "Provenance.entity.what"
 ```
 
+Examples:
 - [Profile of Provenance describing AI as involved](StructureDefinition-AI-Provenance.html)
-
-### Defining the AI
-
-An AI is defined using the Device resource. The Device resource is defined in FHIR to be much broader than physical devices, and specifically includes software, and thus AI. Thus an AI would be identified by some kind of identifier, manufacture, type, version, web location, etc.
-
-- [Profile of Device for describing an AI](StructureDefinition-AI-Device.html)
-- [The AI System](Device-TheAI.html)
-
-Where a given AI will always use a given Model-Card, that Model-Card can be included in the Device definition using a Model-Card Description extension.
-
-### Using Model-Card
-
-The AI community is defining standards for describing an AI model.
-There are two Model-Card formats shown in this Guide, although other formats may be used as well.
-
-The Model-Card represents the request that was made of the AI. The Model-Card can be encoded in a [AI Model-Card profiled DocumentReference](StructureDefinition-AI-ModelCard.html), and these would be referenced in a [AI profiled Device](StructureDefinition-AI-Device.html) or within the [Provenance describing the AI involvement](StructureDefinition-AI-Provenance.html)
+- [The AI System as a Device](Device-TheAI.html)
 
 #### Hugging Face Markdown
 
@@ -303,11 +235,11 @@ pretty_name: Sample Segmentation
 ---
 ```
 
-The example above encoded in a [DocumentReference with Model-Card encoded inside](DocumentReference-ModelCard-sample-huggingface-attached.html)
+The example above is encoded in a [DocumentReference with Model-Card encoded inside](DocumentReference-ModelCard-sample-huggingface-attached.html)
 
 #### CHAI Applied Model-Cards XML
 
-The [Coalition for Health AI (CHAI) Applied Model Card](https://www.chai.org/workgroup/applied-model) utilizes XML encoding, and PDF rendering. 
+The [Coalition for Health AI (CHAI) Applied Model Card](https://www.chai.org/workgroup/applied-model) utilizes XML encoding and PDF rendering.
 
 An example from the [CHAI Github Examples](https://github.com/coalition-for-health-ai/mc-schema) is included here in multiple DocumentReference formats:
 
@@ -317,17 +249,17 @@ An example from the [CHAI Github Examples](https://github.com/coalition-for-heal
 
 Note that these are all the same example Model-Card, just encoded different ways depending on the needs. These three encoding methods are available for the HuggingFace format as well. Note that in the case of CHAI format, these examples include both the XML and the PDF rendering of the same as different .content entries.
 
-#### R5/R6
+##### R5/R6
 
 In R5/R6 of FHIR core the Device resource has a `.property` element with a `.property.type` we can use to indicate the model-card, and place the model-card markdown into `.property.valueAttachment` as markdown string. (It could go into `.valueString` if we know it will be markdown, but that is not strongly clear.)
 
-#### R4 Simply put the Model-Card markdown into the note.text of the Device
+##### R4 Simply put the Model-Card markdown into the note.text of the Device
 
 One choice is to just put that Markdown Model-Card into the Device.note.text element. This is not wrong from the definition of that element, but it may not be obvious to one looking at the Device resource that there is meaning to the markdown given.
 
 - [Device with Model-Card in Device.note.text](Device-Note-ModelCard.html)
 
-#### Attachment for the Model-Card
+##### Attachment for the Model-Card
 
 One could encode the Model-Card in a resource designed for carrying any mime-type, the DocumentReference. To make this more clear and searchable we define a [codeSystem](CodeSystem-AImodelCardCS.html) that has some codes to be used to identify that the DocumentReference is specifically an AI Model-Card or an AI Input Prompt
 
@@ -336,15 +268,29 @@ One could encode the Model-Card in a resource designed for carrying any mime-typ
 - [Extension for including the Model-Card in a Device](StructureDefinition-aitransparency.modelCardDescription.html)
 - [Device with attached Model-Card](Device-Attached-ModelCard.html)
 
-### Data Source Examples
+### Context of AI Usage
+When using an AI it is necessary to supply it with certain inputs. These inputs very based on the AI involved, but the industry generally refers to these inputs as the "prompt" (especially in the case of Generative AI). 
 
-Data Sources documents all inputs and operational frameworks involved in AI processing. 
+>💡 Tip
+>
+> Use when the record needs to show the data inputs, such as to understand what data the AI had to inference on, vs what data was not provided.
 
-*Insert example scenarios for using data source documentation*
+There are different kinds of prompts supplied, including but not limited to:
 
-#### Using Input Prompt
+- **System Prompt:** Instructions to the AI on what to do and how to handle user inputs. These can also include reference information, such as clinical practice guidelines, drug interaction databases, treatment protocols, and evidence-based medicine resources that will enhance the AI decision-making. 
+- **User Prompt:** Input from the user. This often includes the question to answer or problem to solve. In many cases this is a templated text that allows for the inserting of additional data (note some systems allow other prompt types to include files as additional data). This additional data can include patient demographics, clinical notes, laboratory results, imaging data, and other health data that will be useful to the AI decision-making.
 
-One useful thing to record is the Input Prompt given to the AI. This input prompt can be very important to the output, and the interpretation of the output. The Input Prompt is recorded as an attachment, using the DocumentReference, and using a code as defined above
+In general, inputs should be captured using a DocumentReference linked through the Provenance, but when specific clinical data is involved a FHIR Bundle or other resource maybe linked.
+
+> Note
+>
+> There is significant variation in what and how AI systems inputs are supplied, however capturing those inputs should remain relatively consistent.
+
+#### Context Examples
+
+The context documents all inputs involved in AI processing.
+
+One useful thing to record is the prompt(s) given to the AI. This prompt(s) can be very important to the output, and the interpretation of the output. The prompt(s) is recorded as an attachment, using the DocumentReference, and using a code as defined above
 
 - [Input Prompt lorem ipsum](DocumentReference-Input-Prompt-lorem-ipsum.html)
 - [Input Prompt to create a Patient](DocumentReference-Input-Prompt-create-patient.html)
@@ -354,21 +300,36 @@ The first example is just showing the encapsulating mechanism. The Second exampl
 - [Provenance of creating a Patient from Input Prompt](Provenance-AI-generated-patient-resource.html)
 - [Patient resource created](Patient-a1b2c3d4-e5f6-7890-abcd-ef1234567890.html)
 
-### Process Examples
+### Process Utilizing AI
 
-#### Resource-level
+AI Models do not exist in a vacuum, in addition to the context / inputs, there needs to be a system that calls the AI, supplies the inputs, and gets the result. This result may then be used as-is, supplied to another AI, varified by an automated system, varified by a human, or any number of other activities. Understanding this process may be very important to end users and downstream systems. For example, if the results of the AI were verified by a human (human-in-the-loop) then an end user may be able to rely on the results with less scrutiny. 
+
+>💡 Tip
+>
+> Use when all possible factors are important to record. This level of Observability Factor is very comprehensive, and as such is very verbose. This level of Observability Factor capturing may not be justified beyond initial model use, while shaking out the use.
+
+Some of the process elements that may be captured are:
+* **Human-in-the-loop:** This is when a human verifies the results of an AI output. This can add validity to those results. It can be captured in Provenace as that person is another author of the resulting resource or element. 
+* **Guardrails:** An automated system is engaged to check the results of the AI. This system can take many different forms. It is often intended to reduce bias, ensure more equitable healthcare outcomes, catch unacceptable outputs, such as inappropriate word usage, or do general validation, such as running a FHIR validator on the resource to ensure conformaty. This can be captured as additional Devices as authors on the Provenance.  
+* **Other AI or Systems:** Sometimes the AI may call subroutines called tools. These tools may do things like simple math, API calls, or web searches. This is often done using MCP. Additional, multiple AI systems maybe involved. Agentic systems often involve multiple AI Agents who call each other using protocols like A2A. These workflows are complex to capture, but one suggestion is to use BPMN contained in DocumentReferences linked to the Provenance (example coming...). 
+
+
+
+#### Process Examples
+
+##### Resource-level
 
 As with tagging, a Provenance can point at a whole Resource. In this way one can carry details in the Provenance, such as what AI was used and how.
 
 - [Provenance of AI authored Lab Observation](Provenance-AI-Contributed.html)
 
-#### Element-level
+##### Element-level
 
 Provenance can be just about some elements within a Resource. This is a normal part of Provenance, but it is important for AI use-cases.
 
 - [Provenance of AI Authored Procedure.followup.text](Provenance-AI-Authored-Element.html)
 
-#### Full Process example
+##### Full Process example
 
 [This is a full example](Provenance-AI-full-lorem-ipsum.html) of how to capture the AI process in FHIR.
 
@@ -388,11 +349,11 @@ Provenance can be just about some elements within a Resource. This is a normal p
     - Where the Input Prompt is a contained resource in the Provenance resource.
     - Where the Input Prompt is associated with the clinician which provided it
 
-#### PDF interpreted by AI into FHIR
+### PDF interpreted by AI into FHIR
+This is an additional example provided that shows how this IG can be applied.
 
 Use Case: A provider receives a [PDF of lab result(s)](DocumentReference-Lab-Results-PDF.html) for a patient. This PDF is examined by an AI which generates a [Bundle with a Patient resource and Observation resource(s)](Bundle-b3c1f2d4-5c8e-4b0a-9f6d-7c8e1f2d4b5c.html).
 
 In the attached example the patient's name is Alton Walsh and the lab test is an HbA1C. All the FHIR resources in the bundle have been created by the AI, so they should be tagged accordingly.
 
 - [Provenance of AI Generated Lab Results](Provenance-AI-Generated-Lab-Results.html)
-
