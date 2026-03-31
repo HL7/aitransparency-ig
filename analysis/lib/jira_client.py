@@ -86,7 +86,7 @@ class JiraClient:
             fields = [
                 "summary", "status", "issuetype", "priority",
                 "resolution", "created", "updated", "description",
-                "labels", "comment",
+                "labels", "comment", "assignee", "reporter", "components",
             ]
 
         all_issues = []

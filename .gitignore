@@ -46,5 +46,5 @@ _updatePublisher.sh
 # Analysis tooling
 analysis/.env
 analysis/data/*.json
-analysis/reports/*.md
+analysis/reports/ticket_analysis_*.md
 __pycache__/

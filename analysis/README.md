@@ -119,6 +119,27 @@ analysis/
 
 ## Troubleshooting
 
+### HTTP 403 from AWS WAF (SignalNonBrowserUserAgent)
+HL7's Jira (jira.hl7.org) sits behind an AWS WAF with the
+`AWS-AWSManagedRulesBotControlRuleSet` enabled. This includes a
+`SignalNonBrowserUserAgent` rule that blocks any request whose `User-Agent`
+header doesn't look like a real browser.
+
+A custom string like `MyScript/1.0` will be blocked. The User-Agent **must**
+start with `Mozilla/5.0` to pass the rule. This tooling uses:
+
+```
+Mozilla/5.0 (compatible; HL7-IG-Analysis/1.0; +https://github.com/HL7/fhir-ai-transparency)
+```
+
+If you're adapting this for another tool or language, make sure your HTTP
+client sends a `Mozilla/5.0`-prefixed User-Agent or you'll get a bare
+`403 Forbidden` HTML response from the `awselb/2.0` layer before your request
+ever reaches Jira.
+
+Note: HL7's Confluence (confluence.hl7.org) does **not** have this restriction
+as of March 2026.
+
 ### "Authentication failed (HTTP 401)"
 Your PAT is invalid or expired. Generate a new one at:
 jira.hl7.org → Profile → Personal Access Tokens

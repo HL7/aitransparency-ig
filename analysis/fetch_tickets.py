@@ -152,7 +152,7 @@ def main():
     fields = [
         "summary", "status", "issuetype", "priority",
         "resolution", "created", "updated", "description",
-        "labels", "comment",
+        "labels", "comment", "assignee", "reporter", "components",
     ]
     if spec_field_id:
         fields.append(spec_field_id)

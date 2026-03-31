@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>General Guidance Update — Ticket Impact Analysis</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a2e;
+      --muted: #555;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --border: #d1d5db;
+      --section-bg: #f8fafc;
+      --fixed-bg: #ecfdf5;
+      --fixed-text: #065f46;
+      --partial-bg: #fefce8;
+      --partial-text: #854d0e;
+      --not-bg: #fef2f2;
+      --not-text: #991b1b;
+      --typo-bg: #fff7ed;
+      --typo-text: #9a3412;
+      --table-header: #f1f5f9;
+      --table-stripe: #f8fafc;
+      --code-bg: #f1f5f9;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+    h1 { font-size: 1.75rem; margin-bottom: 0.25rem; color: var(--text); }
+    h2 {
+      font-size: 1.35rem;
+      margin: 2.5rem 0 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid var(--accent);
+      color: var(--text);
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 1.5rem 0 0.75rem;
+      color: var(--muted);
+    }
+    p { margin: 0.5rem 0; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); text-decoration: underline; }
+    code {
+      background: var(--code-bg);
+      padding: 0.15em 0.4em;
+      border-radius: 3px;
+      font-size: 0.9em;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+    /* Metadata block */
+    .meta {
+      background: var(--section-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin: 1rem 0 2rem;
+      font-size: 0.95rem;
+    }
+    .meta p { margin: 0.2rem 0; }
+    .meta strong { color: var(--text); }
+
+    /* Navigation */
+    nav {
+      background: var(--section-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+    }
+    nav p { font-weight: 600; margin-bottom: 0.5rem; }
+    nav ol { padding-left: 1.25rem; }
+    nav li { margin: 0.25rem 0; font-size: 0.95rem; }
+
+    /* Summary list */
+    .changes-list { padding-left: 1.5rem; margin: 0.75rem 0; }
+    .changes-list li { margin: 0.4rem 0; }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.75rem 0 1.5rem;
+      font-size: 0.9rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid var(--border);
+      vertical-align: top;
+    }
+    th {
+      background: var(--table-header);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    tr:nth-child(even) td { background: var(--table-stripe); }
+    td:first-child { white-space: nowrap; }
+
+    /* Category badges */
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.2em 0.6em;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      vertical-align: middle;
+    }
+    .badge-fixed { background: var(--fixed-bg); color: var(--fixed-text); }
+    .badge-partial { background: var(--partial-bg); color: var(--partial-text); }
+    .badge-not { background: var(--not-bg); color: var(--not-text); }
+    .badge-typo { background: var(--typo-bg); color: var(--typo-text); }
+
+    /* Stats bar */
+    .stats {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+    }
+    .stat-card {
+      flex: 1;
+      min-width: 140px;
+      background: var(--section-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      text-align: center;
+    }
+    .stat-card .num {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: block;
+    }
+    .stat-card .label {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* Section highlight boxes */
+    .highlight {
+      border-left: 4px solid;
+      padding: 0.5rem 1rem;
+      margin: 0.75rem 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .highlight-fixed { border-color: #10b981; background: var(--fixed-bg); }
+    .highlight-warn { border-color: #f59e0b; background: var(--typo-bg); }
+
+    /* Footer */
+    footer {
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+<h1>General Guidance Update &mdash; Ticket Impact Analysis</h1>
+
+<div class="meta">
+  <p><strong>Analyzed:</strong> 2026-03-31</p>
+  <p><strong>Commit analyzed:</strong> <code>83369f6</code> &mdash; &ldquo;Working on FHIR-55022 I reorganized and rewrote much of the general_guidance.md&rdquo;</p>
+  <p><strong>IG page:</strong> <a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/general_guidance.html">General Guidance (live build)</a></p>
+  <p><strong>Total IG tickets:</strong> 126</p>
+  <p><strong>Tickets potentially addressed by this update:</strong> 47 unique tickets (37%)</p>
+</div>
+
+<div class="stats">
+  <div class="stat-card"><span class="num">20</span><span class="label">Directly Resolved</span></div>
+  <div class="stat-card"><span class="num">7</span><span class="label">Partially Addressed</span></div>
+  <div class="stat-card"><span class="num">13</span><span class="label">Not Addressed</span></div>
+  <div class="stat-card"><span class="num">8</span><span class="label">Remaining Typos</span></div>
+</div>
+
+<nav>
+  <p>Contents</p>
+  <ol>
+    <li><a href="#summary">Summary of What Changed</a></li>
+    <li><a href="#directly-addressed">Tickets Directly Addressed</a>
+      <ol>
+        <li><a href="#observability">Observability Framework Restructuring</a></li>
+        <li><a href="#model-card">Model-Card Clarification</a></li>
+        <li><a href="#context">Context / Data Sources Rewrite</a></li>
+        <li><a href="#process">Process Section</a></li>
+        <li><a href="#typos-fixed">Typos and Grammar (Confirmed Fixed)</a></li>
+        <li><a href="#heading">Heading / Structure</a></li>
+      </ol>
+    </li>
+    <li><a href="#partially-addressed">Tickets Partially Addressed</a></li>
+    <li><a href="#not-addressed">Tickets Not Addressed</a></li>
+    <li><a href="#new-typos">New Typos Introduced by the Rewrite</a></li>
+  </ol>
+</nav>
+
+<!-- ============================================================ -->
+<h2 id="summary">Summary of What Changed</h2>
+
+<p>The update to <a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/general_guidance.html"><code>general_guidance.md</code></a> made these major structural and content changes:</p>
+
+<ol class="changes-list">
+  <li><strong>Replaced the 4-level observability table</strong> with a 2-level framework (<a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/general_guidance.html#tagging">Tagging</a> + AI Observability Factors with 3 sub-categories: Model, Context, Process)</li>
+  <li><strong>Rewrote the <a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/general_guidance.html#tagging">tagging section</a></strong> with clearer language and added an STU note explaining the tagging-vs-provenance relationship</li>
+  <li><strong>Renamed and rewrote &ldquo;Defining the AI&rdquo; / &ldquo;Using Model-Card&rdquo;</strong> &rarr; &ldquo;<a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/general_guidance.html#defining-the-ai-model">Defining the AI Model</a>&rdquo; &mdash; fixed the incorrect claim that &ldquo;The Model-Card represents the request&rdquo;</li>
+  <li><strong>Renamed and rewrote &ldquo;Data Sources&rdquo;</strong> &rarr; &ldquo;<a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/general_guidance.html#context-of-ai-usage">Context of AI Usage</a>&rdquo; &mdash; defined System Prompt and User Prompt, removed placeholder text</li>
+  <li><strong>Renamed and rewrote &ldquo;Process Examples&rdquo;</strong> &rarr; &ldquo;<a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/general_guidance.html#process-utilizing-ai">Process Utilizing AI</a>&rdquo; &mdash; added substantive content about human-in-the-loop, guardrails, MCP, A2A</li>
+  <li><strong>Reorganized heading hierarchy</strong> &mdash; adjusted heading levels for better document structure</li>
+  <li><strong>Fixed several typos and grammar issues</strong> throughout</li>
+</ol>
+
+<!-- ============================================================ -->
+<h2 id="directly-addressed">Tickets Directly Addressed <span class="badge badge-fixed">Resolved</span></h2>
+<p>These changes resolve or substantially address the concern raised in the ticket.</p>
+
+<h3 id="observability">Observability Framework Restructuring</h3>
+
+<table>
+  <thead>
+    <tr><th>Ticket</th><th>Summary</th><th>How Addressed</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-55022">FHIR-55022</a></td>
+      <td>Inconsistent references to four levels of Observability Factors</td>
+      <td><strong>Directly targeted by this commit.</strong> The 4-level table was replaced with a clearer 2-level framework. See <a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/general_guidance.html#ai-observability-factors">AI Observability Factors</a>.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-53770">FHIR-53770</a></td>
+      <td>Does the row represent 4 levels?</td>
+      <td>The confusing table with ambiguous rows was removed entirely and replaced with a clear bulleted list.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54275">FHIR-54275</a></td>
+      <td>Table in Observability Factors for iterative IG development</td>
+      <td>The table was removed and content reorganized into prose with clear categories.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54181">FHIR-54181</a></td>
+      <td>Align bullet point text with table headers</td>
+      <td>The table/bullet mismatch is eliminated because the table was removed and replaced with aligned content.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54740">FHIR-54740</a></td>
+      <td>Mismatched headings in table and sub-headings</td>
+      <td>Headings now consistently match the 3-category structure (Model, Context, Process).</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54236">FHIR-54236</a></td>
+      <td>Unclear sentence</td>
+      <td>The unclear sentence (&ldquo;simply a need to distinguishes where AI was used&rdquo;) was removed in the rewrite.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="model-card">Model-Card Clarification</h3>
+
+<table>
+  <thead>
+    <tr><th>Ticket</th><th>Summary</th><th>How Addressed</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54421">FHIR-54421</a></td>
+      <td>Clarify Model-Card semantics: describes the AI model/system, not the request/prompt</td>
+      <td><strong>Directly fixed.</strong> The incorrect statement &ldquo;The Model-Card represents the request that was made of the AI&rdquo; was removed. See <a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/general_guidance.html#defining-the-ai-model">Defining the AI Model</a>.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54264">FHIR-54264</a></td>
+      <td>Conflicting Model-Card definitions</td>
+      <td>The guidance now consistently describes Model-Cards as standards for describing AI models, not requests. References <a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/StructureDefinition-AI-ModelCard.html">AI Model-Card profile</a>.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54735">FHIR-54735</a></td>
+      <td>Define Model Card better</td>
+      <td>The rewrite provides clearer context about what Model-Cards are and references <a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/general_guidance.html#hugging-face-markdown">Hugging Face</a> and <a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/general_guidance.html#chai-applied-model-cards-xml">CHAI</a> as examples.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54256">FHIR-54256</a></td>
+      <td>Fix repetition of word Model</td>
+      <td>The &ldquo;Model(s) Examples Model documentation&rdquo; heading was rewritten.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="context">Context / Data Sources Rewrite</h3>
+
+<table>
+  <thead>
+    <tr><th>Ticket</th><th>Summary</th><th>How Addressed</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54135">FHIR-54135</a></td>
+      <td>Incomplete sentence with placeholder text</td>
+      <td><strong>Fixed.</strong> The &ldquo;[convey, produce, other?]&rdquo; draft text was removed. See <a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/general_guidance.html#context-of-ai-usage">Context of AI Usage</a>.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54137">FHIR-54137</a></td>
+      <td>Placeholder instruction text not replaced with content</td>
+      <td><strong>Fixed.</strong> &ldquo;Insert example scenarios for using data source documentation&rdquo; was removed and replaced with actual content.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54576">FHIR-54576</a></td>
+      <td>Forgotten placeholder</td>
+      <td><strong>Fixed.</strong> Same placeholder removed.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54238">FHIR-54238</a></td>
+      <td>Fix draft sentence</td>
+      <td><strong>Fixed.</strong> The draft sentence about &ldquo;convey, produce, other?&rdquo; was removed.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54239">FHIR-54239</a></td>
+      <td>Request / reference input distinction seems arbitrary</td>
+      <td>The rewrite reframes inputs as &ldquo;prompts&rdquo; (System Prompt, User Prompt) rather than the old request/reference input split.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="process">Process Section</h3>
+
+<table>
+  <thead>
+    <tr><th>Ticket</th><th>Summary</th><th>How Addressed</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54211">FHIR-54211</a></td>
+      <td>Provide model to capture human in the loop</td>
+      <td>The rewrite adds explicit text about human-in-the-loop as a named process element with guidance on capturing it in <a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/StructureDefinition-AI-Provenance.html">Provenance</a>. See <a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/general_guidance.html#process-utilizing-ai">Process Utilizing AI</a>.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54215">FHIR-54215</a></td>
+      <td>Process/how was it recorded</td>
+      <td>&ldquo;How was it recorded&rdquo; was vague &mdash; replaced with concrete categories (human-in-the-loop, guardrails, other AI/systems).</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="typos-fixed">Typos and Grammar (Confirmed Fixed)</h3>
+
+<table>
+  <thead>
+    <tr><th>Ticket</th><th>Summary</th><th>How Addressed</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54143">FHIR-54143</a></td>
+      <td>&ldquo;distinguishes&rdquo; should be &ldquo;distinguish&rdquo;</td>
+      <td><strong>Fixed.</strong> The sentence containing this error was removed in the rewrite.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54237">FHIR-54237</a></td>
+      <td>Typo &ldquo;compressive&rdquo;</td>
+      <td><strong>Fixed.</strong> The sentence with &ldquo;compressive&rdquo; was removed in the rewrite.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="heading">Heading / Structure</h3>
+
+<table>
+  <thead>
+    <tr><th>Ticket</th><th>Summary</th><th>How Addressed</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54240">FHIR-54240</a></td>
+      <td>Reorder of the General Guidance page</td>
+      <td>The page was substantially reorganized with a clearer flow: <a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/general_guidance.html#tagging">Tagging</a> &rarr; <a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/general_guidance.html#defining-the-ai-model">Model</a> &rarr; <a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/general_guidance.html#context-of-ai-usage">Context</a> &rarr; <a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/general_guidance.html#process-utilizing-ai">Process</a>.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54365">FHIR-54365</a></td>
+      <td>Suggest to demote sections 2.3 and 2.4</td>
+      <td>Heading levels were adjusted &mdash; R5/R6 and R4 sections demoted from h3 to h4.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="partially-addressed">Tickets Partially Addressed <span class="badge badge-partial">Partial</span></h2>
+<p>These changes help but don&rsquo;t fully resolve the concern raised.</p>
+
+<table>
+  <thead>
+    <tr><th>Ticket</th><th>Summary</th><th>What&rsquo;s Addressed</th><th>What Remains</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-53967">FHIR-53967</a></td>
+      <td>Some clarifications</td>
+      <td>The table structure was clarified, observability factors harmonized.</td>
+      <td>May need to review if all specific clarification requests in the ticket are met.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54210">FHIR-54210</a></td>
+      <td>Context observability factor categories not represented in model</td>
+      <td><a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/general_guidance.html#context-of-ai-usage">Context section</a> was rewritten, but sub-categories (data quality, data qualification, operations) were simplified.</td>
+      <td>The ticket asks for FHIR modeling of these categories, not just text changes.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54233">FHIR-54233</a></td>
+      <td>Elaborate the Operation section</td>
+      <td>MCP and A2A are now mentioned in the <a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/general_guidance.html#process-utilizing-ai">Process section</a> with more context.</td>
+      <td>The ticket asks for clearer modeling of how they enter the FHIR representation.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54262">FHIR-54262</a></td>
+      <td>Defining AI and Model Card is ambiguous</td>
+      <td>Section renamed and clarified. See <a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/StructureDefinition-AI-Device.html">AI Device profile</a>.</td>
+      <td>May still need sharper distinction between &ldquo;an AI&rdquo; (Device) and &ldquo;the AI System.&rdquo;</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54438">FHIR-54438</a></td>
+      <td>Clarify &ldquo;Operations&rdquo; in Data Sources</td>
+      <td>Operations (MCP, A2A) moved to Process section, which is a better fit.</td>
+      <td>The ticket asks for deeper clarification of scope.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54734">FHIR-54734</a></td>
+      <td>For better readability, switch section 2 and 3</td>
+      <td>The guidance page was reorganized for better flow.</td>
+      <td>The ticket asks to move <a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/use_cases.html">Use Cases</a> before Guidance &mdash; that&rsquo;s a cross-page change not addressed here.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54280">FHIR-54280</a></td>
+      <td>Security labels are discovery hints, not authoritative evidence</td>
+      <td>The STU note explains the relationship between tags and <a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/StructureDefinition-AI-Provenance.html">Provenance</a>, and notes that tagging is not enforced.</td>
+      <td>Could be more explicit that tags are hints, not authoritative.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="not-addressed">Tickets Not Addressed by This Update <span class="badge badge-not">Open</span></h2>
+<p>These tickets reference <a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/general_guidance.html"><code>general_guidance.md</code></a> but are not resolved by the rewrite.</p>
+
+<table>
+  <thead>
+    <tr><th>Ticket</th><th>Summary</th><th>Why Not Addressed</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54136">FHIR-54136</a></td>
+      <td>AIAIST vs AIAST inconsistency</td>
+      <td><strong>AIAIST still appears</strong> on lines 55 and 153 in mermaid diagrams. Should be <code>AIAST</code>.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54144">FHIR-54144</a></td>
+      <td>Typo: &ldquo;invovled&rdquo; should be &ldquo;involved&rdquo;</td>
+      <td><strong>Still present</strong> on line 77.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54145">FHIR-54145</a></td>
+      <td>Typo: &ldquo;infuence&rdquo; should be &ldquo;influence&rdquo;</td>
+      <td><strong>Still present</strong> on line 48.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54148">FHIR-54148</a></td>
+      <td>&ldquo;strongly clear&rdquo; is not standard English</td>
+      <td><strong>Still present</strong> on line 242 (&ldquo;that is not strongly clear&rdquo;).</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54242">FHIR-54242</a></td>
+      <td>Correct meta.security.code in diagram</td>
+      <td>The mermaid diagram still shows <code>meta.security = AIAIST</code>.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54255">FHIR-54255</a></td>
+      <td>Add UML diagram for inline tagging</td>
+      <td>No diagram was added for inline tagging.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54235">FHIR-54235</a></td>
+      <td>Data quality / data qualification</td>
+      <td>These sub-categories were dropped from the rewrite rather than clarified.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54241">FHIR-54241</a></td>
+      <td>AI deletion of resources</td>
+      <td>Not addressed &mdash; guidance only covers creation/updating.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54276">FHIR-54276</a></td>
+      <td>Tagging definition conflicts with FHIR labeling</td>
+      <td>The rewrite uses &ldquo;Tagging&rdquo; but doesn&rsquo;t address the terminology conflict with FHIR&rsquo;s use of &ldquo;label.&rdquo;</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54707">FHIR-54707</a></td>
+      <td>Refrain from using Tag or define it</td>
+      <td>Related to above &mdash; &ldquo;Tag/Tagging&rdquo; still used without defining the distinction from FHIR labels.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54433">FHIR-54433</a></td>
+      <td>Clarify privacy/access control for Input Prompt artifacts</td>
+      <td>Not addressed &mdash; no PHI/IP guidance added.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54577">FHIR-54577</a></td>
+      <td>Extend input prompt to agentic multi-turn conversations</td>
+      <td>Not addressed &mdash; only single-turn prompts are discussed.</td>
+    </tr>
+    <tr>
+      <td><a href="https://jira.hl7.org/browse/FHIR-54578">FHIR-54578</a></td>
+      <td>Add use case about traceability of LLM agent-made API calls</td>
+      <td>Not addressed &mdash; agentic workflows mentioned but not modeled.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="new-typos">New Typos Introduced by the Rewrite <span class="badge badge-typo">Attention</span></h2>
+
+<div class="highlight highlight-warn">
+  <p>The following typos exist in the current text that were <strong>introduced</strong> (or carried forward) by the rewrite.</p>
+</div>
+
+<table>
+  <thead>
+    <tr><th>Line</th><th>Current Text</th><th>Correction</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>22</td><td><code>Ogranization</code></td><td>Organization</td></tr>
+    <tr><td>138</td><td><code>Cheif</code></td><td>Chief</td></tr>
+    <tr><td>138</td><td><code>algorythm</code></td><td>algorithm</td></tr>
+    <tr><td>305</td><td><code>varified</code> (appears twice)</td><td>verified</td></tr>
+    <tr><td>313</td><td><code>conformaty</code></td><td>conformity</td></tr>
+    <tr><td>55, 153</td><td><code>AIAIST</code> (in mermaid diagrams)</td><td>AIAST</td></tr>
+    <tr><td>48</td><td><code>infuence</code> (carried forward)</td><td>influence</td></tr>
+    <tr><td>77</td><td><code>invovled</code> (carried forward)</td><td>involved</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ -->
+<footer>
+  <p>Generated by the AI Transparency IG analysis tooling &mdash; 2026-03-31. See <code>analysis/README.md</code> for details.</p>
+  <p>IG home: <a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/index.html">AI Transparency on FHIR</a> |
+     General Guidance: <a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/general_guidance.html">live build</a> |
+     Artifacts: <a href="https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/artifacts.html">summary</a></p>
+</footer>
+
+</body>
+</html>
