@@ -82,21 +82,23 @@ Execute all 8 steps in order:
 - **Verified HL7 Confluence** works fine (`HL7_CONFLUENCE` env var, authenticated as `mfaughn`)
 - **Produced general guidance ticket impact analysis:** cross-referenced the 83369f6 rewrite against all 126 tickets, found 20 directly resolved, 7 partially addressed, 13 not addressed, 8 remaining typos
 - **Created HTML report** (no JS) with hyperlinks to Jira and the live IG build
-- **3 commits on `feature/jira-analysis-tooling`:**
+- **Pushed branch to origin** after user accepted GitHub collaborator invite
+- **4 commits on `feature/jira-analysis-tooling`:**
   - `5da4f5d` — Initial tooling implementation
   - `f05fc10` — Fix Jira User-Agent for AWS WAF
   - `59bb23e` — Add general guidance ticket impact analysis
+  - `9436ce4` — Session 2 handoff
 
 ### Current State
-- **Branch:** `feature/jira-analysis-tooling`
-- **Commits:** 3 ahead of main, all local (not pushed)
-- **Push blocked:** `GITHUB_PERSONAL_ACCESS_TOKEN` (mfaughn) lacks write access to `HL7/aitransparency-ig`. Need repo write access, or push to a fork.
-- **Working tree:** Clean except for `report_preview.png` (untracked, not needed)
+- **Branch:** `feature/jira-analysis-tooling` (pushed, tracking origin)
+- **Last checkpoint:** `9436ce4` — Session 2 handoff
+- **Working tree:** Clean (only untracked `report_preview.png`, not needed)
+- **Tests:** N/A — pipeline scripts verified manually (fetch, analyze, report all working)
 
 ### Environment Variables
 - **`HL7_JIRA`** — Jira PAT, working. Must be set for `fetch_tickets.py`.
 - **`HL7_CONFLUENCE`** — Confluence PAT, working (authenticated as mfaughn). Not used by current tooling but available.
-- **`GITHUB_PERSONAL_ACCESS_TOKEN`** — Set but lacks push access to the HL7 repo.
+- **`GITHUB_PERSONAL_ACCESS_TOKEN`** — Working, `mfaughn` now has push access to HL7/aitransparency-ig.
 
 ### Key Files
 - `analysis/data/tickets.json` — 126 real tickets cached (gitignored)
@@ -111,14 +113,13 @@ Execute all 8 steps in order:
 - Never commit to main branch
 
 ### Next Steps
-1. **Resolve push access** — user needs write access to HL7/aitransparency-ig, or push to a fork
-2. **Further ticket analysis** — the general guidance analysis is done; user may want similar analysis for other pages or specific ticket subsets
-3. **Remaining typos** — 8 typos identified in general_guidance.md could be fixed (with user permission)
-4. **Ticket triage support** — tooling is ready for deeper analysis of specific ticket groups, status tracking, etc.
+1. **Further ticket analysis** — the general guidance analysis is done; user may want similar analysis for other pages or specific ticket subsets
+2. **Remaining typos** — 8 typos identified in general_guidance.md could be fixed (with user permission)
+3. **Ticket triage support** — tooling is ready for deeper analysis of specific ticket groups, status tracking, etc.
 
 ### Open Questions / Blockers
-- Push access to `HL7/aitransparency-ig` is blocked — user needs to resolve GitHub permissions
 - Jira is read-only by user directive — no write-back to tickets
+- No other blockers — push access resolved
 
 ---
 
