@@ -72,6 +72,56 @@ Execute all 8 steps in order:
 
 ---
 
+## Session Handoff — 2026-03-31 (Session 2)
+
+### Completed This Session
+- **Implemented all 8 steps** of the Jira analysis tooling plan (17 files, 1,435 lines)
+- **Resolved Jira connectivity:** HL7's AWS WAF (`SignalNonBrowserUserAgent` rule) blocks non-browser User-Agents. Fixed by using `Mozilla/5.0 (compatible; HL7-IG-Analysis/1.0; ...)` — documented in README.
+- **Successfully fetched 126 real tickets** from jira.hl7.org for FHIR-aitransparency specification
+- **Discovered Specification custom field:** `customfield_11302`
+- **Verified HL7 Confluence** works fine (`HL7_CONFLUENCE` env var, authenticated as `mfaughn`)
+- **Produced general guidance ticket impact analysis:** cross-referenced the 83369f6 rewrite against all 126 tickets, found 20 directly resolved, 7 partially addressed, 13 not addressed, 8 remaining typos
+- **Created HTML report** (no JS) with hyperlinks to Jira and the live IG build
+- **3 commits on `feature/jira-analysis-tooling`:**
+  - `5da4f5d` — Initial tooling implementation
+  - `f05fc10` — Fix Jira User-Agent for AWS WAF
+  - `59bb23e` — Add general guidance ticket impact analysis
+
+### Current State
+- **Branch:** `feature/jira-analysis-tooling`
+- **Commits:** 3 ahead of main, all local (not pushed)
+- **Push blocked:** `GITHUB_PERSONAL_ACCESS_TOKEN` (mfaughn) lacks write access to `HL7/aitransparency-ig`. Need repo write access, or push to a fork.
+- **Working tree:** Clean except for `report_preview.png` (untracked, not needed)
+
+### Environment Variables
+- **`HL7_JIRA`** — Jira PAT, working. Must be set for `fetch_tickets.py`.
+- **`HL7_CONFLUENCE`** — Confluence PAT, working (authenticated as mfaughn). Not used by current tooling but available.
+- **`GITHUB_PERSONAL_ACCESS_TOKEN`** — Set but lacks push access to the HL7 repo.
+
+### Key Files
+- `analysis/data/tickets.json` — 126 real tickets cached (gitignored)
+- `analysis/data/analysis.json` — Full analysis output (gitignored)
+- `analysis/reports/general_guidance_ticket_analysis.html` — HTML report (committed)
+- `analysis/reports/general_guidance_ticket_analysis.md` — Markdown report (committed)
+- `analysis/reports/ticket_analysis_2026-03-31.md` — Auto-generated full report (gitignored)
+
+### User Directives (IMPORTANT)
+- **READ-ONLY against all online systems.** No changes to Jira, GitHub, Confluence, or any other online service without explicit instruction.
+- Git identity: `Michael Faughn <michael.faughn@nist.gov>`
+- Never commit to main branch
+
+### Next Steps
+1. **Resolve push access** — user needs write access to HL7/aitransparency-ig, or push to a fork
+2. **Further ticket analysis** — the general guidance analysis is done; user may want similar analysis for other pages or specific ticket subsets
+3. **Remaining typos** — 8 typos identified in general_guidance.md could be fixed (with user permission)
+4. **Ticket triage support** — tooling is ready for deeper analysis of specific ticket groups, status tracking, etc.
+
+### Open Questions / Blockers
+- Push access to `HL7/aitransparency-ig` is blocked — user needs to resolve GitHub permissions
+- Jira is read-only by user directive — no write-back to tickets
+
+---
+
 <!--
 SESSION HANDOFF TEMPLATE (copy this for each handoff):
 
