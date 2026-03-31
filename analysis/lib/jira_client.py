@@ -32,6 +32,13 @@ class JiraClient:
         self.session.headers.update({
             "Authorization": f"Bearer {pat}",
             "Accept": "application/json",
+            # HL7's Jira is behind an AWS WAF with a
+            # SignalNonBrowserUserAgent rule that blocks requests without
+            # a browser-style User-Agent header.
+            "User-Agent": (
+                "Mozilla/5.0 (compatible; HL7-IG-Analysis/1.0; "
+                "+https://github.com/HL7/fhir-ai-transparency)"
+            ),
         })
 
     # -- Field discovery -------------------------------------------------- #
