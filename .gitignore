@@ -42,3 +42,9 @@ target/*
 FHIR-aitransparency.xml
 
 _updatePublisher.sh
+
+# Analysis tooling
+analysis/.env
+analysis/data/*.json
+analysis/reports/*.md
+__pycache__/

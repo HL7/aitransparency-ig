@@ -1,0 +1,22 @@
+# Jira Analysis Configuration
+# Adapt this file for your own IG by changing the values below.
+
+jira:
+  base_url: https://jira.hl7.org
+  # The "Specification" value as it appears in Jira for this IG.
+  specification: FHIR-aitransparency
+  # JQL template — {specification} is substituted at runtime.
+  jql_template: "project = FHIR AND Specification = {specification} ORDER BY key ASC"
+  # Maximum results per API page (Jira caps at 50).
+  page_size: 50
+
+ig:
+  # Paths relative to the IG repository root.
+  root: ..
+  fsh_dir: input/fsh
+  pagecontent_dir: input/pagecontent
+  sushi_config: sushi-config.yaml
+
+output:
+  data_dir: data
+  reports_dir: reports
