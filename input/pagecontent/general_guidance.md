@@ -161,7 +161,7 @@ classDiagram
         reason : `AIAST`
         agent : Reference to AI Device
         agent : References to other agents involved
-        entity : References to Model-Card DocumentReference
+        entity : References to Input-Prompt DocumentReference
         entity : References to other data used
     }
 
@@ -184,7 +184,7 @@ classDiagram
         extension : model-card
     }
 
-    class DocumentReference {
+    class DocumentReferenceModelCard {
         <<FHIR Resource>>
         id
         type = AImodelCard
@@ -192,12 +192,21 @@ classDiagram
         description
         version
         data / url = codeable model-card details
-        data / url = pdf rendering
+    }
+
+    class DocumentReferenceInputPrompt {
+        <<FHIR Resource>>
+        id
+        type = AIInputPrompt
+        description
+        version
+        data / url = codeable Input-Prompt details
     }
 
     Resource "1..*" <-- Provenance : "Provenance.target"
     Provenance --> Device : "Provenance.agent.who"
-    Provenance --> DocumentReference : "Provenance.entity.what"
+    Device --> DocumentReferenceModelCard : "Device.extension.model-card"
+    Provenance --> DocumentReferenceInputPrompt : "Provenance.entity.what"
 ```
 
 Examples:
@@ -269,6 +278,7 @@ One could encode the Model-Card in a resource designed for carrying any mime-typ
 - [Device with attached Model-Card](Device-Attached-ModelCard.html)
 
 ### Context of AI Usage
+
 When using an AI it is necessary to supply it with certain inputs. These inputs very based on the AI involved, but the industry generally refers to these inputs as the "prompt" (especially in the case of Generative AI). 
 
 >💡 Tip
@@ -280,7 +290,7 @@ There are different kinds of prompts supplied, including but not limited to:
 - **System Prompt:** Instructions to the AI on what to do and how to handle user inputs. These can also include reference information, such as clinical practice guidelines, drug interaction databases, treatment protocols, and evidence-based medicine resources that will enhance the AI decision-making. 
 - **User Prompt:** Input from the user. This often includes the question to answer or problem to solve. In many cases this is a templated text that allows for the inserting of additional data (note some systems allow other prompt types to include files as additional data). This additional data can include patient demographics, clinical notes, laboratory results, imaging data, and other health data that will be useful to the AI decision-making.
 
-In general, inputs should be captured using a DocumentReference linked through the Provenance, but when specific clinical data is involved a FHIR Bundle or other resource maybe linked.
+In general, inputs should be captured using a [Input-Prompt DocumentReference](StructureDefinition-AI-InputPrompt.html) linked through the Provenance, but when specific clinical data is involved a FHIR Bundle or other resource MAY also be linked.
 
 > Note
 >
@@ -290,7 +300,7 @@ In general, inputs should be captured using a DocumentReference linked through t
 
 The context documents all inputs involved in AI processing.
 
-One useful thing to record is the prompt(s) given to the AI. This prompt(s) can be very important to the output, and the interpretation of the output. The prompt(s) is recorded as an attachment, using the DocumentReference, and using a code as defined above
+One useful thing to record is the prompt(s) given to the AI. This prompt(s) can be very important to the output, and the interpretation of the output. The prompt(s) is recorded as an attachment, using the [Input-Prompt DocumentReference](StructureDefinition-AI-InputPrompt.html), and using a code as defined above
 
 - [Input Prompt lorem ipsum](DocumentReference-Input-Prompt-lorem-ipsum.html)
 - [Input Prompt to create a Patient](DocumentReference-Input-Prompt-create-patient.html)
@@ -302,18 +312,17 @@ The first example is just showing the encapsulating mechanism. The Second exampl
 
 ### Process Utilizing AI
 
-AI Models do not exist in a vacuum, in addition to the context / inputs, there needs to be a system that calls the AI, supplies the inputs, and gets the result. This result may then be used as-is, supplied to another AI, varified by an automated system, varified by a human, or any number of other activities. Understanding this process may be very important to end users and downstream systems. For example, if the results of the AI were verified by a human (human-in-the-loop) then an end user may be able to rely on the results with less scrutiny. 
+AI Models do not exist in a vacuum, in addition to the context / inputs, there needs to be a system that calls the AI, supplies the inputs, and gets the result. This result may then be used as-is, supplied to another AI, verified by an automated system, verified by a human, or any number of other activities. Understanding this process may be very important to end users and downstream systems. For example, if the results of the AI were verified by a human (human-in-the-loop) then an end user may be able to rely on the results with less scrutiny.
 
 >💡 Tip
 >
 > Use when all possible factors are important to record. This level of Observability Factor is very comprehensive, and as such is very verbose. This level of Observability Factor capturing may not be justified beyond initial model use, while shaking out the use.
 
 Some of the process elements that may be captured are:
-* **Human-in-the-loop:** This is when a human verifies the results of an AI output. This can add validity to those results. It can be captured in Provenace as that person is another author of the resulting resource or element. 
-* **Guardrails:** An automated system is engaged to check the results of the AI. This system can take many different forms. It is often intended to reduce bias, ensure more equitable healthcare outcomes, catch unacceptable outputs, such as inappropriate word usage, or do general validation, such as running a FHIR validator on the resource to ensure conformaty. This can be captured as additional Devices as authors on the Provenance.  
-* **Other AI or Systems:** Sometimes the AI may call subroutines called tools. These tools may do things like simple math, API calls, or web searches. This is often done using MCP. Additional, multiple AI systems maybe involved. Agentic systems often involve multiple AI Agents who call each other using protocols like A2A. These workflows are complex to capture, but one suggestion is to use BPMN contained in DocumentReferences linked to the Provenance (example coming...). 
 
-
+- **Human-in-the-loop:** This is when a human verifies the results of an AI output. This can add validity to those results. It can be captured in Provenance as that person is another author of the resulting resource or element.
+- **Guardrails:** An automated system is engaged to check the results of the AI. This system can take many different forms. It is often intended to reduce bias, ensure more equitable healthcare outcomes, catch unacceptable outputs, such as inappropriate word usage, or do general validation, such as running a FHIR validator on the resource to ensure conformity. This can be captured as additional Devices as authors on the Provenance.  
+- **Other AI or Systems:** Sometimes the AI may call subroutines called tools. These tools may do things like simple math, API calls, or web searches. This is often done using MCP. Additional, multiple AI systems maybe involved. Agenetic systems often involve multiple AI Agents who call each other using protocols like A2A. These workflows are complex to capture, but one suggestion is to use BPMN contained in DocumentReferences linked to the Provenance (example coming...).
 
 #### Process Examples
 
@@ -334,22 +343,23 @@ Provenance can be just about some elements within a Resource. This is a normal p
 [This is a full example](Provenance-AI-full-lorem-ipsum.html) of how to capture the AI process in FHIR.
 
 - Two outputs that this Provenance resource is documenting:
-    - an Observation resource (e.g., lab result)
-        - with Observation.interpretation being attributed to this Provenance
-    - a CarePlan resource (e.g., follow-up care plan)
+  - an Observation resource (e.g., lab result)
+    - with Observation.interpretation being attributed to this Provenance
+  - a CarePlan resource (e.g., follow-up care plan)
 - Two agents
-    - a verifier (human) who verifies the AI output
-    - an author (AI system) who generated the output
+  - a verifier (human) who verifies the AI output
+  - an author (AI system) who generated the output
 - Two entities that were clinical resources provided to the AI system
-    - a DocumentReference resource (e.g., patient summary)
-    - an Observation resource (e.g., lab result)
+  - a DocumentReference resource (e.g., patient summary)
+  - an Observation resource (e.g., lab result)
 - One entity that is a PlanDefinition resource (e.g., care plan definition)
 - One entity that is the AI Input Prompt
-    - Where the Input Prompt is a DocumentReference resource that contains the input prompt provided to the AI system.
-    - Where the Input Prompt is a contained resource in the Provenance resource.
-    - Where the Input Prompt is associated with the clinician which provided it
+  - Where the Input Prompt is a DocumentReference resource that contains the input prompt provided to the AI system.
+  - Where the Input Prompt is a contained resource in the Provenance resource.
+  - Where the Input Prompt is associated with the clinician which provided it
 
 ### PDF interpreted by AI into FHIR
+
 This is an additional example provided that shows how this IG can be applied.
 
 Use Case: A provider receives a [PDF of lab result(s)](DocumentReference-Lab-Results-PDF.html) for a patient. This PDF is examined by an AI which generates a [Bundle with a Patient resource and Observation resource(s)](Bundle-b3c1f2d4-5c8e-4b0a-9f6d-7c8e1f2d4b5c.html).

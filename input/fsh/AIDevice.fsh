@@ -80,10 +80,8 @@ Description: "A DocumentReference that contains a Model-Card describing an AI sy
 * category ^slicing.discriminator.path = "$this"
 * category ^slicing.rules = #open
 * category contains 
-  AImodelCard 1..* MS and 
   AImodelCardMD 0..1 MS and 
   AImodelCardCHAI 0..1 MS
-* category[AImodelCard] = AImodelCardCS#AIInputPrompt "AI Input Prompt"
 * category[AImodelCardMD] = AImodelCardCS#AImodelCardMarkdownFormat "Markdown Format"
 * category[AImodelCardCHAI] = AImodelCardCS#AImodelCardCHAIformat "CHAI Format"
 * content ^slicing.discriminator.type = #value
@@ -108,6 +106,36 @@ Description: "A DocumentReference that contains a Model-Card describing an AI sy
 * description 0..1 MS 
   * ^comment = "The model-card in markdown format that is not base64-encoded for human readability"
 
+
+Profile: AIInputPrompt
+Parent: DocumentReference
+Id: AI-InputPrompt
+Title: "AI Input Prompt DocumentReference"
+Description: "A DocumentReference that contains an input prompt for an AI system. The Input Prompt is the information that is input into the AI system to produce an output. This DocumentReference can be used to capture the Input Prompt that was used with a given AI system, and can be referenced from the AIDevice that represents that AI system. This is typically encoded in markdown, but does not need to be. This DocumentReference would be referenced in the Provenance as the input to an Activity that represents the usage of the AI system, and the AIDevice would be referenced as the agent in that Provenance. This allows for traceability from the output back to the Input Prompt and the AI system that produced it."
+* type 1..1 MS
+* type.coding ^slicing.discriminator.type = #value
+* type.coding ^slicing.discriminator.path = "$this"
+* type.coding ^slicing.rules = #closed
+* type.coding contains AIInputPrompt 1..* MS
+* type.coding[AIInputPrompt] = AImodelCardCS#AIInputPrompt "AI Input Prompt"
+
+* content ^slicing.discriminator.type = #value
+* content ^slicing.discriminator.path = "attachment.contentType"
+* content ^slicing.rules = #open
+* content contains 
+  MarkdownFormat 0..1
+* content[MarkdownFormat].attachment.contentType 1..1 MS
+* content[MarkdownFormat].attachment.contentType = #text/markdown (exactly)
+* content[MarkdownFormat].attachment.data 0..1 MS
+  * ^comment = "The input prompt in Markdown base64-encoded text format"
+* content[MarkdownFormat].attachment.url 0..1 MS
+  * ^comment = "The input prompt in Markdown as a URL"
+* identifier 0..* MS
+* description 0..1 MS 
+  * ^comment = "The input prompt in markdown format that is not base64-encoded for human readability"
+
+
+
 Instance: ModelCard-sample-huggingface-attached
 InstanceOf: AIModelCard
 Title: "DocumentReference Model-Card in HuggingFace Markdown format attached"
@@ -122,7 +150,6 @@ Usage: #example
 
 * content[MarkdownFormat].attachment.contentType = #text/markdown
 * type = AImodelCardCS#AIModelCard "AI Model-Card"
-* category[AImodelCard] = AImodelCardCS#AIInputPrompt "AI Input Prompt"
 * category[AImodelCardMD] = AImodelCardCS#AImodelCardMarkdownFormat "Markdown Format"
 * identifier.system = "https://github.com/huggingface/huggingface_hub/tree/main/tests/fixtures/cards"
 * identifier.value = "sample_datasetcard_simple.md"
@@ -138,7 +165,6 @@ Usage: #example
 * content[+].attachment.url = "https://github.com/coalition-for-health-ai/mc-schema/blob/main/v0.1/examples/Aidoc_ICH-02-RT.pdf"
 * content[=].attachment.contentType = #application/pdf
 * type = AImodelCardCS#AIModelCard "AI Model-Card"
-* category[AImodelCard] = AImodelCardCS#AIInputPrompt "AI Input Prompt"
 * category[AImodelCardCHAI] = AImodelCardCS#AImodelCardCHAIformat "CHAI Format"
 * identifier.system = "https://github.com/coalition-for-health-ai/mc-schema/blob/main/v0.1/examples/"
 * identifier.value = "Aidoc_ICH-02-RT.xml"
@@ -157,7 +183,6 @@ Usage: #example
 * content[+].attachment.id = "ig-loader-Aidoc_ICH-02-RT.pdf"
 //* content[=].attachment.contentType = #application/pdf
 * type = AImodelCardCS#AIModelCard "AI Model-Card"
-* category[AImodelCard] = AImodelCardCS#AIInputPrompt "AI Input Prompt"
 * category[AImodelCardCHAI] = AImodelCardCS#AImodelCardCHAIformat "CHAI Format"
 * identifier.system = "https://github.com/coalition-for-health-ai/mc-schema/blob/main/v0.1/examples/"
 * identifier.value = "Aidoc_ICH-02-RT.xml"
@@ -173,7 +198,6 @@ Usage: #example
 * content[+].attachment.url = "Binary/ModelCard-sample-CHAI-binary-pdf"
 * content[=].attachment.contentType = #application/pdf
 * type = AImodelCardCS#AIModelCard "AI Model-Card"
-* category[AImodelCard] = AImodelCardCS#AIInputPrompt "AI Input Prompt"
 * category[AImodelCardCHAI] = AImodelCardCS#AImodelCardCHAIformat "CHAI Format"
 * identifier.system = "https://github.com/coalition-for-health-ai/mc-schema/blob/main/v0.1/examples/"
 * identifier.value = "Aidoc_ICH-02-RT.xml"

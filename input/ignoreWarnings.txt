@@ -46,6 +46,7 @@ Pinned the version of http://terminology.hl7.org/CodeSystem/v3-ObservationValue 
 # 12 These have been reviewed and are okay for our use-case
 INFORMATION: StructureDefinition/AI-ModelCard: StructureDefinition.snapshot.element[17].pattern.ofType(Coding): The repeating element has a pattern. The pattern will apply to all the repeats (this has not been clear to all users)
 INFORMATION: StructureDefinition/AI-ModelCard: StructureDefinition.snapshot.element[20].pattern.ofType(CodeableConcept): The repeating element has a pattern. The pattern will apply to all the repeats (this has not been clear to all users)
+INFORMATION: StructureDefinition/AI-InputPrompt: StructureDefinition.snapshot.element[17].pattern.ofType(Coding): The repeating element has a pattern. The pattern will apply to all the repeats (this has not been clear to all users)
 
 # 13 Examples with extra elements beyond minimal slices
 INFORMATION: DocumentReference/ModelCard-sample-CHAI-attached: DocumentReference.content[1]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-ModelCard%
