@@ -53,7 +53,7 @@ Description: "This CodeSystem contains codes for the DocumentReference.type and 
 * ^status = #active
 * #AIModelCard "AI Model-Card" "DocumentReference containing a Model-Card describing an AI system"
 * #AIInputPrompt "AI Input Prompt" "Input Prompt for AI Model"
-* #AImodelCardMarkdownFormat "Markdown Format" "Hugging Face Model-Card in Markdown format"
+* #AIModelCardMarkdownFormat  "Markdown Format" "Hugging Face Model-Card in Markdown format"
 * #AImodelCardCHAIformat "CHAI Format" "Model-Card in CHAI format (Coalition for Health AI)"
 
 // TODO: Should have an invariant to ensure that if type is AIModelCard, then at least one category is present indicating the format, and that the content agrees with that format.
@@ -82,7 +82,7 @@ Description: "A DocumentReference that contains a Model-Card describing an AI sy
 * category contains 
   AImodelCardMD 0..1 MS and 
   AImodelCardCHAI 0..1 MS
-* category[AImodelCardMD] = AIinputsCS#AImodelCardMarkdownFormat "Markdown Format"
+* category[AImodelCardMD] = AIinputsCS#AIModelCardMarkdownFormat  "Markdown Format"
 * category[AImodelCardCHAI] = AIinputsCS#AImodelCardCHAIformat "CHAI Format"
 * content ^slicing.discriminator.type = #value
 * content ^slicing.discriminator.path = "attachment.contentType"
@@ -150,7 +150,7 @@ Usage: #example
 
 * content[MarkdownFormat].attachment.contentType = #text/markdown
 * type = AIinputsCS#AIModelCard "AI Model-Card"
-* category[AImodelCardMD] = AIinputsCS#AImodelCardMarkdownFormat "Markdown Format"
+* category[AImodelCardMD] = AIinputsCS#AIModelCardMarkdownFormat  "Markdown Format"
 * identifier.system = "https://github.com/huggingface/huggingface_hub/tree/main/tests/fixtures/cards"
 * identifier.value = "sample_datasetcard_simple.md"
 

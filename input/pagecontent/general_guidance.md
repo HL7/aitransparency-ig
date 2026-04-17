@@ -190,7 +190,7 @@ classDiagram
         <<FHIR Resource>>
         id
         type = AImodelCard
-        category = AImodelCardMarkdownFormat | AImodelCardCHAIformat
+        category = AIModelCardMarkdownFormat  | AImodelCardCHAIformat
         description
         version
         data / url = codeable model-card details

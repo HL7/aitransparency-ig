@@ -42,7 +42,7 @@
             "coding": [
               {
                 "system": "http://hl7.org/fhir/uv/aitransparency/CodeSystem/AIinputsCS",
-                "code": "AImodelCardMarkdownFormat",
+                "code": "AIModelCardMarkdownFormat ",
                 "display": "Markdown Format"
               }
             ]
