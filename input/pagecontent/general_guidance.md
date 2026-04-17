@@ -52,7 +52,7 @@ classDiagram
     class Resource {
         <<FHIR Resource>>
         id
-        meta.security = AIAIST
+        meta.security = AIAST
         ...
     }
 ```
@@ -150,7 +150,7 @@ classDiagram
     class Resource {
         <<FHIR Resource>>
         id
-        meta.security = AIAIST
+        meta.security = AIAST
         ...
     }
 
