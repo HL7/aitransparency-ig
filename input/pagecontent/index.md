@@ -1,7 +1,7 @@
 
 ### Background
 
-Artificial Intelligence (AI) has amazing potential to improve outcomes in healthcare. However, it comes with a number of challenges, such as bias, hallucinations, and non-determinism. In order to support responsible usage of AI, it is necessary to establish standards for documenting and tracking when health data has been created, updated, or otherwise influenced by AI. In particular, it is useful to know when a Fast Healthcare Interoperable Resource (FHIR) resource has been influenced, in whole or part, by an AI, such as Generative AI / Large Language Model (LLM).  
+Artificial Intelligence (AI) has amazing potential to improve outcomes in healthcare. However, it comes with a number of challenges, such as bias, hallucinations, and non-determinism. In order to support responsible usage of AI, it is necessary to establish standards for documenting and tracking when health data has been created, updated, or otherwise influenced by AI. In particular, it is useful to know when a Fast Healthcare Interoperable Resource (FHIR) resource has been influenced, in whole or part, by an AI, such as Generative AI / Large Language Model (LLM).
 
 This FHIR Implementation Guide (IG) provides guidance for representing the usage of AI in influencing FHIR resources. Starting with how to tag FHIR resources, and expanding into how to use Provenance, Device, and other data elements, this FHIR IG provides standards that enable downstream use cases to identify such resources. This allows the informed usage of AI influenced health data.
 
