@@ -280,7 +280,7 @@ Description: "Expresses the more specific kind(s) of AI technology and technique
 * valueCodeableConcept from AIdeviceTypeVS (extensible)
 
 ValueSet: AIdeviceTypeVS
-Title: "Recommended Device.type codes for AI/LLM"
+Title: "Recommended Device type codes for Artificial Intelligence"
 Description:  "Subset from HL7, plus those defined here"
 * ^experimental = false
 * codes from system AIdeviceTypeCS
@@ -294,7 +294,7 @@ Description:  "Subset from HL7, plus those defined here"
 
 
 CodeSystem: AIdeviceTypeCS
-Title: "Added Device.type for AI/LLM"
+Title: "Device type for Artificial Intelligence"
 Description: "This CodeSystem contains codes for the Device.type that indicate that the Device is an AI. The codes here were created by AI."
 * ^meta.security = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST "Artificial Intelligence asserted"
 * ^caseSensitive = true
