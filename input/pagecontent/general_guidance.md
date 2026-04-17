@@ -75,7 +75,7 @@ Use when an example is completely authored by an AI.
 
 - [Example Observation with AI Assisted security labels](Observation-glasgow.html)
 
-The key portion of that Resource is the following meta.security element holding the `AIAST` code. `AIAST` is an HL7 Observation value for metadata that indicates that AI was invovled in producing the data or information.
+The key portion of that Resource is the following meta.security element holding the `AIAST` code. `AIAST` is an HL7 Observation value for metadata that indicates that AI was involved in producing the data or information.
 
 <!---
 Note, I don't think the description I added for AIAST is the best so including it more as a placeholder for now.
