@@ -61,6 +61,8 @@ pages:
     title: General Guidance
   use_cases.md:
     title: Use Cases
+  about.md:
+    title: About
   changes.md:
     title: Changes
 
@@ -76,7 +78,6 @@ pages:
 # http://build.fhir.org/ig/FHIR/fhir-tools-ig/branches/master/CodeSystem-ig-parameters.html
 #
 parameters:
-   excludettl: true
    path-binary: input/attachment
    pin-canonicals: pin-multiples
 #   validation: [allow-any-extensions, no-broken-links]
@@ -94,6 +95,8 @@ menu:
   Guidance:
     General: general_guidance.html
     Use Cases: use_cases.html
+  About: about.html
+  Changes: changes.html
   Artifacts: artifacts.html
 
 # ╭───────────────────────────Less Common Implementation Guide Properties──────────────────────────╮

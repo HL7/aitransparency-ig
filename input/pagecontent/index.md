@@ -16,31 +16,3 @@ In this project, AI algorithm is defined broadly to include any computer-based l
 ### Assumptions and Caveats
 
 This IG assumes that health data are being represented in FHIR. While it is recognized that other standards, such as HL7 CDA and HL7 v2, may be used, this IG does not yet support them. Future work may seek to apply the Use-Cases and Observability Factors to these other standards.
-
-### Credits
-
-* Sam Schifman (Vantiq)
-* John Moehrke (Moehrke Research LLC)
-* May Terry (MITRE)
-* Brian Alper (Computable Publishing)
-* Michael Faughn (NIST)
-* Gregory Shemancik (CHAI)
-* Reynalda Davis (CMS)
-* Gail Winters
-* Mark Kramer (MITRE)
-
-### Cross Version Analysis
-
-{% include cross-version-analysis.xhtml %}
-
-### Intellectual Property Considerations
-
-{% include ip-statements.xhtml %}
-
-### Globals Profiles
-
-{% include globals-table.xhtml %}
-
-### Dependencies
-
-{% include dependency-table.xhtml %}
