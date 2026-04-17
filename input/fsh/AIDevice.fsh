@@ -45,9 +45,9 @@ pretty_name: Sample Segmentation
 This is a sample dataset card for a semantic segmentation dataset.
 """
 
-CodeSystem: AImodelCardCS
-Title: "Added DocumentReference.code for AI ModelCard"
-Description: "This CodeSystem contains codes for the DocumentReference.type and DocumentReference.category that indicate that the DocumentReference is a Model-Card."
+CodeSystem: AIinputsCS
+Title: "Codes for AI ModelCard and Input Prompt"
+Description: "This CodeSystem contains codes for the DocumentReference.type and DocumentReference.category that indicate that the DocumentReference is an Input-Prompt or one of a set of Model-Card(s)."
 * ^caseSensitive = true
 * ^experimental = false
 * ^status = #active
@@ -59,8 +59,8 @@ Description: "This CodeSystem contains codes for the DocumentReference.type and 
 // TODO: Should have an invariant to ensure that if type is AIModelCard, then at least one category is present indicating the format, and that the content agrees with that format.
 //Invariant: mc-1
 //Description: "A DocumentReference of type AI Model-Card must have at least one category that indicates the format of the Model-Card, and that must agree with the content."
-//Expression: "type.coding.where(system='AImodelCardCS' and code='AIModelCard').exists()"
-//Expression: "DocumentReference.type = 'AImodelCardCS#AIModelCard' implies (DocumentReference.category.exists(c | c = 'AImodelCardCS#AIInputPrompt') and (DocumentReference.content.exists(cnt | cnt.attachment.contentType = 'text/markdown') or DocumentReference.content.exists(cnt | cnt.attachment.contentType = 'application/xml')))"
+//Expression: "type.coding.where(system='AIinputsCS' and code='AIModelCard').exists()"
+//Expression: "DocumentReference.type = 'AIinputsCS#AIModelCard' implies (DocumentReference.category.exists(c | c = 'AIinputsCS#AIInputPrompt') and (DocumentReference.content.exists(cnt | cnt.attachment.contentType = 'text/markdown') or DocumentReference.content.exists(cnt | cnt.attachment.contentType = 'application/xml')))"
 //Severity: #warning // to support other Model-Cards in the future
 
 Profile: AIModelCard
@@ -73,7 +73,7 @@ Description: "A DocumentReference that contains a Model-Card describing an AI sy
 * type.coding ^slicing.discriminator.path = "$this"
 * type.coding ^slicing.rules = #closed
 * type.coding contains AImodelCard 1..* MS
-* type.coding[AImodelCard] = AImodelCardCS#AIModelCard "AI Model-Card"
+* type.coding[AImodelCard] = AIinputsCS#AIModelCard "AI Model-Card"
 //* obeys mc-1
 * category 1..* MS
 * category ^slicing.discriminator.type = #value
@@ -82,8 +82,8 @@ Description: "A DocumentReference that contains a Model-Card describing an AI sy
 * category contains 
   AImodelCardMD 0..1 MS and 
   AImodelCardCHAI 0..1 MS
-* category[AImodelCardMD] = AImodelCardCS#AImodelCardMarkdownFormat "Markdown Format"
-* category[AImodelCardCHAI] = AImodelCardCS#AImodelCardCHAIformat "CHAI Format"
+* category[AImodelCardMD] = AIinputsCS#AImodelCardMarkdownFormat "Markdown Format"
+* category[AImodelCardCHAI] = AIinputsCS#AImodelCardCHAIformat "CHAI Format"
 * content ^slicing.discriminator.type = #value
 * content ^slicing.discriminator.path = "attachment.contentType"
 * content ^slicing.rules = #open
@@ -117,7 +117,7 @@ Description: "A DocumentReference that contains an input prompt for an AI system
 * type.coding ^slicing.discriminator.path = "$this"
 * type.coding ^slicing.rules = #closed
 * type.coding contains AIInputPrompt 1..* MS
-* type.coding[AIInputPrompt] = AImodelCardCS#AIInputPrompt "AI Input Prompt"
+* type.coding[AIInputPrompt] = AIinputsCS#AIInputPrompt "AI Input Prompt"
 
 * content ^slicing.discriminator.type = #value
 * content ^slicing.discriminator.path = "attachment.contentType"
@@ -149,8 +149,8 @@ Usage: #example
 * content[MarkdownFormat].attachment.data =   "LS0tDQpsYW5ndWFnZToNCi0gZW4NCmxpY2Vuc2U6DQotIGJzZC0zLWNsYXVzZQ0KYW5ub3RhdGlvbnNfY3JlYXRvcnM6DQotIGNyb3dkc291cmNlZA0KLSBleHBlcnQtZ2VuZXJhdGVkDQpsYW5ndWFnZV9jcmVhdG9yczoNCi0gZm91bmQNCm11bHRpbGluZ3VhbGl0eToNCi0gbW9ub2xpbmd1YWwNCnNpemVfY2F0ZWdvcmllczoNCi0gbjwxSw0KdGFza19jYXRlZ29yaWVzOg0KLSBpbWFnZS1zZWdtZW50YXRpb24NCnRhc2tfaWRzOg0KLSBzZW1hbnRpYy1zZWdtZW50YXRpb24NCnByZXR0eV9uYW1lOiBTYW1wbGUgU2VnbWVudGF0aW9uDQotLS0NCg0KIyBEYXRhc2V0IENhcmQgZm9yIFNhbXBsZSBTZWdtZW50YXRpb24NCg0KVGhpcyBpcyBhIHNhbXBsZSBkYXRhc2V0IGNhcmQgZm9yIGEgc2VtYW50aWMgc2VnbWVudGF0aW9uIGRhdGFzZXQu"
 
 * content[MarkdownFormat].attachment.contentType = #text/markdown
-* type = AImodelCardCS#AIModelCard "AI Model-Card"
-* category[AImodelCardMD] = AImodelCardCS#AImodelCardMarkdownFormat "Markdown Format"
+* type = AIinputsCS#AIModelCard "AI Model-Card"
+* category[AImodelCardMD] = AIinputsCS#AImodelCardMarkdownFormat "Markdown Format"
 * identifier.system = "https://github.com/huggingface/huggingface_hub/tree/main/tests/fixtures/cards"
 * identifier.value = "sample_datasetcard_simple.md"
 
@@ -164,8 +164,8 @@ Usage: #example
 * content[CHAIformat].attachment.contentType = #application/xml
 * content[+].attachment.url = "https://github.com/coalition-for-health-ai/mc-schema/blob/main/v0.1/examples/Aidoc_ICH-02-RT.pdf"
 * content[=].attachment.contentType = #application/pdf
-* type = AImodelCardCS#AIModelCard "AI Model-Card"
-* category[AImodelCardCHAI] = AImodelCardCS#AImodelCardCHAIformat "CHAI Format"
+* type = AIinputsCS#AIModelCard "AI Model-Card"
+* category[AImodelCardCHAI] = AIinputsCS#AImodelCardCHAIformat "CHAI Format"
 * identifier.system = "https://github.com/coalition-for-health-ai/mc-schema/blob/main/v0.1/examples/"
 * identifier.value = "Aidoc_ICH-02-RT.xml"
 
@@ -182,8 +182,8 @@ Usage: #example
 //* content[CHAIformat].attachment.contentType = #application/xml
 * content[+].attachment.id = "ig-loader-Aidoc_ICH-02-RT.pdf"
 //* content[=].attachment.contentType = #application/pdf
-* type = AImodelCardCS#AIModelCard "AI Model-Card"
-* category[AImodelCardCHAI] = AImodelCardCS#AImodelCardCHAIformat "CHAI Format"
+* type = AIinputsCS#AIModelCard "AI Model-Card"
+* category[AImodelCardCHAI] = AIinputsCS#AImodelCardCHAIformat "CHAI Format"
 * identifier.system = "https://github.com/coalition-for-health-ai/mc-schema/blob/main/v0.1/examples/"
 * identifier.value = "Aidoc_ICH-02-RT.xml"
 
@@ -197,8 +197,8 @@ Usage: #example
 * content[CHAIformat].attachment.contentType = #application/xml
 * content[+].attachment.url = "Binary/ModelCard-sample-CHAI-binary-pdf"
 * content[=].attachment.contentType = #application/pdf
-* type = AImodelCardCS#AIModelCard "AI Model-Card"
-* category[AImodelCardCHAI] = AImodelCardCS#AImodelCardCHAIformat "CHAI Format"
+* type = AIinputsCS#AIModelCard "AI Model-Card"
+* category[AImodelCardCHAI] = AIinputsCS#AImodelCardCHAIformat "CHAI Format"
 * identifier.system = "https://github.com/coalition-for-health-ai/mc-schema/blob/main/v0.1/examples/"
 * identifier.value = "Aidoc_ICH-02-RT.xml"
 

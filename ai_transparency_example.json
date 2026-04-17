@@ -22,7 +22,7 @@
         "type": {
           "coding": [
             {
-        "system" : "http://hl7.org/fhir/uv/aitransparency/CodeSystem/AImodelCardCS",
+        "system" : "http://hl7.org/fhir/uv/aitransparency/CodeSystem/AIinputsCS",
         "code" : "AIModelCard",
         "display" : "AI Model-Card"
             }
@@ -32,7 +32,7 @@
     {
       "coding" : [
         {
-          "system" : "http://hl7.org/fhir/uv/aitransparency/CodeSystem/AImodelCardCS",
+          "system" : "http://hl7.org/fhir/uv/aitransparency/CodeSystem/AIinputsCS",
           "code" : "AIInputPrompt",
           "display" : "AI Input Prompt"
         }
@@ -41,7 +41,7 @@
               {
             "coding": [
               {
-                "system": "http://hl7.org/fhir/uv/aitransparency/CodeSystem/AImodelCardCS",
+                "system": "http://hl7.org/fhir/uv/aitransparency/CodeSystem/AIinputsCS",
                 "code": "AImodelCardMarkdownFormat",
                 "display": "Markdown Format"
               }

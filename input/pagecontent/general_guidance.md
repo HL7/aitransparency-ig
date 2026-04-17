@@ -273,7 +273,7 @@ One choice is to just put that Markdown Model-Card into the Device.note.text ele
 
 ##### Attachment for the Model-Card
 
-One could encode the Model-Card in a resource designed for carrying any mime-type, the DocumentReference. To make this more clear and searchable we define a [codeSystem](CodeSystem-AImodelCardCS.html) that has some codes to be used to identify that the DocumentReference is specifically an AI Model-Card or an AI Input Prompt
+One could encode the Model-Card in a resource designed for carrying any mime-type, the DocumentReference. To make this more clear and searchable we define a [codeSystem](CodeSystem-AIinputsCS.html) that has some codes to be used to identify that the DocumentReference is specifically an AI Model-Card or an AI Input Prompt
 
 - [Profile of DocumentReference to carry a Model-Card](StructureDefinition-AI-ModelCard.html)
 - [DocumentReference Hugging Face Model-Card](DocumentReference-ModelCard-sample-huggingface-attached.html)
