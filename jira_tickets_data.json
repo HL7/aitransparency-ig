@@ -1,0 +1,1173 @@
+{
+  "total_tickets": 90,
+  "tickets": [
+    {
+      "key": "FHIR-55024",
+      "summary": "Description of algorithm deterministic/non-deterministic/hybrid",
+      "related_pages": "General Guidance",
+      "related_sections": "Observability Factors for iterative IG development"
+    },
+    {
+      "key": "FHIR-55022",
+      "summary": "Inconsistent references to four levels of Observability Factors",
+      "related_pages": "General Guidance",
+      "related_sections": "Observability Factors for iterative IG development"
+    },
+    {
+      "key": "FHIR-54932",
+      "summary": "AI Device .type for AI/LLM",
+      "related_pages": "",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54899",
+      "summary": "Improve clarity and readability of dependency rationale",
+      "related_pages": "(NA)",
+      "related_sections": "Dependencies"
+    },
+    {
+      "key": "FHIR-54898",
+      "summary": "See ballot comment.",
+      "related_pages": "(NA)",
+      "related_sections": "Guidance"
+    },
+    {
+      "key": "FHIR-54895",
+      "summary": "Strengthen realism of assumptions for distributed AI pipelines.",
+      "related_pages": "(NA)",
+      "related_sections": "Assumptions and Caveats"
+    },
+    {
+      "key": "FHIR-54894",
+      "summary": "Clarify observability",
+      "related_pages": "(NA)",
+      "related_sections": "Background"
+    },
+    {
+      "key": "FHIR-54893",
+      "summary": "Clarify AI vs non-AI scope to avoid inconsistent observability implementations.",
+      "related_pages": "Overview",
+      "related_sections": "Scope"
+    },
+    {
+      "key": "FHIR-54885",
+      "summary": "Please add some clarifying text to the Scope section",
+      "related_pages": "Overview",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54801",
+      "summary": "Clarification of meaning of \"reported\" in code AIRPT",
+      "related_pages": "",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54757",
+      "summary": "AI capabilities of a e.g., a smart watch or smart BP meter device should be codeable",
+      "related_pages": "",
+      "related_sections": "5.2.1"
+    },
+    {
+      "key": "FHIR-54740",
+      "summary": "Mismatched headings in table and sub-headings",
+      "related_pages": "General Guidance",
+      "related_sections": "2.1"
+    },
+    {
+      "key": "FHIR-54735",
+      "summary": "Define Model Card better",
+      "related_pages": "General Guidance",
+      "related_sections": "2.6"
+    },
+    {
+      "key": "FHIR-54734",
+      "summary": "For better readability, switch section 2 and 3",
+      "related_pages": "Use Cases",
+      "related_sections": "General Guidance and Use Cases"
+    },
+    {
+      "key": "FHIR-54732",
+      "summary": "Use case is unclear - suggest rewording",
+      "related_pages": "Use Cases",
+      "related_sections": "Use Case 2"
+    },
+    {
+      "key": "FHIR-54731",
+      "summary": "Data Viewing Questions - were these confirmed by actors",
+      "related_pages": "Use Cases",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54729",
+      "summary": "Missing plain language summary",
+      "related_pages": "Overview",
+      "related_sections": "Overview"
+    },
+    {
+      "key": "FHIR-54726",
+      "summary": "Scope needs some refinement",
+      "related_pages": "Overview",
+      "related_sections": "1.2 Scope"
+    },
+    {
+      "key": "FHIR-54725",
+      "summary": "AI Data profile missing example(s)",
+      "related_pages": "",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54723",
+      "summary": "AI device conflicting type binding and property fixed values and extension",
+      "related_pages": "",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54707",
+      "summary": "Refrain from using Tag or define it",
+      "related_pages": "General Guidance",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54706",
+      "summary": "Expand and elaborate further on use cases",
+      "related_pages": "Use Cases",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54644",
+      "summary": "flesh out AI training on clinical data",
+      "related_pages": "Use Cases",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54643",
+      "summary": "Add a PA use case",
+      "related_pages": "Use Cases",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54642",
+      "summary": "AI ingesting info",
+      "related_pages": "(many)",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54641",
+      "summary": "rephrase for clarity",
+      "related_pages": "General Guidance",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54640",
+      "summary": "add CPT to IP section",
+      "related_pages": "Overview",
+      "related_sections": "IP"
+    },
+    {
+      "key": "FHIR-54638",
+      "summary": "Add to background section",
+      "related_pages": "Overview",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54583",
+      "summary": "Use cases consider adding",
+      "related_pages": "Use Cases",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54582",
+      "summary": "Consider reference model card from device and not DocumentReference",
+      "related_pages": "",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54580",
+      "summary": "Example missing the AI tag",
+      "related_pages": "",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54578",
+      "summary": "Add use case about traceability of LLM agent-made API calls",
+      "related_pages": "Use Cases",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54577",
+      "summary": "Extend the use of AI input prompt to agentic multi turn conversation thread",
+      "related_pages": "",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54528",
+      "summary": "Describe how to exchange AI provenance via RESTful create",
+      "related_pages": "General Guidance",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54527",
+      "summary": "Reduce variability on R4 AI device modeling",
+      "related_pages": "General Guidance",
+      "related_sections": "2.6.4"
+    },
+    {
+      "key": "FHIR-54438",
+      "summary": "Clarify \"Operations\" in Data Sources (scope is unclear; examples focus only on protocols)",
+      "related_pages": "General Guidance",
+      "related_sections": "2.1.3"
+    },
+    {
+      "key": "FHIR-54433",
+      "summary": "Clarify privacy and access control for Input Prompt artifacts (PHI/IP risk) and avoid prompt duplication",
+      "related_pages": "General Guidance",
+      "related_sections": "2.7.1"
+    },
+    {
+      "key": "FHIR-54421",
+      "summary": "Clarify Model-Card semantics: Model-Card describes the AI model/system, not the request/prompt",
+      "related_pages": "General Guidance",
+      "related_sections": "2.6"
+    },
+    {
+      "key": "FHIR-54371",
+      "summary": "AI Device representation and it's elements",
+      "related_pages": "",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54368",
+      "summary": "revise codes in AIdeviceTypeVS",
+      "related_pages": "",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54365",
+      "summary": "Suggest to demote sections 2.3 and 2.4",
+      "related_pages": "General Guidance",
+      "related_sections": "2.2-4"
+    },
+    {
+      "key": "FHIR-54351",
+      "summary": "navigation",
+      "related_pages": "(many)",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54281",
+      "summary": "Provide complete examples",
+      "related_pages": "",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54280",
+      "summary": "3)\tSecurity labels are discovery hints, not authoritative evidence of AI authorship",
+      "related_pages": "",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54279",
+      "summary": "1)\tAdd explicit guidance that, \"AI attribution is asserted via Provenance, not embedded in clinical resources",
+      "related_pages": "",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54278",
+      "summary": "Use case improvement",
+      "related_pages": "Use Cases",
+      "related_sections": "Section 3"
+    },
+    {
+      "key": "FHIR-54276",
+      "summary": "Tagging",
+      "related_pages": "Overview",
+      "related_sections": "2.3"
+    },
+    {
+      "key": "FHIR-54275",
+      "summary": "Table in Observability Factors for iterative IG development",
+      "related_pages": "Overview",
+      "related_sections": "2.1"
+    },
+    {
+      "key": "FHIR-54274",
+      "summary": "IG Scope simplification",
+      "related_pages": "Overview",
+      "related_sections": "Scope 1.2"
+    },
+    {
+      "key": "FHIR-54267",
+      "summary": "DocumentReference, Device.note or Device.property",
+      "related_pages": "General Guidance",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54264",
+      "summary": "Conflicting Model-Card definitions.",
+      "related_pages": "General Guidance",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54262",
+      "summary": "Defining AI and Model Card is ambiguous",
+      "related_pages": "General Guidance",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54260",
+      "summary": "Clarify AI Data profile",
+      "related_pages": "",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54259",
+      "summary": "Separate the input prompt modeling from the model card profile",
+      "related_pages": "",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54255",
+      "summary": "Add UML diagram for inline tagging",
+      "related_pages": "General Guidance",
+      "related_sections": "2.3"
+    },
+    {
+      "key": "FHIR-54245",
+      "summary": "Evaluate the need for a modifier extension on AI generated data",
+      "related_pages": "",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54244",
+      "summary": "Include an extension to capture the certainty of an AI inference",
+      "related_pages": "",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-54242",
+      "summary": "Correct meta.security.code in diagram",
+      "related_pages": "General Guidance",
+      "related_sections": "2.3"
+    },
+    {
+      "key": "FHIR-54241",
+      "summary": "AI deletion of resources",
+      "related_pages": "General Guidance",
+      "related_sections": "2.3"
+    },
+    {
+      "key": "FHIR-54240",
+      "summary": "Reorder of the General Guidance page",
+      "related_pages": "General Guidance",
+      "related_sections": "2.1 and 2.2"
+    },
+    {
+      "key": "FHIR-54239",
+      "summary": "Request / refernece input",
+      "related_pages": "General Guidance",
+      "related_sections": "2.1.3"
+    },
+    {
+      "key": "FHIR-54236",
+      "summary": "Unclear sentence",
+      "related_pages": "General Guidance",
+      "related_sections": "2.1.1"
+    },
+    {
+      "key": "FHIR-54235",
+      "summary": "Data quality / data qualification",
+      "related_pages": "General Guidance",
+      "related_sections": "2.1.3"
+    },
+    {
+      "key": "FHIR-54233",
+      "summary": "elaborate the Operation section",
+      "related_pages": "General Guidance",
+      "related_sections": "2.1"
+    },
+    {
+      "key": "FHIR-54215",
+      "summary": "Process/how was it recorded",
+      "related_pages": "General Guidance",
+      "related_sections": "2.1"
+    },
+    {
+      "key": "FHIR-54211",
+      "summary": "Provide model to capture human in the loop",
+      "related_pages": "General Guidance",
+      "related_sections": "2.1"
+    },
+    {
+      "key": "FHIR-54210",
+      "summary": "Context observability factor categories are not represented in the model",
+      "related_pages": "General Guidance",
+      "related_sections": "2.1"
+    },
+    {
+      "key": "FHIR-54181",
+      "summary": "Align bullet point text with table headers",
+      "related_pages": "General Guidance",
+      "related_sections": "2 and 2.1"
+    },
+    {
+      "key": "FHIR-54180",
+      "summary": "Describe plans for R5/R6",
+      "related_pages": "Overview",
+      "related_sections": "1.5"
+    },
+    {
+      "key": "FHIR-54179",
+      "summary": "rule-based systems inclusion in scope",
+      "related_pages": "Overview",
+      "related_sections": "1.2 Scope"
+    },
+    {
+      "key": "FHIR-54158",
+      "summary": "Replace users by consumers",
+      "related_pages": "Overview",
+      "related_sections": "1.2 Scope"
+    },
+    {
+      "key": "FHIR-54151",
+      "summary": "LLM examples will become outdated",
+      "related_pages": "",
+      "related_sections": "Large Language Models definition"
+    },
+    {
+      "key": "FHIR-54150",
+      "summary": "CodeSystem title inconsistent with computable name",
+      "related_pages": "",
+      "related_sections": "Title and name"
+    },
+    {
+      "key": "FHIR-54141",
+      "summary": "Binding strength conflicts with ValueSet name \"Recommended\"",
+      "related_pages": "",
+      "related_sections": "meta.security:AItags binding"
+    },
+    {
+      "key": "FHIR-54137",
+      "summary": "Placeholder instruction text not replaced with content",
+      "related_pages": "General Guidance",
+      "related_sections": "Data Source Examples"
+    },
+    {
+      "key": "FHIR-54118",
+      "summary": "Describe the real world elements that are being encoded in the model",
+      "related_pages": "Overview",
+      "related_sections": "1.1 Background"
+    },
+    {
+      "key": "FHIR-54116",
+      "summary": "Clarify sentence about the aim of the IG",
+      "related_pages": "Overview",
+      "related_sections": "1.1 Background"
+    },
+    {
+      "key": "FHIR-54114",
+      "summary": "Differenciate the AI inference of information vs. a FHIR resource",
+      "related_pages": "Overview",
+      "related_sections": "1.1 Background"
+    },
+    {
+      "key": "FHIR-54112",
+      "summary": "Clarify the definition of the AI that is scoped",
+      "related_pages": "Overview",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-53976",
+      "summary": "Slicing can be translated to assignment",
+      "related_pages": "",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-53975",
+      "summary": "Order of Relationship between Device and Model-Card",
+      "related_pages": "",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-53974",
+      "summary": "Relationship between Device and Model-Card",
+      "related_pages": "",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-53973",
+      "summary": "Clarification on input data",
+      "related_pages": "",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-53970",
+      "summary": "usages in the FHIR IG Statistics link not working",
+      "related_pages": "",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-53969",
+      "summary": "AI Data parent",
+      "related_pages": "",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-53967",
+      "summary": "Some clarifications",
+      "related_pages": "General Guidance",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-53937",
+      "summary": "All Use Cases should have diagrams",
+      "related_pages": "Use Cases",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-53814",
+      "summary": "Improved use-case",
+      "related_pages": "Use Cases",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-53770",
+      "summary": "Does the row represent 4 levels?",
+      "related_pages": "General Guidance",
+      "related_sections": ""
+    },
+    {
+      "key": "FHIR-53622",
+      "summary": "RedHat AI System Card",
+      "related_pages": "",
+      "related_sections": ""
+    }
+  ],
+  "organized": {
+    "General Guidance": {
+      "Observability Factors for iterative IG development": [
+        {
+          "key": "FHIR-55024",
+          "summary": "Description of algorithm deterministic/non-deterministic/hybrid",
+          "related_pages": "General Guidance",
+          "related_sections": "Observability Factors for iterative IG development"
+        },
+        {
+          "key": "FHIR-55022",
+          "summary": "Inconsistent references to four levels of Observability Factors",
+          "related_pages": "General Guidance",
+          "related_sections": "Observability Factors for iterative IG development"
+        }
+      ],
+      "2.1": [
+        {
+          "key": "FHIR-54740",
+          "summary": "Mismatched headings in table and sub-headings",
+          "related_pages": "General Guidance",
+          "related_sections": "2.1"
+        },
+        {
+          "key": "FHIR-54233",
+          "summary": "elaborate the Operation section",
+          "related_pages": "General Guidance",
+          "related_sections": "2.1"
+        },
+        {
+          "key": "FHIR-54215",
+          "summary": "Process/how was it recorded",
+          "related_pages": "General Guidance",
+          "related_sections": "2.1"
+        },
+        {
+          "key": "FHIR-54211",
+          "summary": "Provide model to capture human in the loop",
+          "related_pages": "General Guidance",
+          "related_sections": "2.1"
+        },
+        {
+          "key": "FHIR-54210",
+          "summary": "Context observability factor categories are not represented in the model",
+          "related_pages": "General Guidance",
+          "related_sections": "2.1"
+        }
+      ],
+      "2.6": [
+        {
+          "key": "FHIR-54735",
+          "summary": "Define Model Card better",
+          "related_pages": "General Guidance",
+          "related_sections": "2.6"
+        },
+        {
+          "key": "FHIR-54421",
+          "summary": "Clarify Model-Card semantics: Model-Card describes the AI model/system, not the request/prompt",
+          "related_pages": "General Guidance",
+          "related_sections": "2.6"
+        }
+      ],
+      "(No Section Specified)": [
+        {
+          "key": "FHIR-54707",
+          "summary": "Refrain from using Tag or define it",
+          "related_pages": "General Guidance",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54641",
+          "summary": "rephrase for clarity",
+          "related_pages": "General Guidance",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54528",
+          "summary": "Describe how to exchange AI provenance via RESTful create",
+          "related_pages": "General Guidance",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54267",
+          "summary": "DocumentReference, Device.note or Device.property",
+          "related_pages": "General Guidance",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54264",
+          "summary": "Conflicting Model-Card definitions.",
+          "related_pages": "General Guidance",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54262",
+          "summary": "Defining AI and Model Card is ambiguous",
+          "related_pages": "General Guidance",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-53967",
+          "summary": "Some clarifications",
+          "related_pages": "General Guidance",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-53770",
+          "summary": "Does the row represent 4 levels?",
+          "related_pages": "General Guidance",
+          "related_sections": ""
+        }
+      ],
+      "2.6.4": [
+        {
+          "key": "FHIR-54527",
+          "summary": "Reduce variability on R4 AI device modeling",
+          "related_pages": "General Guidance",
+          "related_sections": "2.6.4"
+        }
+      ],
+      "2.1.3": [
+        {
+          "key": "FHIR-54438",
+          "summary": "Clarify \"Operations\" in Data Sources (scope is unclear; examples focus only on protocols)",
+          "related_pages": "General Guidance",
+          "related_sections": "2.1.3"
+        },
+        {
+          "key": "FHIR-54239",
+          "summary": "Request / refernece input",
+          "related_pages": "General Guidance",
+          "related_sections": "2.1.3"
+        },
+        {
+          "key": "FHIR-54235",
+          "summary": "Data quality / data qualification",
+          "related_pages": "General Guidance",
+          "related_sections": "2.1.3"
+        }
+      ],
+      "2.7.1": [
+        {
+          "key": "FHIR-54433",
+          "summary": "Clarify privacy and access control for Input Prompt artifacts (PHI/IP risk) and avoid prompt duplication",
+          "related_pages": "General Guidance",
+          "related_sections": "2.7.1"
+        }
+      ],
+      "2.2-4": [
+        {
+          "key": "FHIR-54365",
+          "summary": "Suggest to demote sections 2.3 and 2.4",
+          "related_pages": "General Guidance",
+          "related_sections": "2.2-4"
+        }
+      ],
+      "2.3": [
+        {
+          "key": "FHIR-54255",
+          "summary": "Add UML diagram for inline tagging",
+          "related_pages": "General Guidance",
+          "related_sections": "2.3"
+        },
+        {
+          "key": "FHIR-54242",
+          "summary": "Correct meta.security.code in diagram",
+          "related_pages": "General Guidance",
+          "related_sections": "2.3"
+        },
+        {
+          "key": "FHIR-54241",
+          "summary": "AI deletion of resources",
+          "related_pages": "General Guidance",
+          "related_sections": "2.3"
+        }
+      ],
+      "2.1 and 2.2": [
+        {
+          "key": "FHIR-54240",
+          "summary": "Reorder of the General Guidance page",
+          "related_pages": "General Guidance",
+          "related_sections": "2.1 and 2.2"
+        }
+      ],
+      "2.1.1": [
+        {
+          "key": "FHIR-54236",
+          "summary": "Unclear sentence",
+          "related_pages": "General Guidance",
+          "related_sections": "2.1.1"
+        }
+      ],
+      "2 and 2.1": [
+        {
+          "key": "FHIR-54181",
+          "summary": "Align bullet point text with table headers",
+          "related_pages": "General Guidance",
+          "related_sections": "2 and 2.1"
+        }
+      ],
+      "Data Source Examples": [
+        {
+          "key": "FHIR-54137",
+          "summary": "Placeholder instruction text not replaced with content",
+          "related_pages": "General Guidance",
+          "related_sections": "Data Source Examples"
+        }
+      ]
+    },
+    "(No Page Specified)": {
+      "(No Section Specified)": [
+        {
+          "key": "FHIR-54932",
+          "summary": "AI Device .type for AI/LLM",
+          "related_pages": "",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54801",
+          "summary": "Clarification of meaning of \"reported\" in code AIRPT",
+          "related_pages": "",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54725",
+          "summary": "AI Data profile missing example(s)",
+          "related_pages": "",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54723",
+          "summary": "AI device conflicting type binding and property fixed values and extension",
+          "related_pages": "",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54582",
+          "summary": "Consider reference model card from device and not DocumentReference",
+          "related_pages": "",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54580",
+          "summary": "Example missing the AI tag",
+          "related_pages": "",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54577",
+          "summary": "Extend the use of AI input prompt to agentic multi turn conversation thread",
+          "related_pages": "",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54371",
+          "summary": "AI Device representation and it's elements",
+          "related_pages": "",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54368",
+          "summary": "revise codes in AIdeviceTypeVS",
+          "related_pages": "",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54281",
+          "summary": "Provide complete examples",
+          "related_pages": "",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54280",
+          "summary": "3)\tSecurity labels are discovery hints, not authoritative evidence of AI authorship",
+          "related_pages": "",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54279",
+          "summary": "1)\tAdd explicit guidance that, \"AI attribution is asserted via Provenance, not embedded in clinical resources",
+          "related_pages": "",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54260",
+          "summary": "Clarify AI Data profile",
+          "related_pages": "",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54259",
+          "summary": "Separate the input prompt modeling from the model card profile",
+          "related_pages": "",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54245",
+          "summary": "Evaluate the need for a modifier extension on AI generated data",
+          "related_pages": "",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54244",
+          "summary": "Include an extension to capture the certainty of an AI inference",
+          "related_pages": "",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-53976",
+          "summary": "Slicing can be translated to assignment",
+          "related_pages": "",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-53975",
+          "summary": "Order of Relationship between Device and Model-Card",
+          "related_pages": "",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-53974",
+          "summary": "Relationship between Device and Model-Card",
+          "related_pages": "",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-53973",
+          "summary": "Clarification on input data",
+          "related_pages": "",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-53970",
+          "summary": "usages in the FHIR IG Statistics link not working",
+          "related_pages": "",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-53969",
+          "summary": "AI Data parent",
+          "related_pages": "",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-53622",
+          "summary": "RedHat AI System Card",
+          "related_pages": "",
+          "related_sections": ""
+        }
+      ],
+      "5.2.1": [
+        {
+          "key": "FHIR-54757",
+          "summary": "AI capabilities of a e.g., a smart watch or smart BP meter device should be codeable",
+          "related_pages": "",
+          "related_sections": "5.2.1"
+        }
+      ],
+      "Large Language Models definition": [
+        {
+          "key": "FHIR-54151",
+          "summary": "LLM examples will become outdated",
+          "related_pages": "",
+          "related_sections": "Large Language Models definition"
+        }
+      ],
+      "Title and name": [
+        {
+          "key": "FHIR-54150",
+          "summary": "CodeSystem title inconsistent with computable name",
+          "related_pages": "",
+          "related_sections": "Title and name"
+        }
+      ],
+      "meta.security:AItags binding": [
+        {
+          "key": "FHIR-54141",
+          "summary": "Binding strength conflicts with ValueSet name \"Recommended\"",
+          "related_pages": "",
+          "related_sections": "meta.security:AItags binding"
+        }
+      ]
+    },
+    "(NA)": {
+      "Dependencies": [
+        {
+          "key": "FHIR-54899",
+          "summary": "Improve clarity and readability of dependency rationale",
+          "related_pages": "(NA)",
+          "related_sections": "Dependencies"
+        }
+      ],
+      "Guidance": [
+        {
+          "key": "FHIR-54898",
+          "summary": "See ballot comment.",
+          "related_pages": "(NA)",
+          "related_sections": "Guidance"
+        }
+      ],
+      "Assumptions and Caveats": [
+        {
+          "key": "FHIR-54895",
+          "summary": "Strengthen realism of assumptions for distributed AI pipelines.",
+          "related_pages": "(NA)",
+          "related_sections": "Assumptions and Caveats"
+        }
+      ],
+      "Background": [
+        {
+          "key": "FHIR-54894",
+          "summary": "Clarify observability",
+          "related_pages": "(NA)",
+          "related_sections": "Background"
+        }
+      ]
+    },
+    "Overview": {
+      "Scope": [
+        {
+          "key": "FHIR-54893",
+          "summary": "Clarify AI vs non-AI scope to avoid inconsistent observability implementations.",
+          "related_pages": "Overview",
+          "related_sections": "Scope"
+        }
+      ],
+      "(No Section Specified)": [
+        {
+          "key": "FHIR-54885",
+          "summary": "Please add some clarifying text to the Scope section",
+          "related_pages": "Overview",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54638",
+          "summary": "Add to background section",
+          "related_pages": "Overview",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54112",
+          "summary": "Clarify the definition of the AI that is scoped",
+          "related_pages": "Overview",
+          "related_sections": ""
+        }
+      ],
+      "Overview": [
+        {
+          "key": "FHIR-54729",
+          "summary": "Missing plain language summary",
+          "related_pages": "Overview",
+          "related_sections": "Overview"
+        }
+      ],
+      "1.2 Scope": [
+        {
+          "key": "FHIR-54726",
+          "summary": "Scope needs some refinement",
+          "related_pages": "Overview",
+          "related_sections": "1.2 Scope"
+        },
+        {
+          "key": "FHIR-54179",
+          "summary": "rule-based systems inclusion in scope",
+          "related_pages": "Overview",
+          "related_sections": "1.2 Scope"
+        },
+        {
+          "key": "FHIR-54158",
+          "summary": "Replace users by consumers",
+          "related_pages": "Overview",
+          "related_sections": "1.2 Scope"
+        }
+      ],
+      "IP": [
+        {
+          "key": "FHIR-54640",
+          "summary": "add CPT to IP section",
+          "related_pages": "Overview",
+          "related_sections": "IP"
+        }
+      ],
+      "2.3": [
+        {
+          "key": "FHIR-54276",
+          "summary": "Tagging",
+          "related_pages": "Overview",
+          "related_sections": "2.3"
+        }
+      ],
+      "2.1": [
+        {
+          "key": "FHIR-54275",
+          "summary": "Table in Observability Factors for iterative IG development",
+          "related_pages": "Overview",
+          "related_sections": "2.1"
+        }
+      ],
+      "Scope 1.2": [
+        {
+          "key": "FHIR-54274",
+          "summary": "IG Scope simplification",
+          "related_pages": "Overview",
+          "related_sections": "Scope 1.2"
+        }
+      ],
+      "1.5": [
+        {
+          "key": "FHIR-54180",
+          "summary": "Describe plans for R5/R6",
+          "related_pages": "Overview",
+          "related_sections": "1.5"
+        }
+      ],
+      "1.1 Background": [
+        {
+          "key": "FHIR-54118",
+          "summary": "Describe the real world elements that are being encoded in the model",
+          "related_pages": "Overview",
+          "related_sections": "1.1 Background"
+        },
+        {
+          "key": "FHIR-54116",
+          "summary": "Clarify sentence about the aim of the IG",
+          "related_pages": "Overview",
+          "related_sections": "1.1 Background"
+        },
+        {
+          "key": "FHIR-54114",
+          "summary": "Differenciate the AI inference of information vs. a FHIR resource",
+          "related_pages": "Overview",
+          "related_sections": "1.1 Background"
+        }
+      ]
+    },
+    "Use Cases": {
+      "General Guidance and Use Cases": [
+        {
+          "key": "FHIR-54734",
+          "summary": "For better readability, switch section 2 and 3",
+          "related_pages": "Use Cases",
+          "related_sections": "General Guidance and Use Cases"
+        }
+      ],
+      "Use Case 2": [
+        {
+          "key": "FHIR-54732",
+          "summary": "Use case is unclear - suggest rewording",
+          "related_pages": "Use Cases",
+          "related_sections": "Use Case 2"
+        }
+      ],
+      "(No Section Specified)": [
+        {
+          "key": "FHIR-54731",
+          "summary": "Data Viewing Questions - were these confirmed by actors",
+          "related_pages": "Use Cases",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54706",
+          "summary": "Expand and elaborate further on use cases",
+          "related_pages": "Use Cases",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54644",
+          "summary": "flesh out AI training on clinical data",
+          "related_pages": "Use Cases",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54643",
+          "summary": "Add a PA use case",
+          "related_pages": "Use Cases",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54583",
+          "summary": "Use cases consider adding",
+          "related_pages": "Use Cases",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54578",
+          "summary": "Add use case about traceability of LLM agent-made API calls",
+          "related_pages": "Use Cases",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-53937",
+          "summary": "All Use Cases should have diagrams",
+          "related_pages": "Use Cases",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-53814",
+          "summary": "Improved use-case",
+          "related_pages": "Use Cases",
+          "related_sections": ""
+        }
+      ],
+      "Section 3": [
+        {
+          "key": "FHIR-54278",
+          "summary": "Use case improvement",
+          "related_pages": "Use Cases",
+          "related_sections": "Section 3"
+        }
+      ]
+    },
+    "(many)": {
+      "(No Section Specified)": [
+        {
+          "key": "FHIR-54642",
+          "summary": "AI ingesting info",
+          "related_pages": "(many)",
+          "related_sections": ""
+        },
+        {
+          "key": "FHIR-54351",
+          "summary": "navigation",
+          "related_pages": "(many)",
+          "related_sections": ""
+        }
+      ]
+    }
+  }
+}

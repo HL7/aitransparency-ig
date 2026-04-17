@@ -36,7 +36,7 @@ Title: "Recommended provenance codes"
 Description:  "Subset from HL7, plus those defined here. For use in .meta.security to indicate AI was used in some way."
 * ^experimental = false
 * codes from system AddedProvenanceCS
-* http://terminology.hl7.org/CodeSystem/v3-ObservationValue|4.0.0#AIAST "Artificial Intelligence asserted"
+* http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST "Artificial Intelligence asserted"
 
 
 
@@ -70,7 +70,7 @@ Note that the example I took, I assumed was a good one for AIAST. But I am not s
 Note that there is no .performer as that element can't hold a Device, and we are modeling this as being wholely authored by the AI. Thus I use the extension alternate-reference.
 """
 Usage: #example
-* meta.security = http://terminology.hl7.org/CodeSystem/v3-ObservationValue|4.0.0#AIAST "Artificial Intelligence asserted"
+* meta.security = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST "Artificial Intelligence asserted"
 * status = #final
 * code = $loinc#9269-2 "Glasgow coma score total"
 * code.text = "Glasgow Coma Scale , (GCS)"
@@ -136,9 +136,9 @@ Usage: #example
 * result.reference = "http://server.example.org/fhir/Observation/f206"
 * conclusion = "Blood culture tested positive on staphylococcus aureus"
 * conclusion.extension[0].url = "http://hl7.org/fhir/uv/security-label-ds4p/StructureDefinition/extension-inline-sec-label"
-* conclusion.extension[0].valueCoding = http://terminology.hl7.org/CodeSystem/v3-ObservationValue|4.0.0#AIAST "Artificial Intelligence asserted"
+* conclusion.extension[0].valueCoding = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST
 * conclusionCode = $sct#428763004 "Staphylococcus aureus bacteraemia"
 * conclusionCode.extension[0].url = "http://hl7.org/fhir/uv/security-label-ds4p/StructureDefinition/extension-inline-sec-label"
-* conclusionCode.extension[0].valueCoding = http://terminology.hl7.org/CodeSystem/v3-ObservationValue|4.0.0#AIAST "Artificial Intelligence asserted"
+* conclusionCode.extension[0].valueCoding = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST
 
 
