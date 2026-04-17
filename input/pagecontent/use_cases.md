@@ -34,7 +34,7 @@ th {
 |--------------------------------|----------------------------|
 | Clinician | What is happening (to modify)? Why is it happening? |
 | Payor | What matches prior authorization criteria? |
-| QI | What matches the desired outcomes, or desired approach to care? |
+| Quality Improvement | What matches the desired outcomes, or desired approach to care? |
 | Safety Board | Multiple questions for root cause analysis |
 | Legal | Who is responsible? |
 {: .grid}
