@@ -258,11 +258,11 @@ An example from the [CHAI Github Examples](https://github.com/coalition-for-heal
 
 Note that these are all the same example Model-Card, just encoded different ways depending on the needs. These three encoding methods are available for the HuggingFace format as well. Note that in the case of CHAI format, these examples include both the XML and the PDF rendering of the same as different .content entries.
 
-##### R5/R6
+##### Support for FHIR R5/R6
 
-In R5/R6 of FHIR core the Device resource has a `.property` element with a `.property.type` we can use to indicate the model-card, and place the model-card markdown into `.property.valueAttachment` as markdown string. (It could go into `.valueString` if we know it will be markdown, but that is not strongly clear.)
+In FHIR R5/R6 of FHIR core the Device resource has a `.property` element with a `.property.type` we can use to indicate the model-card, and place the model-card markdown into `.property.valueAttachment` as markdown string. (It could go into `.valueString` if we know it will be markdown, but that is not strongly clear.)
 
-##### R4 Simply put the Model-Card markdown into the note.text of the Device
+##### FHIR R4 Simply put the Model-Card markdown into the note.text of the Device
 
 One choice is to just put that Markdown Model-Card into the Device.note.text element. This is not wrong from the definition of that element, but it may not be obvious to one looking at the Device resource that there is meaning to the markdown given.
 
