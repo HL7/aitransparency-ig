@@ -272,7 +272,7 @@ Description:  "Subset from HL7, plus those defined here"
 CodeSystem: AIdeviceTypeCS
 Title: "Added Device.type for AI/LLM"
 Description: "This CodeSystem contains codes for the Device.type that indicate that the Device is an AI. The codes here were created by AI."
-* ^meta.security = http://terminology.hl7.org/CodeSystem/v3-ObservationValue|4.0.0#AIAST "Artificial Intelligence asserted"
+* ^meta.security = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST "Artificial Intelligence asserted"
 * ^caseSensitive = true
 * ^experimental = false
 * ^status = #active
@@ -315,7 +315,7 @@ Usage: #definition
 * occurredDateTime = "2025-09-15"
 * reason[+] = http://terminology.hl7.org/CodeSystem/v3-ActReason#METAMGT
 * reason[=].text = "Initial CodeSystem created by Co-Pilot AI"
-* reason[AIReason] = http://terminology.hl7.org/CodeSystem/v3-ObservationValue|4.0.0#AIAST
+* reason[AIReason] = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST
 * activity = http://terminology.hl7.org/CodeSystem/v3-DataOperation#CREATE
 * agent[AIModelAgent].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author
 * agent[AIModelAgent].who.display = "GitHub Copilot AI"
