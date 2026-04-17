@@ -67,7 +67,7 @@ This use contains a Glasgow Coma Scale observation with **Artificial Intelligenc
 
 Note that the example I took, I assumed was a good one for AIAST. But I am not sure that it is, especially since the outcome is not well coded, using ucum score values.
 
-Note that there is no .performer as that element can't hold a Device, and we are modeling this as being wholely authored by the AI. Thus I use the extension alternate-reference.
+Note that there is no .performer as that element can't hold a Device, and we are modeling this as being wholly authored by the AI. Thus I use the extension alternate-reference.
 """
 Usage: #example
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST "Artificial Intelligence asserted"

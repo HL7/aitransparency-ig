@@ -15,28 +15,29 @@ The presence of both tags and Provenance provides for the best interoperability 
 </div>
 
 ### AI Observability Factors
+
 Beyond 1st level observability, there are a number of factors that the end user or client system may be interested in knowing about. These factors can be broken down into 3 categories:
 
 1. Model(s) - definition of the AI(s) used (see [Defining the AI](#defining-the-ai-model)) 
-   * Name and version of the AI algorithm / model
-   * Ogranization that produced the model
-   * Is the algorithm deterministic or non-deterministic
-   * Data set used in training the model(s)
-   * ...
+  - Name and version of the AI algorithm / model
+  - Organization that produced the model
+  - Is the algorithm deterministic or non-deterministic
+  - Data set used in training the model(s)
+  - ...
 2. Context - input data provided to the AI to produce or manipulate outputs (see [Context of AI Usage](#context-of-ai-usage))
-   * Prompts, including system and user prompts
-   * Patient data, such as health records
-   * Reference input, such as clinical practice guidelines 
-   * ...
+  - Prompts, including system and user prompts
+  - Patient data, such as health records
+  - Reference input, such as clinical practice guidelines 
+  - ...
 3. Process - the interactions between AI(s), human(s), and system(s) (see [Process Utilizing AI](#process-utilizing-ai))
-   * Human reviews (human-in-the-loop)
-   * Multi-agent interactions, such as use of Agent-to-Agent protocol (A2A)
-   * Tool calling, such as use of Model Context Protocol (MCP)
-   * Guardrails for bias reduction, inappropriate responses, undesired actions, ...
-   * ...
-
+  - Human reviews (human-in-the-loop)
+  - Multi-agent interactions, such as use of Agent-to-Agent protocol (A2A)
+  - Tool calling, such as use of Model Context Protocol (MCP)
+  - Guardrails for bias reduction, inappropriate responses, undesired actions, ...
+  - ...
 
 ### Tagging
+
 The use of tagging enables distinguishing data that has not been influenced by AI from data that has been influenced by AI. The level of influence and the details about how the AI was used are not provided by simple tagging. However, tagging is very light weight and does not add significant bloat to the payload or additional lookups. Tagging can be used as an indicator that AI was used in the creation or updating of the given resource and that a client system may wish to investigate further by fetching the Resource's Provenance.
 
 >💡 Tip
@@ -45,7 +46,7 @@ The use of tagging enables distinguishing data that has not been influenced by A
 
 Tagging (also called [Security Labels](https://hl7.org/fhir/security-labels.html)) uses the FHIR [Resource definition](https://hl7.org/fhir/resource.html) `.meta.security` element that is at the top of all Resources, and as such can be found without Resource type specific processing. The use of security tagging follows the purpose for security tagging, as the domain of security covers protections against risks to Confidentiality, Availability, and Integrity (see [Healthcare Privacy and Security Classification System (HCS) vocabulary](https://hl7.org/fhir/security-labels.html#hcs)). In this case focusing on [Integrity](https://terminology.hl7.org/ValueSet-v3-SecurityIntegrityObservationValue.html) is defined as completeness, veracity, reliability, trustworthiness, and provenance. In the case of AI Transparency we want to mark the AI participation to convey reliability, trustworthiness, and provenance.
 
-Within the [Integrity Security Tags Vocabulary](https://terminology.hl7.org/ValueSet-v3-SecurityIntegrityObservationValue.html) is [AIAST - Artificial Intelligence Asserted](https://terminology.hl7.org/CodeSystem-v3-ObservationValue.html#v3-ObservationValue-AIAST) as a broad concept of any infuence by any kind of artificial intelligence. There is also [DICTAST - Dictation asserted](https://terminology.hl7.org/CodeSystem-v3-ObservationValue.html#v3-ObservationValue-DICTAST) for when dictation, which might be AI driven, has been involved in translating dictation to data.
+Within the [Integrity Security Tags Vocabulary](https://terminology.hl7.org/ValueSet-v3-SecurityIntegrityObservationValue.html) is [AIAST - Artificial Intelligence Asserted](https://terminology.hl7.org/CodeSystem-v3-ObservationValue.html#v3-ObservationValue-AIAST) as a broad concept of any influence by any kind of artificial intelligence. There is also [DICTAST - Dictation asserted](https://terminology.hl7.org/CodeSystem-v3-ObservationValue.html#v3-ObservationValue-DICTAST) for when dictation, which might be AI driven, has been involved in translating dictation to data.
 
 ```mermaid
 classDiagram
@@ -64,7 +65,7 @@ We include a [valueSet](ValueSet-ProvenanceVS.html) that assembles our codes and
 Consider finding more descriptive label
 -->
 
-**Resource tag**
+#### Resource tag
 
 A Resource tag indicates that the whole Resource is influenced by the code assigned.
 
@@ -99,7 +100,7 @@ Discussion has indicated that a few more codes might be useful. For this we crea
     ...
 ```
 
-**Element tag within a Resource**
+#### Element tag within a Resource
 
 An Element tag will indicate that an element or a few elements within a Resource were influenced by AI, but not the whole Resource.
 Use when components of an example were authored by AI, but not the whole Resource.
@@ -135,7 +136,8 @@ One of the key portions of that Resource is
 ```
 
 ### Defining the AI Model
-There are a number of observability factors beyond simple tagging that are of interest to end users and downstream systems. Cheif among these is the nature of the AI itself. The user would like to understand what algorythm / model was used, who developed it, how it was trained, any certifications it has, and so on... To do this, the guide outlines the use of the Provenance resource, which can then be linked to Device and DocumentReference to point to a Model-Card.
+
+There are a number of observability factors beyond simple tagging that are of interest to end users and downstream systems. Chief among these is the nature of the AI itself. The user would like to understand what algorithm / model was used, who developed it, how it was trained, any certifications it has, and so on... To do this, the guide outlines the use of the Provenance resource, which can then be linked to Device and DocumentReference to point to a Model-Card.
 
 >💡 Tip
 >
@@ -210,6 +212,7 @@ classDiagram
 ```
 
 Examples:
+
 - [Profile of Provenance describing AI as involved](StructureDefinition-AI-Provenance.html)
 - [The AI System as a Device](Device-TheAI.html)
 
