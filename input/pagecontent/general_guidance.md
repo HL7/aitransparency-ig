@@ -255,7 +255,7 @@ The [Coalition for Health AI (CHAI) Applied Model Card](https://www.chai.org/wor
 
 An example from the [CHAI Github Examples](https://github.com/coalition-for-health-ai/mc-schema) is included here in multiple DocumentReference formats:
 
-- [DocumentReference linked to a web respository where the Model-Cards exist](DocumentReference-ModelCard-sample-CHAI-web.html)
+- [DocumentReference linked to a web repository where the Model-Cards exist](DocumentReference-ModelCard-sample-CHAI-web.html)
 - [DocumentReference with Model-Card encoded using FHIR Binary resources](DocumentReference-ModelCard-sample-CHAI-binary.html)
 - [DocumentReference with Model-Card encoded inside](DocumentReference-ModelCard-sample-CHAI-attached.html)
 
