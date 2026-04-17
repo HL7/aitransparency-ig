@@ -47,7 +47,7 @@ When training AI models on clinical content, the provenance of training data sho
 
 When in the course of using a given AI model, it may become understood that that given AI model was making poor or dangerous outputs. Therefore one needs to discover all the instances where a Patient may have been impacted by this given AI model.
 
-All outputs from a given AI model would have traceability back to a single Device resource that describes that given model. Thus one needs to trace to all resources with a Provenance.agent referencing that Device instance, and should trace to all resources otherwise referenceing that Device instance (e.g. Observation.device, Composition.author).
+All outputs from a given AI model would have traceability back to a single Device resource that describes that given model. Thus one needs to trace to all resources with a Provenance.agent referencing that Device instance, and should trace to all resources otherwise referencing that Device instance (e.g. Observation.device, Composition.author).
 
 ### Use Case 4: Discovery of output from a poorly crafted Input (such as Prompt)
 
