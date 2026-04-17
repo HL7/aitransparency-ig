@@ -1,6 +1,6 @@
 ### Use Case 1: AI Attribution in Clinical or Administrative Documentation Review
 
-Clinicians reviewing previous treatment plans must distinguish between content inferred by AI, decisions assisted by AI, and those made without AI involvement. This parallels standard practice of identifying the human clinician responsible for treatment plans, their role in development, and their clinical background.
+Clinicians reviewing previous treatment plans must distinguish between content influenced by AI, decisions assisted by AI, and those made without AI involvement. This parallels standard practice of identifying the human clinician responsible for treatment plans, their role in development, and their clinical background.
 
 <p align="center">
     <img src="./uc1_attribution.png" alt="Use Case 1: AI Attribution in Clinical or Administrative Documentation Review" style="width: 30%; float: none; vertical-align: middle;"/>
