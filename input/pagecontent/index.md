@@ -15,7 +15,7 @@ In this project, AI algorithm is defined broadly to include any computer-based l
 
 ### Assumptions and Caveats
 
-This IG assumes that health data are being represented in FHIR. While it is recognized that other standards, such as HL7 CDA and HL7 v2, may be used, this IG does not yet support them. Future work may seek to applying the Use-Cases and Observability Factors to these other standards.
+This IG assumes that health data are being represented in FHIR. While it is recognized that other standards, such as HL7 CDA and HL7 v2, may be used, this IG does not yet support them. Future work may seek to apply the Use-Cases and Observability Factors to these other standards.
 
 ### Credits
 
