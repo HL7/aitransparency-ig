@@ -357,3 +357,7 @@ Use Case: A provider receives a [PDF of lab result(s)](DocumentReference-Lab-Res
 In the attached example the patient's name is Alton Walsh and the lab test is an HbA1C. All the FHIR resources in the bundle have been created by the AI, so they should be tagged accordingly.
 
 - [Provenance of AI Generated Lab Results](Provenance-AI-Generated-Lab-Results.html)
+
+### Security and Privacy Considerations
+
+- The Input Prompt and Context may contain sensitive information, such as patient data, and should be protected accordingly. The same goes for the Model-Card if it contains sensitive information about the AI model that should not be public.
