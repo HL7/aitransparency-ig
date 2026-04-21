@@ -12,5 +12,5 @@
   "title" : "AI Transparency on FHIR",
   "ci-build" : "https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/index.html",
   "category" : "AI",
-  "introduction" : "Provides guidance for representing the usage of AI in influencing FHIR resources. Starting with how to tag FHIR resources, and expanding into how to use Provenance, Device, and other data elements, this FHIR IG provides standards that enable downstream use cases to identify such resources. This allows the informed usage of AI-inferred health data."
+  "introduction" : "Provides guidance for representing the usage of AI in influencing FHIR resources. Starting with how to tag FHIR resources, and expanding into how to use Provenance, Device, and other data elements, this FHIR IG provides standards that enable downstream use cases to identify such resources. This allows the informed usage of AI influenced health data."
 }

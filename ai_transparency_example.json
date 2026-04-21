@@ -1,0 +1,204 @@
+{
+  "resourceType": "Bundle",
+  "id": "ai-transparency-example-bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:e1bd3e74-6665-4688-b893-2bc993522ef6",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-ModelCard"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "http://example.org",
+            "value": "modelcard-gpt-4o-mini"
+          }
+        ],
+        "status": "current",
+        "type": {
+          "coding": [
+            {
+        "system" : "http://hl7.org/fhir/uv/aitransparency/CodeSystem/AIinputsCS",
+        "code" : "AIModelCard",
+        "display" : "AI Model-Card"
+            }
+          ]
+        },
+        "category": [
+    {
+      "coding" : [
+        {
+          "system" : "http://hl7.org/fhir/uv/aitransparency/CodeSystem/AIinputsCS",
+          "code" : "AIInputPrompt",
+          "display" : "AI Input Prompt"
+        }
+      ]
+    },
+              {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/uv/aitransparency/CodeSystem/AIinputsCS",
+                "code": "AIModelCardMarkdownFormat ",
+                "display": "Markdown Format"
+              }
+            ]
+          }
+        ],
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/markdown",
+              "data": "IyBHUFQtNG8tbWluaSBNb2RlbCBDYXJkCgpPcGVuQUkncyBHUFQtNG8tbWluaSBtb2RlbCBmb3IgY2xpbmljYWwgc3VtbWFyaXphdGlvbi4=",
+              "title": "GPT-4o-mini Model Card",
+              "creation": "2026-01-13"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "DocumentReference?identifier=http://example.org|modelcard-gpt-4o-mini"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:953fb71d-1fe5-4c09-bba8-71403daeaa55",
+      "resource": {
+        "resourceType": "Device",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-Device"
+          ]
+        },
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/uv/aitransparency/StructureDefinition/aitransparency.AIKind",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/uv/aitransparency/CodeSystem/AIdeviceTypeCS",
+                  "code": "Large-Language-Models"
+                }
+              ]
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/uv/aitransparency/StructureDefinition/aitransparency.modelCardDescription",
+            "valueReference": {
+              "reference": "urn:uuid:e1bd3e74-6665-4688-b893-2bc993522ef6"
+            }
+          }
+        ],
+        "identifier": [
+          {
+            "system": "http://example.org",
+            "value": "gpt-4o-mini-device"
+          }
+        ],
+        "type": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/uv/aitransparency/CodeSystem/AIdeviceTypeCS",
+              "code": "Artificial-Intelligence"
+            }
+          ]
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Device?identifier=http://example.org|gpt-4o-mini-device"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b7ec78e5-b12f-407c-b275-141d5bd25eb7",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "meta": {
+          "security": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+              "code": "AIAST",
+              "display": "Artificial Intelligence asserted"
+            }
+          ]
+        },
+        "status": "current",
+        "subject": {
+          "reference": "http://example.org/fhir/Patient/53806019"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/markdown",
+              "data": "IyMjIFBhdGllbnQgU3VtbWFyeSBmb3IgTWFyaWEgR2FyY2lhIChJRDogNTM4MDYwMTkpCgotICoqRGF0ZSBvZiBCaXJ0aDoqKiBNYXJjaCAxNSwgMTk4NQotICoqR2VuZGVyOioqIEZlbWFsZQoKIyMjIyBNZWRpY2FsIENvbmRpdGlvbnMKMS4gKipUeXBlIDIgRGlhYmV0ZXMgTWVsbGl0dXMqKgogICAtICoqU3RhdHVzOioqIEFjdGl2ZSwgQ29uZmlybWVkCiAgIC0gKipPbnNldCBEYXRlOioqIEp1bmUgMTUsIDIwMjAKCjIuICoqRXNzZW50aWFsIEh5cGVydGVuc2lvbioqCiAgIC0gKipTdGF0dXM6KiogQWN0aXZlLCBDb25maXJtZWQKICAgLSAqKk9uc2V0IERhdGU6KiogTWFyY2ggMjAsIDIwMTkKCiMjIyMgVml0YWwgU2lnbnMgKFJlY2VudCBPYnNlcnZhdGlvbnMpCi0gKipCbG9vZCBQcmVzc3VyZToqKiAxNDUvOTIgbW1IZyAoYXMgb2YgSmFudWFyeSA2LCAyMDI2KQotICoqQm9keSBUZW1wZXJhdHVyZToqKiAzNy4yIMKwQyAoYXMgb2YgSmFudWFyeSAxMiwgMjAyNikKCiMjIyMgTGFib3JhdG9yeSBSZXN1bHRzCi0gKipHbHVjb3NlIExldmVsOioqIDE1NiBtZy9kTCAoYXMgb2YgSmFudWFyeSA4LCAyMDI2KQoKIyMjIyBNZWRpY2F0aW9ucwoxLiAqKk1ldGZvcm1pbiAxMDAwbWcqKgogICAtICoqRG9zYWdlOioqIFRha2UgMTAwMG1nIHR3aWNlIGRhaWx5IHdpdGggbWVhbHMKICAgLSAqKkF1dGhvcmVkIE9uOioqIEp1bmUgMTUsIDIwMjAKCjIuICoqTGlzaW5vcHJpbCAxMG1nKioKICAgLSAqKkRvc2FnZToqKiBUYWtlIDEwbWcgb25jZSBkYWlseQogICAtICoqQXV0aG9yZWQgT246KiogTWFyY2ggMjAsIDIwMTkKCiMjIyMgUmVjZW50IFByb2NlZHVyZXMKLSAqKkFubnVhbCBQaHlzaWNhbCBFeGFtaW5hdGlvbioqCiAgIC0gKipEYXRlOioqIERlY2VtYmVyIDE0LCAyMDI1CgojIyMjIEVuY291bnRlcnMKLSAqKkZvbGxvdy11cCBWaXNpdCoqCiAgIC0gKipEYXRlOioqIEphbnVhcnkgNiwgMjAyNgoKRm9yIG1vcmUgZGV0YWlsZWQgaW5mb3JtYXRpb24sIHlvdSBjYW4gdmlldyB0aGUgW2Z1bGwgbWVkaWNhbCByZWNvcmRdKGh0dHBzOi8vaGFwaS5maGlyLm9yZy9iYXNlUjQvUGF0aWVudC81MzgwNjAxOSku",
+              "title": "AI-Generated Patient Summary",
+              "creation": "2026-01-13"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:448e4e2c-d02f-4747-aa07-3be63332cf09",
+      "resource": {
+        "resourceType": "Provenance",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-Provenance"
+          ]
+        },
+        "target": [
+          {
+            "reference": "urn:uuid:b7ec78e5-b12f-407c-b275-141d5bd25eb7"
+          }
+        ],
+        "recorded": "2026-01-13T01:00:00Z",
+  "reason" : [
+    {
+      "coding" : [
+        {
+          "system" : "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+          "code" : "HOPERAT"
+        }
+      ]
+    },
+    {
+      "coding" : [
+        {
+          "system" : "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+          "version" : "4.0.0",
+          "code" : "AIAST"
+        }
+      ]
+    }
+  ],
+          "agent": [
+          {
+            "who": {
+              "reference": "urn:uuid:953fb71d-1fe5-4c09-bba8-71403daeaa55"
+            }
+          }
+        ],
+        "entity": [
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:e1bd3e74-6665-4688-b893-2bc993522ef6"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Provenance"
+      }
+    }
+  ]
+}

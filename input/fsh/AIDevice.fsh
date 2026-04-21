@@ -45,22 +45,22 @@ pretty_name: Sample Segmentation
 This is a sample dataset card for a semantic segmentation dataset.
 """
 
-CodeSystem: AImodelCardCS
-Title: "Added DocumentReference.code for AI ModelCard"
-Description: "This CodeSystem contains codes for the DocumentReference.type and DocumentReference.category that indicate that the DocumentReference is a Model-Card."
+CodeSystem: AIinputsCS
+Title: "Codes for AI ModelCard and Input Prompt"
+Description: "This CodeSystem contains codes for the DocumentReference.type and DocumentReference.category that indicate that the DocumentReference is an Input-Prompt or one of a set of Model-Card(s)."
 * ^caseSensitive = true
 * ^experimental = false
 * ^status = #active
 * #AIModelCard "AI Model-Card" "DocumentReference containing a Model-Card describing an AI system"
 * #AIInputPrompt "AI Input Prompt" "Input Prompt for AI Model"
-* #AImodelCardMarkdownFormat "Markdown Format" "Hugging Face Model-Card in Markdown format"
+* #AIModelCardMarkdownFormat  "Markdown Format" "Hugging Face Model-Card in Markdown format"
 * #AImodelCardCHAIformat "CHAI Format" "Model-Card in CHAI format (Coalition for Health AI)"
 
 // TODO: Should have an invariant to ensure that if type is AIModelCard, then at least one category is present indicating the format, and that the content agrees with that format.
 //Invariant: mc-1
 //Description: "A DocumentReference of type AI Model-Card must have at least one category that indicates the format of the Model-Card, and that must agree with the content."
-//Expression: "type.coding.where(system='AImodelCardCS' and code='AIModelCard').exists()"
-//Expression: "DocumentReference.type = 'AImodelCardCS#AIModelCard' implies (DocumentReference.category.exists(c | c = 'AImodelCardCS#AIInputPrompt') and (DocumentReference.content.exists(cnt | cnt.attachment.contentType = 'text/markdown') or DocumentReference.content.exists(cnt | cnt.attachment.contentType = 'application/xml')))"
+//Expression: "type.coding.where(system='AIinputsCS' and code='AIModelCard').exists()"
+//Expression: "DocumentReference.type = 'AIinputsCS#AIModelCard' implies (DocumentReference.category.exists(c | c = 'AIinputsCS#AIInputPrompt') and (DocumentReference.content.exists(cnt | cnt.attachment.contentType = 'text/markdown') or DocumentReference.content.exists(cnt | cnt.attachment.contentType = 'application/xml')))"
 //Severity: #warning // to support other Model-Cards in the future
 
 Profile: AIModelCard
@@ -73,19 +73,17 @@ Description: "A DocumentReference that contains a Model-Card describing an AI sy
 * type.coding ^slicing.discriminator.path = "$this"
 * type.coding ^slicing.rules = #closed
 * type.coding contains AImodelCard 1..* MS
-* type.coding[AImodelCard] = AImodelCardCS#AIModelCard "AI Model-Card"
+* type.coding[AImodelCard] = AIinputsCS#AIModelCard "AI Model-Card"
 //* obeys mc-1
 * category 1..* MS
 * category ^slicing.discriminator.type = #value
 * category ^slicing.discriminator.path = "$this"
 * category ^slicing.rules = #open
 * category contains 
-  AImodelCard 1..* MS and 
   AImodelCardMD 0..1 MS and 
   AImodelCardCHAI 0..1 MS
-* category[AImodelCard] = AImodelCardCS#AIInputPrompt "AI Input Prompt"
-* category[AImodelCardMD] = AImodelCardCS#AImodelCardMarkdownFormat "Markdown Format"
-* category[AImodelCardCHAI] = AImodelCardCS#AImodelCardCHAIformat "CHAI Format"
+* category[AImodelCardMD] = AIinputsCS#AIModelCardMarkdownFormat  "Markdown Format"
+* category[AImodelCardCHAI] = AIinputsCS#AImodelCardCHAIformat "CHAI Format"
 * content ^slicing.discriminator.type = #value
 * content ^slicing.discriminator.path = "attachment.contentType"
 * content ^slicing.rules = #open
@@ -108,6 +106,36 @@ Description: "A DocumentReference that contains a Model-Card describing an AI sy
 * description 0..1 MS 
   * ^comment = "The model-card in markdown format that is not base64-encoded for human readability"
 
+
+Profile: AIInputPrompt
+Parent: DocumentReference
+Id: AI-InputPrompt
+Title: "AI Input Prompt DocumentReference"
+Description: "A DocumentReference that contains an input prompt for an AI system. The Input Prompt is the information that is input into the AI system to produce an output. This DocumentReference can be used to capture the Input Prompt that was used with a given AI system, and can be referenced from the Provenance that tracks the usage of the AI system. The AI Prompt is typically encoded in markdown, but does not need to be. This DocumentReference would be referenced in the Provenance as the input to an Activity that represents the usage of the AI system, and the AIDevice would be referenced as the agent in that Provenance. This allows for traceability from the output back to the Input Prompt and the AI system that produced it."
+* type 1..1 MS
+* type.coding ^slicing.discriminator.type = #value
+* type.coding ^slicing.discriminator.path = "$this"
+* type.coding ^slicing.rules = #closed
+* type.coding contains AIInputPrompt 1..* MS
+* type.coding[AIInputPrompt] = AIinputsCS#AIInputPrompt "AI Input Prompt"
+
+* content ^slicing.discriminator.type = #value
+* content ^slicing.discriminator.path = "attachment.contentType"
+* content ^slicing.rules = #open
+* content contains 
+  MarkdownFormat 0..1
+* content[MarkdownFormat].attachment.contentType 1..1 MS
+* content[MarkdownFormat].attachment.contentType = #text/markdown (exactly)
+* content[MarkdownFormat].attachment.data 0..1 MS
+  * ^comment = "The input prompt in Markdown base64-encoded text format"
+* content[MarkdownFormat].attachment.url 0..1 MS
+  * ^comment = "The input prompt in Markdown as a URL"
+* identifier 0..* MS
+* description 0..1 MS 
+  * ^comment = "The input prompt in markdown format that is not base64-encoded for human readability"
+
+
+
 Instance: ModelCard-sample-huggingface-attached
 InstanceOf: AIModelCard
 Title: "DocumentReference Model-Card in HuggingFace Markdown format attached"
@@ -121,9 +149,8 @@ Usage: #example
 * content[MarkdownFormat].attachment.data =   "LS0tDQpsYW5ndWFnZToNCi0gZW4NCmxpY2Vuc2U6DQotIGJzZC0zLWNsYXVzZQ0KYW5ub3RhdGlvbnNfY3JlYXRvcnM6DQotIGNyb3dkc291cmNlZA0KLSBleHBlcnQtZ2VuZXJhdGVkDQpsYW5ndWFnZV9jcmVhdG9yczoNCi0gZm91bmQNCm11bHRpbGluZ3VhbGl0eToNCi0gbW9ub2xpbmd1YWwNCnNpemVfY2F0ZWdvcmllczoNCi0gbjwxSw0KdGFza19jYXRlZ29yaWVzOg0KLSBpbWFnZS1zZWdtZW50YXRpb24NCnRhc2tfaWRzOg0KLSBzZW1hbnRpYy1zZWdtZW50YXRpb24NCnByZXR0eV9uYW1lOiBTYW1wbGUgU2VnbWVudGF0aW9uDQotLS0NCg0KIyBEYXRhc2V0IENhcmQgZm9yIFNhbXBsZSBTZWdtZW50YXRpb24NCg0KVGhpcyBpcyBhIHNhbXBsZSBkYXRhc2V0IGNhcmQgZm9yIGEgc2VtYW50aWMgc2VnbWVudGF0aW9uIGRhdGFzZXQu"
 
 * content[MarkdownFormat].attachment.contentType = #text/markdown
-* type = AImodelCardCS#AIModelCard "AI Model-Card"
-* category[AImodelCard] = AImodelCardCS#AIInputPrompt "AI Input Prompt"
-* category[AImodelCardMD] = AImodelCardCS#AImodelCardMarkdownFormat "Markdown Format"
+* type = AIinputsCS#AIModelCard "AI Model-Card"
+* category[AImodelCardMD] = AIinputsCS#AIModelCardMarkdownFormat  "Markdown Format"
 * identifier.system = "https://github.com/huggingface/huggingface_hub/tree/main/tests/fixtures/cards"
 * identifier.value = "sample_datasetcard_simple.md"
 
@@ -137,9 +164,8 @@ Usage: #example
 * content[CHAIformat].attachment.contentType = #application/xml
 * content[+].attachment.url = "https://github.com/coalition-for-health-ai/mc-schema/blob/main/v0.1/examples/Aidoc_ICH-02-RT.pdf"
 * content[=].attachment.contentType = #application/pdf
-* type = AImodelCardCS#AIModelCard "AI Model-Card"
-* category[AImodelCard] = AImodelCardCS#AIInputPrompt "AI Input Prompt"
-* category[AImodelCardCHAI] = AImodelCardCS#AImodelCardCHAIformat "CHAI Format"
+* type = AIinputsCS#AIModelCard "AI Model-Card"
+* category[AImodelCardCHAI] = AIinputsCS#AImodelCardCHAIformat "CHAI Format"
 * identifier.system = "https://github.com/coalition-for-health-ai/mc-schema/blob/main/v0.1/examples/"
 * identifier.value = "Aidoc_ICH-02-RT.xml"
 
@@ -156,9 +182,8 @@ Usage: #example
 //* content[CHAIformat].attachment.contentType = #application/xml
 * content[+].attachment.id = "ig-loader-Aidoc_ICH-02-RT.pdf"
 //* content[=].attachment.contentType = #application/pdf
-* type = AImodelCardCS#AIModelCard "AI Model-Card"
-* category[AImodelCard] = AImodelCardCS#AIInputPrompt "AI Input Prompt"
-* category[AImodelCardCHAI] = AImodelCardCS#AImodelCardCHAIformat "CHAI Format"
+* type = AIinputsCS#AIModelCard "AI Model-Card"
+* category[AImodelCardCHAI] = AIinputsCS#AImodelCardCHAIformat "CHAI Format"
 * identifier.system = "https://github.com/coalition-for-health-ai/mc-schema/blob/main/v0.1/examples/"
 * identifier.value = "Aidoc_ICH-02-RT.xml"
 
@@ -172,9 +197,8 @@ Usage: #example
 * content[CHAIformat].attachment.contentType = #application/xml
 * content[+].attachment.url = "Binary/ModelCard-sample-CHAI-binary-pdf"
 * content[=].attachment.contentType = #application/pdf
-* type = AImodelCardCS#AIModelCard "AI Model-Card"
-* category[AImodelCard] = AImodelCardCS#AIInputPrompt "AI Input Prompt"
-* category[AImodelCardCHAI] = AImodelCardCS#AImodelCardCHAIformat "CHAI Format"
+* type = AIinputsCS#AIModelCard "AI Model-Card"
+* category[AImodelCardCHAI] = AIinputsCS#AImodelCardCHAIformat "CHAI Format"
 * identifier.system = "https://github.com/coalition-for-health-ai/mc-schema/blob/main/v0.1/examples/"
 * identifier.value = "Aidoc_ICH-02-RT.xml"
 
@@ -256,7 +280,7 @@ Description: "Expresses the more specific kind(s) of AI technology and technique
 * valueCodeableConcept from AIdeviceTypeVS (extensible)
 
 ValueSet: AIdeviceTypeVS
-Title: "Recommended Device.type codes for AI/LLM"
+Title: "Recommended Device type codes for Artificial Intelligence"
 Description:  "Subset from HL7, plus those defined here"
 * ^experimental = false
 * codes from system AIdeviceTypeCS
@@ -270,8 +294,9 @@ Description:  "Subset from HL7, plus those defined here"
 
 
 CodeSystem: AIdeviceTypeCS
-Title: "Added Device.type for AI/LLM"
+Title: "Device type for Artificial Intelligence"
 Description: "This CodeSystem contains codes for the Device.type that indicate that the Device is an AI. The codes here were created by AI."
+* ^meta.security = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST "Artificial Intelligence asserted"
 * ^caseSensitive = true
 * ^experimental = false
 * ^status = #active
@@ -305,14 +330,16 @@ Description: "This CodeSystem contains codes for the Device.type that indicate t
 * #Artificial-Intelligence "All kinds of Artificial Intelligence" "Any type of Artificial Intelligence system, undifferentiated."
 
 Instance:   AIdeviceTypeCS-initial-history
-InstanceOf: Provenance
+InstanceOf: Provenance  // Note that the CodeSystem rendering the IG publisher does will put this Provenance as "History" at the bottom of the CodeSystem page. If this Provenance uses the AIProvenacne profile, then this History will not be shown. So the IG publisher clearly does not like any meta.profile in the Provenance it uses for history.
 Title: "Initial creation of AIdeviceTypeCS CodeSystem"
+Description: "Provenance record for the initial creation of the AIdeviceTypeCS CodeSystem by GitHub Copilot AI."
 Usage: #definition
 * target[+] = Reference(CodeSystem/AIdeviceTypeCS)
 * recorded = "2025-09-15T13:00:00.0000Z"
 * occurredDateTime = "2025-09-15"
-* reason = http://terminology.hl7.org/CodeSystem/v3-ActReason#METAMGT
-* reason.text = "Initial CodeSystem created by Co-Pilot AI"
+* reason[+] = http://terminology.hl7.org/CodeSystem/v3-ActReason#METAMGT
+* reason[=].text = "Initial CodeSystem created by Co-Pilot AI"
+* reason[+] = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST
 * activity = http://terminology.hl7.org/CodeSystem/v3-DataOperation#CREATE
 * agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author
 * agent[=].who.display = "GitHub Copilot AI"

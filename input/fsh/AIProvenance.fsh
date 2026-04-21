@@ -24,5 +24,5 @@ Description: "An AI Provenance is a record of the use of an AI model in generati
 * entity ^slicing.discriminator.path = "what"
 * entity ^slicing.rules = #open
 * entity contains AIInputData 0..*
-* entity[AIInputData].what only Reference(AIModelCard) // "The input data used by the AI model."
-  * ^comment = "The AIModelCard resource captures the details of the input data provided to the AI model."
+* entity[AIInputData].what only Reference(AIInputPrompt) // "The input data used by the AI model."
+  * ^comment = "The AIInputPrompt resource captures the details of the input data provided to the AI model."
