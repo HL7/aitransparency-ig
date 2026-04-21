@@ -111,7 +111,7 @@ Profile: AIInputPrompt
 Parent: DocumentReference
 Id: AI-InputPrompt
 Title: "AI Input Prompt DocumentReference"
-Description: "A DocumentReference that contains an input prompt for an AI system. The Input Prompt is the information that is input into the AI system to produce an output. This DocumentReference can be used to capture the Input Prompt that was used with a given AI system, and can be referenced from the AIDevice that represents that AI system. This is typically encoded in markdown, but does not need to be. This DocumentReference would be referenced in the Provenance as the input to an Activity that represents the usage of the AI system, and the AIDevice would be referenced as the agent in that Provenance. This allows for traceability from the output back to the Input Prompt and the AI system that produced it."
+Description: "A DocumentReference that contains an input prompt for an AI system. The Input Prompt is the information that is input into the AI system to produce an output. This DocumentReference can be used to capture the Input Prompt that was used with a given AI system, and can be referenced from the Provenance that tracks the usage of the AI system. The AI Prompt is typically encoded in markdown, but does not need to be. This DocumentReference would be referenced in the Provenance as the input to an Activity that represents the usage of the AI system, and the AIDevice would be referenced as the agent in that Provenance. This allows for traceability from the output back to the Input Prompt and the AI system that produced it."
 * type 1..1 MS
 * type.coding ^slicing.discriminator.type = #value
 * type.coding ^slicing.discriminator.path = "$this"
