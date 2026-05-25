@@ -36,7 +36,7 @@ publisher:
 #
 dependencies:
   hl7.fhir.uv.security-label-ds4p: 
-    version: latest
+    version: 1.0.0
     id: ds4p
     uri: http://hl7.org/fhir/uv/security-label-ds4p/ImplementationGuide/hl7.fhir.uv.security-label-ds4p
 

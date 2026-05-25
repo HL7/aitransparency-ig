@@ -1,14 +1,4 @@
 
-Alias: $sct = http://snomed.info/sct
-Alias: $v2-0074 = http://terminology.hl7.org/CodeSystem/v2-0074
-Alias: $loinc = http://loinc.org
-Alias: $codes = http://example.org/codes
-Alias: $v3-ObservationInterpretation = http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
-Alias: $organization-type = http://terminology.hl7.org/CodeSystem/organization-type
-Alias: $v3-ActCode = http://terminology.hl7.org/CodeSystem/v3-ActCode
-Alias: $v2-0203 = http://terminology.hl7.org/CodeSystem/v2-0203
-Alias: $v2-0131 = http://terminology.hl7.org/CodeSystem/v2-0131
-
 /*
 AIAST "Artificial Intelligence asserted" is a security label that indicates that the AI system has asserted the content of the resource or element. 
 This means not just contributed to the resource, but also that the AI system has made a determination about the validity of the content.
@@ -36,7 +26,7 @@ Title: "Recommended provenance codes"
 Description:  "Subset from HL7, plus those defined here. For use in .meta.security to indicate AI was used in some way."
 * ^experimental = false
 * codes from system AddedProvenanceCS
-* http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST "Artificial Intelligence asserted"
+* $ObsValue#AIAST "Artificial Intelligence asserted"
 
 
 
@@ -70,7 +60,7 @@ Note that the example I took, I assumed was a good one for AIAST. But I am not s
 Note that there is no .performer as that element can't hold a Device, and we are modeling this as being wholly authored by the AI. Thus I use the extension alternate-reference.
 """
 Usage: #example
-* meta.security = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST "Artificial Intelligence asserted"
+* meta.security = $ObsValue#AIAST "Artificial Intelligence asserted"
 * status = #final
 * code = $loinc#9269-2 "Glasgow coma score total"
 * code.text = "Glasgow Coma Scale , (GCS)"
@@ -123,7 +113,7 @@ as well as a ServiceRequest.
 - The `DiagnosticReport.conclusion` and `DiagnosticReport.conclusionCode` elements are tagged with the Artificial Intelligence asserted security label `AIAST`.
 """
 Usage: #example
-* meta.security[+] = http://terminology.hl7.org/CodeSystem/v3-ActCode#PROCESSINLINELABEL "process inline security label"
+* meta.security[+] = http://terminology.hl7.org/CodeSystem/v3-ActCode|10.0.0#PROCESSINLINELABEL "process inline security label"
 * id = "f202"
 * basedOn.reference = "http://server.example.org/fhir/ServiceRequest/req"
 * status = #final
@@ -136,9 +126,9 @@ Usage: #example
 * result.reference = "http://server.example.org/fhir/Observation/f206"
 * conclusion = "Blood culture tested positive on staphylococcus aureus"
 * conclusion.extension[0].url = "http://hl7.org/fhir/uv/security-label-ds4p/StructureDefinition/extension-inline-sec-label"
-* conclusion.extension[0].valueCoding = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST
+* conclusion.extension[0].valueCoding = $ObsValue#AIAST
 * conclusionCode = $sct#428763004 "Staphylococcus aureus bacteraemia"
 * conclusionCode.extension[0].url = "http://hl7.org/fhir/uv/security-label-ds4p/StructureDefinition/extension-inline-sec-label"
-* conclusionCode.extension[0].valueCoding = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST
+* conclusionCode.extension[0].valueCoding = $ObsValue#AIAST
 
 
