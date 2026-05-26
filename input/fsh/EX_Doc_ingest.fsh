@@ -43,7 +43,7 @@ Usage: #example
 * policy = "http://server.example.org/fhir/DocumentReference/AI-Generated-Lab-Results"
 * activity = http://terminology.hl7.org/CodeSystem/iso-21089-lifecycle#transform "Transform/Translate Record Lifecycle Event"
 * activity.text = "AI Generated Lab Results from PDF"
-* agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author "Author"
+* agent[+].type = $ProvPartType#author "Author"
 * agent[=].who = Reference(Device/TheAI)
 * entity[+].role = #source
 * entity[=].what = Reference(DocumentReference/Lab-Results-PDF)

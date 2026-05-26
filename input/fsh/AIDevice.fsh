@@ -337,13 +337,13 @@ Usage: #definition
 * target[+] = Reference(CodeSystem/AIdeviceTypeCS)
 * recorded = "2025-09-15T13:00:00.0000Z"
 * occurredDateTime = "2025-09-15"
-* reason[+] = http://terminology.hl7.org/CodeSystem/v3-ActReason#METAMGT
+* reason[+] = $ActReason#METAMGT
 * reason[=].text = "Initial CodeSystem created by Co-Pilot AI"
 * reason[+] = $ObsValue#AIAST
 * activity = http://terminology.hl7.org/CodeSystem/v3-DataOperation#CREATE
-* agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author
+* agent[+].type = $ProvPartType#author
 * agent[=].who.display = "GitHub Copilot AI"
-* agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#verifier
+* agent[+].type = $ProvPartType#verifier
 * agent[=].who.display = "John F. Moehrke"
 
 

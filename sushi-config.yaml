@@ -9,7 +9,7 @@ name: AITransparency
 title: AI Transparency on FHIR
 description: Provides guidance for representing the usage of AI in influencing FHIR resources. Starting with how to tag FHIR resources, and expanding into how to use Provenance, Device, and other data elements, this FHIR IG provides standards that enable downstream use cases to identify such resources. This allows the informed usage of AI influenced health data.
 status: active # draft | active | retired | unknown
-version: 1.0.0-ballot
+version: 1.0.0-current
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 copyrightYear: 2024+
 releaseLabel: "STU1 Ballot" # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
@@ -229,7 +229,7 @@ resources:
 instanceOptions:
   # When set to true, slices must be referred to by name and not only by a numeric index in order to be used
   # in an Instance's assignment rule. All slices appear in the order in which they are specified in FSH rules.
-  # While SUSHI defaults to false for legacy reasons, manualSliceOrding is recommended for new projects.
+  # While SUSHI defaults to false for legacy reasons, manualSliceOrdering is recommended for new projects.
   manualSliceOrdering: true # true | false
   # Determines for which types of Instances SUSHI will automatically set meta.profile
   # if InstanceOf references a profile:

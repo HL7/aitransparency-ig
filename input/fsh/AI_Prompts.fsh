@@ -38,11 +38,11 @@ Usage: #example
 * occurredDateTime = "2023-10-01T00:00:00Z"
 * recorded = "2023-10-01T00:00:00Z"
 * policy = "http://example.org/policies/ai-authorized-CDS"
-* reason[+] = http://terminology.hl7.org/CodeSystem/v3-ActReason#TREAT
+* reason[+] = $ActReason#TREAT
 * reason[AIReason] = $ObsValue#AIAST
-* agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#verifier "Verifier"
+* agent[+].type = $ProvPartType#verifier "Verifier"
 * agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
-* agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author "Author"
+* agent[+].type = $ProvPartType#author "Author"
 * agent[=].who = Reference(Device/Note-ModelCard)
 * entity[+].role = http://terminology.hl7.org/CodeSystem/provenance-entity-role#source "Source"
 * entity[=].what.reference = "http://server.example.org/fhir/documentreference/patient-cda-summary"
@@ -53,7 +53,7 @@ Usage: #example
 * entity[+].role = http://terminology.hl7.org/CodeSystem/provenance-entity-role#quotation "Quotation"
 * contained[+] = Input-Prompt-lorem-ipsum
 * entity[=].what = Reference(Input-Prompt-lorem-ipsum)
-* entity[=].agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author "Author"
+* entity[=].agent[+].type = $ProvPartType#author "Author"
 * entity[=].agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
 
 
@@ -118,16 +118,16 @@ Usage: #example
 * occurredDateTime = "2025-06-18T00:00:00Z"
 * recorded = "2025-06-18T00:00:00Z"
 * policy = "http://example.org/policies/ai-authorized-patient-generation"
-* reason[+] = http://terminology.hl7.org/CodeSystem/v3-ActReason#HOPERAT
+* reason[+] = $ActReason#HOPERAT
 * reason[AIReason] = $ObsValue#AIAST
-* agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#verifier "Verifier"
+* agent[+].type = $ProvPartType#verifier "Verifier"
 * agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
-* agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author "Author"
+* agent[+].type = $ProvPartType#author "Author"
 * agent[=].who = Reference(Device/Note-ModelCard)
 * contained[+] = Input-Prompt-create-patient
 * entity[+].role = http://terminology.hl7.org/CodeSystem/provenance-entity-role#quotation "Quotation"
 * entity[=].what = Reference(Input-Prompt-create-patient)
-* entity[=].agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author "Author"
+* entity[=].agent[+].type = $ProvPartType#author "Author"
 * entity[=].agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
 
 

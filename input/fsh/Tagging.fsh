@@ -113,7 +113,7 @@ as well as a ServiceRequest.
 - The `DiagnosticReport.conclusion` and `DiagnosticReport.conclusionCode` elements are tagged with the Artificial Intelligence asserted security label `AIAST`.
 """
 Usage: #example
-* meta.security[+] = http://terminology.hl7.org/CodeSystem/v3-ActCode|10.0.0#PROCESSINLINELABEL "process inline security label"
+* meta.security[+] = $ActCode#PROCESSINLINELABEL "process inline security label"
 * id = "f202"
 * basedOn.reference = "http://server.example.org/fhir/ServiceRequest/req"
 * status = #final
