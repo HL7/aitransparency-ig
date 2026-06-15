@@ -123,9 +123,18 @@ Because AI-influenced data links back to the AI through `Provenance.agent.who` (
 
 ```mermaid
 sequenceDiagram
-    actor R as Reviewer / QA
+    participant AI as AI Model<br/>(Device/TheAI)
     participant S as FHIR Server
-    Note over R: Device/TheAI is determined to be problematic
+    actor R as Reviewer / QA
+
+    Note over AI,S: Production — over time the model writes output to the server
+    AI->>S: Create resource + AIProvenance (agent = Device/TheAI)
+    AI->>S: Create resource + AIProvenance (agent = Device/TheAI)
+    AI->>S: ... more outputs over time
+
+    Note over AI,R: ⚠️ Device/TheAI is later determined to be problematic
+
+    Note over AI,R: Discovery
     R->>S: GET /Provenance?agent=Device/TheAI
     S-->>R: Provenance records authored by Device/TheAI
     R->>S: Resolve each Provenance.target
@@ -150,9 +159,20 @@ Just as a model can later be found problematic, so can an **input**. Inputs — 
 
 ```mermaid
 sequenceDiagram
-    actor R as Reviewer / QA
+    participant C as Input / Context<br/>(e.g. DocumentReference)
+    participant AI as AI Model
     participant S as FHIR Server
-    Note over R: An input (source document or prompt) is found to be flawed
+    actor R as Reviewer / QA
+
+    Note over C,S: Production — the input drives AI output written to the server
+    C->>AI: Provide context (source document / prompt)
+    AI->>S: Create output + AIProvenance (entity = the input)
+    C->>AI: Input reused on another request
+    AI->>S: Create output + AIProvenance (entity = the input)
+
+    Note over C,R: ⚠️ The input is later determined to be flawed
+
+    Note over C,R: Discovery
     R->>S: GET /Provenance?entity=DocumentReference/Lab-Results-PDF
     S-->>R: Provenance records that used the flawed input
     R->>S: Resolve each Provenance.target

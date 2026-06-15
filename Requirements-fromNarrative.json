@@ -1,7 +1,7 @@
 {
   "resourceType" : "Requirements",
   "id" : "fromNarrative",
-  "url" : "http://fhir.org/packages/hl7.fhir.pubpack/Requirements/fromNarrative",
+  "url" : "http://hl7.org/fhir/uv/aitransparency/Requirements/fromNarrative",
   "name" : "FromNarrative",
   "title" : "Narrative Conformance Statements",
   "status" : "active",
