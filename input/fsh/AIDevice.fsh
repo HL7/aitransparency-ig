@@ -296,7 +296,7 @@ Description:  "Subset from HL7, plus those defined here"
 CodeSystem: AIdeviceTypeCS
 Title: "Device type for Artificial Intelligence"
 Description: "This CodeSystem contains codes for the Device.type that indicate that the Device is an AI. The codes here were created by AI."
-* ^meta.security = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST "Artificial Intelligence asserted"
+* ^meta.security = $ObsValue#AIAST "Artificial Intelligence asserted"
 * ^caseSensitive = true
 * ^experimental = false
 * ^status = #active
@@ -337,13 +337,13 @@ Usage: #definition
 * target[+] = Reference(CodeSystem/AIdeviceTypeCS)
 * recorded = "2025-09-15T13:00:00.0000Z"
 * occurredDateTime = "2025-09-15"
-* reason[+] = http://terminology.hl7.org/CodeSystem/v3-ActReason#METAMGT
+* reason[+] = $ActReason#METAMGT
 * reason[=].text = "Initial CodeSystem created by Co-Pilot AI"
-* reason[+] = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#AIAST
+* reason[+] = $ObsValue#AIAST
 * activity = http://terminology.hl7.org/CodeSystem/v3-DataOperation#CREATE
-* agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author
+* agent[+].type = $ProvPartType#author
 * agent[=].who.display = "GitHub Copilot AI"
-* agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#verifier
+* agent[+].type = $ProvPartType#verifier
 * agent[=].who.display = "John F. Moehrke"
 
 
