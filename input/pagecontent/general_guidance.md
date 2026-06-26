@@ -33,16 +33,16 @@ Beyond 1st level observability, there are a number of factors that the end user 
   - Human reviews (human-in-the-loop)
   - Multi-agent interactions, such as use of Agent-to-Agent protocol (A2A)
   - Tool calling, such as use of Model Context Protocol (MCP)
-  - Guardrails for bias reduction, inappropriate responses, undesired actions, ...
+  - Guardrails to prevent bias, inappropriate responses, undesired actions, ...
   - ...
 
 ### Tagging
 
-The use of tagging enables distinguishing data that has not been influenced by AI from data that has been influenced by AI. The level of influence and the details about how the AI was used are not provided by simple tagging. However, tagging is very light weight and does not add significant bloat to the payload or additional lookups. Tagging can be used as an indicator that AI was used in the creation or updating of the given resource and that a client system may wish to investigate further by fetching the Resource's Provenance.
+The use of tagging enables distinguishing data that has not been produced or manipulated by AI, from data that has been produced or manipulated by AI. The level of influence and the details about how the AI was used are not provided by simple tagging. However, tagging is very light weight and does not add significant bloat to the payload or additional lookups. Tagging can be used as an indicator that AI was used in the creation or updating of the given resource and that a client system may wish to investigate further by fetching the Resource's Provenance.
 
 >💡 Tip
 >
-> Use when one needs to quickly and easily identify Resources or elements inside a Resource that have been influenced by AI.
+> Use when one needs to quickly and easily identify Resources or elements inside a Resource that have been produced or manipulated by AI.
 
 Tagging (also called [Security Labels](https://hl7.org/fhir/security-labels.html)) uses the FHIR [Resource definition](https://hl7.org/fhir/resource.html) `.meta.security` element that is at the top of all Resources, and as such can be found without Resource type specific processing. The use of security tagging follows the purpose for security tagging, as the domain of security covers protections against risks to Confidentiality, Availability, and Integrity (see [Healthcare Privacy and Security Classification System (HCS) vocabulary](https://hl7.org/fhir/security-labels.html#hcs)). In this case focusing on [Integrity](https://terminology.hl7.org/ValueSet-v3-SecurityIntegrityObservationValue.html) is defined as completeness, veracity, reliability, trustworthiness, and provenance. In the case of AI Transparency we want to mark the AI participation to convey reliability, trustworthiness, and provenance.
 
@@ -67,7 +67,7 @@ Consider finding more descriptive label
 
 #### Resource tag
 
-A Resource tag indicates that the whole Resource is influenced by the code assigned.
+A Resource tag indicates that the whole Resource is produced or manipulated by the code assigned.
 
 - [Profile on ANY resource that is tagged with AI involvement](StructureDefinition-AI-data.html)
 
@@ -75,13 +75,13 @@ Use when an example is completely authored by an AI.
 
 - [Example Observation with AI Assisted security labels](Observation-glasgow.html)
 
-The key portion of that Resource is the following meta.security element holding the `AIAST` code. `AIAST` is an HL7 Observation value for metadata that indicates that AI was involved in producing the data or information.
+The key portion of that Resource is the following meta.security element holding the `AIAST` code. `AIAST` is an HL7 Observation value for metadata that indicates that AI was involved in producing or manipulating the data or information.
 
 <!---
 Note, I don't think the description I added for AIAST is the best so including it more as a placeholder for now.
 -->
 
-Discussion has indicated that a few more codes might be useful. For this we create a local [codeSystem](CodeSystem-AddedProvenanceCS.html) to allow us to experiment. Eventually useful codes would be proposed to HL7 Terminology (THO). For example `AIAST` does not indicate if a clinician was involved in the use of the AI, or reviewed the output of the AI.
+The `AIAST` code does not provide contextual indications, like for example if a clinician was involved in the use of the AI, or reviewed the output of the AI. This IG defined a new code system, [Added Provenance Codes](CodeSystem-AddedProvenanceCS.html), with codes providing additional contextual tagging..
 
 ```json
 {
@@ -102,10 +102,10 @@ Discussion has indicated that a few more codes might be useful. For this we crea
 
 #### Element tag within a Resource
 
-An Element tag will indicate that an element or a few elements within a Resource were influenced by AI, but not the whole Resource.
+An Element tag will indicate that an element or a few elements within a Resource were produced or manipulated by AI, but not the whole Resource.
 Use when components of an example were authored by AI, but not the whole Resource.
 
-meta.security holds a code defined in [DS4P Inline Security Labels]({{site.data.fhir.ds4p}}/inline_security_labels.html) - `PROCESSINLINE`, and the `inline-sec-label` extension is on each element that was influenced by AI to indicate it is an AI asserted value.
+meta.security holds a code defined in [DS4P Inline Security Labels]({{site.data.fhir.ds4p}}/inline_security_labels.html) - `PROCESSINLINE`, and the `inline-sec-label` extension is on each element that was produced or manipulated by AI to indicate it is an AI asserted value.
 
 - [DiagnosticReport with Inline AI Security Labels](DiagnosticReport-f202.html)
 
@@ -220,7 +220,7 @@ Examples:
 
 The Hugging Face Model-Card is a combination of YAML that defines in codeable terms the details, and a Markdown that describes it in narrative. Given that Markdown can carry YAML, the overall object is Markdown.
 
-Example Model-Card from https://github.com/huggingface/huggingface_hub/tree/main/tests/fixtures/cards
+Example Model-Card from [https://github.com/huggingface/huggingface_hub/tree/main/tests/fixtures/cards](https://github.com/huggingface/huggingface_hub/tree/main/tests/fixtures/cards)
 
 Here is an example given:
 
