@@ -85,6 +85,7 @@ parameters:
   apply-version: 'true'
   pin-canonicals: pin-multiples
   shownav: true
+  auto-oid-root: 2.16.840.1.113883.4.642.40.79
 #   validation: [allow-any-extensions, no-broken-links]
 #
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
