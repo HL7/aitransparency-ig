@@ -79,6 +79,7 @@ Usage: #example
 * performer.actor.reference = "http://server.example.org/fhir/Practitioner/pract"
 * reasonCode.text = "Generalized abdominal pain 24 hours. Localized in RIF with rebound and guarding"
 * followUp.text = "ROS 5 days  - 2013-04-10"
+* followUp.text.extension[AIconfidence].valueCodeableConcept = http://terminology.hl7.org/CodeSystem/certainty-rating#moderate
 * note.text = "Routine Appendectomy. Appendix was inflamed and in retro-caecal position"
 
 Instance: f206
@@ -96,7 +97,7 @@ Usage: #example
 * valueCodeableConcept = $sct#3092008 "Staphylococcus aureus"
 * interpretation = http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation#POS
 * method = $sct#104177005 "Blood culture for bacteria, including anaerobic screen"
-
+* extension[AIconfidence].valueDecimal = 0.95
 
 // Taken from FHIR core example, replicated here to add the AIdata profile
 Instance: satO2
