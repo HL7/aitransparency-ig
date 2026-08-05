@@ -335,7 +335,9 @@ As with tagging, a Provenance can point at a whole Resource. In this way one can
 
 Provenance can be just about some elements within a Resource. This is a normal part of Provenance, but it is important for AI use-cases.
 
-- [Provenance of AI Authored Procedure.followup.text](Provenance-AI-Authored-Element.html)
+The Provenance.target would point at a specific element within the targeted resource using the [target element extension](http://hl7.org/fhir/StructureDefinition/targetElement) or [target path extension](http://hl7.org/fhir/StructureDefinition/targetPath).
+
+For example when to indicate that AI only authored the Procedure.followup.text would look like [Provenance of AI Authored Procedure.followup.text](Provenance-AI-Authored-Element.html)
 
 ##### Full Process example
 

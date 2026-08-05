@@ -15,4 +15,4 @@ Initial Public-Comment
 - [FHIR-57918](https://jira.hl7.org/browse/FHIR-57918) Remove experimental provenance codes
 - [FHIR-54368](https://jira.hl7.org/browse/FHIR-54368) Revise codes in AIdeviceTypeVS - different AI technologies and fleshes out a bit the scenarios and data types.
 - [FHIR-54244](https://jira.hl7.org/browse/FHIR-54244) Include an extension to capture the certainty of an AI inference
-
+- [FHIR-57756](https://jira.hl7.org/browse/FHIR-57756) More narrative explanation of element level Provenance explaining the extensions
