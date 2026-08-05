@@ -84,10 +84,6 @@ Consider finding more descriptive label
 
 A Resource tag indicates that the whole Resource is produced or manipulated by the code assigned.
 
-- [Profile on ANY resource that is tagged with AI involvement](StructureDefinition-AI-data.html)
-
-Use when an example is completely authored by an AI.
-
 - [Example Observation with AI Assisted security labels](Observation-glasgow.html)
 
 The key portion of that Resource is the following meta.security element holding the `AIAST` code. `AIAST` is an HL7 Observation value for metadata that indicates that AI was involved in producing or manipulating the data or information.
