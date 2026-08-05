@@ -56,7 +56,7 @@ Usage: #example
 * activity.text = "AI drafted prior-authorization determination, verified by a utilization reviewer"
 * agent[+].type = $ProvPartType#verifier "Verifier"
 * agent[=].who.reference = "http://server.example.org/fhir/Practitioner/utilization-reviewer"
-* agent[+].type = $ProvPartType#author "Author"
-* agent[=].who = Reference(Device/TheAI)
+* agent[AIagent].type = $ProvPartType#author "Author"
+* agent[AIagent].who = Reference(Device/TheAI)
 * entity[+].role = http://terminology.hl7.org/CodeSystem/provenance-entity-role#source "Source"
 * entity[=].what.reference = "http://server.example.org/fhir/Claim/priorauth-mri-request"

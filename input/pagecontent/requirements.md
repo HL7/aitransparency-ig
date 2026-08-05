@@ -32,7 +32,7 @@ Beyond 1st level observability, there are a number of factors that the end user 
   - ...
 4. Process - the interactions between AI(s), human(s), and system(s) (see [Process Utilizing AI](use_cases.html#process-utilizing-ai))
   - Human reviews (human-in-the-loop)
-  - Guardrails to prevent bias, inappropriate responses, undesired actions,
+  - Guardrails to prevent bias, inappropriate responses, undesired actions
   - ...
 
 #### Discovering that AI was used
@@ -150,8 +150,7 @@ One of the key portions of that Resource is
 
 There are a number of observability factors beyond simple tagging that are of interest to end users and downstream systems. Chief among these is the nature of the AI itself. The user would like to understand what algorithm / model was used, who developed it, how it was trained, any certifications it has, and so on... To do this, the guide outlines the use of the Provenance resource, which can then be linked to Device and DocumentReference to point to a Model-Card.
 
-The industry is converging around standards for providing this information, generally called Model-Cards. Several different standards are emerging, including [Hugging Face](#hugging-face-markdown) and [CHAI Model Cards](#chai-applied-model-cards-xml). This guide does not enforce any particular Model-Card, but does show how to encode any Model-Card in a [AI Model-Card profiled DocumentReference](StructureDefinition-AI-ModelCard.html), and these would be referenced in a [AI profiled Device](StructureDefinition-AI-Device.html) or within the [Provenance describing the AI involvement](StructureDefinition-AI-Provenance.html). This looks like:
-
+The overall Provenance model is shown below. 
 
 ```mermaid
 classDiagram
@@ -216,6 +215,22 @@ classDiagram
     Device --> DocumentReferenceModelCard : "Device.extension.model-card"
     Provenance --> DocumentReferenceInputPrompt : "Provenance.entity.what"
 ```
+
+#### Provenance Profile
+
+The  [Provenance profile](StructureDefinition-AI-Provenance.html) provides clear ways to define:
+- The AI System details - `Provenance.agent` described with a Device conforming to the AI Device profile
+- The Model-Card details - Provenance.entity with a role of
+- The Prompts - Provenance.entity with a role of `input-prompt`
+- The FHIR Resources that were provided to the AI - all the other `Provenance.entity`
+- When the AI was used - Provenance.occurred
+- Who else was involved, such as human overseers, other systems, and so on - `Provenance.agent` 
+- The FHIR Resources that were created or updated by the AI - `Provenance.target`
+
+
+The industry is converging around standards for providing this information, generally called Model-Cards. Several different standards are emerging, including [Hugging Face](#hugging-face-markdown) and [CHAI Model Cards](#chai-applied-model-cards-xml). This guide does not enforce any particular Model-Card, but does show how to encode any Model-Card in a [AI Model-Card profiled DocumentReference](StructureDefinition-AI-ModelCard.html), and these would be referenced in a [AI profiled Device](StructureDefinition-AI-Device.html) or within the. This looks like:
+
+
 
 ##### Resource-level
 

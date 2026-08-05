@@ -31,4 +31,4 @@ Initial Public-Comment
 - [FHIR-54893](https://jira.hl7.org/browse/FHIR-54893) Clarify AI vs non-AI scope to avoid inconsistent observability implementations.
 - [FHIR-54726](https://jira.hl7.org/browse/FHIR-54726) Scope needs some refinement
 - [FHIR-54233](https://jira.hl7.org/browse/FHIR-54233) Elaborate the Operation section
-- 
+- [FHIR-53973](https://jira.hl7.org/browse/FHIR-53973) Clarification on input data

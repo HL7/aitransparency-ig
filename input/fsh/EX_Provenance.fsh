@@ -20,8 +20,8 @@ Usage: #example
 * reason[AIReason] = $ObsValue#AIAST
 * agent[+].type = $ProvPartType#author "Author"
 * agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
-* agent[+].type = $ProvPartType#informant "Informant"
-* agent[=].who = Reference(Device/TheAI)
+* agent[AIagent].type = $ProvPartType#informant "Informant"
+* agent[AIagent].who = Reference(Device/TheAI)
 
 Instance: TheAI
 InstanceOf: AIDevice
@@ -56,8 +56,8 @@ Usage: #example
 * reason[AIReason] = $ObsValue#AIAST
 * agent[+].type = $ProvPartType#verifier "Verifier"
 * agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
-* agent[+].type = $ProvPartType#author "Author"
-* agent[=].who = Reference(Device/TheAI)
+* agent[AIagent].type = $ProvPartType#author "Author"
+* agent[AIagent].who = Reference(Device/TheAI)
 
 
 

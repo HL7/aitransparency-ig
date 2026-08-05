@@ -28,7 +28,7 @@ Description: "A DocumentReference that contains a Model-Card describing an AI sy
 * type.coding ^slicing.discriminator.path = "$this"
 * type.coding ^slicing.rules = #closed
 * type.coding contains AImodelCard 1..* MS
-* type.coding[AImodelCard] = AIinputsCS#AIModelCard "AI Model-Card"
+* type.coding[AImodelCard] = AIinputsCS#AIModelCard (exactly) 
 //* obeys mc-1
 * category 1..* MS
 * category ^slicing.discriminator.type = #value
@@ -72,7 +72,7 @@ Description: "A DocumentReference that contains an input prompt for an AI system
 * type.coding ^slicing.discriminator.path = "$this"
 * type.coding ^slicing.rules = #closed
 * type.coding contains AIInputPrompt 1..* MS
-* type.coding[AIInputPrompt] = AIinputsCS#AIInputPrompt "AI Input Prompt"
+* type.coding[AIInputPrompt] = AIinputsCS#AIInputPrompt (exactly)
 
 * content ^slicing.discriminator.type = #value
 * content ^slicing.discriminator.path = "attachment.contentType"
@@ -104,7 +104,7 @@ Usage: #example
 * content[MarkdownFormat].attachment.data =   "LS0tDQpsYW5ndWFnZToNCi0gZW4NCmxpY2Vuc2U6DQotIGJzZC0zLWNsYXVzZQ0KYW5ub3RhdGlvbnNfY3JlYXRvcnM6DQotIGNyb3dkc291cmNlZA0KLSBleHBlcnQtZ2VuZXJhdGVkDQpsYW5ndWFnZV9jcmVhdG9yczoNCi0gZm91bmQNCm11bHRpbGluZ3VhbGl0eToNCi0gbW9ub2xpbmd1YWwNCnNpemVfY2F0ZWdvcmllczoNCi0gbjwxSw0KdGFza19jYXRlZ29yaWVzOg0KLSBpbWFnZS1zZWdtZW50YXRpb24NCnRhc2tfaWRzOg0KLSBzZW1hbnRpYy1zZWdtZW50YXRpb24NCnByZXR0eV9uYW1lOiBTYW1wbGUgU2VnbWVudGF0aW9uDQotLS0NCg0KIyBEYXRhc2V0IENhcmQgZm9yIFNhbXBsZSBTZWdtZW50YXRpb24NCg0KVGhpcyBpcyBhIHNhbXBsZSBkYXRhc2V0IGNhcmQgZm9yIGEgc2VtYW50aWMgc2VnbWVudGF0aW9uIGRhdGFzZXQu"
 
 * content[MarkdownFormat].attachment.contentType = #text/markdown
-* type = AIinputsCS#AIModelCard "AI Model-Card"
+* type = AIinputsCS#AIModelCard
 * category[AImodelCardMD] = AIinputsCS#AIModelCardMarkdownFormat  "Markdown Format"
 * identifier.system = "https://github.com/huggingface/huggingface_hub/tree/main/tests/fixtures/cards"
 * identifier.value = "sample_datasetcard_simple.md"
@@ -119,7 +119,7 @@ Usage: #example
 * content[CHAIformat].attachment.contentType = #application/xml
 * content[+].attachment.url = "https://github.com/coalition-for-health-ai/mc-schema/blob/main/v0.1/examples/Aidoc_ICH-02-RT.pdf"
 * content[=].attachment.contentType = #application/pdf
-* type = AIinputsCS#AIModelCard "AI Model-Card"
+* type = AIinputsCS#AIModelCard
 * category[AImodelCardCHAI] = AIinputsCS#AImodelCardCHAIformat "CHAI Format"
 * identifier.system = "https://github.com/coalition-for-health-ai/mc-schema/blob/main/v0.1/examples/"
 * identifier.value = "Aidoc_ICH-02-RT.xml"
@@ -137,7 +137,7 @@ Usage: #example
 //* content[CHAIformat].attachment.contentType = #application/xml
 * content[+].attachment.id = "ig-loader-Aidoc_ICH-02-RT.pdf"
 //* content[=].attachment.contentType = #application/pdf
-* type = AIinputsCS#AIModelCard "AI Model-Card"
+* type = AIinputsCS#AIModelCard
 * category[AImodelCardCHAI] = AIinputsCS#AImodelCardCHAIformat "CHAI Format"
 * identifier.system = "https://github.com/coalition-for-health-ai/mc-schema/blob/main/v0.1/examples/"
 * identifier.value = "Aidoc_ICH-02-RT.xml"
@@ -152,7 +152,7 @@ Usage: #example
 * content[CHAIformat].attachment.contentType = #application/xml
 * content[+].attachment.url = "Binary/ModelCard-sample-CHAI-binary-pdf"
 * content[=].attachment.contentType = #application/pdf
-* type = AIinputsCS#AIModelCard "AI Model-Card"
+* type = AIinputsCS#AIModelCard
 * category[AImodelCardCHAI] = AIinputsCS#AImodelCardCHAIformat "CHAI Format"
 * identifier.system = "https://github.com/coalition-for-health-ai/mc-schema/blob/main/v0.1/examples/"
 * identifier.value = "Aidoc_ICH-02-RT.xml"
@@ -266,6 +266,8 @@ Description: "This CodeSystem contains codes for the Device.type that indicate t
     * #Machine-Learning-Models "Machine Learning Models" "They include supervised learning models (e.g., Support Vector Machines (SVM), Random Forests (RF)), which can be used for disease classification and risk prediction; unsupervised learning models (e.g., K-means clustering), which can discover hidden characteristics of patient subgroups; and reinforcement learning models, which can be applied in dynamic treatment plan management."
       * #Deep-Learning-Models "Deep Learning Models" "Examples include Convolutional Neural Networks (CNNs), which perform excellently in medical image analysis; Recurrent Neural Networks (RNNs) and their variant LSTMs, which are suitable for processing time-series physiological signal data; Generative Adversarial Networks (GANs), which can be used to synthesize training data and alleviate the scarcity of medical data; and Transformer models, which are widely used in multiple tasks such as medical imaging, text analysis, and physiological signal prediction."
         * #Foundation-Models "Foundation Models" "Deep learning models trained on broad data at scale that can be adapted to a range of downstream tasks."
+        * #Foundation-Models ^property.code = #abstract
+        * #Foundation-Models ^property.valueBoolean = true
           * #Large-Language-Models "Large Language Models" "These models, such as GPT-4 and PaLM, are trained on massive text datasets and can perform various natural language processing tasks, including medical text understanding, generation, and question answering."
           * #Vision-Foundation-Models "Vision Foundation Models" "Foundation models trained primarily to process and represent visual data for adaptation to vision tasks."
           * #Vision-Language-Models "Vision-Language Models" "Foundation models that jointly process visual and language data."
@@ -314,6 +316,23 @@ Usage: #definition
 * activity = http://terminology.hl7.org/CodeSystem/v3-DataOperation#CREATE
 * agent[+].type = $ProvPartType#author
 * agent[=].who.display = "GitHub Copilot AI"
+* agent[+].type = $ProvPartType#verifier
+* agent[=].who.display = "John F. Moehrke"
+
+Instance:   AIdeviceTypeCS-first-history
+InstanceOf: Provenance  // Note that the CodeSystem rendering the IG publisher does will put this Provenance as "History" at the bottom of the CodeSystem page. If this Provenance uses the AIProvenacne profile, then this History will not be shown. So the IG publisher clearly does not like any meta.profile in the Provenance it uses for history.
+Title: "First ballot reconciliation of AIdeviceTypeCS CodeSystem"
+Description: "Provenance record for the changes from ballot of the AIdeviceTypeCS CodeSystem by GitHub Copilot AI."
+Usage: #definition
+* target[+] = Reference(CodeSystem/AIdeviceTypeCS)
+* recorded = "2026-08-05T13:00:00.0000Z"
+* occurredDateTime = "2026-08-05"
+* reason[+] = $ActReason#METAMGT
+* reason[=].text = "Ballot reconciliation of the CodeSystem"
+* reason[+] = $ObsValue#AIAST
+* activity = http://terminology.hl7.org/CodeSystem/v3-DataOperation#CREATE
+* agent[+].type = $ProvPartType#author
+* agent[=].who.display = "FHIR-54368"
 * agent[+].type = $ProvPartType#verifier
 * agent[=].who.display = "John F. Moehrke"
 

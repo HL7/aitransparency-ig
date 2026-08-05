@@ -14,15 +14,31 @@ Description: "An AI Provenance is a record of the use of an AI model in generati
 * reason ^slicing.rules = #open
 * reason contains AIReason 1..*
 * reason[AIReason] from ProvenanceVS
-* agent ^slicing.discriminator.type = #profile
-* agent ^slicing.discriminator.path = "who"
+* agent ^slicing.discriminator.type = #value
+* agent ^slicing.discriminator.path = "role"
 * agent ^slicing.rules = #open
-* agent contains AIModelAgent 1..*
-* agent[AIModelAgent].who only Reference(AIDevice) // "The AI model used in generating or enhancing the FHIR resource."
+* agent contains AIagent 1..*
+* agent[AIagent].who only Reference(AIDevice) // "The AI model used in generating or enhancing the FHIR resource."
   * ^comment = "The AIDevice resource captures the details of the AI model used."
+* agent[AIagent].type 1..1 MS
+  * ^comment = "The way the AI was used."
+* agent[AIagent].role = AIdeviceTypeCS#Artificial-Intelligence (exactly)
+  * ^comment = "The agent role is set to Artificial Intelligence to indicate that the agent is an AI model."
 * entity ^slicing.discriminator.type = #profile
 * entity ^slicing.discriminator.path = "what"
 * entity ^slicing.rules = #open
-* entity contains AIInputData 0..*
-* entity[AIInputData].what only Reference(AIInputPrompt) // "The input data used by the AI model."
+* entity ^slicing.description = "The entities that were used as input to the AI model, including the model card and input prompt."
+* entity and entity.what MS
+* entity contains 
+    modelCard 0..* MS and
+    inputPrompt 0..* MS
+* entity[modelCard].what only Reference(AIModelCard) // "The model card describing the AI model used."
+  * ^comment = "The AIModelCard resource captures the details of the AI model used, including its capabilities, limitations, and intended use."
+* entity[modelCard].what 1..1 MS
+* entity[modelCard].role = http://hl7.org/fhir/provenance-entity-role#derivation (exactly)
+  * ^comment = "The role of the model card in the provenance, indicating that it describes the AI model used."
+* entity[inputPrompt].what only Reference(AIInputPrompt) // "The input data used by the AI model."
   * ^comment = "The AIInputPrompt resource captures the details of the input data provided to the AI model."
+* entity[inputPrompt].what 1..1 MS
+* entity[inputPrompt].role = http://hl7.org/fhir/provenance-entity-role#derivation (exactly)
+  * ^comment = "The role of the input data in the provenance, indicating that it was used as input to the AI model."

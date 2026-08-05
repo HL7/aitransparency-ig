@@ -41,8 +41,8 @@ Usage: #example
 * target = Reference(Observation/other-model-result)
 * recorded = "2026-01-15T11:00:00Z"
 * reason[AIReason] = $ObsValue#AIAST
-* agent[+].type = $ProvPartType#author "Author"
-* agent[=].who = Reference(Device/TheOtherAI)
+* agent[AIagent].type = $ProvPartType#author "Author"
+* agent[AIagent].who = Reference(Device/TheOtherAI)
 
 Instance: other-model-result
 InstanceOf: Observation

@@ -42,19 +42,20 @@ Usage: #example
 * reason[AIReason] = $ObsValue#AIAST
 * agent[+].type = $ProvPartType#verifier "Verifier"
 * agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
-* agent[+].type = $ProvPartType#author "Author"
-* agent[=].who = Reference(Device/Attached-ModelCard)
+* agent[AIagent].type = $ProvPartType#author "Author"
+* agent[AIagent].role = AIdeviceTypeCS#Artificial-Intelligence
+* agent[AIagent].who = Reference(Device/Attached-ModelCard)
 * entity[+].role = http://terminology.hl7.org/CodeSystem/provenance-entity-role#source "Source"
 * entity[=].what.reference = "http://server.example.org/fhir/documentreference/patient-cda-summary"
 * entity[+].role = http://terminology.hl7.org/CodeSystem/provenance-entity-role#source "Source"
 * entity[=].what.reference = "http://server.example.org/fhir/Observation/patient-lab-result"
 * entity[+].role = http://terminology.hl7.org/CodeSystem/provenance-entity-role#derivation "Derivation"
 * entity[=].what.reference = "http://server.example.org/fhir/PlanDefinition/plan-definition-example"
-* entity[+].role = http://terminology.hl7.org/CodeSystem/provenance-entity-role#quotation "Quotation"
+* entity[inputPrompt].role = http://terminology.hl7.org/CodeSystem/provenance-entity-role#derivation
 * contained[+] = Input-Prompt-lorem-ipsum
-* entity[=].what = Reference(Input-Prompt-lorem-ipsum)
-* entity[=].agent[+].type = $ProvPartType#author "Author"
-* entity[=].agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
+* entity[inputPrompt].what = Reference(Input-Prompt-lorem-ipsum)
+* entity[inputPrompt].agent[+].type = $ProvPartType#author "Author"
+* entity[inputPrompt].agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
 
 
 Instance: Input-Prompt-lorem-ipsum
@@ -80,7 +81,7 @@ Usage: #example
 * content[MarkdownFormat].attachment.data =   "R2VuZXJhdGUgYSBsb3JlbSBpcHN1bSB0ZXh0IHRvIHNlcnZlIGFzIHBsYWNlaG9sZGVyIGNvcHkgZm9yIHVzZSBpbiBkZXNpZ24sIGRldmVsb3BtZW50LCBhbmQgcHVibGlzaGluZy4gCgoxLiBTcGVjaWZ5IHRoZSBleGFjdCBhbW91bnQgb2YgdGV4dCBvciB0aGUgbnVtYmVyIG9mIHBhcmFncmFwaHMgcmVxdWlyZWQgKGUuZy4sIDEgcGFyYWdyYXBoLCAzIHBhcmFncmFwaHMsIGV0Yy4pLiAKMi4gQ3JlYXRlIHRoZSBsb3JlbSBpcHN1bSB0ZXh0IHVzaW5nIGEgY2xhc3NpYyBzdHlsZSBvciBpbnRyb2R1Y2Ugc2xpZ2h0IHZhcmlhdGlvbnMgd2hpbGUga2VlcGluZyB0aGUgbm9uc2Vuc2ljYWwgbmF0dXJlIHRvIHN1aXQgdGhlIHJlcXVlc3RlZCBsZW5ndGguIAoKRW5zdXJlIHRoYXQgdGhlIHRleHQgbWFpbnRhaW5zIGEgZ29vZCBiYWxhbmNlIGJldHdlZW4gcmVhZGFiaWxpdHkgYW5kIHRoZSB0cmFkaXRpb25hbCBsb3JlbSBpcHN1bSBzdHlsZSwgZ2l2aW5nIGEgcmVhbGlzdGljIGltcHJlc3Npb24gb2YgaG93IHRoZSB0ZXh0IHdpbGwgaW1wYWN0IHRoZSBvdmVyYWxsIGxheW91dCBhbmQgZGVzaWduLgoKIyBPdXRwdXQgRm9ybWF0Ci0gUHJvdmlkZSBhIGNvbnRpbnVvdXMgYmxvY2sgb2YgbG9yZW0gaXBzdW0gdGV4dCBjb3JyZXNwb25kaW5nIHRvIHRoZSBzcGVjaWZpZWQgYW1vdW50IG5lZWRlZC4="
 
 * content[MarkdownFormat].attachment.contentType = #text/markdown
-* type = AIinputsCS#AIInputPrompt "AI Input Prompt"
+* type = AIinputsCS#AIInputPrompt
 * description = """
 Generate a lorem ipsum text to serve as placeholder copy for use in design, development, and publishing. 
 
@@ -122,13 +123,13 @@ Usage: #example
 * reason[AIReason] = $ObsValue#AIAST
 * agent[+].type = $ProvPartType#verifier "Verifier"
 * agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
-* agent[+].type = $ProvPartType#author "Author"
-* agent[=].who = Reference(Device/Attached-ModelCard)
+* agent[AIagent].type = $ProvPartType#author "Author"
+* agent[AIagent].who = Reference(Device/Attached-ModelCard)
 * contained[+] = Input-Prompt-create-patient
-* entity[+].role = http://terminology.hl7.org/CodeSystem/provenance-entity-role#quotation "Quotation"
-* entity[=].what = Reference(Input-Prompt-create-patient)
-* entity[=].agent[+].type = $ProvPartType#author "Author"
-* entity[=].agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
+* entity[inputPrompt].role = http://terminology.hl7.org/CodeSystem/provenance-entity-role#derivation
+* entity[inputPrompt].what = Reference(Input-Prompt-create-patient)
+* entity[inputPrompt].agent[+].type = $ProvPartType#author "Author"
+* entity[inputPrompt].agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
 
 
 
@@ -192,7 +193,7 @@ Usage: #example
 * content[MarkdownFormat].attachment.data =   "R2VuZXJhdGUgYSBsb3JlbSBpcHN1bSB0ZXh0IHRvIHNlcnZlIGFzIHBsYWNlaG9sZGVyIGNvcHkgZm9yIHVzZSBpbiBkZXNpZ24sIGRldmVsb3BtZW50LCBhbmQgcHVibGlzaGluZy4gCgoxLiBTcGVjaWZ5IHRoZSBleGFjdCBhbW91bnQgb2YgdGV4dCBvciB0aGUgbnVtYmVyIG9mIHBhcmFncmFwaHMgcmVxdWlyZWQgKGUuZy4sIDEgcGFyYWdyYXBoLCAzIHBhcmFncmFwaHMsIGV0Yy4pLiAKMi4gQ3JlYXRlIHRoZSBsb3JlbSBpcHN1bSB0ZXh0IHVzaW5nIGEgY2xhc3NpYyBzdHlsZSBvciBpbnRyb2R1Y2Ugc2xpZ2h0IHZhcmlhdGlvbnMgd2hpbGUga2VlcGluZyB0aGUgbm9uc2Vuc2ljYWwgbmF0dXJlIHRvIHN1aXQgdGhlIHJlcXVlc3RlZCBsZW5ndGguIAoKRW5zdXJlIHRoYXQgdGhlIHRleHQgbWFpbnRhaW5zIGEgZ29vZCBiYWxhbmNlIGJldHdlZW4gcmVhZGFiaWxpdHkgYW5kIHRoZSB0cmFkaXRpb25hbCBsb3JlbSBpcHN1bSBzdHlsZSwgZ2l2aW5nIGEgcmVhbGlzdGljIGltcHJlc3Npb24gb2YgaG93IHRoZSB0ZXh0IHdpbGwgaW1wYWN0IHRoZSBvdmVyYWxsIGxheW91dCBhbmQgZGVzaWduLgoKIyBPdXRwdXQgRm9ybWF0Ci0gUHJvdmlkZSBhIGNvbnRpbnVvdXMgYmxvY2sgb2YgbG9yZW0gaXBzdW0gdGV4dCBjb3JyZXNwb25kaW5nIHRvIHRoZSBzcGVjaWZpZWQgYW1vdW50IG5lZWRlZC4="
 
 * content[MarkdownFormat].attachment.contentType = #text/markdown
-* type = AIinputsCS#AIInputPrompt "AI Input Prompt"
+* type = AIinputsCS#AIInputPrompt
 * description = """
 System Prompt
 
