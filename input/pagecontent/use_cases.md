@@ -48,7 +48,7 @@ The same use case takes a different shape depending on who is reviewing the data
 | When this Actor is reviewing data | The key questions may be... |
 |--------------------------------|----------------------------|
 | Clinician | What is happening (to modify)? Why is it happening? Was the AI output reviewed by a human? |
-| Researcher | Is this data suitable for my study, or should AI-influenced data be excluded or stratified? |
+| Researcher | Is this data suitable for my study, or need AI-influenced data be excluded or stratified? |
 | Payer | What matches prior-authorization criteria, and was the determination drafted by AI? |
 | Quality Improvement | What matches the desired outcomes, or desired approach to care? |
 | Safety Board | Multiple questions for root-cause analysis |
@@ -111,7 +111,7 @@ flowchart LR
 
 **Filtering at element granularity.** The [DiagnosticReport with inline AI security labels](DiagnosticReport-f202.html) tags only the AI-asserted elements. A consumer can drop the AI-asserted `conclusion` while still using the rest of the report, rather than discarding the whole resource.
 
-> **Tags are hints, not proof.** Because `meta.security` is optional, the absence of a tag does not guarantee that AI was not involved. For authoritative filtering, a consumer should also check for a [Provenance](requirements.html#process-utilizing-ai) on the resource. Tagging makes the common case cheap; Provenance makes it certain.
+> **Tags are hints, not proof.** Because `meta.security` is optional, the absence of a tag does not guarantee that AI was not involved. For authoritative filtering, a consumer would also check for a [Provenance](#process-utilizing-ai) on the resource. Tagging makes the common case cheap; Provenance makes it certain.
 
 ### Use Case 3: Discovery of output from an AI model determined to be problematic
 
@@ -185,3 +185,55 @@ sequenceDiagram
 **A flawed source document.** The [Lab Results PDF](DocumentReference-Lab-Results-PDF.html) is the source input recorded by the [Provenance of the AI-generated Lab Results](Provenance-AI-Generated-Lab-Results.html). If that source is later found to be unreliable, `GET /Provenance?entity=DocumentReference/Lab-Results-PDF` surfaces the Provenance, whose `target` is the generated Bundle of Patient and Observation resources. Because the input is recorded as a shared, externally referenced resource, the search finds every Provenance — and therefore every output — that used it.
 
 **A flawed prompt.** The same pattern applies when the flawed input is a prompt. The [Input Prompt to create a Patient](DocumentReference-Input-Prompt-create-patient.html) is recorded as an entity by the [Provenance of creating a Patient from that prompt](Provenance-AI-generated-patient-resource.html); resolving that Provenance's `target` yields the Patient the AI generated. In this particular example the prompt is carried *inline* (a contained resource within the Provenance), so it is discovered while examining the Provenance rather than by an independent reference search — recording a prompt as a shared, externally referenced DocumentReference makes it directly searchable like the source document above.
+
+
+
+TODO
+
+### Process Utilizing AI
+
+AI Models do not exist in a vacuum, in addition to the context / inputs, there needs to be a system that calls the AI, supplies the inputs, and gets the result. This result may then be used as-is, supplied to another AI, verified by an automated system, verified by a human, or any number of other activities. Understanding this process may be very important to end users and downstream systems. For example, if the results of the AI were verified by a human (human-in-the-loop) then an end user may be able to rely on the results with less scrutiny.
+
+>💡 Tip
+>
+> Use when all possible factors are important to record. This level of Observability Factor is very comprehensive, and as such is very verbose. This level of Observability Factor capturing may not be justified beyond initial model use, while shaking out the use.
+
+Some of the process elements that may be captured are:
+
+- **Human-in-the-loop:** This is when a human verifies the results of an AI output. This can add validity to those results. It can be captured in Provenance as that person is another author of the resulting resource or element.
+- **Guardrails:** An automated system is engaged to check the results of the AI. This system can take many different forms. It is often intended to reduce bias, ensure more equitable healthcare outcomes, catch unacceptable outputs, such as inappropriate word usage, or do general validation, such as running a FHIR validator on the resource to ensure conformity. This can be captured as additional Devices as authors on the Provenance.  
+- **Other AI or Systems:** Sometimes the AI may call subroutines called tools. These tools may do things like simple math, API calls, or web searches. This is often done using MCP. Additional, multiple AI systems maybe involved. Agenetic systems often involve multiple AI Agents who call each other using protocols like A2A. These workflows are complex to capture, but one suggestion is to use BPMN contained in DocumentReferences linked to the Provenance (example coming...).
+
+#### Process Examples
+
+
+##### Full Process example
+
+[This is a full example](Provenance-AI-full-lorem-ipsum.html) of how to capture the AI process in FHIR.
+
+- Two outputs that this Provenance resource is documenting:
+  - an Observation resource (e.g., lab result)
+    - with Observation.interpretation being attributed to this Provenance
+  - a CarePlan resource (e.g., follow-up care plan)
+- Two agents
+  - a verifier (human) who verifies the AI output
+  - an author (AI system) who generated the output
+- Two entities that were clinical resources provided to the AI system
+  - a DocumentReference resource (e.g., patient summary)
+  - an Observation resource (e.g., lab result)
+- One entity that is a PlanDefinition resource (e.g., care plan definition)
+- One entity that is the AI Input Prompt
+  - Where the Input Prompt is a DocumentReference resource that contains the input prompt provided to the AI system.
+  - Where the Input Prompt is a contained resource in the Provenance resource.
+  - Where the Input Prompt is associated with the clinician which provided it
+
+### PDF interpreted by AI into FHIR
+
+This is an additional example provided that shows how this IG can be applied.
+
+Use Case: A provider receives a [PDF of lab result(s)](DocumentReference-Lab-Results-PDF.html) for a patient. This PDF is examined by an AI which generates a [Bundle with a Patient resource and Observation resource(s)](Bundle-b3c1f2d4-5c8e-4b0a-9f6d-7c8e1f2d4b5c.html).
+
+In the attached example the patient's name is Alton Walsh and the lab test is an HbA1C. All the FHIR resources in the bundle have been created by the AI, so they would be tagged accordingly.
+
+- [Provenance of AI Generated Lab Results](Provenance-AI-Generated-Lab-Results.html)
+- 

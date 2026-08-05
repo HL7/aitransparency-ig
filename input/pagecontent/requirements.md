@@ -30,7 +30,7 @@ Beyond 1st level observability, there are a number of factors that the end user 
   - Patient data, such as health records
   - Reference input, such as clinical practice guidelines 
   - ...
-4. Process - the interactions between AI(s), human(s), and system(s) (see [Process Utilizing AI](#process-utilizing-ai))
+4. Process - the interactions between AI(s), human(s), and system(s) (see [Process Utilizing AI](use_cases.html#process-utilizing-ai))
   - Human reviews (human-in-the-loop)
   - Multi-agent interactions, such as use of Agent-to-Agent protocol (A2A)
   - Tool calling, such as use of Model Context Protocol (MCP)
@@ -203,6 +203,20 @@ classDiagram
     Provenance --> DocumentReferenceInputPrompt : "Provenance.entity.what"
 ```
 
+##### Resource-level
+
+As with tagging, a Provenance can point at a whole Resource. In this way one can carry details in the Provenance, such as what AI was used and how.
+
+- [Example Provenance of AI authored Lab Observation](Provenance-AI-Contributed.html)
+
+##### Element-level
+
+Provenance can be just about some elements within a Resource. This is a normal part of Provenance, but it is especially important for AI use-cases.
+
+The Provenance.target would point at a specific element within the targeted resource using the [target element extension](http://hl7.org/fhir/StructureDefinition/targetElement) or [target path extension](http://hl7.org/fhir/StructureDefinition/targetPath).
+
+- [Example Provenance of AI Authored an element in a Resource](Provenance-AI-Authored-Element.html) indicates that AI only authored the `Procedure.followup.text` element.
+
 #### Defining the AI System
 
 The AI system is described in a FHIR Device resource, which is [profiled](StructureDefinition-AI-Device.html). The Device.type MUST be `Artificial-Intelligence`. There is an extension to hold more specific kinds of AI. There is an extension to point at a Model-Card if this Device is always used with that Model-Card. The Device resource referenced in a Provenance resource that describes the AI involvement in the creation or manipulation of the data.
@@ -214,6 +228,8 @@ The AI system is described in a FHIR Device resource, which is [profiled](Struct
 #### The Model-Card
 
 The Model-Card encoding is defined by other standards organizations, and have distinct mime-type. To encode a Model-Card the DocumentReference resource is used. To make this more clear and searchable we define a [codeSystem](CodeSystem-AIinputsCS.html) that has some codes to be used to identify that the DocumentReference is specifically an AI Model-Card or an AI Input Prompt
+
+This specification supports two model-card standards at this time, but recognize that there may be updates and new standards in the future. The choice of which model-card standard to use is up to the implementer, and this guide does not enforce any particular model-card standard.
 
 - [Profile of DocumentReference to carry a Model-Card](StructureDefinition-AI-ModelCard.html)
   - [Example DocumentReference Hugging Face Model-Card](DocumentReference-ModelCard-sample-huggingface-attached.html)
@@ -266,7 +282,7 @@ An example from the [CHAI Github Examples](https://github.com/coalition-for-heal
 
 Note that these are all the same example Model-Card, just encoded different ways depending on the needs. These three encoding methods are available for the HuggingFace format as well. Note that in the case of CHAI format, these examples include both the XML and the PDF rendering of the same as different .content entries.
 
-### Context of AI Usage
+#### Context of AI Usage
 
 When using an AI it is necessary to supply it with certain inputs. These inputs very based on the AI involved, but the industry generally refers to these inputs as the "prompt" (especially in the case of Generative AI). 
 
@@ -299,66 +315,7 @@ The first example is just showing the encapsulating mechanism. The Second exampl
 - [Provenance of creating a Patient from Input Prompt](Provenance-AI-generated-patient-resource.html)
 - [Patient resource created](Patient-a1b2c3d4-e5f6-7890-abcd-ef1234567890.html)
 
-### Process Utilizing AI
-
-AI Models do not exist in a vacuum, in addition to the context / inputs, there needs to be a system that calls the AI, supplies the inputs, and gets the result. This result may then be used as-is, supplied to another AI, verified by an automated system, verified by a human, or any number of other activities. Understanding this process may be very important to end users and downstream systems. For example, if the results of the AI were verified by a human (human-in-the-loop) then an end user may be able to rely on the results with less scrutiny.
-
->💡 Tip
->
-> Use when all possible factors are important to record. This level of Observability Factor is very comprehensive, and as such is very verbose. This level of Observability Factor capturing may not be justified beyond initial model use, while shaking out the use.
-
-Some of the process elements that may be captured are:
-
-- **Human-in-the-loop:** This is when a human verifies the results of an AI output. This can add validity to those results. It can be captured in Provenance as that person is another author of the resulting resource or element.
-- **Guardrails:** An automated system is engaged to check the results of the AI. This system can take many different forms. It is often intended to reduce bias, ensure more equitable healthcare outcomes, catch unacceptable outputs, such as inappropriate word usage, or do general validation, such as running a FHIR validator on the resource to ensure conformity. This can be captured as additional Devices as authors on the Provenance.  
-- **Other AI or Systems:** Sometimes the AI may call subroutines called tools. These tools may do things like simple math, API calls, or web searches. This is often done using MCP. Additional, multiple AI systems maybe involved. Agenetic systems often involve multiple AI Agents who call each other using protocols like A2A. These workflows are complex to capture, but one suggestion is to use BPMN contained in DocumentReferences linked to the Provenance (example coming...).
-
-#### Process Examples
-
-##### Resource-level
-
-As with tagging, a Provenance can point at a whole Resource. In this way one can carry details in the Provenance, such as what AI was used and how.
-
-- [Provenance of AI authored Lab Observation](Provenance-AI-Contributed.html)
-
-##### Element-level
-
-Provenance can be just about some elements within a Resource. This is a normal part of Provenance, but it is important for AI use-cases.
-
-The Provenance.target would point at a specific element within the targeted resource using the [target element extension](http://hl7.org/fhir/StructureDefinition/targetElement) or [target path extension](http://hl7.org/fhir/StructureDefinition/targetPath).
-
-For example when to indicate that AI only authored the Procedure.followup.text would look like [Provenance of AI Authored Procedure.followup.text](Provenance-AI-Authored-Element.html)
-
-##### Full Process example
-
-[This is a full example](Provenance-AI-full-lorem-ipsum.html) of how to capture the AI process in FHIR.
-
-- Two outputs that this Provenance resource is documenting:
-  - an Observation resource (e.g., lab result)
-    - with Observation.interpretation being attributed to this Provenance
-  - a CarePlan resource (e.g., follow-up care plan)
-- Two agents
-  - a verifier (human) who verifies the AI output
-  - an author (AI system) who generated the output
-- Two entities that were clinical resources provided to the AI system
-  - a DocumentReference resource (e.g., patient summary)
-  - an Observation resource (e.g., lab result)
-- One entity that is a PlanDefinition resource (e.g., care plan definition)
-- One entity that is the AI Input Prompt
-  - Where the Input Prompt is a DocumentReference resource that contains the input prompt provided to the AI system.
-  - Where the Input Prompt is a contained resource in the Provenance resource.
-  - Where the Input Prompt is associated with the clinician which provided it
-
-### PDF interpreted by AI into FHIR
-
-This is an additional example provided that shows how this IG can be applied.
-
-Use Case: A provider receives a [PDF of lab result(s)](DocumentReference-Lab-Results-PDF.html) for a patient. This PDF is examined by an AI which generates a [Bundle with a Patient resource and Observation resource(s)](Bundle-b3c1f2d4-5c8e-4b0a-9f6d-7c8e1f2d4b5c.html).
-
-In the attached example the patient's name is Alton Walsh and the lab test is an HbA1C. All the FHIR resources in the bundle have been created by the AI, so they should be tagged accordingly.
-
-- [Provenance of AI Generated Lab Results](Provenance-AI-Generated-Lab-Results.html)
-
 ### Security and Privacy Considerations
 
-- The Input Prompt and Context may contain sensitive information, such as patient data, and should be protected accordingly. The same goes for the Model-Card if it contains sensitive information about the AI model that should not be public.
+- The Input Prompt and Context may contain sensitive information, such as patient data, and should be protected accordingly.
+- The Model-Card if it contains sensitive information about the AI model that should not be public.

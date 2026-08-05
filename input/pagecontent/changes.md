@@ -10,10 +10,11 @@ This page tracks the signficant changes. All changes are tracked in Jira and on 
 
 Initial Public-Comment
 
-### 1.0.0
+### 1.0.0-current
 
 - [FHIR-57918](https://jira.hl7.org/browse/FHIR-57918) Remove experimental provenance codes
 - [FHIR-54801](https://jira.hl7.org/browse/FHIR-54801) Remove code AIRPT
+- [FHIR-54141](https://jira.hl7.org/browse/FHIR-54141) Remove experimental codes
 - [FHIR-54368](https://jira.hl7.org/browse/FHIR-54368) Revise codes in AIdeviceTypeVS - different AI technologies and fleshes out a bit the scenarios and data types.
 - [FHIR-54244](https://jira.hl7.org/browse/FHIR-54244) Include an extension to capture the certainty of an AI inference
 - [FHIR-57756](https://jira.hl7.org/browse/FHIR-57756) More narrative explanation of element level Provenance explaining the extensions
@@ -22,3 +23,6 @@ Initial Public-Comment
 - [FHIR-53975](https://jira.hl7.org/browse/FHIR-53975) Order of Relationship between Device and Model-Card
 - [FHIR-54527](https://jira.hl7.org/browse/FHIR-54527) Remove use of Device.note to reduce variability on R4 AI device modeling
 - [FHIR-54734](https://jira.hl7.org/browse/FHIR-54734) For better readability, switch section 2 and 3
+- [FHIR-54371](https://jira.hl7.org/browse/FHIR-54371) AI Device representation and its elements
+- [FHIR-54391](https://jira.hl7.org/browse/FHIR-54391) Provide a position on the preferred model card - indifferent
+- [FHIR-54528](https://jira.hl7.org/browse/FHIR-54528) Describe how to exchange AI provenance via RESTful create
