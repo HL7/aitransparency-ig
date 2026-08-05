@@ -81,4 +81,5 @@ INFORMATION: Provenance/AI-full-lorem-ipsum: Provenance.entity[1]: This element 
 INFORMATION: Provenance/AI-full-lorem-ipsum: Provenance.entity[2]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-Provenance|1.0.0-current (this may not be a problem, but you should check that it's not intended to match a slice)
 INFORMATION: Provenance/AI-generated-patient-resource: Provenance.agent[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-Provenance|1.0.0-current (this may not be a problem, but you should check that it's not intended to match a slice)
 
-
+# 19 the fixed code is intended to make the profile specific
+WARNING: StructureDefinition/AI-Device: StructureDefinition.snapshot.element[39].fixed.ofType(CodeableConcept): For the complex type CodeableConcept, consider using a pattern rather than a fixed value to avoid over-constraining the instance

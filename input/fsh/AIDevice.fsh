@@ -221,7 +221,7 @@ A Device that represents an AI system, such as a Large Language Model (LLM) or o
 * identifier MS
   * ^comment = "Identifier for the AI system, such as a client ID from an EHR system"
 * type 1..1
-* type = AIdeviceTypeCS#Artificial-Intelligence
+* type = AIdeviceTypeCS#Artificial-Intelligence (exactly)
 * extension contains AIKind named aiKind 0..*
 * extension contains ModelCardDescription named modelCardDescription 0..*
   * ^comment = "Reference to a Model-Card that is always used"
@@ -243,19 +243,22 @@ Description: "Expresses the more specific kind(s) of AI technology and technique
 * ^context[=].expression = "Device"
 * value[x] only CodeableConcept
 * valueCodeableConcept 1..1
-* valueCodeableConcept from AIdeviceTypeVS (extensible)
+* valueCodeableConcept from AIdeviceTypeVS (preferred)
 
-ValueSet: AIdeviceTypeVS
+Instance: AIdeviceTypeVS
+InstanceOf: ValueSet
 Title: "Recommended Device type codes for Artificial Intelligence"
 Description:  "Subset from HL7, plus those defined here"
-* ^experimental = false
-* codes from system AIdeviceTypeCS
-//* exclude code #Artificial-Intelligence
-// level 2 only; which is automatic because the top level are not selectable.
-//* AIdeviceTypeCS#Machine-Learning-Models 
-//* AIdeviceTypeCS#Deep-Learning-Models
-//* AIdeviceTypeCS#Large-Language-Models
-//* AIdeviceTypeCS#Hybrid-Models
+Usage: #definition
+* name = "AIdeviceTypeVS"
+* status = #active
+* experimental = false
+* version = "1.0.0"
+* date = "2026-08-05"
+* compose.include.system = Canonical(AIdeviceTypeCS)
+* compose.exclude.system = Canonical(AIdeviceTypeCS)
+* compose.exclude.concept.code = #Artificial-Intelligence
+
 
 
 
