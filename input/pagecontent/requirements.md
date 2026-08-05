@@ -37,6 +37,22 @@ Beyond 1st level observability, there are a number of factors that the end user 
   - Guardrails to prevent bias, inappropriate responses, undesired actions, ...
   - ...
 
+#### Discovering that AI was used
+
+There are two distinct methods of determining if data has been influenced by AI. The actual method(s) used will be determined by policy for a given data repository. The policy may determine that only Tagging will be used, that only Provenance will be used, or that both will be used.
+
+##### Tagging is used
+
+For a given FHIR Resource, if Tagging is used, then a FHIR Resource that has been influenced by AI will have the `.meta.security` element populated with one of the codes from the AI Transparency Provenance ValueSet. See details below
+
+##### Provenance is used
+
+For a given FHIR Resource (e.g. Observation with id of 1234), if Provenance is used, then a search on Provenance.target for the value of your FHIR Resource will indicate all Provenance. Further refine that search to only those Provenance with a `.reason` code of `AIReason`.
+
+> GET [base]/Provenance?target=Observation/1234&reason:in=http://hl7.org/fhir/uv/aitransparency/ValueSet/ProvenanceVS
+
+If no results are returned then AI was not used, else the Provenance returned will explain how AI was used. See details below.
+
 ### Tagging
 
 The use of tagging enables distinguishing data that has not been produced or manipulated by AI, from data that has been produced or manipulated by AI. The level of influence and the details about how the AI was used are not provided by simple tagging. However, tagging is very light weight and does not add significant bloat to the payload or additional lookups. Tagging can be used as an indicator that AI was used in the creation or updating of the given resource and that a client system may wish to investigate further by fetching the Resource's Provenance.

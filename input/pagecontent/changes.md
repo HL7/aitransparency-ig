@@ -26,3 +26,5 @@ Initial Public-Comment
 - [FHIR-54371](https://jira.hl7.org/browse/FHIR-54371) AI Device representation and its elements
 - [FHIR-54391](https://jira.hl7.org/browse/FHIR-54391) Provide a position on the preferred model card - indifferent
 - [FHIR-54528](https://jira.hl7.org/browse/FHIR-54528) Describe how to exchange AI provenance via RESTful create
+- [FHIR-54279](https://jira.hl7.org/browse/FHIR-54279) and [FHIR-54281](https://jira.hl7.org/browse/FHIR-54281) Explain how to discover that AI was used, and how to find the provenance or tag that indicates this.
+- 
