@@ -8,10 +8,6 @@ Use Case 3 (discovery of output from a problematic AI model):
     Device/TheOtherAI is correctly NOT returned — only data tied to the problematic model is found.
 */
 
-Alias: $loinc = http://loinc.org
-Alias: $v3-ObservationValue = http://terminology.hl7.org/CodeSystem/v3-ObservationValue
-Alias: $provenance-participant-type = http://terminology.hl7.org/CodeSystem/provenance-participant-type
-
 Instance: TheOtherAI
 InstanceOf: AIDevice
 Title: "A Second, Unrelated AI System"
@@ -44,8 +40,8 @@ does not return this Observation.
 Usage: #example
 * target = Reference(Observation/other-model-result)
 * recorded = "2026-01-15T11:00:00Z"
-* reason[AIReason] = $v3-ObservationValue#AIAST
-* agent[+].type = $provenance-participant-type#author "Author"
+* reason[AIReason] = $ObsValue#AIAST
+* agent[+].type = $ProvPartType#author "Author"
 * agent[=].who = Reference(Device/TheOtherAI)
 
 Instance: other-model-result
@@ -53,7 +49,7 @@ InstanceOf: Observation
 Title: "Observation authored by a different AI model"
 Description: "A simple Observation authored by Device/TheOtherAI, used in the Use Case 3 discovery example."
 Usage: #example
-* meta.security = $v3-ObservationValue#AIAST "Artificial Intelligence asserted"
+* meta.security = $ObsValue#AIAST "Artificial Intelligence asserted"
 * status = #final
 * code = $loinc#718-7 "Hemoglobin [Mass/volume] in Blood"
 * subject.reference = "http://server.example.org/fhir/Patient/f201"

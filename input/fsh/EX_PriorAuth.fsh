@@ -12,12 +12,6 @@ Use Case 1 (administrative / payer angle):
     fetching the Provenance.
 */
 
-Alias: $claim-type = http://terminology.hl7.org/CodeSystem/claim-type
-Alias: $remittance-outcome = http://hl7.org/fhir/remittance-outcome
-Alias: $v3-ObservationValue = http://terminology.hl7.org/CodeSystem/v3-ObservationValue
-Alias: $provenance-participant-type = http://terminology.hl7.org/CodeSystem/provenance-participant-type
-Alias: $provenance-entity-role = http://terminology.hl7.org/CodeSystem/provenance-entity-role
-
 Instance: AI-PriorAuth-Determination
 InstanceOf: ClaimResponse
 Title: "Prior Authorization Determination drafted by AI"
@@ -30,9 +24,9 @@ determination can immediately see that AI was involved in producing it, and can 
 [AIProvenance](Provenance-AI-PriorAuth-Provenance.html) for details (including the human review).
 """
 Usage: #example
-* meta.security = $v3-ObservationValue#AIAST "Artificial Intelligence asserted"
+* meta.security = $ObsValue#AIAST "Artificial Intelligence asserted"
 * status = #active
-* type = $claim-type#professional "Professional"
+* type = http://terminology.hl7.org/CodeSystem/claim-type#professional "Professional"
 * use = #preauthorization
 * patient.reference = "http://server.example.org/fhir/Patient/pat"
 * created = "2026-02-10T09:15:00Z"
@@ -58,11 +52,11 @@ Usage: #example
 * target = Reference(ClaimResponse/AI-PriorAuth-Determination)
 * occurredDateTime = "2026-02-10T09:15:00Z"
 * recorded = "2026-02-10T09:20:00Z"
-* reason[AIReason] = $v3-ObservationValue#AIAST
+* reason[AIReason] = $ObsValue#AIAST
 * activity.text = "AI drafted prior-authorization determination, verified by a utilization reviewer"
-* agent[+].type = $provenance-participant-type#verifier "Verifier"
+* agent[+].type = $ProvPartType#verifier "Verifier"
 * agent[=].who.reference = "http://server.example.org/fhir/Practitioner/utilization-reviewer"
-* agent[+].type = $provenance-participant-type#author "Author"
+* agent[+].type = $ProvPartType#author "Author"
 * agent[=].who = Reference(Device/TheAI)
-* entity[+].role = $provenance-entity-role#source "Source"
+* entity[+].role = http://terminology.hl7.org/CodeSystem/provenance-entity-role#source "Source"
 * entity[=].what.reference = "http://server.example.org/fhir/Claim/priorauth-mri-request"
