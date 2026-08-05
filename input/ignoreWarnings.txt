@@ -57,7 +57,6 @@ INFORMATION: DocumentReference/ModelCard-sample-CHAI-binary: DocumentReference.c
 # 14 We should do this, but after public comments. Some of the codes will go into existing codeSystems in THO and thus not new codeSystems.
 INFORMATION: CodeSystem/AIdeviceTypeCS: CodeSystem: Most code systems defined in HL7 IGs will need to move to THO later during the process. Consider giving this code system a THO URL now (See https://confluence.hl7.org/display/TSMG/Terminology+Play+Book, and/or talk to TSMG)
 INFORMATION: CodeSystem/AIinputsCS: CodeSystem: Most code systems defined in HL7 IGs will need to move to THO later during the process. Consider giving this code system a THO URL now (See https://confluence.hl7.org/display/TSMG/Terminology+Play+Book, and/or talk to TSMG)
-INFORMATION: CodeSystem/AddedProvenanceCS: CodeSystem: Most code systems defined in HL7 IGs will need to move to THO later during the process. Consider giving this code system a THO URL now (See https://confluence.hl7.org/display/TSMG/Terminology+Play+Book, and/or talk to TSMG)
 
 # 15 We are not using the C-80 codes for DocumentReference.type
 Terminology_TX_NoValid_3_CC

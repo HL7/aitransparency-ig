@@ -9,3 +9,7 @@ This page tracks the signficant changes. All changes are tracked in Jira and on 
 ### 1.0.0-ballot
 
 Initial Public-Comment
+
+### 1.0.0
+
+- [FHIR-57918](https://jira.hl7.org/browse/FHIR-57918) Remove experimental provenance codes

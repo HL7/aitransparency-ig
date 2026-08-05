@@ -77,11 +77,7 @@ Use when an example is completely authored by an AI.
 
 The key portion of that Resource is the following meta.security element holding the `AIAST` code. `AIAST` is an HL7 Observation value for metadata that indicates that AI was involved in producing or manipulating the data or information.
 
-<!---
-Note, I don't think the description I added for AIAST is the best so including it more as a placeholder for now.
--->
-
-The `AIAST` code does not provide contextual indications, like for example if a clinician was involved in the use of the AI, or reviewed the output of the AI. This IG defined a new code system, [Added Provenance Codes](CodeSystem-AddedProvenanceCS.html), with codes providing additional contextual tagging..
+The `AIAST` code does not provide contextual indications, like for example if a clinician was involved in the use of the AI, or reviewed the output of the AI.
 
 ```json
 {

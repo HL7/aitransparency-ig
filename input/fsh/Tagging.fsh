@@ -5,27 +5,12 @@ This means not just contributed to the resource, but also that the AI system has
 
 This is different from an AI Contributed label, which would indicates that the AI system has contributed to the resource, but not claiming it is valid.
 
-The distinction between Contribution and Assertion is not clear -- https://jira.hl7.org/browse/FHIR-51021
-
-TODO: Might need to add AIRPT code to THO. 
-
 */
-
-CodeSystem: AddedProvenanceCS
-Title: "Added Provenance Codes"
-Description: "This CodeSystem contains codes for the provenance indications used in .meta.security and elsewhere that indicate that the AI system has been involved."
-* ^caseSensitive = true
-* ^experimental = false
-* ^status = #active
-* #AIRPT "AI Reported" "Indicates that the content was reported by an AI system."
-* #CLINAST_AIRPT "Clinician Asserted from AI Reported" "Indicates that a clinician has reviewed and asserted the content that was originally reported by an AI system."
-* #AIAST_CLINRPT "AI Asserted from Clinician Reported" "Indicates that the content was asserted by an AI system based on clinician reported information."
 
 ValueSet: ProvenanceVS
 Title: "Recommended provenance codes"
 Description:  "Subset from HL7, plus those defined here. For use in .meta.security to indicate AI was used in some way."
 * ^experimental = false
-* codes from system AddedProvenanceCS
 * $ObsValue#AIAST "Artificial Intelligence asserted"
 
 
