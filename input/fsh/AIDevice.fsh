@@ -11,6 +11,22 @@ Description: "This CodeSystem contains codes for the DocumentReference.type and 
 * #AIModelCardMarkdownFormat  "Markdown Format" "Hugging Face Model-Card in Markdown format"
 * #AImodelCardCHAIformat "CHAI Format" "Model-Card in CHAI format (Coalition for Health AI)"
 
+
+Instance:   AIinputsCS-initial-history
+InstanceOf: Provenance  // Note that the CodeSystem rendering the IG publisher does will put this Provenance as "History" at the bottom of the CodeSystem page. If this Provenance uses the AIProvenacne profile, then this History will not be shown. So the IG publisher clearly does not like any meta.profile in the Provenance it uses for history.
+Title: "Initial creation of AIinputsCS CodeSystem"
+Description: "Provenance record for the initial creation of the AIinputsCS CodeSystem."
+Usage: #definition
+* target[+] = Reference(CodeSystem/AIinputsCS)
+* recorded = "2025-09-15T13:00:00.0000Z"
+* occurredDateTime = "2025-09-15"
+* reason[+] = $ActReason#METAMGT
+* reason[=].text = "Initial CodeSystem created"
+* activity = http://terminology.hl7.org/CodeSystem/v3-DataOperation#CREATE
+* agent[+].type = $ProvPartType#verifier
+* agent[=].who.display = "John F. Moehrke"
+
+
 // TODO: Should have an invariant to ensure that if type is AIModelCard, then at least one category is present indicating the format, and that the content agrees with that format.
 //Invariant: mc-1
 //Description: "A DocumentReference of type AI Model-Card must have at least one category that indicates the format of the Model-Card, and that must agree with the content."
@@ -24,11 +40,7 @@ Id: AI-ModelCard
 Title: "AI Model-Card DocumentReference"
 Description: "A DocumentReference that contains a Model-Card describing an AI system."
 * type 1..1 MS
-* type.coding ^slicing.discriminator.type = #value
-* type.coding ^slicing.discriminator.path = "$this"
-* type.coding ^slicing.rules = #closed
-* type.coding contains AImodelCard 1..* MS
-* type.coding[AImodelCard] = AIinputsCS#AIModelCard (exactly) 
+* type = AIinputsCS#AIModelCard (exactly) 
 //* obeys mc-1
 * category 1..* MS
 * category ^slicing.discriminator.type = #value
@@ -312,7 +324,6 @@ Usage: #definition
 * occurredDateTime = "2025-09-15"
 * reason[+] = $ActReason#METAMGT
 * reason[=].text = "Initial CodeSystem created by Co-Pilot AI"
-* reason[+] = $ObsValue#AIAST
 * activity = http://terminology.hl7.org/CodeSystem/v3-DataOperation#CREATE
 * agent[+].type = $ProvPartType#author
 * agent[=].who.display = "GitHub Copilot AI"
@@ -329,7 +340,6 @@ Usage: #definition
 * occurredDateTime = "2026-08-05"
 * reason[+] = $ActReason#METAMGT
 * reason[=].text = "Ballot reconciliation of the CodeSystem"
-* reason[+] = $ObsValue#AIAST
 * activity = http://terminology.hl7.org/CodeSystem/v3-DataOperation#CREATE
 * agent[+].type = $ProvPartType#author
 * agent[=].who.display = "FHIR-54368"

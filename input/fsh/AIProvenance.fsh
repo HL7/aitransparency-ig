@@ -25,7 +25,7 @@ Description: "An AI Provenance is a record of the use of an AI model in generati
 * agent[AIagent].role = AIdeviceTypeCS#Artificial-Intelligence (exactly)
   * ^comment = "The agent role is set to Artificial Intelligence to indicate that the agent is an AI model."
 * entity ^slicing.discriminator.type = #profile
-* entity ^slicing.discriminator.path = "what"
+* entity ^slicing.discriminator.path = "what.resolve()"
 * entity ^slicing.rules = #open
 * entity ^slicing.description = "The entities that were used as input to the AI model, including the model card and input prompt."
 * entity and entity.what MS

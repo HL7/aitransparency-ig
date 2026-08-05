@@ -43,9 +43,11 @@ The extension http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValue
 PIN_VERSION
 
 # 12 These have been reviewed and are okay for our use-case
-INFORMATION: StructureDefinition/AI-ModelCard: StructureDefinition.snapshot.element[17].pattern.ofType(Coding): The repeating element has a pattern. The pattern will apply to all the repeats (this has not been clear to all users)
-INFORMATION: StructureDefinition/AI-ModelCard: StructureDefinition.snapshot.element[20].pattern.ofType(CodeableConcept): The repeating element has a pattern. The pattern will apply to all the repeats (this has not been clear to all users)
-INFORMATION: StructureDefinition/AI-InputPrompt: StructureDefinition.snapshot.element[17].pattern.ofType(Coding): The repeating element has a pattern. The pattern will apply to all the repeats (this has not been clear to all users)
+INFORMATION: StructureDefinition/AI-InputPrompt: StructureDefinition.snapshot.element[17].fixed.ofType(Coding): The repeating element has a fixed. The fixed will apply to all the repeats (this has not been clear to all users)
+WARNING: StructureDefinition/AI-InputPrompt: StructureDefinition.snapshot.element[17].fixed.ofType(Coding): For the complex type Coding, consider using a pattern rather than a fixed value to avoid over-constraining the instance
+WARNING: StructureDefinition/AI-ModelCard: StructureDefinition.snapshot.element[13].fixed.ofType(CodeableConcept): For the complex type CodeableConcept, consider using a pattern rather than a fixed value to avoid over-constraining the instance
+INFORMATION: StructureDefinition/AI-Provenance: StructureDefinition.snapshot.element[30].fixed.ofType(CodeableConcept): The repeating element has a fixed. The fixed will apply to all the repeats (this has not been clear to all users)
+WARNING: StructureDefinition/AI-Provenance: StructureDefinition.snapshot.element[30].fixed.ofType(CodeableConcept): For the complex type CodeableConcept, consider using a pattern rather than a fixed value to avoid over-constraining the instance
 
 # 13 Examples with extra elements beyond minimal slices
 INFORMATION: DocumentReference/ModelCard-sample-CHAI-attached: DocumentReference.content[1]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-ModelCard%
@@ -66,3 +68,17 @@ WARNING: StructureDefinition/AIconfidence: StructureDefinition.context[1]: Revie
 
 # 17 the use of requirements formally will happen in future releases, but is not intended for now
 INFORMATION: en/requirements.html: The html source contains the word 'MAY' but it is not in a text phrase marked as a conformance clause: 'In general, inputs should be captured using a Input-Prompt DocumentReference linked through the Provenance, but when specific clinical data is involved a FHIR Bundle or other resource MAY also be linked.'
+
+# 18 examples need to have Provenance.entities that are representing example ANY other stuff
+INFORMATION: Provenance/AI-Authored-Element: Provenance.agent[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-Provenance|1.0.0-current (this may not be a problem, but you should check that it's not intended to match a slice)
+INFORMATION: Provenance/AI-Contributed: Provenance.agent[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-Provenance|1.0.0-current (this may not be a problem, but you should check that it's not intended to match a slice)
+INFORMATION: Provenance/AI-Generated-Lab-Results: Provenance.entity[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-Provenance|1.0.0-current (this may not be a problem, but you should check that it's not intended to match a slice)
+INFORMATION: Provenance/AI-PriorAuth-Provenance: Provenance.agent[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-Provenance|1.0.0-current (this may not be a problem, but you should check that it's not intended to match a slice)
+INFORMATION: Provenance/AI-PriorAuth-Provenance: Provenance.entity[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-Provenance|1.0.0-current (this may not be a problem, but you should check that it's not intended to match a slice)
+INFORMATION: Provenance/AI-full-lorem-ipsum: Provenance.agent[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-Provenance|1.0.0-current (this may not be a problem, but you should check that it's not intended to match a slice)
+INFORMATION: Provenance/AI-full-lorem-ipsum: Provenance.entity[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-Provenance|1.0.0-current (this may not be a problem, but you should check that it's not intended to match a slice)
+INFORMATION: Provenance/AI-full-lorem-ipsum: Provenance.entity[1]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-Provenance|1.0.0-current (this may not be a problem, but you should check that it's not intended to match a slice)
+INFORMATION: Provenance/AI-full-lorem-ipsum: Provenance.entity[2]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-Provenance|1.0.0-current (this may not be a problem, but you should check that it's not intended to match a slice)
+INFORMATION: Provenance/AI-generated-patient-resource: Provenance.agent[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-Provenance|1.0.0-current (this may not be a problem, but you should check that it's not intended to match a slice)
+
+
