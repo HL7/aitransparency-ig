@@ -1,15 +1,15 @@
 
 The goal of this implementation guide is to provide observability of the use of AI in the production or manipulation of health data. To the end user, this means that in some way they can determine first that AI was involved and then discover more information about the AI and its usage. From this, we can understand that there are two levels of observability and multiple factors that can be observed within the second level. 
 
-- 1st Level Observability: **Tagging** - this provides the indication that AI was involved in some way with the data. It provides no details about AI's involvement, but gives an indication that the end user may wish to investigate further. This level is intended to be lightweight, not adding significant bloat to the payload or requiring additional lookups on the part of the client system. For this, this guide details the use of Security Labels (see [Tagging](#tagging) below).
+- 1st Level Observability: **Labeling** - this provides the indication that AI was involved in some way with the data. It provides no details about AI's involvement, but gives an indication that the end user may wish to investigate further. This level is intended to be lightweight, not adding significant bloat to the payload or requiring additional lookups on the part of the client system. For this, this guide details the use of Security Labels (see [Labeling](#labeling) below).
 - 2nd Level Observability: **AI Observability Factors** - there are a number of details that may be of interest to the end user about what and how AI was used. The factors covered in this IG are introduced [below](#ai-observability-factors) and then explained in the rest of this page. To provide observability into these factors, this guide details the use of the Provenance resource.
 
 **Note:** that both Security Labels and Provenance can be applied at the whole Resource level or at the Element level within a resource.
 
 <div class="stu-note">
-The use of tagging to achieve 1st level observability provides the end user or client system with a useful indicator of AI involvement without resulting in significant bloat in the payload. The presence of a tag can tell the user or system that they may want to look for a Provenance resource that will provide more details. <br/><br/>
+The use of labeling to achieve 1st level observability provides the end user or client system with a useful indicator of AI involvement without resulting in significant bloat in the payload. The presence of a label can tell the user or system that they may want to look for a Provenance resource that will provide more details. <br/><br/>
 
-It is possible to achieve both levels of observability by using only Provenance. In some use cases, the presence of tags may have adverse effects, so this guide does not enforce tagging. However, doing this is less interoperable because it depends on the end user or client system always checking for Provenance. <br/><br/>
+It is possible to achieve both levels of observability by using only Provenance. In some use cases, the presence of tags may have adverse effects, so this guide does not enforce labeling. However, doing this is less interoperable because it depends on the end user or client system always checking for Provenance. <br/><br/>
 
 The presence of both tags and Provenance provides for the best interoperability because the end user or client system does not need to do an extra lookup for Provenance on every resource. This is strongly recommended by this guide.
 </div>
@@ -37,11 +37,11 @@ Beyond 1st level observability, there are a number of factors that the end user 
 
 #### Discovering that AI was used
 
-There are two distinct methods of determining if data has been influenced by AI. The actual method(s) used will be determined by policy for a given data repository. The policy may determine that only Tagging will be used, that only Provenance will be used, or that both will be used.
+There are two distinct methods of determining if data has been influenced by AI. The actual method(s) used will be determined by policy for a given data repository. The policy may determine that only Labeling will be used, that only Provenance will be used, or that both will be used.
 
-##### Tagging is used
+##### Labeling is used
 
-For a given FHIR Resource, if Tagging is used, then a FHIR Resource that has been influenced by AI will have the `.meta.security` element populated with one of the codes from the AI Transparency Provenance ValueSet. See details below
+For a given FHIR Resource, if Labeling is used, then a FHIR Resource that has been influenced by AI will have the `.meta.security` element populated with one of the codes from the AI Transparency Provenance ValueSet. See details below
 
 ##### Provenance is used
 
@@ -51,15 +51,15 @@ For a given FHIR Resource (e.g. Observation with id of 1234), if Provenance is u
 
 If no results are returned then AI was not used, else the Provenance returned will explain how AI was used. See details below.
 
-### Tagging
+### Labeling
 
-The use of tagging enables distinguishing data that has not been produced or manipulated by AI, from data that has been produced or manipulated by AI. The level of influence and the details about how the AI was used are not provided by simple tagging. However, tagging is very light weight and does not add significant bloat to the payload or additional lookups. Tagging can be used as an indicator that AI was used in the creation or updating of the given resource and that a client system may wish to investigate further by fetching the Resource's Provenance.
+The use of labeling enables distinguishing data that has not been produced or manipulated by AI, from data that has been produced or manipulated by AI. The level of influence and the details about how the AI was used are not provided by simple labeling. However, labeling is very light weight and does not add significant bloat to the payload or additional lookups. Labeling can be used as an indicator that AI was used in the creation or updating of the given resource and that a client system may wish to investigate further by fetching the Resource's Provenance.
 
 >💡 Tip
 >
 > Use when one needs to quickly and easily identify Resources or elements inside a Resource that have been produced or manipulated by AI.
 
-Tagging (also called [Security Labels](https://hl7.org/fhir/security-labels.html)) uses the FHIR [Resource definition](https://hl7.org/fhir/resource.html) `.meta.security` element that is at the top of all Resources, and as such can be found without Resource type specific processing. The use of security tagging follows the purpose for security tagging, as the domain of security covers protections against risks to Confidentiality, Availability, and Integrity (see [Healthcare Privacy and Security Classification System (HCS) vocabulary](https://hl7.org/fhir/security-labels.html#hcs)). In this case focusing on [Integrity](https://terminology.hl7.org/ValueSet-v3-SecurityIntegrityObservationValue.html) is defined as completeness, veracity, reliability, trustworthiness, and provenance. In the case of AI Transparency we want to mark the AI participation to convey reliability, trustworthiness, and provenance.
+Labeling (also called [Security Labels](https://hl7.org/fhir/security-labels.html)) uses the FHIR [Resource definition](https://hl7.org/fhir/resource.html) `.meta.security` element that is at the top of all Resources, and as such can be found without Resource type specific processing. The use of security labeling follows the purpose for security labeling, as the domain of security covers protections against risks to Confidentiality, Availability, and Integrity (see [Healthcare Privacy and Security Classification System (HCS) vocabulary](https://hl7.org/fhir/security-labels.html#hcs)). In this case focusing on [Integrity](https://terminology.hl7.org/ValueSet-v3-SecurityIntegrityObservationValue.html) is defined as completeness, veracity, reliability, trustworthiness, and provenance. In the case of AI Transparency we want to mark the AI participation to convey reliability, trustworthiness, and provenance.
 
 Within the [Integrity Security Tags Vocabulary](https://terminology.hl7.org/ValueSet-v3-SecurityIntegrityObservationValue.html) is [AIAST - Artificial Intelligence Asserted](https://terminology.hl7.org/CodeSystem-v3-ObservationValue.html#v3-ObservationValue-AIAST) as a broad concept of any influence by any kind of artificial intelligence. There is also [DICTAST - Dictation asserted](https://terminology.hl7.org/CodeSystem-v3-ObservationValue.html#v3-ObservationValue-DICTAST) for when dictation, which might be AI driven, has been involved in translating dictation to data.
 
@@ -74,15 +74,15 @@ classDiagram
 ```
 
 <!---
-The following link was included in the Tagging Explainer but links to provenance. Not sure if this is correct.
+The following link was included in the Labeling Explainer but links to provenance. Not sure if this is correct.
 We include a [valueSet](ValueSet-ProvenanceVS.html) that assembles our codes and those defined elsewhere.
 
 Consider finding more descriptive label
 -->
 
-#### Resource tag
+#### Resource label
 
-A Resource tag indicates that the whole Resource is produced or manipulated by the code assigned.
+A Resource label indicates that the whole Resource is produced or manipulated by the code assigned.
 
 - [Example Observation with AI Assisted security labels](Observation-glasgow.html)
 
@@ -107,9 +107,9 @@ The `AIAST` code does not provide contextual indications, like for example if a 
     ...
 ```
 
-#### Element tag within a Resource
+#### Element label within a Resource
 
-An Element tag will indicate that an element or a few elements within a Resource were produced or manipulated by AI, but not the whole Resource.
+An Element label will indicate that an element or a few elements within a Resource were produced or manipulated by AI, but not the whole Resource.
 Use when components of an example were authored by AI, but not the whole Resource.
 
 meta.security holds a code defined in [DS4P Inline Security Labels]({{site.data.fhir.ds4p}}/inline_security_labels.html) - `PROCESSINLINE`, and the `inline-sec-label` extension is on each element that was produced or manipulated by AI to indicate it is an AI asserted value.
@@ -144,7 +144,7 @@ One of the key portions of that Resource is
 
 ### Provenance
 
-There are a number of observability factors beyond simple tagging that are of interest to end users and downstream systems. Chief among these is the nature of the AI itself. The user would like to understand what algorithm / model was used, who developed it, how it was trained, any certifications it has, and so on... To do this, the guide outlines the use of the Provenance resource, which can then be linked to Device and DocumentReference to point to a Model-Card.
+There are a number of observability factors beyond simple labeling that are of interest to end users and downstream systems. Chief among these is the nature of the AI itself. The user would like to understand what algorithm / model was used, who developed it, how it was trained, any certifications it has, and so on... To do this, the guide outlines the use of the Provenance resource, which can then be linked to Device and DocumentReference to point to a Model-Card.
 
 The overall Provenance model is shown below. 
 
@@ -230,7 +230,7 @@ The industry is converging around standards for providing this information, gene
 
 ##### Resource-level
 
-As with tagging, a Provenance can point at a whole Resource. In this way one can carry details in the Provenance, such as what AI was used and how.
+As with labeling, a Provenance can point at a whole Resource. In this way one can carry details in the Provenance, such as what AI was used and how.
 
 - [Example Provenance of AI authored Lab Observation](Provenance-AI-Contributed.html)
 

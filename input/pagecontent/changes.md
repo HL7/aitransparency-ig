@@ -26,7 +26,7 @@ Initial Public-Comment
 - [FHIR-54371](https://jira.hl7.org/browse/FHIR-54371) AI Device representation and its elements
 - [FHIR-54391](https://jira.hl7.org/browse/FHIR-54391) Provide a position on the preferred model card - indifferent
 - [FHIR-54528](https://jira.hl7.org/browse/FHIR-54528) Describe how to exchange AI provenance via RESTful create
-- [FHIR-54279](https://jira.hl7.org/browse/FHIR-54279) and [FHIR-54281](https://jira.hl7.org/browse/FHIR-54281) Explain how to discover that AI was used, and how to find the provenance or tag that indicates this.
+- [FHIR-54279](https://jira.hl7.org/browse/FHIR-54279) and [FHIR-54281](https://jira.hl7.org/browse/FHIR-54281) Explain how to discover that AI was used, and how to find the provenance or label that indicates this.
 - [FHIR-54885](https://jira.hl7.org/browse/FHIR-54885) Add some clarifying text to the Scope section that detection is not in scope
 - [FHIR-54893](https://jira.hl7.org/browse/FHIR-54893) Clarify AI vs non-AI scope to avoid inconsistent observability implementations.
 - [FHIR-54726](https://jira.hl7.org/browse/FHIR-54726) Scope needs some refinement
@@ -34,4 +34,4 @@ Initial Public-Comment
 - [FHIR-53973](https://jira.hl7.org/browse/FHIR-53973) Clarification on input data
 - [FHIR-54723](https://jira.hl7.org/browse/FHIR-54723) AI device conflicting type binding and property fixed values and extension
 - [FHIR-54725](https://jira.hl7.org/browse/FHIR-54725) Remove unusable AI-Data Profile on Resource as not usable.
-- 
+- [FHIR-54707](https://jira.hl7.org/browse/FHIR-54707) Refrain from using Tag, use Label

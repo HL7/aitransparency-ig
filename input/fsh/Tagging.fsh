@@ -15,7 +15,7 @@ Description:  "Subset from HL7, plus those defined here. For use in .meta.securi
 
 
 
-//========Example of Resource Level tagging ===  
+//========Example of Resource Level labeling ===  
 
 
 Instance: glasgow
@@ -69,7 +69,7 @@ Usage: #example
 * performer.extension[0].valueReference = Reference(Device/TheAI)
 * performer.display = "AI System (TheAI)"
 
-//==================================== Example of Element Level tagging 
+//==================================== Example of Element Level labeling 
 
 Instance: DiagnosticeReport-Instance-for-f202-1
 InstanceOf: DiagnosticReport
