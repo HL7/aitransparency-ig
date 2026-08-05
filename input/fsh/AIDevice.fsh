@@ -340,7 +340,7 @@ Usage: #definition
 * occurredDateTime = "2026-08-05"
 * reason[+] = $ActReason#METAMGT
 * reason[=].text = "Ballot reconciliation of the CodeSystem"
-* activity = http://terminology.hl7.org/CodeSystem/v3-DataOperation#CREATE
+* activity = http://terminology.hl7.org/CodeSystem/v3-DataOperation#UPDATE
 * agent[+].type = $ProvPartType#author
 * agent[=].who.display = "FHIR-54368"
 * agent[+].type = $ProvPartType#verifier
