@@ -32,9 +32,7 @@ Beyond 1st level observability, there are a number of factors that the end user 
   - ...
 4. Process - the interactions between AI(s), human(s), and system(s) (see [Process Utilizing AI](use_cases.html#process-utilizing-ai))
   - Human reviews (human-in-the-loop)
-  - Multi-agent interactions, such as use of Agent-to-Agent protocol (A2A)
-  - Tool calling, such as use of Model Context Protocol (MCP)
-  - Guardrails to prevent bias, inappropriate responses, undesired actions, ...
+  - Guardrails to prevent bias, inappropriate responses, undesired actions,
   - ...
 
 #### Discovering that AI was used
