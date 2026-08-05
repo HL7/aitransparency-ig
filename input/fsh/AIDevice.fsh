@@ -304,30 +304,47 @@ Description: "This CodeSystem contains codes for the Device.type that indicate t
 * ^property[0].code = #abstract
 * ^property[0].uri = "http://hl7.org/fhir/concept-properties#notSelectable"
 * ^property[0].type = #boolean
-* #AI-By-Scenario "Classification by Application Scenario" "This category classifies AI systems based on their application scenarios in the medical field."
-* #AI-By-Scenario ^property.code = #abstract 
-* #AI-By-Scenario ^property.valueBoolean = true
-  * #Intelligent-Diagnosis-and-Treatment "Intelligent Diagnosis and Treatment" "By analyzing massive volumes of medical data, these AI systems assist doctors in making more accurate diagnostic and treatment decisions."
-  * #Medical-Image-Analysis "Medical Image Analysis" "Leveraging deep learning technologies, these AI tools automatically identify lesion areas in medical images."
-  * #Personalized-Treatment "Personalized Treatment" "These AI systems create precise patient profiles to formulate personalized treatment plans."
-  * #Drug-Discovery-and-Development "Drug Discovery and Development" "AI in this category accelerates the screening of candidate drugs and optimizes the design of clinical trials."
-  * #Medical-Quality-Control "Medical Quality Control" "These AI tools are used to generate standardized medical document templates and detect defects in medical documents and images."
-  * #Patient-Services "Patient Services" "AI systems here provide patients with services such as intelligent medical guidance, symptom self-assessment, and medical consultation."
-* #AI-By-DataType "Classification by Processed Data Type" "This category classifies AI systems based on the types of medical data they primarily process."
-* #AI-By-DataType ^property.code = #abstract 
-* #AI-By-DataType ^property.valueBoolean = true
-  * #AI-for-Medical-Imaging-Data "AI for Medical Imaging Data" "It mainly processes medical imaging data such as X-rays, MRIs, and CT scans."
-  * #AI-for-Physiological-Signal-Data "AI for Physiological Signal Data" "This type of AI deals with physiological signal data like electrocardiograms (ECG) and electroencephalograms (EEG)."
-  * #AI-for-Medical-Text-Data "AI for Medical Text Data" "It processes text data such as electronic health records (EHRs) and medical abstracts."
-* #AI-By-Model "Classification by Technical Model" "This category classifies AI systems based on the underlying technical models they employ."
-* #AI-By-Model ^property.code = #abstract
-* #AI-By-Model ^property.valueBoolean = true
-  * #Machine-Learning-Models "Machine Learning Models" "They include supervised learning models (e.g., Support Vector Machines (SVM), Random Forests (RF)), which can be used for disease classification and risk prediction; unsupervised learning models (e.g., K-means clustering), which can discover hidden characteristics of patient subgroups; and reinforcement learning models, which can be applied in dynamic treatment plan management."
-  * #Deep-Learning-Models "Deep Learning Models" "Examples include Convolutional Neural Networks (CNNs), which perform excellently in medical image analysis; Recurrent Neural Networks (RNNs) and their variant LSTMs, which are suitable for processing time-series physiological signal data; Generative Adversarial Networks (GANs), which can be used to synthesize training data and alleviate the scarcity of medical data; and Transformer models, which are widely used in multiple tasks such as medical imaging, text analysis, and physiological signal prediction."
-  * #Large-Language-Models "Large Language Models" "These models, such as GPT-4 and PaLM, are trained on massive text datasets and can perform various natural language processing tasks, including medical text understanding, generation, and question answering."
-  * #Hybrid-Models "Hybrid Models" "These models combine multiple AI techniques to leverage their respective strengths. For instance, combining CNNs and RNNs can effectively process medical image sequences; integrating machine learning and deep learning models can enhance disease prediction accuracy; and combining rule-based systems with machine learning can improve interpretability and reliability in clinical decision support."
-//  * #Other-AI-Models "Other AI Models" "This category includes other AI models not covered above, such as graph neural networks (GNNs) for modeling complex relationships in medical data, and evolutionary algorithms for optimizing treatment plans."
 * #Artificial-Intelligence "All kinds of Artificial Intelligence" "Any type of Artificial Intelligence system, undifferentiated."
+  * #AI-By-Model "Classification by Technical Model" "This category classifies AI systems based on the underlying technical models they employ."
+  * #AI-By-Model ^property.code = #abstract
+  * #AI-By-Model ^property.valueBoolean = true
+    * #Rule-Based-Systems "Rule-Based Systems" "Systems that apply explicitly authored rules, logic, knowledge representations, or inference procedures to input data."
+    * #Machine-Learning-Models "Machine Learning Models" "They include supervised learning models (e.g., Support Vector Machines (SVM), Random Forests (RF)), which can be used for disease classification and risk prediction; unsupervised learning models (e.g., K-means clustering), which can discover hidden characteristics of patient subgroups; and reinforcement learning models, which can be applied in dynamic treatment plan management."
+      * #Deep-Learning-Models "Deep Learning Models" "Examples include Convolutional Neural Networks (CNNs), which perform excellently in medical image analysis; Recurrent Neural Networks (RNNs) and their variant LSTMs, which are suitable for processing time-series physiological signal data; Generative Adversarial Networks (GANs), which can be used to synthesize training data and alleviate the scarcity of medical data; and Transformer models, which are widely used in multiple tasks such as medical imaging, text analysis, and physiological signal prediction."
+        * #Foundation-Models "Foundation Models" "Deep learning models trained on broad data at scale that can be adapted to a range of downstream tasks."
+          * #Large-Language-Models "Large Language Models" "These models, such as GPT-4 and PaLM, are trained on massive text datasets and can perform various natural language processing tasks, including medical text understanding, generation, and question answering."
+          * #Vision-Foundation-Models "Vision Foundation Models" "Foundation models trained primarily to process and represent visual data for adaptation to vision tasks."
+          * #Vision-Language-Models "Vision-Language Models" "Foundation models that jointly process visual and language data."
+    * #Hybrid-Models "Hybrid Models" "These models combine multiple AI techniques to leverage their respective strengths. For instance, combining CNNs and RNNs can effectively process medical image sequences; integrating machine learning and deep learning models can enhance disease prediction accuracy; and combining rule-based systems with machine learning can improve interpretability and reliability in clinical decision support."
+//  * #Other-AI-Models "Other AI Models" "This category includes other AI models not covered above, such as graph neural networks (GNNs) for modeling complex relationships in medical data, and evolutionary algorithms for optimizing treatment plans."
+  * #AI-By-Behavior "Classification by Output Behavior" "Groups AI systems by whether identical inputs and execution conditions are expected to produce identical outputs."
+  * #AI-By-Behavior ^property.code = #abstract
+  * #AI-By-Behavior ^property.valueBoolean = true
+    * #Deterministic-AI "Deterministic AI" "An AI system that produces the same output for the same input when its model, configuration, state, and execution environment are unchanged."
+    * #Non-Deterministic-AI "Non-deterministic AI" "An AI system whose output may vary for the same input and execution conditions, for example because it uses probabilistic sampling or stochastic processing."
+  * #AI-By-Scenario "Classification by Application Scenario" "This category classifies AI systems based on their application scenarios in the medical field."
+  * #AI-By-Scenario ^property.code = #abstract
+  * #AI-By-Scenario ^property.valueBoolean = true
+    * #Intelligent-Diagnosis-and-Treatment "Intelligent Diagnosis and Treatment" "By analyzing massive volumes of medical data, these AI systems assist doctors in making more accurate diagnostic and treatment decisions."
+    * #Medical-Image-Analysis "Medical Image Analysis" "Leveraging deep learning technologies, these AI tools automatically identify lesion areas in medical images."
+    * #Personalized-Treatment "Personalized Treatment" "These AI systems create precise patient profiles to formulate personalized treatment plans."
+    * #Clinical-Monitoring-and-Early-Warning "Clinical Monitoring and Early Warning" "Monitors longitudinal or real-time patient data to identify deterioration, adverse events, or other conditions requiring attention."
+    * #Clinical-Documentation-and-Workflow "Clinical Documentation and Workflow" "Creates, summarizes, extracts, codes, routes, or quality-checks clinical and administrative information to support healthcare workflows."
+    * #Drug-Discovery-and-Development "Drug Discovery and Development" "AI in this category accelerates the screening of candidate drugs and optimizes the design of clinical trials."
+    * #Medical-Quality-Control "Medical Quality Control" "These AI tools are used to generate standardized medical document templates and detect defects in medical documents and images."
+    * #Patient-Services "Patient Services" "AI systems here provide patients with services such as intelligent medical guidance, symptom self-assessment, and medical consultation."
+    * #Population-Health-and-Operations "Population Health and Healthcare Operations" "Supports population stratification, public health, resource planning, scheduling, logistics, or other healthcare operational activities."
+  * #AI-By-DataType "Classification by Processed Data Type" "This category classifies AI systems based on the types of medical data they primarily process."
+  * #AI-By-DataType ^property.code = #abstract
+  * #AI-By-DataType ^property.valueBoolean = true
+    * #AI-for-Medical-Imaging-Data "AI for Medical Imaging Data" "It mainly processes medical imaging data such as X-rays, MRIs, and CT scans."
+    * #AI-for-Physiological-Signal-Data "AI for Physiological Signal Data" "This type of AI deals with physiological signal data like electrocardiograms (ECG) and electroencephalograms (EEG)."
+    * #AI-for-Medical-Text-Data "AI for Medical Text Data" "It processes text data such as electronic health records (EHRs) and medical abstracts."
+    * #AI-for-Structured-Clinical-Data "Structured Clinical Data" "Processes coded, tabular, or relational health data such as diagnoses, medications, laboratory results, observations, claims, or FHIR resources."
+    * #AI-for-Genomic-and-Omics-Data "Genomic and Omics Data" "Processes genomic, transcriptomic, proteomic, metabolomic, or related molecular data."
+    * #AI-for-Audio-Data "Audio Data" "Processes speech, heart sounds, respiratory sounds, or other clinically relevant audio."
+    * #AI-for-Video-Data "Video Data" "Processes temporal image sequences such as endoscopy, ultrasound cine loops, gait recordings, or procedure video."
+    * #AI-for-Multimodal-Data "Multimodal Data" "Jointly processes two or more data modalities, such as images and text or physiological signals and structured clinical data."
 
 Instance:   AIdeviceTypeCS-initial-history
 InstanceOf: Provenance  // Note that the CodeSystem rendering the IG publisher does will put this Provenance as "History" at the bottom of the CodeSystem page. If this Provenance uses the AIProvenacne profile, then this History will not be shown. So the IG publisher clearly does not like any meta.profile in the Provenance it uses for history.
