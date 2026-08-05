@@ -1,7 +1,7 @@
 
 Observability of the use of AI in the production or manipulation of health data matters for many reasons. This guide organizes those reasons into **four general use cases**. Each is a broad category that covers many more specific scenarios, and each is illustrated below with concrete examples drawn from the artifacts in this guide.
 
-All four use cases rest on the two mechanisms described in the [General Guidance](general_guidance.html): lightweight **tagging** (a `meta.security` label that signals AI was involved) and the **Provenance** resource (which carries the details — the AI model, the inputs, and the process). Tagging answers *"was AI involved?"* cheaply; Provenance answers *"how, by what, and with what oversight?"* authoritatively.
+All four use cases rest on the two mechanisms described in the [Requirements](requirements.html): lightweight **tagging** (a `meta.security` label that signals AI was involved) and the **Provenance** resource (which carries the details — the AI model, the inputs, and the process). Tagging answers *"was AI involved?"* cheaply; Provenance answers *"how, by what, and with what oversight?"* authoritatively.
 
 <style>
 table {
@@ -111,7 +111,7 @@ flowchart LR
 
 **Filtering at element granularity.** The [DiagnosticReport with inline AI security labels](DiagnosticReport-f202.html) tags only the AI-asserted elements. A consumer can drop the AI-asserted `conclusion` while still using the rest of the report, rather than discarding the whole resource.
 
-> **Tags are hints, not proof.** Because `meta.security` is optional, the absence of a tag does not guarantee that AI was not involved. For authoritative filtering, a consumer should also check for a [Provenance](general_guidance.html#process-utilizing-ai) on the resource. Tagging makes the common case cheap; Provenance makes it certain.
+> **Tags are hints, not proof.** Because `meta.security` is optional, the absence of a tag does not guarantee that AI was not involved. For authoritative filtering, a consumer should also check for a [Provenance](requirements.html#process-utilizing-ai) on the resource. Tagging makes the common case cheap; Provenance makes it certain.
 
 ### Use Case 3: Discovery of output from an AI model determined to be problematic
 
@@ -153,7 +153,7 @@ Discovery also **discriminates between models**. A separate [second AI system](D
 
 ### Use Case 4: Discovery of output resulting from inputs determined to be problematic
 
-Just as a model can later be found problematic, so can an **input**. Inputs — the [context](general_guidance.html#context-of-ai-usage) provided to the AI, such as a prompt or a source document — are recorded as `Provenance.entity`. If an input is later determined to be flawed, every output derived from it can be traced and reviewed.
+Just as a model can later be found problematic, so can an **input**. Inputs — the [context](requirements.html#context-of-ai-usage) provided to the AI, such as a prompt or a source document — are recorded as `Provenance.entity`. If an input is later determined to be flawed, every output derived from it can be traced and reviewed.
 
 > As with Use Case 3, this discovery **makes no judgment about the validity** of the outputs. It only identifies the data that may warrant review.
 

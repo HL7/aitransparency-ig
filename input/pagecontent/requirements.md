@@ -18,18 +18,19 @@ The presence of both tags and Provenance provides for the best interoperability 
 
 Beyond 1st level observability, there are a number of factors that the end user or client system may be interested in knowing about. These factors can be broken down into 3 categories:
 
-1. Model(s) - definition of the AI(s) used (see [Defining the AI](#defining-the-ai-model)) 
-  - Name and version of the AI algorithm / model
+1. Model(s) - definition of the AI(s) used (see [Defining the AI](#defining-the-ai-system)) 
+  - Name and version of the AI system
+2. Model-Card - details about the AI algorithm / model (see [The Model-Card](#the-model-card))
   - Organization that produced the model
   - Is the algorithm deterministic or non-deterministic
   - Data set used in training the model(s)
   - ...
-2. Context - input data provided to the AI to produce or manipulate outputs (see [Context of AI Usage](#context-of-ai-usage))
+3. Context - input data provided to the AI to produce or manipulate outputs (see [Context of AI Usage](#context-of-ai-usage))
   - Prompts, including system and user prompts
   - Patient data, such as health records
   - Reference input, such as clinical practice guidelines 
   - ...
-3. Process - the interactions between AI(s), human(s), and system(s) (see [Process Utilizing AI](#process-utilizing-ai))
+4. Process - the interactions between AI(s), human(s), and system(s) (see [Process Utilizing AI](#process-utilizing-ai))
   - Human reviews (human-in-the-loop)
   - Multi-agent interactions, such as use of Agent-to-Agent protocol (A2A)
   - Tool calling, such as use of Model Context Protocol (MCP)
@@ -131,13 +132,9 @@ One of the key portions of that Resource is
   ]
 ```
 
-### Defining the AI Model
+### Provenance
 
 There are a number of observability factors beyond simple tagging that are of interest to end users and downstream systems. Chief among these is the nature of the AI itself. The user would like to understand what algorithm / model was used, who developed it, how it was trained, any certifications it has, and so on... To do this, the guide outlines the use of the Provenance resource, which can then be linked to Device and DocumentReference to point to a Model-Card.
-
->💡 Tip
->
-> Use when the AI model is important to the use-cases, such as when it may be important to understand which AI model was used.
 
 The industry is converging around standards for providing this information, generally called Model-Cards. Several different standards are emerging, including [Hugging Face](#hugging-face-markdown) and [CHAI Model Cards](#chai-applied-model-cards-xml). This guide does not enforce any particular Model-Card, but does show how to encode any Model-Card in a [AI Model-Card profiled DocumentReference](StructureDefinition-AI-ModelCard.html), and these would be referenced in a [AI profiled Device](StructureDefinition-AI-Device.html) or within the [Provenance describing the AI involvement](StructureDefinition-AI-Provenance.html). This looks like:
 
@@ -167,7 +164,7 @@ classDiagram
         <<FHIR Resource>>
         id
         identifier
-        type = "AI"
+        type = "Artificial-Intelligence"
         extension : Specific kind of AI
         modelNumber
         manufacturer
@@ -177,7 +174,6 @@ classDiagram
         owner
         contact
         url
-        note
         safety
         extension : model-card
     }
@@ -207,12 +203,25 @@ classDiagram
     Provenance --> DocumentReferenceInputPrompt : "Provenance.entity.what"
 ```
 
-Examples:
+#### Defining the AI System
 
+The AI system is described in a FHIR Device resource, which is [profiled](StructureDefinition-AI-Device.html). The Device.type MUST be `Artificial-Intelligence`. There is an extension to hold more specific kinds of AI. There is an extension to point at a Model-Card if this Device is always used with that Model-Card. The Device resource referenced in a Provenance resource that describes the AI involvement in the creation or manipulation of the data.
+
+- [Profiled Device to describe AI system](StructureDefinition-AI-Device.html)
 - [Profile of Provenance describing AI as involved](StructureDefinition-AI-Provenance.html)
-- [The AI System as a Device](Device-TheAI.html)
+- [Example AI System as a Device](Device-TheAI.html)
 
-#### Hugging Face Markdown
+#### The Model-Card
+
+The Model-Card encoding is defined by other standards organizations, and have distinct mime-type. To encode a Model-Card the DocumentReference resource is used. To make this more clear and searchable we define a [codeSystem](CodeSystem-AIinputsCS.html) that has some codes to be used to identify that the DocumentReference is specifically an AI Model-Card or an AI Input Prompt
+
+- [Profile of DocumentReference to carry a Model-Card](StructureDefinition-AI-ModelCard.html)
+  - [Example DocumentReference Hugging Face Model-Card](DocumentReference-ModelCard-sample-huggingface-attached.html)
+  - [Example DocumentReference CHAI Model-Card](DocumentReference-ModelCard-sample-CHAI-attached.html)
+- [Extension for including the Model-Card in a Device](StructureDefinition-aitransparency.modelCardDescription.html)
+  - [Example Device with attached Model-Card](Device-Attached-ModelCard.html)
+
+##### Hugging Face Markdown
 
 The Hugging Face Model-Card is a combination of YAML that defines in codeable terms the details, and a Markdown that describes it in narrative. Given that Markdown can carry YAML, the overall object is Markdown.
 
@@ -245,36 +254,17 @@ pretty_name: Sample Segmentation
 
 The example above is encoded in a [DocumentReference with Model-Card encoded inside](DocumentReference-ModelCard-sample-huggingface-attached.html)
 
-#### CHAI Applied Model-Cards XML
+##### CHAI Applied Model-Cards XML
 
 The [Coalition for Health AI (CHAI) Applied Model Card](https://www.chai.org/workgroup/applied-model) utilizes XML encoding and PDF rendering.
 
 An example from the [CHAI Github Examples](https://github.com/coalition-for-health-ai/mc-schema) is included here in multiple DocumentReference formats:
 
-- [DocumentReference linked to a web repository where the Model-Cards exist](DocumentReference-ModelCard-sample-CHAI-web.html)
-- [DocumentReference with Model-Card encoded using FHIR Binary resources](DocumentReference-ModelCard-sample-CHAI-binary.html)
-- [DocumentReference with Model-Card encoded inside](DocumentReference-ModelCard-sample-CHAI-attached.html)
+- [Example DocumentReference linked to a web repository where the Model-Cards exist](DocumentReference-ModelCard-sample-CHAI-web.html)
+- [Example DocumentReference with Model-Card encoded using FHIR Binary resources](DocumentReference-ModelCard-sample-CHAI-binary.html)
+- [Example DocumentReference with Model-Card encoded inside](DocumentReference-ModelCard-sample-CHAI-attached.html)
 
 Note that these are all the same example Model-Card, just encoded different ways depending on the needs. These three encoding methods are available for the HuggingFace format as well. Note that in the case of CHAI format, these examples include both the XML and the PDF rendering of the same as different .content entries.
-
-##### Support for FHIR R5/R6
-
-In FHIR R5/R6 of FHIR core the Device resource has a `.property` element with a `.property.type` we can use to indicate the model-card, and place the model-card markdown into `.property.valueAttachment` as markdown string. (It could go into `.valueString` if we know it will be markdown, but that is not explicitly clear.)
-
-##### FHIR R4 Simply put the Model-Card markdown into the note.text of the Device
-
-One choice is to just put that Markdown Model-Card into the Device.note.text element. This is not wrong from the definition of that element, but it may not be obvious to one looking at the Device resource that there is meaning to the markdown given.
-
-- [Device with Model-Card in Device.note.text](Device-Note-ModelCard.html)
-
-##### Attachment for the Model-Card
-
-One could encode the Model-Card in a resource designed for carrying any mime-type, the DocumentReference. To make this more clear and searchable we define a [codeSystem](CodeSystem-AIinputsCS.html) that has some codes to be used to identify that the DocumentReference is specifically an AI Model-Card or an AI Input Prompt
-
-- [Profile of DocumentReference to carry a Model-Card](StructureDefinition-AI-ModelCard.html)
-- [DocumentReference Hugging Face Model-Card](DocumentReference-ModelCard-sample-huggingface-attached.html)
-- [Extension for including the Model-Card in a Device](StructureDefinition-aitransparency.modelCardDescription.html)
-- [Device with attached Model-Card](Device-Attached-ModelCard.html)
 
 ### Context of AI Usage
 

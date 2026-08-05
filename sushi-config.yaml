@@ -57,14 +57,19 @@ dependencies:
 pages:
   index.md:
     title: Overview
-  general_guidance.md:
-    title: General Guidance
   use_cases.md:
     title: Use Cases
+  requirements.md:
+    title: Requirements and Guidance
+    extension: 
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: normative   
   about.md:
     title: About
   changes.md:
     title: Changes
+  future.md:
+    title: Future considerations
 
 #
 #
@@ -98,11 +103,12 @@ parameters:
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
   Home: index.html
-  Guidance:
-    General: general_guidance.html
-    Use Cases: use_cases.html
-  About: about.html
-  Changes: changes.html
+  Use Cases: use_cases.html
+  Requirements: requirements.html
+  About: 
+    About: about.html
+    Futures: future.html
+    Changes: changes.html
   Artifacts: artifacts.html
 
 # ╭───────────────────────────Less Common Implementation Guide Properties──────────────────────────╮

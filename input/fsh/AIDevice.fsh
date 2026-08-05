@@ -1,50 +1,5 @@
 
 
-
-Instance: Note-ModelCard
-InstanceOf: AIDevice
-Title: "Device with Model-Card in Device.note.text"
-Description: """
-A Device that has a Model-Card.
-Given that it is understood that ModelCards are Markdown, this could simply go into the .note.
-"""
-Usage: #example
-* identifier.system = "http://example.org/ehr/client-ids"
-* identifier.value = "goodhealth"
-* manufacturer = "Acme Devices, Inc"
-* type = AIdeviceTypeCS#Artificial-Intelligence
-* extension[aiKind].valueCodeableConcept = AIdeviceTypeCS#Large-Language-Models
-* version.value = "10.23-23423"
-* contact.system = #url
-* contact.value = "http://example.org"
-* note.time = "2023-10-01T00:00:00Z"
-* note.text = """
----
-language:
-- en
-license:
-- bsd-3-clause
-annotations_creators:
-- crowdsourced
-- expert-generated
-language_creators:
-- found
-multilinguality:
-- monolingual
-size_categories:
-- n<1K
-task_categories:
-- image-segmentation
-task_ids:
-- semantic-segmentation
-pretty_name: Sample Segmentation
----
-
-# Dataset Card for Sample Segmentation
-
-This is a sample dataset card for a semantic segmentation dataset.
-"""
-
 CodeSystem: AIinputsCS
 Title: "Codes for AI ModelCard and Input Prompt"
 Description: "This CodeSystem contains codes for the DocumentReference.type and DocumentReference.category that indicate that the DocumentReference is an Input-Prompt or one of a set of Model-Card(s)."
@@ -249,7 +204,7 @@ Parent: Device
 Id: AI-Device
 Title: "AI Device"
 Description: """
-A Device that represents an AI system, such as a Large Language Model (LLM) or other AI model. This profile includes a recommended set of codes for Device.type to indicate the type of AI system. The extension AIKind is used to specify the more specific kind(s) of AI technology and techniques employed by the AI system. The extension ModelCardDescription is used to reference a Model-Card that is always used with the AI system.
+A Device that represents an AI system, such as a Large Language Model (LLM) or other AI model. This profile requires Device.type to be `Artificial-Intelligence`. The extension AIKind is used to specify the more specific kind(s) of AI technology and techniques employed by the AI system. The extension ModelCardDescription is used to reference a Model-Card that is always used with the AI system.
 """
 * identifier MS
   * ^comment = "Identifier for the AI system, such as a client ID from an EHR system"
@@ -266,7 +221,6 @@ A Device that represents an AI system, such as a Large Language Model (LLM) or o
 * owner MS
 * contact MS
 * url MS
-* note MS
 * safety MS
 
 Extension: AIKind

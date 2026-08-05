@@ -65,4 +65,4 @@ Terminology_TX_NoValid_3_CC
 WARNING: StructureDefinition/AIconfidence: StructureDefinition.context[1]: Review the extension type for AIconfidence: extensions should not have a context of Element unless it's really intended that they can be used anywhere
 
 # 17 the use of requirements formally will happen in future releases, but is not intended for now
-INFORMATION: en/general_guidance.html: The html source contains the word 'MAY' but it is not in a text phrase marked as a conformance clause: 'In general, inputs should be captured using a Input-Prompt DocumentReference linked through the Provenance, but when specific clinical data is involved a FHIR Bundle or other resource MAY also be linked.'
+INFORMATION: en/requirements.html: The html source contains the word 'MAY' but it is not in a text phrase marked as a conformance clause: 'In general, inputs should be captured using a Input-Prompt DocumentReference linked through the Provenance, but when specific clinical data is involved a FHIR Bundle or other resource MAY also be linked.'

@@ -43,7 +43,7 @@ Usage: #example
 * agent[+].type = $ProvPartType#verifier "Verifier"
 * agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
 * agent[+].type = $ProvPartType#author "Author"
-* agent[=].who = Reference(Device/Note-ModelCard)
+* agent[=].who = Reference(Device/Attached-ModelCard)
 * entity[+].role = http://terminology.hl7.org/CodeSystem/provenance-entity-role#source "Source"
 * entity[=].what.reference = "http://server.example.org/fhir/documentreference/patient-cda-summary"
 * entity[+].role = http://terminology.hl7.org/CodeSystem/provenance-entity-role#source "Source"
@@ -123,7 +123,7 @@ Usage: #example
 * agent[+].type = $ProvPartType#verifier "Verifier"
 * agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
 * agent[+].type = $ProvPartType#author "Author"
-* agent[=].who = Reference(Device/Note-ModelCard)
+* agent[=].who = Reference(Device/Attached-ModelCard)
 * contained[+] = Input-Prompt-create-patient
 * entity[+].role = http://terminology.hl7.org/CodeSystem/provenance-entity-role#quotation "Quotation"
 * entity[=].what = Reference(Input-Prompt-create-patient)
