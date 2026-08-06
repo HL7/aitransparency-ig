@@ -39,11 +39,16 @@ Initial Public-Comment
 #### todo
 
 - more use-cases, and cleanup of what is there
+- process use-case is expressing how a human-in-the-loop works.
 - FHIR-54280, FHIR-54580 address if labeling is mandatory or optional
 - FHIR-54894 refine use of "observability" and "transparency" in the document
 - FHIR-54757 clarify combining AIdevice profile with other device profiles such as a smart watch.
 - FHIR-54583 clarify use of AI Transparency in post market surveillance
-- clarify is AIAST the only code, so a valueSet is not needed.
+- clarify is AIAST the only code, so a valueSet is not needed. (add counter example using CDS for non-AI algorithm)
 - define transparency creation actor and transparency use actor
 - assure use of normative words, possibly in requirements resource
 - overall readability and flow of the document
+- need page 1 graphic?
+- plain language summary
+- FMM increase? -- Malte Sussdorff (implemented it in 2 weeks)
+- didn't address cascading AI models used.
