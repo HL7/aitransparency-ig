@@ -112,7 +112,7 @@ The `AIAST` code does not provide contextual indications, like for example if a 
 An Element label will indicate that an element or a few elements within a Resource were produced or manipulated by AI, but not the whole Resource.
 Use when components of an example were authored by AI, but not the whole Resource.
 
-meta.security holds a code defined in [DS4P Inline Security Labels]({{site.data.fhir.ds4p}}/inline_security_labels.html) - `PROCESSINLINE`, and the `inline-sec-label` extension is on each element that was produced or manipulated by AI to indicate it is an AI asserted value.
+meta.security holds a code defined in [DS4P Inline Security Labels]({{site.data.fhir.ds4p}}/inline_security_labels.html) - `PROCESSINLINE`, and the `inline-sec-label` extension is on each element that was produced or manipulated by AI to indicate it is an AI asserted value. The `AIAST` code will be in the `.meta.security` element of the Resource also.
 
 - [DiagnosticReport with Inline AI Security Labels](DiagnosticReport-f202.html)
 

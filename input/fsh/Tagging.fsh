@@ -84,6 +84,7 @@ as well as a ServiceRequest.
 """
 Usage: #example
 * meta.security[+] = $ActCode#PROCESSINLINELABEL "process inline security label"
+* meta.security[+] = $ObsValue#AIAST
 * id = "f202"
 * basedOn.reference = "http://server.example.org/fhir/ServiceRequest/req"
 * status = #final
