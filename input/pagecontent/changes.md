@@ -38,8 +38,12 @@ Initial Public-Comment
 
 #### todo
 
-- more use-cases
-- address if labeling is mandatory or optional
+- more use-cases, and cleanup of what is there
+- FHIR-54280, FHIR-54580 address if labeling is mandatory or optional
+- FHIR-54894 refine use of "observability" and "transparency" in the document
+- FHIR-54757 clarify combining AIdevice profile with other device profiles such as a smart watch.
+- FHIR-54583 clarify use of AI Transparency in post market surveillance
+- clarify is AIAST the only code, so a valueSet is not needed.
 - define transparency creation actor and transparency use actor
 - assure use of normative words, possibly in requirements resource
 - overall readability and flow of the document
