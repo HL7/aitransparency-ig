@@ -2,7 +2,7 @@
 The goal of this implementation guide is to provide observability of the use of AI in the production or manipulation of health data. To the end user, this means that in some way they can determine first that AI was involved and then discover more information about the AI and its usage. From this, we can understand that there are two levels of observability and multiple factors that can be observed within the second level. 
 
 - 1st Level Observability: **Labeling** - this provides the indication that AI was involved in some way with the data. It provides no details about AI's involvement, but gives an indication that the end user may wish to investigate further. This level is intended to be lightweight, not adding significant bloat to the payload or requiring additional lookups on the part of the client system. For this, this guide details the use of Security Labels (see [Labeling](#labeling) below).
-- 2nd Level Observability: **AI Observability Factors** - there are a number of details that may be of interest to the end user about what and how AI was used. The factors covered in this IG are introduced [below](#ai-observability-factors) and then explained in the rest of this page. To provide observability into these factors, this guide details the use of the Provenance resource.
+- 2nd Level Observability: **Provenance** - there are a number of details that may be of interest to the end user about what and how AI was used, the [AI Observability Factors](#ai-observability-factors) would be recorded using `Provenance`, `Device`, and `DocumentReference`.
 
 **Note:** that both Security Labels and Provenance can be applied at the whole Resource level or at the Element level within a resource.
 
