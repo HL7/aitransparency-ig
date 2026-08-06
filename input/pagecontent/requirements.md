@@ -146,7 +146,7 @@ One of the key portions of that Resource is
 
 There are a number of observability factors beyond simple labeling that are of interest to end users and downstream systems. Chief among these is the nature of the AI itself. The user would like to understand what algorithm / model was used, who developed it, how it was trained, any certifications it has, and so on... To do this, the guide outlines the use of the Provenance resource, which can then be linked to Device and DocumentReference to point to a Model-Card.
 
-The overall Provenance model is shown below. 
+The overall Provenance model is shown below:
 
 ```mermaid
 classDiagram
@@ -166,6 +166,7 @@ classDiagram
         agent : Reference to AI Device
         agent : References to other agents involved
         entity : References to Input-Prompt DocumentReference
+        entity : References to Model-Card DocumentReference
         entity : References to other data used
     }
 
@@ -212,21 +213,19 @@ classDiagram
     Provenance --> DocumentReferenceInputPrompt : "Provenance.entity.what"
 ```
 
+Further described below...
+
 #### Provenance Profile
 
 The  [Provenance profile](StructureDefinition-AI-Provenance.html) provides clear ways to define:
-- The AI System details - `Provenance.agent` described with a Device conforming to the AI Device profile
-- The Model-Card details - Provenance.entity with a role of
-- The Prompts - Provenance.entity with a role of `input-prompt`
+
+- The AI System details - `Provenance.agent` described with a Device conforming to the `AIDevice` profile identified with the `role` of `Artificial-Intelligence`
+- The Model-Card details - `Provenance.entity` with a role of `derivation` pointing to a DocumentReference conforming to the `AIModelCard` profile
+- The Prompts - `Provenance.entity` with a role of `derivation` pointing to a DocumentReference conforming to the `AIInputPrompt` profile
 - The FHIR Resources that were provided to the AI - all the other `Provenance.entity`
-- When the AI was used - Provenance.occurred
-- Who else was involved, such as human overseers, other systems, and so on - `Provenance.agent` 
+- When the AI was used - `Provenance.occurred`
+- Who else was involved, such as human overseers, other systems, and so on - `Provenance.agent`
 - The FHIR Resources that were created or updated by the AI - `Provenance.target`
-
-
-The industry is converging around standards for providing this information, generally called Model-Cards. Several different standards are emerging, including [Hugging Face](#hugging-face-markdown) and [CHAI Model Cards](#chai-applied-model-cards-xml). This guide does not enforce any particular Model-Card, but does show how to encode any Model-Card in a [AI Model-Card profiled DocumentReference](StructureDefinition-AI-ModelCard.html), and these would be referenced in a [AI profiled Device](StructureDefinition-AI-Device.html) or within the. This looks like:
-
-
 
 ##### Resource-level
 
@@ -236,9 +235,7 @@ As with labeling, a Provenance can point at a whole Resource. In this way one ca
 
 ##### Element-level
 
-Provenance can be just about some elements within a Resource. This is a normal part of Provenance, but it is especially important for AI use-cases.
-
-The Provenance.target would point at a specific element within the targeted resource using the [target element extension](http://hl7.org/fhir/StructureDefinition/targetElement) or [target path extension](http://hl7.org/fhir/StructureDefinition/targetPath).
+Provenance can be just about some elements within a Resource. This is a supported use of Provenance, but it is especially important for AI use-cases. The support comes from extensions added to the extension-registry and explained in later versions of FHIR. The Provenance.target SHALL point at a specific element(s) within the targeted resource using the [target element extension](http://hl7.org/fhir/StructureDefinition/targetElement) or [target path extension](http://hl7.org/fhir/StructureDefinition/targetPath).
 
 - [Example Provenance of AI Authored an element in a Resource](Provenance-AI-Authored-Element.html) indicates that AI only authored the `Procedure.followup.text` element.
 
@@ -253,6 +250,8 @@ The AI system is described in a FHIR Device resource, which is [profiled](Struct
 #### The Model-Card
 
 The Model-Card encoding is defined by other standards organizations, and have distinct mime-type. To encode a Model-Card the DocumentReference resource is used. To make this more clear and searchable we define a [codeSystem](CodeSystem-AIinputsCS.html) that has some codes to be used to identify that the DocumentReference is specifically an AI Model-Card or an AI Input Prompt
+
+The industry is converging around standards for providing AI instructions and settings, generally called Model-Cards. Several different standards are emerging, including [Hugging Face](#hugging-face-markdown) and [CHAI Model Cards](#chai-applied-model-cards-xml). This guide does not enforce any particular Model-Card, but does show how to encode any Model-Card in a [AI Model-Card profiled DocumentReference](StructureDefinition-AI-ModelCard.html), and these would be referenced in a [AI profiled Device](StructureDefinition-AI-Device.html) or within the [Provenance](StructureDefinition-AI-Provenance.html).
 
 This specification supports two model-card standards at this time, but recognize that there may be updates and new standards in the future. The choice of which model-card standard to use is up to the implementer, and this guide does not enforce any particular model-card standard.
 
@@ -320,7 +319,7 @@ There are different kinds of prompts supplied, including but not limited to:
 - **System Prompt:** Instructions to the AI on what to do and how to handle user inputs. These can also include reference information, such as clinical practice guidelines, drug interaction databases, treatment protocols, and evidence-based medicine resources that will enhance the AI decision-making. 
 - **User Prompt:** Input from the user. This often includes the question to answer or problem to solve. In many cases this is a templated text that allows for the inserting of additional data (note some systems allow other prompt types to include files as additional data). This additional data can include patient demographics, clinical notes, laboratory results, imaging data, and other health data that will be useful to the AI decision-making.
 
-In general, inputs should be captured using a [Input-Prompt DocumentReference](StructureDefinition-AI-InputPrompt.html) linked through the Provenance, but when specific clinical data is involved a FHIR Bundle or other resource MAY also be linked.
+In general, inputs should be captured using a [Input-Prompt DocumentReference](StructureDefinition-AI-InputPrompt.html) linked through the Provenance, but when specific clinical data is involved those Resources would be indicated as additional `Provenance.entity` elements.
 
 > Note
 >

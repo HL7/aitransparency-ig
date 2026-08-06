@@ -35,3 +35,11 @@ Initial Public-Comment
 - [FHIR-54723](https://jira.hl7.org/browse/FHIR-54723) AI device conflicting type binding and property fixed values and extension
 - [FHIR-54725](https://jira.hl7.org/browse/FHIR-54725) Remove unusable AI-Data Profile on Resource as not usable.
 - [FHIR-54707](https://jira.hl7.org/browse/FHIR-54707) Refrain from using Tag, use Label
+
+#### todo
+
+- more use-cases
+- address if labeling is mandatory or optional
+- define transparency creation actor and transparency use actor
+- assure use of normative words, possibly in requirements resource
+- overall readability and flow of the document
