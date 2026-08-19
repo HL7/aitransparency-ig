@@ -111,8 +111,6 @@ flowchart LR
 
 **Filtering at element granularity.** The [DiagnosticReport with inline AI security labels](DiagnosticReport-f202.html) tags only the AI-asserted elements. A consumer can drop the AI-asserted `conclusion` while still using the rest of the report, rather than discarding the whole resource.
 
-> **Tags are hints, not proof.** Because `meta.security` is optional, the absence of a label does not guarantee that AI was not involved. For authoritative filtering, a consumer would also check for a [Provenance](#process-utilizing-ai) on the resource. Labeling makes the common case cheap; Provenance makes it certain.
-
 ### Use Case 3: Discovery of output from an AI model determined to be problematic
 
 While an AI model is in use, it may later be determined to be producing poor or unsafe output. When that happens, one needs to **find every resource that model touched** so those resources can be reviewed.
