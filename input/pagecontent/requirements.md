@@ -9,9 +9,7 @@ The goal of this implementation guide is to provide observability of the use of 
 <div class="stu-note">
 The use of labeling to achieve 1st level observability provides the end user or client system with a useful indicator of AI involvement without resulting in significant bloat in the payload. The presence of a label can tell the user or system that they may want to look for a Provenance resource that will provide more details. <br/><br/>
 
-It is possible to achieve both levels of observability by using only Provenance. In some use cases, the presence of tags may have adverse effects, so this guide does not enforce labeling. However, doing this is less interoperable because it depends on the end user or client system always checking for Provenance. <br/><br/>
-
-The presence of both tags and Provenance provides for the best interoperability because the end user or client system does not need to do an extra lookup for Provenance on every resource. This is strongly recommended by this guide.
+This guide does not enforce labeling, in the sense that nothing obliges a system to follow this guide at all. What the guide does define is that where it is followed, every Resource influenced by AI carries a Resource level label. That consistency is what makes the label useful for filtering.
 </div>
 
 ### AI Observability Factors
@@ -37,7 +35,7 @@ Beyond 1st level observability, there are a number of factors that the end user 
 
 #### Discovering that AI was used
 
-There are two distinct methods of determining if data has been influenced by AI. The actual method(s) used will be determined by policy for a given data repository. The policy may determine that only Labeling will be used, that only Provenance will be used, or that both will be used.
+There are two distinct methods of determining if data has been influenced by AI. Labeling is always present in data conforming to this guide, so it is the method that can always be relied upon. Provenance adds the details of how the AI was used. Policy for a given data repository determines whether Provenance is also recorded, so the policy may determine that only Labeling will be used, or that both Labeling and Provenance will be used.
 
 ##### Labeling is used
 
@@ -82,13 +80,15 @@ Consider finding more descriptive label
 
 #### Resource label
 
-A Resource label indicates that the whole Resource is produced or manipulated by the code assigned.
+A Resource label indicates that at least some part of the Resource was produced or manipulated by AI. It does not indicate how much of the Resource was affected, or which parts of it.
+
+A Resource that conforms to this guide and that has been influenced by AI in any way SHALL carry the appropriate label in `.meta.security`. This applies whether the AI produced the entire Resource or only a single element within it. Applying the label consistently in this way means that all AI-influenced Resources are identifiable by the same lightweight method, which makes filtering straightforward.
 
 - [Example Observation with AI Assisted security labels](Observation-glasgow.html)
 
 The key portion of that Resource is the following meta.security element holding the `AIAST` code. `AIAST` is an HL7 Observation value for metadata that indicates that AI was involved in producing or manipulating the data or information.
 
-The `AIAST` code does not provide contextual indications, like for example if a clinician was involved in the use of the AI, or reviewed the output of the AI.
+The `AIAST` code does not provide contextual indications, like for example if a clinician was involved in the use of the AI, or reviewed the output of the AI. Neither does it indicate the extent of the AI involvement. When it is useful to show exactly which elements the AI produced or manipulated, the Resource label is combined with element level labeling (see [Element label within a Resource](#element-label-within-a-resource)).
 
 ```json
 {
