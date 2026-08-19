@@ -7,9 +7,7 @@ The goal of this implementation guide is to provide observability of the use of 
 **Note:** that both Security Labels and Provenance can be applied at the whole Resource level or at the Element level within a resource.
 
 <div class="stu-note">
-The use of labeling to achieve 1st level observability provides the end user or client system with a useful indicator of AI involvement without resulting in significant bloat in the payload. The presence of a label can tell the user or system that they may want to look for a Provenance resource that will provide more details. <br/><br/>
-
-This guide does not enforce labeling, in the sense that nothing obliges a system to follow this guide at all. What the guide does define is that where it is followed, every Resource influenced by AI carries a Resource level label. That consistency is what makes the label useful for filtering.
+The use of labeling to achieve 1st level observability provides the end user or client system with a useful indicator of AI involvement without resulting in significant bloat in the payload. The presence of a label can tell the user or system that they may want to look for a Provenance resource that will provide more details.
 </div>
 
 ### AI Observability Factors
