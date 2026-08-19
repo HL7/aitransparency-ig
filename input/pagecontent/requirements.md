@@ -33,7 +33,7 @@ Beyond 1st level observability, there are a number of factors that the end user 
 
 #### Discovering that AI was used
 
-There are two distinct methods of determining if data has been influenced by AI. Labeling is always present in data conforming to this guide, so it is the method that can always be relied upon. Provenance adds the details of how the AI was used. Policy for a given data repository determines whether Provenance is also recorded, so the policy may determine that only Labeling will be used, or that both Labeling and Provenance will be used.
+Data conforming to this guide carries a label, so inspecting `.meta.security` is the primary method of determining that AI was involved. Where Provenance has been recorded, it also shows AI involvement and explains how the AI was used. Provenance is not necessarily recorded for every AI-influenced Resource or element. A profile may require that it be recorded, and it may also be recorded where nothing requires it.
 
 ##### Labeling is used
 
@@ -49,7 +49,7 @@ If no results are returned then AI was not used, else the Provenance returned wi
 
 ### Labeling
 
-Labeling identifies data that has been produced or manipulated by AI. It does not convey the level of that influence, or any details about how the AI was used. Labeling is very light weight and does not add significant bloat to the payload or require additional lookups. A label indicates that AI was involved in the creation or updating of the labeled Resource or element. A client system that needs more than that may fetch the Resource's Provenance.
+A label identifies the Resource or element that AI produced or manipulated. It does not convey the level of that influence, or any details about how the AI was used. Labeling is very light weight and does not add significant bloat to the payload or require additional lookups. A client system that needs more than the fact of AI involvement may fetch the Resource's Provenance.
 
 >💡 Tip
 >
