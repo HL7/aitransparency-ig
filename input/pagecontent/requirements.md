@@ -51,7 +51,7 @@ If no results are returned then AI was not used, else the Provenance returned wi
 
 ### Labeling
 
-The use of labeling enables distinguishing data that has not been produced or manipulated by AI, from data that has been produced or manipulated by AI. The level of influence and the details about how the AI was used are not provided by simple labeling. However, labeling is very light weight and does not add significant bloat to the payload or additional lookups. Labeling can be used as an indicator that AI was used in the creation or updating of the given resource and that a client system may wish to investigate further by fetching the Resource's Provenance.
+Labeling identifies data that has been produced or manipulated by AI. It does not convey the level of that influence, or any details about how the AI was used. Labeling is very light weight and does not add significant bloat to the payload or require additional lookups. A label indicates that AI was involved in the creation or updating of the labeled Resource or element. A client system that needs more than that may fetch the Resource's Provenance.
 
 >💡 Tip
 >
@@ -82,7 +82,7 @@ Consider finding more descriptive label
 
 A Resource label indicates that at least some part of the Resource was produced or manipulated by AI. It does not indicate how much of the Resource was affected, or which parts of it.
 
-A Resource that conforms to this guide and that has been influenced by AI in any way SHALL carry the appropriate label in `.meta.security`. This applies whether the AI produced the entire Resource or only a single element within it. Applying the label consistently in this way means that all AI-influenced Resources are identifiable by the same lightweight method, which makes filtering straightforward.
+A Resource that conforms to this guide and that has been influenced by AI in any way SHALL carry the appropriate label in `.meta.security`. This applies whether the AI produced the entire Resource or only a single element within it. Applying the label consistently in this way means that all AI-influenced Resources are identifiable by the same lightweight method.
 
 - [Example Observation with AI Assisted security labels](Observation-glasgow.html)
 
