@@ -1,0 +1,8 @@
+@startuml
+hide footbox
+agent "Transparency\nCreator" as Creator
+agent "Transparency\nConsumer" as Consumer
+cloud "FHIR Infrastructure" as cloud
+Creator -> cloud : AI Transparency evidence
+cloud -> Consumer : AI Transparency evidence
+@enduml

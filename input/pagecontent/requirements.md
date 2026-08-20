@@ -10,25 +10,36 @@ The goal of this implementation guide is to provide observability of the use of 
 The use of labeling to achieve 1st level observability provides the end user or client system with a useful indicator of AI involvement without resulting in significant bloat in the payload. The presence of a label can tell the user or system that they may want to look for a Provenance resource that will provide more details.
 </div>
 
+### Technical Actors
+
+The Technical Actors defined in this IG are abstract technical roles that have responsibility defined in this IG. These abstract Technical Actors would be implemented in a variety of systems. The AI is important to the overall use-case but is outside the scope of constraints in this IG. The FHIR resources (clinical content) and Patient are also outside the scope of this IG, but are important to the overall use-case. The Technical Actors are:
+
+- **Transparency Creator**: The actor that adds the label or creates the Provenance. The labeling and Provenance are compliant with the requirements of this IG.
+- **Transparency Consumer**: The actor that reads the label or uses the Provenance defined in this IG. This actor expects the labeling and Provenance to be compliant with the requirements of this IG, but it should be robust to reasonable deviations.
+
+<figure>
+{%include actors.svg%}
+<figcaption><b>Figure: Actor Diagram</b></figcaption>
+</figure>
+<br clear="all">
+
 ### AI Observability Factors
 
 Beyond 1st level observability, there are a number of factors that the end user or client system may be interested in knowing about. These factors can be broken down into 3 categories:
 
-1. Model(s) - definition of the AI(s) used (see [Defining the AI](#defining-the-ai-system)) 
+1. AI Model(s) - definition of the AI(s) used (see [Defining the AI](#defining-the-ai-system)) 
   - Name and version of the AI system
 2. Model-Card - details about the AI algorithm / model (see [The Model-Card](#the-model-card))
   - Organization that produced the model
-  - Is the algorithm deterministic or non-deterministic
   - Data set used in training the model(s)
   - ...
 3. Context - input data provided to the AI to produce or manipulate outputs (see [Context of AI Usage](#context-of-ai-usage))
   - Prompts, including system and user prompts
   - Patient data, such as health records
-  - Reference input, such as clinical practice guidelines 
+  - Reference input, such as clinical practice guidelines
   - ...
-4. Process - the interactions between AI(s), human(s), and system(s) (see [Process Utilizing AI](use_cases.html#process-utilizing-ai))
+4. Oversight - the interactions between AI(s), human(s), and system(s)
   - Human reviews (human-in-the-loop)
-  - Guardrails to prevent bias, inappropriate responses, undesired actions
   - ...
 
 #### Discovering that AI was used
@@ -43,7 +54,7 @@ For a given FHIR Resource, if Labeling is used, then a FHIR Resource that has be
 
 For a given FHIR Resource (e.g. Observation with id of 1234), if Provenance is used, then a search on Provenance.target for the value of your FHIR Resource will indicate all Provenance. Further refine that search to only those Provenance with a `.reason` code of `AIReason`.
 
-> GET [base]/Provenance?target=Observation/1234&reason:in=http://hl7.org/fhir/uv/aitransparency/ValueSet/ProvenanceVS
+> GET [base]/Provenance?target=Observation/1234&reason=AIAST
 
 If no results are returned then AI was not used, else the Provenance returned will explain how AI was used. See details below.
 
@@ -57,7 +68,7 @@ A label identifies the Resource or element that AI produced or manipulated. It d
 
 Labeling (also called [Security Labels](https://hl7.org/fhir/security-labels.html)) uses the FHIR [Resource definition](https://hl7.org/fhir/resource.html) `.meta.security` element that is at the top of all Resources, and as such can be found without Resource type specific processing. The use of security labeling follows the purpose for security labeling, as the domain of security covers protections against risks to Confidentiality, Availability, and Integrity (see [Healthcare Privacy and Security Classification System (HCS) vocabulary](https://hl7.org/fhir/security-labels.html#hcs)). In this case focusing on [Integrity](https://terminology.hl7.org/ValueSet-v3-SecurityIntegrityObservationValue.html) is defined as completeness, veracity, reliability, trustworthiness, and provenance. In the case of AI Transparency we want to mark the AI participation to convey reliability, trustworthiness, and provenance.
 
-Within the [Integrity Security Tags Vocabulary](https://terminology.hl7.org/ValueSet-v3-SecurityIntegrityObservationValue.html) is [AIAST - Artificial Intelligence Asserted](https://terminology.hl7.org/CodeSystem-v3-ObservationValue.html#v3-ObservationValue-AIAST) as a broad concept of any influence by any kind of artificial intelligence. There is also [DICTAST - Dictation asserted](https://terminology.hl7.org/CodeSystem-v3-ObservationValue.html#v3-ObservationValue-DICTAST) for when dictation, which might be AI driven, has been involved in translating dictation to data.
+Within the [Integrity Security Tags Vocabulary](https://terminology.hl7.org/ValueSet-v3-SecurityIntegrityObservationValue.html) is [AIAST - Artificial Intelligence Asserted](https://terminology.hl7.org/CodeSystem-v3-ObservationValue.html#v3-ObservationValue-AIAST) as a broad concept of any influence by any kind of artificial intelligence. Note: There is also [DICTAST - Dictation asserted](https://terminology.hl7.org/CodeSystem-v3-ObservationValue.html#v3-ObservationValue-DICTAST) for when dictation, which might be AI driven, has been involved in translating dictation to data; DICTAST is not included in this IG.
 
 ```mermaid
 classDiagram
@@ -68,13 +79,6 @@ classDiagram
         ...
     }
 ```
-
-<!---
-The following link was included in the Labeling Explainer but links to provenance. Not sure if this is correct.
-We include a [valueSet](ValueSet-ProvenanceVS.html) that assembles our codes and those defined elsewhere.
-
-Consider finding more descriptive label
--->
 
 #### Resource label
 
@@ -162,6 +166,7 @@ classDiagram
         occurred : When
         reason : `AIAST`
         agent : Reference to AI Device
+        agent : Reference to human-in-the-loop
         agent : References to other agents involved
         entity : References to Input-Prompt DocumentReference
         entity : References to Model-Card DocumentReference
@@ -336,6 +341,26 @@ The first example is just showing the encapsulating mechanism. The Second exampl
 
 - [Provenance of creating a Patient from Input Prompt](Provenance-AI-generated-patient-resource.html)
 - [Patient resource created](Patient-a1b2c3d4-e5f6-7890-abcd-ef1234567890.html)
+
+#### Full Provenance example
+
+[This is a full example](Provenance-AI-full-lorem-ipsum.html) of how to capture the AI process in FHIR.
+
+- Two outputs that this Provenance resource is documenting:
+  - an Observation resource (e.g., lab result)
+    - with Observation.interpretation being attributed to this Provenance
+  - a CarePlan resource (e.g., follow-up care plan)
+- Two agents
+  - a verifier (human) who verifies the AI output
+  - an author (AI system) who generated the output
+- Two entities that were clinical resources provided to the AI system
+  - a DocumentReference resource (e.g., patient summary)
+  - an Observation resource (e.g., lab result)
+- One entity that is a PlanDefinition resource (e.g., care plan definition)
+- One entity that is the AI Input Prompt
+  - Where the Input Prompt is a DocumentReference resource that contains the input prompt provided to the AI system.
+  - Where the Input Prompt is a contained resource in the Provenance resource.
+  - Where the Input Prompt is associated with the clinician which provided it
 
 ### Security and Privacy Considerations
 

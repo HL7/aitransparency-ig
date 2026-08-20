@@ -1,27 +1,5 @@
 
-Observability of the use of AI in the production or manipulation of health data matters for many reasons. This guide organizes those reasons into **four general use cases**. Each is a broad category that covers many more specific scenarios, and each is illustrated below with concrete examples drawn from the artifacts in this guide.
-
-All four use cases rest on the two mechanisms described in the [Requirements](requirements.html): lightweight **labeling** (a `meta.security` label that signals AI was involved) and the **Provenance** resource (which carries the details — the AI model, the inputs, and the process). Labeling answers *"was AI involved?"* cheaply; Provenance answers *"how, by what, and with what oversight?"* authoritatively.
-
-<style>
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-table, th, td {
-    border: 1px solid #999999;
-}
-
-th, td {
-    padding: 8px;
-    text-align: left;
-}
-
-th {
-    background-color: #f5f5f5;
-}
-</style>
+Observability of the use of AI in the production or manipulation of health data matters for many reasons. This guide organizes those reasons into **use cases**. Each is a broad category that covers many more specific scenarios, and each is illustrated below with concrete examples drawn from the artifacts in this guide.
 
 ### Use Case 1: AI Attribution in Documentation Review
 
@@ -184,46 +162,13 @@ sequenceDiagram
 
 **A flawed prompt.** The same pattern applies when the flawed input is a prompt. The [Input Prompt to create a Patient](DocumentReference-Input-Prompt-create-patient.html) is recorded as an entity by the [Provenance of creating a Patient from that prompt](Provenance-AI-generated-patient-resource.html); resolving that Provenance's `target` yields the Patient the AI generated. In this particular example the prompt is carried *inline* (a contained resource within the Provenance), so it is discovered while examining the Provenance rather than by an independent reference search — recording a prompt as a shared, externally referenced DocumentReference makes it directly searchable like the source document above.
 
+### Guardrails to AI
 
+There are also automated guardrails. An automated system is engaged to check the results of the AI. This system can take many different forms. It is often intended to reduce bias, ensure more equitable healthcare outcomes, catch unacceptable outputs, such as inappropriate word usage, or do general validation, such as running a FHIR validator on the resource to ensure conformity. These orchestrated systems might be captured as additional Devices as reviewers on the Provenance, but this level of detail is not explicitly covered by this IG.
 
-TODO
-
-### Process Utilizing AI
+#### Human in the loop
 
 AI Models do not exist in a vacuum, in addition to the context / inputs, there needs to be a system that calls the AI, supplies the inputs, and gets the result. This result may then be used as-is, supplied to another AI, verified by an automated system, verified by a human, or any number of other activities. Understanding this process may be very important to end users and downstream systems. For example, if the results of the AI were verified by a human (human-in-the-loop) then an end user may be able to rely on the results with less scrutiny.
-
->💡 Tip
->
-> Use when all possible factors are important to record. This level of Observability Factor is very comprehensive, and as such is very verbose. This level of Observability Factor capturing may not be justified beyond initial model use, while shaking out the use.
-
-Some of the process elements that may be captured are:
-
-- **Human-in-the-loop:** This is when a human verifies the results of an AI output. This can add validity to those results. It can be captured in Provenance as that person is another author of the resulting resource or element.
-- **Guardrails:** An automated system is engaged to check the results of the AI. This system can take many different forms. It is often intended to reduce bias, ensure more equitable healthcare outcomes, catch unacceptable outputs, such as inappropriate word usage, or do general validation, such as running a FHIR validator on the resource to ensure conformity. This can be captured as additional Devices as authors on the Provenance.  
-- **Other AI or Systems:** Sometimes the AI may call subroutines called tools. These tools may do things like simple math, API calls, or web searches. This is often done using MCP. Additional, multiple AI systems maybe involved. Agenetic systems often involve multiple AI Agents who call each other using protocols like A2A. These workflows are complex to capture, but one suggestion is to use BPMN contained in DocumentReferences linked to the Provenance (example coming...).
-
-#### Process Examples
-
-
-##### Full Process example
-
-[This is a full example](Provenance-AI-full-lorem-ipsum.html) of how to capture the AI process in FHIR.
-
-- Two outputs that this Provenance resource is documenting:
-  - an Observation resource (e.g., lab result)
-    - with Observation.interpretation being attributed to this Provenance
-  - a CarePlan resource (e.g., follow-up care plan)
-- Two agents
-  - a verifier (human) who verifies the AI output
-  - an author (AI system) who generated the output
-- Two entities that were clinical resources provided to the AI system
-  - a DocumentReference resource (e.g., patient summary)
-  - an Observation resource (e.g., lab result)
-- One entity that is a PlanDefinition resource (e.g., care plan definition)
-- One entity that is the AI Input Prompt
-  - Where the Input Prompt is a DocumentReference resource that contains the input prompt provided to the AI system.
-  - Where the Input Prompt is a contained resource in the Provenance resource.
-  - Where the Input Prompt is associated with the clinician which provided it
 
 ### PDF interpreted by AI into FHIR
 
@@ -234,4 +179,75 @@ Use Case: A provider receives a [PDF of lab result(s)](DocumentReference-Lab-Res
 In the attached example the patient's name is Alton Walsh and the lab test is an HbA1C. All the FHIR resources in the bundle have been created by the AI, so they would be tagged accordingly.
 
 - [Provenance of AI Generated Lab Results](Provenance-AI-Generated-Lab-Results.html)
-- 
+
+### AI Assisted Patient Appointment Traceability
+
+This scenario illustrates how AI transparency supports accountability when AI is used in patient care. It does not endorse AI use for patient appointments; it shows how the AI's involvement can be made visible and traceable.
+
+<div>
+<img src="ai-assisted-patient-appointment-workflow.png" caption="Figure: AI Assisted Patient Appointment Workflow" width="70%" >
+</div>
+
+1. A patient is scheduled for a routine check-up and provides specimens for laboratory testing before the appointment.
+2. On the day of the appointment, an AI system analyzes the new laboratory results in the context of prior results, current conditions and medications, and family medical history.
+3. The AI produces a temporary analysis that highlights abnormalities or areas of concern and may propose actions for the clinician to consider. This intermediate AI output is not persisted in the patient's record.
+4. During the appointment, the healthcare provider reviews the temporary AI analysis with the patient, discusses its findings, and uses professional judgment to recommend any further testing or lifestyle changes.
+5. The provider and AI work together to create the appointment report and any recommendations. This clinician-authored, AI-assisted report is the only output persisted in the patient's record; its Provenance identifies both the clinician and the AI assistance.
+6. The patient receives an appointment report and next steps through the patient portal.
+
+#### Persisted Appointment Report
+
+The persisted appointment report is authored by the clinician with AI assistance and is labeled to indicate that AI was involved. It identifies the patient history, conditions, medications, laboratory results, and family history considered in the analysis. Recommendations include their rationale, patient-specific evidence, relevant medical literature or guidelines, and relevant benefits, risks, and side effects. The temporary AI analysis that informed the report is not retained as a separate patient-record artifact.
+
+#### Provenance and Audit
+
+Provenance records the information the AI actually used to assist with the persisted appointment report, including the AI model and version, the relevant patient data, and the settings or parameters used for the analysis. It identifies both the clinician author and the AI system that assisted with the report, supporting clear attribution and accountability without retaining the temporary AI analysis as a separate artifact.
+
+```mermaid
+graph LR
+  subgraph CLINICAL_INPUTS
+    NEW_LABS["New Lab Test Results"]
+    PRIOR_LABS["Prior Lab Test Results"]
+    HISTORY["Patient Medical History"]
+    CONDITIONS["Conditions"]
+    MEDICATIONS["Medications"]
+    FAMILY_HISTORY["Family Medical History"]
+  end
+
+    AI_SYSTEM["AI System<br/>model, version,<br/>provider"]
+    AI_PROMPT["AI Prompt"]
+    CLINICIAN["Clinician<br/>Practitioner"]
+    PROVENANCE["Provenance Record<br/>activity: AI assisted<br/>2025-12-06 16:13"]
+    REPORT["Patient Report<br/>DiagnosticReport<br/>meta.security=AIAST"]
+
+    NEW_LABS -->|entity| PROVENANCE
+    PRIOR_LABS -->|entity| PROVENANCE
+    HISTORY -->|entity| PROVENANCE
+    CONDITIONS -->|entity| PROVENANCE
+    MEDICATIONS -->|entity| PROVENANCE
+    FAMILY_HISTORY -->|entity| PROVENANCE
+    AI_PROMPT -->|entity aiPrompt| PROVENANCE
+    AI_SYSTEM -->|agent aiDevice| PROVENANCE
+    CLINICIAN -->|agent| PROVENANCE
+    PROVENANCE -->|target| REPORT
+
+    style CLINICAL_INPUTS fill:#FFFDE0,stroke:#999
+    style NEW_LABS fill:#FFF5BA,stroke:#999,color:#555
+    style PRIOR_LABS fill:#FFF5BA,stroke:#999,color:#555
+    style HISTORY fill:#FFF5BA,stroke:#999,color:#555
+    style CONDITIONS fill:#FFF5BA,stroke:#999,color:#555
+    style MEDICATIONS fill:#FFF5BA,stroke:#999,color:#555
+    style FAMILY_HISTORY fill:#FFF5BA,stroke:#999,color:#555
+    style AI_SYSTEM fill:#EE82EE,stroke:#999,color:#555
+    style AI_PROMPT fill:#EE82EE,stroke:#999,color:#555
+    style CLINICIAN fill:#87CEEB,stroke:#999,color:#555
+    style PROVENANCE fill:#FF7F00,stroke:#999,color:#555
+    style REPORT fill:#DFF0D8,stroke:#999,color:#555
+```
+
+An audit trail complements provenance by recording the AI's broader activity, including searches used to gather information and access-control denials. For example, an audit record can show that the AI searched the full medical history, while provenance records only the information the AI determined was relevant and used in its analysis. The audit trail also records the AI-assisted creation of the persisted appointment report. The AuditEvent is not profiled or defined in this IG.
+
+#### Remediation and Change Management
+
+If an AI model or configured prompt is later found to produce poor results for a class of laboratory findings, the organization can search Provenance records for outputs associated with that model or prompt. The resulting patient-care artifacts can be reviewed and affected patients contacted when remediation is needed. When new AI software, models, or prompts are deployed, representing the new configuration as a Device and referencing it from subsequent Provenance records preserves the same traceability.
+

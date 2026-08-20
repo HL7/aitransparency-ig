@@ -18,8 +18,8 @@ Usage: #example
 * target = Reference(Procedure/proc)
 * recorded = "2021-12-08T16:54:24+11:00"
 * reason[AIReason] = $ObsValue#AIAST
-* agent[+].type = $ProvPartType#author "Author"
-* agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
+* agent[Humanagent].type = $ProvPartType#author "Author"
+* agent[Humanagent].who.reference = "http://server.example.org/fhir/Practitioner/pract"
 * agent[AIagent].type = $ProvPartType#informant "Informant"
 * agent[AIagent].who = Reference(Device/TheAI)
 
@@ -54,8 +54,8 @@ Usage: #example
 * activity = http://terminology.hl7.org/CodeSystem/v3-DataOperation#CREATE "create"
 * activity.text = "antiviral resistance detection"
 * reason[AIReason] = $ObsValue#AIAST
-* agent[+].type = $ProvPartType#verifier "Verifier"
-* agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
+* agent[Humanagent].type = $ProvPartType#verifier "Verifier"
+* agent[Humanagent].who.reference = "http://server.example.org/fhir/Practitioner/pract"
 * agent[AIagent].type = $ProvPartType#author "Author"
 * agent[AIagent].who = Reference(Device/TheAI)
 

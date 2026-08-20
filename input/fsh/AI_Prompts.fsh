@@ -40,8 +40,8 @@ Usage: #example
 * policy = "http://example.org/policies/ai-authorized-CDS"
 * reason[+] = $ActReason#TREAT
 * reason[AIReason] = $ObsValue#AIAST
-* agent[+].type = $ProvPartType#verifier "Verifier"
-* agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
+* agent[Humanagent].type = $ProvPartType#verifier "Verifier"
+* agent[Humanagent].who.reference = "http://server.example.org/fhir/Practitioner/pract"
 * agent[AIagent].type = $ProvPartType#author "Author"
 * agent[AIagent].role = AIdeviceTypeCS#Artificial-Intelligence
 * agent[AIagent].who = Reference(Device/Attached-ModelCard)
@@ -121,8 +121,8 @@ Usage: #example
 * policy = "http://example.org/policies/ai-authorized-patient-generation"
 * reason[+] = $ActReason#HOPERAT
 * reason[AIReason] = $ObsValue#AIAST
-* agent[+].type = $ProvPartType#verifier "Verifier"
-* agent[=].who.reference = "http://server.example.org/fhir/Practitioner/pract"
+* agent[Humanagent].type = $ProvPartType#verifier "Verifier"
+* agent[Humanagent].who.reference = "http://server.example.org/fhir/Practitioner/pract"
 * agent[AIagent].type = $ProvPartType#author "Author"
 * agent[AIagent].who = Reference(Device/Attached-ModelCard)
 * contained[+] = Input-Prompt-create-patient

@@ -13,17 +13,23 @@ Description: "An AI Provenance is a record of the use of an AI model in generati
 * reason ^slicing.discriminator.path = "$this"
 * reason ^slicing.rules = #open
 * reason contains AIReason 1..*
-* reason[AIReason] from ProvenanceVS
-* agent ^slicing.discriminator.type = #value
-* agent ^slicing.discriminator.path = "role"
+* reason[AIReason] = $ObsValue#AIAST (exactly) // "Artificial Intelligence asserted"
+* agent ^slicing.discriminator.type = #profile
+* agent ^slicing.discriminator.path = "who.resolve()"
 * agent ^slicing.rules = #open
-* agent contains AIagent 1..*
+* agent contains 
+    AIagent 1..* MS and
+    Humanagent 0..* MS
 * agent[AIagent].who only Reference(AIDevice) // "The AI model used in generating or enhancing the FHIR resource."
   * ^comment = "The AIDevice resource captures the details of the AI model used."
 * agent[AIagent].type 1..1 MS
   * ^comment = "The way the AI was used."
 * agent[AIagent].role = AIdeviceTypeCS#Artificial-Intelligence (exactly)
   * ^comment = "The agent role is set to Artificial Intelligence to indicate that the agent is an AI model."
+* agent[Humanagent].who only Reference(Practitioner or PractitionerRole or RelatedPerson or Patient) // "The human that was involved in the AI use."
+  * ^comment = "The human agent captures the details of the human that was involved in the AI use."
+* agent[Humanagent].type 1..1 MS
+  * ^comment = "The way the human was involved in the AI use."
 * entity ^slicing.discriminator.type = #profile
 * entity ^slicing.discriminator.path = "what.resolve()"
 * entity ^slicing.rules = #open

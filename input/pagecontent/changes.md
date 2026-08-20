@@ -38,17 +38,25 @@ Initial Public-Comment
 
 #### todo
 
-- more use-cases, and cleanup of what is there
-- process use-case is expressing how a human-in-the-loop works.
-- FHIR-54280, FHIR-54580 address if labeling is mandatory or optional
-- FHIR-54894 refine use of "observability" and "transparency" in the document
-- FHIR-54757 clarify combining AIdevice profile with other device profiles such as a smart watch.
-- FHIR-54583 clarify use of AI Transparency in post market surveillance
-- clarify is AIAST the only code, so a valueSet is not needed. (add counter example using CDS for non-AI algorithm)
-- define transparency creation actor and transparency use actor
 - assure use of normative words, possibly in requirements resource
 - overall readability and flow of the document
 - need page 1 graphic?
-- plain language summary
+- FHIR-54729 --> plain language summary
+- use AI to compare to ballot version to highlight changes in narrative changes.md
 - FMM increase? -- Malte Sussdorff (implemented it in 2 weeks)
-- didn't address cascading AI models used.
+- about list of participants updated
+
+##### Block-Vote-4
+
+- FHIR-54280, FHIR-54580 address if labeling is mandatory or optional -- make the resource level labeling mandatory
+- FHIR-54894 refine use of "observability" and "transparency" in the document
+- FHIR-55024 Description of algorithm deterministic/nonderministic/hybird
+
+[EHR WG Sep 1?](https://confluence.hl7.org/spaces/EHR/pages/413044356/2026+Minutes)
+
+##### WGM discussion
+
+- FHIR-54757 clarify combining AIdevice profile with other device profiles such as a smart watch.
+- FHIR-54583 clarify use of AI Transparency in post market surveillance
+
+[WGM EHR WG Thursday Q4](https://confluence.hl7.org/spaces/EHR/pages/468257487/EHR+WG+2026-09+HL7+WGM+Bethesda+MD+USA+Agenda+Calendar)

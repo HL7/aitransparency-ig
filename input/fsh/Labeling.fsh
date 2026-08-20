@@ -1,19 +1,4 @@
 
-/*
-AIAST "Artificial Intelligence asserted" is a security label that indicates that the AI system has asserted the content of the resource or element. 
-This means not just contributed to the resource, but also that the AI system has made a determination about the validity of the content.
-
-This is different from an AI Contributed label, which would indicates that the AI system has contributed to the resource, but not claiming it is valid.
-
-*/
-
-ValueSet: ProvenanceVS
-Title: "Recommended provenance codes"
-Description:  "Subset from HL7, plus those defined here. For use in .meta.security to indicate AI was used in some way."
-* ^experimental = false
-* $ObsValue#AIAST "Artificial Intelligence asserted"
-
-
 
 //========Example of Resource Level labeling ===  
 

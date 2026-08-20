@@ -42,3 +42,5 @@ target/*
 FHIR-aitransparency.xml
 
 _updatePublisher.sh
+C2PA-to-AI-Transparency-IG-Comparison.md
+Use-of-Content-Credentials-to-Identify-Synthetic-and-Non-Synthetic-Content.pdf

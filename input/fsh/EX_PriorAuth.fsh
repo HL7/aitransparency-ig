@@ -54,8 +54,8 @@ Usage: #example
 * recorded = "2026-02-10T09:20:00Z"
 * reason[AIReason] = $ObsValue#AIAST
 * activity.text = "AI drafted prior-authorization determination, verified by a utilization reviewer"
-* agent[+].type = $ProvPartType#verifier "Verifier"
-* agent[=].who.reference = "http://server.example.org/fhir/Practitioner/utilization-reviewer"
+* agent[Humanagent].type = $ProvPartType#verifier "Verifier"
+* agent[Humanagent].who.reference = "http://server.example.org/fhir/Practitioner/utilization-reviewer"
 * agent[AIagent].type = $ProvPartType#author "Author"
 * agent[AIagent].who = Reference(Device/TheAI)
 * entity[+].role = http://terminology.hl7.org/CodeSystem/provenance-entity-role#source "Source"
