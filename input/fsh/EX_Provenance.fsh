@@ -70,6 +70,7 @@ Title: "Appendectomy Procedure"
 Description: "A Procedure resource that is created by an AI system and verified by a human."
 Usage: #example
 * meta.versionId = "1"
+* meta.security[0] = $ObsValue#AIAST
 * status = #completed
 * code = $sct#80146002 "Excision of appendix"
 * code.text = "Appendectomy"
@@ -87,6 +88,7 @@ InstanceOf: Observation
 Title: "Blood Culture Result"
 Description: "A lab result Observation resource that is created by an AI system and verified by a human."
 Usage: #example
+* meta.security[0] = $ObsValue#AIAST
 * status = #final
 * code.coding[0] = http://example.org/codes/foobar#104177 "Blood culture"
 * code.coding[+] = $loinc#600-7 "Bacteria identified in Blood by Culture"
