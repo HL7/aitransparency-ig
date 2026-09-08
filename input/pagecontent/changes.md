@@ -43,7 +43,9 @@ Initial Public-Comment
 - need page 1 graphic?
 - FHIR-54729 --> plain language summary
 - use AI to compare to ballot version to highlight changes in narrative changes.md
-- FMM increase? -- Malte Sussdorff (implemented it in 2 weeks)
+- FMM increase?
+  - Malte Sussdorff (implemented it in 2 weeks)
+  - [EU Imaging ai-target-aiast](https://build.fhir.org/ig/hl7-eu/imaging-r4/en/patterns-and-guidelines.html#identifying-ai-generated-or-cad-assisted-content)
 - about list of participants updated
 
 ##### Block-Vote-4
