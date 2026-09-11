@@ -2,6 +2,14 @@
   "resourceType": "Bundle",
     "id": "b3c1f2d4-5c8e-4b0a-9f6d-7c8e1f2d4b5c",
     "type": "transaction",
+    "meta": {
+      "security": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+          "code": "AIAST"
+        }
+      ]
+    },
     "entry": [
       {
         "fullUrl": "urn:uuid:730779b1-7952-470a-8ea3-8f1ad87ff18f",

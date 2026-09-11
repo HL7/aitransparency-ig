@@ -1,8 +1,19 @@
 
 The goal of this implementation guide is to provide observability of the use of AI in the production or manipulation of health data. To the end user, this means that in some way they can determine first that AI was involved and then discover more information about the AI and its usage. From this, we can understand that there are two levels of observability and multiple factors that can be observed within the second level. 
 
-- 1st Level Observability: **Labeling** - this provides the indication that AI was involved in some way with the data. It provides no details about AI's involvement, but gives an indication that the end user may wish to investigate further. This level is intended to be lightweight, not adding significant bloat to the payload or requiring additional lookups on the part of the client system. For this, this guide details the use of Security Labels (see [Labeling](#labeling) below).
-- 2nd Level Observability: **Provenance** - there are a number of details that may be of interest to the end user about what and how AI was used, the [AI Observability Factors](#ai-observability-factors) would be recorded using `Provenance`, `Device`, and `DocumentReference`.
+- 1st Level Observability: **Labeling** - this provides the indication that AI was involved in some way with the data. It provides no details about AI's involvement, but gives an indication that the end user may wish to investigate further. This level is intended to be lightweight, not adding significant bloat to the payload or requiring additional lookups on the part of the client system. For this, this guide details the use of Security Labels (see [Labeling](#labeling) below). **This level is the baseline requirement of this guide: every AI-influenced Resource SHALL be labeled.**
+- 2nd Level Observability: **Provenance** - there are a number of details that may be of interest to the end user about what and how AI was used, the [AI Observability Factors](#ai-observability-factors) would be recorded using `Provenance`, `Device`, and `DocumentReference`. **This level is optional in this guide: Provenance is recorded when the use-case, policy, or another profile needs those details.**
+
+### Conformance summary
+
+| Capability | Conformance in this guide |
+| --- | --- |
+| `AIAST` in `.meta.security` on an AI-influenced Resource | **SHALL** - required whenever AI produced or manipulated any part of the Resource |
+| Element-level `inline-sec-label` marking of AI-influenced elements | **MAY** - used when it is useful to show which elements the AI touched; the Resource-level `AIAST` label is still required |
+| `Provenance` conforming to the [AI Provenance profile](StructureDefinition-AI-Provenance.html) | **MAY** - recorded based on need; when recorded it SHALL conform to this guide |
+| `Device`, `DocumentReference` (Model-Card, Input-Prompt) | **MAY** - recorded as needed, referenced from the Provenance |
+
+Because Provenance is optional, a Consumer SHALL NOT rely on the absence of Provenance to conclude that AI was not involved. The `.meta.security` label is the authoritative, always-present indicator.
 
 **Note:** that both Security Labels and Provenance can be applied at the whole Resource level or at the Element level within a resource.
 
@@ -14,8 +25,8 @@ The use of labeling to achieve 1st level observability provides the end user or 
 
 The Technical Actors defined in this IG are abstract technical roles that have responsibility defined in this IG. These abstract Technical Actors would be implemented in a variety of systems. The AI is important to the overall use-case but is outside the scope of constraints in this IG. The FHIR resources (clinical content) and Patient are also outside the scope of this IG, but are important to the overall use-case. The Technical Actors are:
 
-- **Transparency Creator**: The actor that adds the label or creates the Provenance. The labeling and Provenance are compliant with the requirements of this IG.
-- **Transparency Consumer**: The actor that reads the label or uses the Provenance defined in this IG. This actor expects the labeling and Provenance to be compliant with the requirements of this IG, but it should be robust to reasonable deviations.
+- **Transparency Creator**: The actor that adds the label, and that creates the Provenance where more detail is needed. This actor SHALL apply the label to every AI-influenced Resource, and MAY create Provenance. The labeling and Provenance are compliant with the requirements of this IG.
+- **Transparency Consumer**: The actor that reads the label, and that uses the Provenance where it is available. This actor SHALL be able to recognize the label, and MAY use Provenance when present. This actor expects the labeling and Provenance to be compliant with the requirements of this IG, but it should be robust to reasonable deviations.
 
 <figure>
 {%include actors.svg%}
@@ -44,27 +55,29 @@ Beyond 1st level observability, there are a number of factors that the end user 
 
 #### Discovering that AI was used
 
-Data conforming to this guide carries a label, so inspecting `.meta.security` is the primary method of determining that AI was involved. Where Provenance has been recorded, it also shows AI involvement and explains how the AI was used. Provenance is not necessarily recorded for every AI-influenced Resource or element. A profile may require that it be recorded, and it may also be recorded where nothing requires it.
+Data conforming to this guide always carries a label, so inspecting `.meta.security` is the definitive method of determining that AI was involved. Where Provenance has been recorded, it additionally explains how the AI was used. Provenance is not necessarily recorded for every AI-influenced Resource or element. A profile may require that it be recorded, and it may also be recorded where nothing requires it.
 
-##### Labeling is used
+##### Using the label (always available)
 
-For a given FHIR Resource, if Labeling is used, then a FHIR Resource that has been influenced by AI will have the `.meta.security` element populated with one of the codes from the AI Transparency Provenance ValueSet. See details below
+For a given FHIR Resource, a Resource that has been influenced by AI SHALL have the `.meta.security` element populated with the `AIAST` code. Checking this element requires no additional query and no Resource-type specific processing, and is the reliable way to determine AI involvement. See details below.
 
-##### Provenance is used
+##### Using Provenance (available when recorded)
 
-For a given FHIR Resource (e.g. Observation with id of 1234), if Provenance is used, then a search on Provenance.target for the value of your FHIR Resource will indicate all Provenance. Further refine that search to only those Provenance with a `.reason` code of `AIReason`.
+For a given FHIR Resource (e.g. Observation with id of 1234), a search on Provenance.target for the value of your FHIR Resource will indicate all Provenance. Further refine that search to only those Provenance with a `.reason` code of `AIAST`.
 
 > GET [base]/Provenance?target=Observation/1234&reason=AIAST
 
-If no results are returned then AI was not used, else the Provenance returned will explain how AI was used. See details below.
+If results are returned, the Provenance will explain how AI was used. See details below.
+
+> ⚠️ Because Provenance is optional in this guide, an empty result does **not** mean AI was uninvolved. It only means no Provenance detail was recorded. Use the `AIAST` label to determine AI involvement.
 
 ### Labeling
 
-A label identifies the Resource or element that AI produced or manipulated. It does not convey the level of that influence, or any details about how the AI was used. Labeling is very light weight and does not add significant bloat to the payload or require additional lookups. A client system that needs more than the fact of AI involvement may fetch the Resource's Provenance.
+Labeling is the mandatory foundation of this guide. A label identifies the Resource or element that AI produced or manipulated. It does not convey the level of that influence, or any details about how the AI was used. Labeling is very light weight and does not add significant bloat to the payload or require additional lookups. A client system that needs more than the fact of AI involvement may fetch the Resource's Provenance, where one has been recorded.
 
 >💡 Tip
 >
-> Use when one needs to quickly and easily identify Resources or elements inside a Resource that have been produced or manipulated by AI.
+> The label is what lets any system quickly and easily identify Resources, or elements inside a Resource, that have been produced or manipulated by AI - without needing to know the Resource type or issue a second query.
 
 Labeling (also called [Security Labels](https://hl7.org/fhir/security-labels.html)) uses the FHIR [Resource definition](https://hl7.org/fhir/resource.html) `.meta.security` element that is at the top of all Resources, and as such can be found without Resource type specific processing. The use of security labeling follows the purpose for security labeling, as the domain of security covers protections against risks to Confidentiality, Availability, and Integrity (see [Healthcare Privacy and Security Classification System (HCS) vocabulary](https://hl7.org/fhir/security-labels.html#hcs)). In this case focusing on [Integrity](https://terminology.hl7.org/ValueSet-v3-SecurityIntegrityObservationValue.html) is defined as completeness, veracity, reliability, trustworthiness, and provenance. In the case of AI Transparency we want to mark the AI participation to convey reliability, trustworthiness, and provenance.
 
@@ -147,6 +160,12 @@ One of the key portions of that Resource is
 ### Provenance
 
 There are a number of observability factors beyond simple labeling that are of interest to end users and downstream systems. Chief among these is the nature of the AI itself. The user would like to understand what algorithm / model was used, who developed it, how it was trained, any certifications it has, and so on... To do this, the guide outlines the use of the Provenance resource, which can then be linked to Device and DocumentReference to point to a Model-Card.
+
+Recording Provenance is **optional** in this guide, and is driven by need - a use-case, an organizational policy, a regulation, or another implementation guide may require it. When Provenance is recorded, it SHALL conform to the [AI Provenance profile](StructureDefinition-AI-Provenance.html), and the Resources it targets SHALL still carry the `AIAST` label. Provenance supplements the label; it does not replace it.
+
+>💡 Tip
+>
+> Use Provenance when the fact of AI involvement is not enough, and the record needs to show which AI was used, how it was used, what it was given as input, and who oversaw it.
 
 The overall Provenance model is shown below:
 

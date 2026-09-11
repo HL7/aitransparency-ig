@@ -1,17 +1,10 @@
 This page tracks the signficant changes. All changes are tracked in Jira and on GitHub.
 
-### 1.0.0-alpha
-
-- Rewrite guidance page (Sam, need ticket numbers here)
-- FHIR-54421, FHIR-54264, FHIR-54577, FHIR-54259 - Add a profile of DocumentReference for AI Input Prompts as distinct from Model-Cards
-- FHIR-54149 - AIinputsCS - CodeSystem title inconsistent with computable name
-
-### 1.0.0-ballot
-
-Initial Public-Comment
-
 ### 1.0.0-current
 
+- [FHIR-54280](https://jira.hl7.org/browse/FHIR-54280) and [FHIR-54580](https://jira.hl7.org/browse/FHIR-54580) AIAST meta labeling is required always.
+- [FHIR-54894](https://jira.hl7.org/browse/FHIR-54894) refine use of "observability" and "transparency" in the document (previously applied)
+- [FHIR-55024](https://jira.hl7.org/browse/FHIR-55024) Description of algorithm deterministic/nonderministic/hybird (previously applied)
 - [FHIR-57918](https://jira.hl7.org/browse/FHIR-57918) Remove experimental provenance codes
 - [FHIR-54801](https://jira.hl7.org/browse/FHIR-54801) Remove code AIRPT
 - [FHIR-54141](https://jira.hl7.org/browse/FHIR-54141) Remove experimental codes
@@ -41,6 +34,7 @@ Initial Public-Comment
 - assure use of normative words, possibly in requirements resource
 - overall readability and flow of the document
 - need page 1 graphic?
+- check all QA ignore warnings are proper and well documented
 - FHIR-54729 --> plain language summary
 - use AI to compare to ballot version to highlight changes in narrative changes.md
 - FMM increase?
@@ -62,3 +56,13 @@ Initial Public-Comment
 - FHIR-54583 clarify use of AI Transparency in post market surveillance
 
 [WGM EHR WG Thursday Q4](https://confluence.hl7.org/spaces/EHR/pages/468257487/EHR+WG+2026-09+HL7+WGM+Bethesda+MD+USA+Agenda+Calendar)
+
+### 1.0.0-ballot
+
+Initial Public-Comment
+
+### 1.0.0-alpha
+
+- Rewrite guidance page (Sam, need ticket numbers here)
+- FHIR-54421, FHIR-54264, FHIR-54577, FHIR-54259 - Add a profile of DocumentReference for AI Input Prompts as distinct from Model-Cards
+- FHIR-54149 - AIinputsCS - CodeSystem title inconsistent with computable name

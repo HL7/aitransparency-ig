@@ -43,7 +43,7 @@ Usage: #example
 * agent[Humanagent].type = $ProvPartType#verifier "Verifier"
 * agent[Humanagent].who.reference = "http://server.example.org/fhir/Practitioner/pract"
 * agent[AIagent].type = $ProvPartType#author "Author"
-* agent[AIagent].role = AIdeviceTypeCS#Artificial-Intelligence
+* agent[AIagent].role[AIrole] = AIdeviceTypeCS#Artificial-Intelligence
 * agent[AIagent].who = Reference(Device/Attached-ModelCard)
 * entity[+].role = http://terminology.hl7.org/CodeSystem/provenance-entity-role#source "Source"
 * entity[=].what.reference = "http://server.example.org/fhir/documentreference/patient-cda-summary"
