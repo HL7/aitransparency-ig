@@ -43,8 +43,7 @@ Initial Public-Comment
 - need page 1 graphic?
 - FHIR-54729 --> plain language summary
 - use AI to compare to ballot version to highlight changes in narrative changes.md
-- FMM increase? -- Malte Sussdorff (implemented it in 2 weeks)
-- about list of participants updated
+- FMM increase to FMM3 -- Malte Sussdorff (implemented it in 2 weeks)
 
 ##### Block-Vote-4
 

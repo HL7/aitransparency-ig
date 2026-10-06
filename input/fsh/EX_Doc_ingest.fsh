@@ -2,7 +2,7 @@
 Use Case:
         A provider receives a PDF of lab result(s) for a patient. This PDF is examined by an AI which generates a Patient resource and Observation resource(s). 
 
-In the attached example the patient's name is Alton Walsh and the lab test is an HbA1C. All the FHIR resources in the bundle have been created by the AI, so they should be tagged accordingly. 
+In the attached example the patient's name is Alton Walsh and the lab test is an HbA1C. All the FHIR resources in the bundle have been created by the AI, so they would be tagged accordingly. 
 
 */
 
@@ -13,7 +13,7 @@ Description: """
 A DocumentReference resource that represents a PDF document containing lab results for a patient. 
 This is provided to an AI, which interprets and creates FHIR Resources.
 
-In the attached example the patient's name is Alton Walsh and the lab test is an HbA1C. All the FHIR resources in the bundle have been created by the AI, so they should be tagged accordingly. 
+In the attached example the patient's name is Alton Walsh and the lab test is an HbA1C. All the FHIR resources in the bundle have been created by the AI, so they would be tagged accordingly. 
 """
 Usage: #example
 * status = #current

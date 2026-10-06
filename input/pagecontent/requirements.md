@@ -15,7 +15,7 @@ The use of labeling to achieve 1st level observability provides the end user or 
 The Technical Actors defined in this IG are abstract technical roles that have responsibility defined in this IG. These abstract Technical Actors would be implemented in a variety of systems. The AI is important to the overall use-case but is outside the scope of constraints in this IG. The FHIR resources (clinical content) and Patient are also outside the scope of this IG, but are important to the overall use-case. The Technical Actors are:
 
 - **Transparency Creator**: The actor that adds the label or creates the Provenance. The labeling and Provenance are compliant with the requirements of this IG.
-- **Transparency Consumer**: The actor that reads the label or uses the Provenance defined in this IG. This actor expects the labeling and Provenance to be compliant with the requirements of this IG, but it should be robust to reasonable deviations.
+- **Transparency Consumer**: The actor that reads the label or uses the Provenance defined in this IG. This actor expects the labeling and Provenance to be compliant with the requirements of this IG, but it SHOULD be robust to reasonable deviations.
 
 <figure>
 {%include actors.svg%}
@@ -322,11 +322,11 @@ There are different kinds of prompts supplied, including but not limited to:
 - **System Prompt:** Instructions to the AI on what to do and how to handle user inputs. These can also include reference information, such as clinical practice guidelines, drug interaction databases, treatment protocols, and evidence-based medicine resources that will enhance the AI decision-making. 
 - **User Prompt:** Input from the user. This often includes the question to answer or problem to solve. In many cases this is a templated text that allows for the inserting of additional data (note some systems allow other prompt types to include files as additional data). This additional data can include patient demographics, clinical notes, laboratory results, imaging data, and other health data that will be useful to the AI decision-making.
 
-In general, inputs should be captured using a [Input-Prompt DocumentReference](StructureDefinition-AI-InputPrompt.html) linked through the Provenance, but when specific clinical data is involved those Resources would be indicated as additional `Provenance.entity` elements.
+In general, inputs SHOULD be captured using a [Input-Prompt DocumentReference](StructureDefinition-AI-InputPrompt.html) linked through the Provenance, but when specific clinical data is involved those Resources would be indicated as additional `Provenance.entity` elements.
 
 > Note
 >
-> There is significant variation in what and how AI systems inputs are supplied, however capturing those inputs should remain relatively consistent.
+> There is significant variation in what and how AI systems inputs are supplied, however capturing those inputs SHOULD remain relatively consistent.
 
 #### Context Examples
 
@@ -364,5 +364,5 @@ The first example is just showing the encapsulating mechanism. The Second exampl
 
 ### Security and Privacy Considerations
 
-- The Input Prompt and Context may contain sensitive information, such as patient data, and should be protected accordingly.
-- The Model-Card if it contains sensitive information about the AI model that should not be public.
+- The Input Prompt and Context may contain sensitive information, such as patient data, and SHOULD be protected accordingly.
+- The Model-Card if it contains sensitive information about the AI model that SHOULD not be public.

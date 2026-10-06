@@ -162,7 +162,7 @@ sequenceDiagram
 
 **A flawed prompt.** The same pattern applies when the flawed input is a prompt. The [Input Prompt to create a Patient](DocumentReference-Input-Prompt-create-patient.html) is recorded as an entity by the [Provenance of creating a Patient from that prompt](Provenance-AI-generated-patient-resource.html); resolving that Provenance's `target` yields the Patient the AI generated. In this particular example the prompt is carried *inline* (a contained resource within the Provenance), so it is discovered while examining the Provenance rather than by an independent reference search — recording a prompt as a shared, externally referenced DocumentReference makes it directly searchable like the source document above.
 
-### Guardrails to AI
+### Use Case 5: Guardrails to AI
 
 There are also automated guardrails. An automated system is engaged to check the results of the AI. This system can take many different forms. It is often intended to reduce bias, ensure more equitable healthcare outcomes, catch unacceptable outputs, such as inappropriate word usage, or do general validation, such as running a FHIR validator on the resource to ensure conformity. These orchestrated systems might be captured as additional Devices as reviewers on the Provenance, but this level of detail is not explicitly covered by this IG.
 
@@ -170,7 +170,7 @@ There are also automated guardrails. An automated system is engaged to check the
 
 AI Models do not exist in a vacuum, in addition to the context / inputs, there needs to be a system that calls the AI, supplies the inputs, and gets the result. This result may then be used as-is, supplied to another AI, verified by an automated system, verified by a human, or any number of other activities. Understanding this process may be very important to end users and downstream systems. For example, if the results of the AI were verified by a human (human-in-the-loop) then an end user may be able to rely on the results with less scrutiny.
 
-### PDF interpreted by AI into FHIR
+### Use Case 6: PDF interpreted by AI into FHIR
 
 This is an additional example provided that shows how this IG can be applied.
 
@@ -180,7 +180,7 @@ In the attached example the patient's name is Alton Walsh and the lab test is an
 
 - [Provenance of AI Generated Lab Results](Provenance-AI-Generated-Lab-Results.html)
 
-### AI Assisted Patient Appointment Traceability
+### Use Case 7: AI Assisted Patient Appointment Traceability
 
 This scenario illustrates how AI transparency supports accountability when AI is used in patient care. It does not endorse AI use for patient appointments; it shows how the AI's involvement can be made visible and traceable.
 

@@ -9,10 +9,10 @@ The source code for this Implementation Guide can be found on [HL7 AI Transparen
 
 ### Credits
 
-- Sam Schifman (Health Forge Consulting)
+- Sam Schifman (Health Forge Consulting LLC)
 - John Moehrke (Moehrke Research LLC)
 - May Terry (MITRE)
-- Brian Alper (Computable Publishing)
+- Brian Alper (Computable Publishing LLC)
 - Michael Faughn (NIST)
 - Gregory Shemancik (CHAI)
 - Reynalda Davis (CMS)

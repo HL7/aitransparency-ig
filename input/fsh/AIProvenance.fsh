@@ -12,8 +12,8 @@ Description: "An AI Provenance is a record of the use of an AI model in generati
 * reason ^slicing.discriminator.type = #value
 * reason ^slicing.discriminator.path = "$this"
 * reason ^slicing.rules = #open
-* reason contains AIReason 1..*
-* reason[AIReason] = $ObsValue#AIAST (exactly) // "Artificial Intelligence asserted"
+* reason contains AIReason 1..1
+* reason[AIReason] ^patternCodeableConcept = $ObsValue#AIAST // "Artificial Intelligence asserted"
 * agent ^slicing.discriminator.type = #profile
 * agent ^slicing.discriminator.path = "who.resolve()"
 * agent ^slicing.rules = #open
