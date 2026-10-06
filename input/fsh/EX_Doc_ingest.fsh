@@ -18,6 +18,7 @@ In the attached example the patient's name is Alton Walsh and the lab test is an
 Usage: #example
 * status = #current
 * content.attachment.id = "ig-loader-labreport_for_alton_walsh.pdf"
+* content.attachment.contentType = #application/pdf
 * type = $loinc#11502-2 "Laboratory report"
 * category.coding[0] = $sct#15220000 "Laboratory test"
 * subject.reference = "http://server.example.org/fhir/Patient/alton-walsh"

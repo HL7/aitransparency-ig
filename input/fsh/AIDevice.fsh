@@ -145,10 +145,10 @@ Description: "An example of a Model-Card DocumentReference that contains the Mod
 Note: This is not functioning at this time due to problems with IG Publisher and attachments using the ig-loader where the contentType is specified. When it is specified the ig-loader will not work, but we need it to be specified to meet our profile and slicing requirements."
 Usage: #example
 * status = #current
-* content[+].attachment.id = "ig-loader-Aidoc_ICH-02-RT.xml"
-//* content[CHAIformat].attachment.contentType = #application/xml
+* content[CHAIformat].attachment.id = "ig-loader-Aidoc_ICH-02-RT.xml"
+* content[CHAIformat].attachment.contentType = #application/xml
 * content[+].attachment.id = "ig-loader-Aidoc_ICH-02-RT.pdf"
-//* content[=].attachment.contentType = #application/pdf
+* content[=].attachment.contentType = #application/pdf
 * type = AIinputsCS#AIModelCard
 * category[AImodelCardCHAI] = AIinputsCS#AImodelCardCHAIformat "CHAI Format"
 * identifier.system = "https://github.com/coalition-for-health-ai/mc-schema/blob/main/v0.1/examples/"
