@@ -40,7 +40,7 @@ Id: AI-ModelCard
 Title: "AI Model-Card DocumentReference"
 Description: "A DocumentReference that contains a Model-Card describing an AI system."
 * type 1..1 MS
-* type = AIinputsCS#AIModelCard (exactly) 
+* type = AIinputsCS#AIModelCard
 //* obeys mc-1
 * category 1..* MS
 * category ^slicing.discriminator.type = #value
@@ -83,8 +83,8 @@ Description: "A DocumentReference that contains an input prompt for an AI system
 * type.coding ^slicing.discriminator.type = #value
 * type.coding ^slicing.discriminator.path = "$this"
 * type.coding ^slicing.rules = #closed
-* type.coding contains AIInputPrompt 1..* MS
-* type.coding[AIInputPrompt] = AIinputsCS#AIInputPrompt (exactly)
+* type.coding contains AIInputPrompt 1..1 MS
+* type.coding[AIInputPrompt] = AIinputsCS#AIInputPrompt
 
 * content ^slicing.discriminator.type = #value
 * content ^slicing.discriminator.path = "attachment.contentType"
@@ -221,7 +221,7 @@ A Device that represents an AI system, such as a Large Language Model (LLM) or o
 * identifier MS
   * ^comment = "Identifier for the AI system, such as a client ID from an EHR system"
 * type 1..1
-* type = AIdeviceTypeCS#Artificial-Intelligence (exactly)
+* type = AIdeviceTypeCS#Artificial-Intelligence
 * extension contains AIKind named aiKind 0..*
 * extension contains ModelCardDescription named modelCardDescription 0..*
   * ^comment = "Reference to a Model-Card that is always used"

@@ -95,6 +95,8 @@ While an AI model is in use, it may later be determined to be producing poor or 
 
 Because AI-influenced data links back to the AI through `Provenance.agent.who` (a reference to the AI `Device`) — and may also reference the `Device` directly (e.g. `Observation.device`) — the problematic model becomes a single point from which all of its output can be traced.
 
+> **This use case depends on Provenance.** The `AIAST` label is always present and identifies *that* AI was involved, but it does not identify *which* model. Tracing output back to a specific model requires that Provenance (or a direct `Device` reference) was recorded, which this guide leaves optional. Implementers who need this capability should require Provenance in their own policy or profile.
+
 > **Discovery makes no judgment about the data.** Identifying data produced by a model that was *later* found to be problematic does **not** mean that data is wrong. It only identifies the data that may warrant review.
 
 ```mermaid
@@ -131,7 +133,7 @@ Discovery also **discriminates between models**. A separate [second AI system](D
 
 Just as a model can later be found problematic, so can an **input**. Inputs — the [context](requirements.html#context-of-ai-usage) provided to the AI, such as a prompt or a source document — are recorded as `Provenance.entity`. If an input is later determined to be flawed, every output derived from it can be traced and reviewed.
 
-> As with Use Case 3, this discovery **makes no judgment about the validity** of the outputs. It only identifies the data that may warrant review.
+> As with Use Case 3, this discovery **makes no judgment about the validity** of the outputs. It only identifies the data that may warrant review. It likewise **depends on Provenance having been recorded**, which is optional in this guide.
 
 ```mermaid
 sequenceDiagram

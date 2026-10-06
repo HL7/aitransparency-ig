@@ -71,6 +71,7 @@ Description: "A Procedure resource that is created by an AI system and verified 
 Usage: #example
 * meta.security = $ObsValue#AIAST "Artificial Intelligence asserted"
 * meta.versionId = "1"
+* meta.security[0] = $ObsValue#AIAST
 * status = #completed
 * code = $sct#80146002 "Excision of appendix"
 * code.text = "Appendectomy"

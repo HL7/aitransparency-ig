@@ -42,13 +42,6 @@ The extension http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValue
 # 11 Pinning versions when there are multiples 
 PIN_VERSION
 
-# 12 These have been reviewed and are okay for our use-case
-INFORMATION: StructureDefinition/AI-InputPrompt: StructureDefinition.snapshot.element[17].fixed.ofType(Coding): The repeating element has a fixed. The fixed will apply to all the repeats (this has not been clear to all users)
-WARNING: StructureDefinition/AI-InputPrompt: StructureDefinition.snapshot.element[17].fixed.ofType(Coding): For the complex type Coding, consider using a pattern rather than a fixed value to avoid over-constraining the instance
-WARNING: StructureDefinition/AI-ModelCard: StructureDefinition.snapshot.element[13].fixed.ofType(CodeableConcept): For the complex type CodeableConcept, consider using a pattern rather than a fixed value to avoid over-constraining the instance
-INFORMATION: StructureDefinition/AI-Provenance: StructureDefinition.snapshot.element[30].fixed.ofType(CodeableConcept): The repeating element has a fixed. The fixed will apply to all the repeats (this has not been clear to all users)
-WARNING: StructureDefinition/AI-Provenance: StructureDefinition.snapshot.element[30].fixed.ofType(CodeableConcept): For the complex type CodeableConcept, consider using a pattern rather than a fixed value to avoid over-constraining the instance
-
 # 13 Examples with extra elements beyond minimal slices
 INFORMATION: DocumentReference/ModelCard-sample-CHAI-attached: DocumentReference.content[1]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-ModelCard%
 INFORMATION: DocumentReference/ModelCard-sample-CHAI-web: DocumentReference.content[1]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-ModelCard%
