@@ -2,6 +2,8 @@ This page tracks the signficant changes. All changes are tracked in Jira and on 
 
 ### 1.0.0-current
 
+Since the ballot publication, this version refines the scope and terminology and clarifies how AI involvement is identified and recorded in FHIR resources. It strengthens guidance for resource labeling and Provenance, updates the representation of AI systems and their model cards and prompts, adds a way to convey inference confidence, and expands implementation guidance and future considerations.
+
 - [FHIR-54280](https://jira.hl7.org/browse/FHIR-54280) and [FHIR-54580](https://jira.hl7.org/browse/FHIR-54580) AIAST meta labeling is required always.
 - [FHIR-54894](https://jira.hl7.org/browse/FHIR-54894) refine use of "observability" and "transparency" in the document (previously applied)
 - [FHIR-55024](https://jira.hl7.org/browse/FHIR-55024) Description of algorithm deterministic/nonderministic/hybird (previously applied)
@@ -34,9 +36,7 @@ This page tracks the signficant changes. All changes are tracked in Jira and on 
 - assure use of normative words, possibly in requirements resource
 - overall readability and flow of the document
 - need page 1 graphic?
-- check all QA ignore warnings are proper and well documented
 - FHIR-54729 --> plain language summary
-- use AI to compare to ballot version to highlight changes in narrative changes.md
 - FMM increase to FMM3 -- Malte Sussdorff (implemented it in 2 weeks)
 
 ##### Block-Vote-4
