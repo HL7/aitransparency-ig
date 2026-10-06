@@ -60,9 +60,9 @@ Terminology_TX_NoValid_3_CC
 WARNING: StructureDefinition/AIconfidence: StructureDefinition.context[1]: Review the extension type for AIconfidence: extensions should not have a context of Element unless it's really intended that they can be used anywhere
 
 # 17 the use of requirements formally will happen in future releases, but is not intended for now
-INFORMATION: en/requirements.html: The html source contains the word 'MAY' but it is not in a text phrase marked as a conformance clause: 'In general, inputs should be captured using a Input-Prompt DocumentReference linked through the Provenance, but when specific clinical data is involved a FHIR Bundle or other resource MAY also be linked.'
-The html source contains the word 'SHOULD' but it is not in a text phrase marked as a conformance clause: 'Transparency Consumer: The actor that reads the label or uses the Provenance defined in this IG. This actor expects the labeling and Provenance to be compliant with the requirements of this IG, but it SHOULD be robust to reasonable deviations.'
-The html source contains the word 'SHALL' but it is not in a text phrase marked as a conformance clause: 'A Resource that conforms to this guide and that has been influenced by AI in any way SHALL carry the appropriate label in .meta.security. This applies whether the AI produced the entire Resource or only a single element within it. Applying the label consistently in this way means that all AI-influenced Resources are identifiable by the same lightweight method.'
+INFORMATION: en/requirements.html: The html source contains the word 'MAY' but it is not in a text phrase marked as a conformance clause:%
+The html source contains the word 'SHOULD' but it is not in a text phrase marked as a conformance clause:%
+The html source contains the word 'SHALL' but it is not in a text phrase marked as a conformance clause:%
 
 # 18 examples need to have Provenance.entities that are representing example ANY other stuff
 INFORMATION: Provenance/AI-Authored-Element: Provenance.agent[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-Provenance|1.0.0-current (this may not be a problem, but you should check that it's not intended to match a slice)
