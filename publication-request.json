@@ -1,16 +1,11 @@
 {
   "package-id" : "hl7.fhir.uv.aitransparency",
-  "version" : "1.0.0-ballot",
-  "path" : "http://hl7.org/fhir/uv/aitransparency/2026Jan",
-  "mode" : "working",
-  "status" : "ballot",
+  "version" : "1.0.0",
+  "path" : "http://hl7.org/fhir/uv/aitransparency/STU1",
+  "mode" : "milestone",
+  "status" : "trial-use",
   "sequence" : "STU1",
-  "desc" : "This publication is for STU1 Ballot",
-  "descmd" : "This publication is for STU1 Ballot",
+  "desc" : "This publication is for STU1: Since the ballot publication, this version refines the scope and terminology and clarifies how AI involvement is identified and recorded in FHIR resources. It strengthens guidance for resource labeling and Provenance, updates the representation of AI systems and their model cards and prompts, adds a way to convey inference confidence, and expands implementation guidance and future considerations.",
   "changes" : "changes.html",
-  "first" : true,
-  "title" : "AI Transparency on FHIR",
-  "ci-build" : "https://build.fhir.org/ig/HL7/aitransparency-ig/branches/main/index.html",
-  "category" : "AI",
-  "introduction" : "Provides guidance for representing the usage of AI in influencing FHIR resources. Starting with how to tag FHIR resources, and expanding into how to use Provenance, Device, and other data elements, this FHIR IG provides standards that enable downstream use cases to identify such resources. This allows the informed usage of AI influenced health data."
+  "first" : false
 }

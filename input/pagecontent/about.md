@@ -19,6 +19,8 @@ The source code for this Implementation Guide can be found on [HL7 AI Transparen
 - Gail Winters
 - Mark Kramer (MITRE)
 
+and various LLM tools used and controlled by the above contributors.
+
 ### Cross Version Analysis
 
 {% include cross-version-analysis.xhtml %}
