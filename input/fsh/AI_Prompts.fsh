@@ -111,7 +111,6 @@ This is a full example of how to capture the AI process in FHIR.
     - an author (AI system) who generated the output
 - One entity that is the AI Input Prompt
     - Where the Input Prompt is a DocumentReference resource that contains the input prompt provided to the AI system.
-    - Where the Input Prompt is a contained resource in the Provenance resource.
     - Where the Input Prompt is associated with the clinician which provided it
 """
 Usage: #example
@@ -125,7 +124,6 @@ Usage: #example
 * agent[Humanagent].who.reference = "http://server.example.org/fhir/Practitioner/pract"
 * agent[AIagent].type = $ProvPartType#author "Author"
 * agent[AIagent].who = Reference(Device/Attached-ModelCard)
-* contained[+] = Input-Prompt-create-patient
 * entity[inputPrompt].role = http://terminology.hl7.org/CodeSystem/provenance-entity-role#derivation
 * entity[inputPrompt].what = Reference(Input-Prompt-create-patient)
 * entity[inputPrompt].agent[+].type = $ProvPartType#author "Author"
@@ -188,7 +186,7 @@ User Prompt
 `Jane Doe is a white female born on November 15, 1950. She lives at 123 Main Street, Anytown, Michigan, zipcode 12345.`
 ```
 """
-Usage: #inline 
+Usage: #example 
 * status = #current
 * content[MarkdownFormat].attachment.data =   "R2VuZXJhdGUgYSBsb3JlbSBpcHN1bSB0ZXh0IHRvIHNlcnZlIGFzIHBsYWNlaG9sZGVyIGNvcHkgZm9yIHVzZSBpbiBkZXNpZ24sIGRldmVsb3BtZW50LCBhbmQgcHVibGlzaGluZy4gCgoxLiBTcGVjaWZ5IHRoZSBleGFjdCBhbW91bnQgb2YgdGV4dCBvciB0aGUgbnVtYmVyIG9mIHBhcmFncmFwaHMgcmVxdWlyZWQgKGUuZy4sIDEgcGFyYWdyYXBoLCAzIHBhcmFncmFwaHMsIGV0Yy4pLiAKMi4gQ3JlYXRlIHRoZSBsb3JlbSBpcHN1bSB0ZXh0IHVzaW5nIGEgY2xhc3NpYyBzdHlsZSBvciBpbnRyb2R1Y2Ugc2xpZ2h0IHZhcmlhdGlvbnMgd2hpbGUga2VlcGluZyB0aGUgbm9uc2Vuc2ljYWwgbmF0dXJlIHRvIHN1aXQgdGhlIHJlcXVlc3RlZCBsZW5ndGguIAoKRW5zdXJlIHRoYXQgdGhlIHRleHQgbWFpbnRhaW5zIGEgZ29vZCBiYWxhbmNlIGJldHdlZW4gcmVhZGFiaWxpdHkgYW5kIHRoZSB0cmFkaXRpb25hbCBsb3JlbSBpcHN1bSBzdHlsZSwgZ2l2aW5nIGEgcmVhbGlzdGljIGltcHJlc3Npb24gb2YgaG93IHRoZSB0ZXh0IHdpbGwgaW1wYWN0IHRoZSBvdmVyYWxsIGxheW91dCBhbmQgZGVzaWduLgoKIyBPdXRwdXQgRm9ybWF0Ci0gUHJvdmlkZSBhIGNvbnRpbnVvdXMgYmxvY2sgb2YgbG9yZW0gaXBzdW0gdGV4dCBjb3JyZXNwb25kaW5nIHRvIHRoZSBzcGVjaWZpZWQgYW1vdW50IG5lZWRlZC4="
 

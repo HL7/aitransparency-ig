@@ -353,7 +353,6 @@ The context documents all inputs involved in AI processing.
 
 One useful thing to record is the prompt(s) given to the AI. This prompt(s) can be very important to the output, and the interpretation of the output. The prompt(s) is recorded as an attachment, using the [Input-Prompt DocumentReference](StructureDefinition-AI-InputPrompt.html), and using a code as defined above
 
-- [Input Prompt lorem ipsum](DocumentReference-Input-Prompt-lorem-ipsum.html)
 - [Input Prompt to create a Patient](DocumentReference-Input-Prompt-create-patient.html)
 
 The first example is just showing the encapsulating mechanism. The Second example is a prompt that might be used to have the AI create a given Patient resource that meets the input requirements.
