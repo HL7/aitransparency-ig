@@ -1,7 +1,7 @@
 {
   "package-id" : "hl7.fhir.uv.aitransparency",
   "version" : "1.0.0",
-  "path" : "http://hl7.org/fhir/uv/aitransparency/STU1",
+  "path" : "http://hl7.org/fhir/uv/aitransparency/1.0.0",
   "mode" : "milestone",
   "status" : "trial-use",
   "sequence" : "STU1",
