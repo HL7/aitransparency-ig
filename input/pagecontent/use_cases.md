@@ -3,7 +3,7 @@ Observability of the use of AI in the production or manipulation of health data 
 
 ### Use Case 1: AI Attribution in Documentation Review
 
-Anyone reviewing health data may want to know whether AI was involved in producing or manipulating that data, to what degree, and whether a human reviewed the result. This is the most common use case, and it applies far beyond the clinician at the bedside — it applies to **any actor reviewing FHIR data**, including researchers, payers and other administrators, quality and safety reviewers, and legal teams.
+Anyone reviewing health data might want to know whether AI was involved in producing or manipulating that data, to what degree, and whether a human reviewed the result. This is the most common use case, and it applies far beyond the clinician at the bedside — it applies to **any actor reviewing FHIR data**, including researchers, payers and other administrators, quality and safety reviewers, and legal teams.
 
 The need parallels long-standing practice: just as a reviewer expects to know which human authored a note, their role, and their qualifications, they increasingly need to distinguish content produced by AI, assisted by AI, and produced without any AI involvement.
 
@@ -23,7 +23,7 @@ The same use case takes a different shape depending on who is reviewing the data
 
 **Data Review Questions by Actor**
 
-| When this Actor is reviewing data | The key questions may be... |
+| When this Actor is reviewing data | The key questions might be... |
 |--------------------------------|----------------------------|
 | Clinician | What is happening (to modify)? Why is it happening? Was the AI output reviewed by a human? |
 | Researcher | Is this data suitable for my study, or need AI-influenced data be excluded or stratified? |
@@ -50,8 +50,8 @@ A downstream system often needs to **include or exclude AI-influenced data based
 Some illustrative consumers and their tolerances:
 
 - **Training another AI model** — *low tolerance.* Training a model primarily on AI-generated content risks uncontrolled feedback loops and model degradation. The training pipeline filters out AI-influenced data.
-- **Clinical decision support for medication recommendations** — *low tolerance.* A CDS system may need to reason only over human-asserted data and exclude AI-influenced inputs.
-- **Population-health query** — *higher tolerance.* An aggregate query across a population can often tolerate AI-influenced data, and may choose to include it.
+- **Clinical decision support for medication recommendations** — *low tolerance.* A CDS system might need to reason only over human-asserted data and exclude AI-influenced inputs.
+- **Population-health query** — *higher tolerance.* An aggregate query across a population can often tolerate AI-influenced data, and might choose to include it.
 
 ```mermaid
 flowchart LR
@@ -91,13 +91,13 @@ flowchart LR
 
 ### Use Case 3: Discovery of output from an AI model determined to be problematic
 
-While an AI model is in use, it may later be determined to be producing poor or unsafe output. When that happens, one needs to **find every resource that model touched** so those resources can be reviewed.
+While an AI model is in use, it might later be determined to be producing poor or unsafe output. When that happens, one needs to **find every resource that model touched** so those resources can be reviewed.
 
-Because AI-influenced data links back to the AI through `Provenance.agent.who` (a reference to the AI `Device`) — and may also reference the `Device` directly (e.g. `Observation.device`) — the problematic model becomes a single point from which all of its output can be traced.
+Because AI-influenced data links back to the AI through `Provenance.agent.who` (a reference to the AI `Device`) — and might also reference the `Device` directly (e.g. `Observation.device`) — the problematic model becomes a single point from which all of its output can be traced.
 
-> **This use case depends on Provenance.** The `AIAST` label is always present and identifies *that* AI was involved, but it does not identify *which* model. Tracing output back to a specific model requires that Provenance (or a direct `Device` reference) was recorded, which this guide leaves optional. Implementers who need this capability should require Provenance in their own policy or profile.
+> **This use case depends on Provenance.** The `AIAST` label is always present and identifies *that* AI was involved, but it does not identify *which* model. Tracing output back to a specific model requires that Provenance (or a direct `Device` reference) was recorded, which this guide leaves optional. Implementers who need this capability would require Provenance in their own policy or profile.
 
-> **Discovery makes no judgment about the data.** Identifying data produced by a model that was *later* found to be problematic does **not** mean that data is wrong. It only identifies the data that may warrant review.
+> **Discovery makes no judgment about the data.** Identifying data produced by a model that was *later* found to be problematic does **not** mean that data is wrong. It only identifies the data that might warrant review.
 
 ```mermaid
 sequenceDiagram
@@ -133,7 +133,7 @@ Discovery also **discriminates between models**. A separate [second AI system](D
 
 Just as a model can later be found problematic, so can an **input**. Inputs — the [context](requirements.html#context-of-ai-usage) provided to the AI, such as a prompt or a source document — are recorded as `Provenance.entity`. If an input is later determined to be flawed, every output derived from it can be traced and reviewed.
 
-> As with Use Case 3, this discovery **makes no judgment about the validity** of the outputs. It only identifies the data that may warrant review. It likewise **depends on Provenance having been recorded**, which is optional in this guide.
+> As with Use Case 3, this discovery **makes no judgment about the validity** of the outputs. It only identifies the data that might warrant review. It likewise **depends on Provenance having been recorded**, which is optional in this guide.
 
 ```mermaid
 sequenceDiagram
@@ -170,7 +170,7 @@ There are also automated guardrails. An automated system is engaged to check the
 
 #### Human in the loop
 
-AI Models do not exist in a vacuum, in addition to the context / inputs, there needs to be a system that calls the AI, supplies the inputs, and gets the result. This result may then be used as-is, supplied to another AI, verified by an automated system, verified by a human, or any number of other activities. Understanding this process may be very important to end users and downstream systems. For example, if the results of the AI were verified by a human (human-in-the-loop) then an end user may be able to rely on the results with less scrutiny.
+AI Models do not exist in a vacuum, in addition to the context / inputs, there needs to be a system that calls the AI, supplies the inputs, and gets the result. This result might then be used as-is, supplied to another AI, verified by an automated system, verified by a human, or any number of other activities. Understanding this process might be very important to end users and downstream systems. For example, if the results of the AI were verified by a human (human-in-the-loop) then an end user might be able to rely on the results with less scrutiny.
 
 ### Use Case 6: PDF interpreted by AI into FHIR
 
@@ -192,7 +192,7 @@ This scenario illustrates how AI transparency supports accountability when AI is
 
 1. A patient is scheduled for a routine check-up and provides specimens for laboratory testing before the appointment.
 2. On the day of the appointment, an AI system analyzes the new laboratory results in the context of prior results, current conditions and medications, and family medical history.
-3. The AI produces a temporary analysis that highlights abnormalities or areas of concern and may propose actions for the clinician to consider. This intermediate AI output is not persisted in the patient's record.
+3. The AI produces a temporary analysis that highlights abnormalities or areas of concern and might propose actions for the clinician to consider. This intermediate AI output is not persisted in the patient's record.
 4. During the appointment, the healthcare provider reviews the temporary AI analysis with the patient, discusses its findings, and uses professional judgment to recommend any further testing or lifestyle changes.
 5. The provider and AI work together to create the appointment report and any recommendations. This clinician-authored, AI-assisted report is the only output persisted in the patient's record; its Provenance identifies both the clinician and the AI assistance.
 6. The patient receives an appointment report and next steps through the patient portal.

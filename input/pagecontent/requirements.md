@@ -1,32 +1,35 @@
 
 The goal of this implementation guide is to provide observability of the use of AI in the production or manipulation of health data. To the end user, this means that in some way they can determine first that AI was involved and then discover more information about the AI and its usage. From this, we can understand that there are two levels of observability and multiple factors that can be observed within the second level. 
 
-- 1st Level Observability: **Labeling** - this provides the indication that AI was involved in some way with the data. It provides no details about AI's involvement, but gives an indication that the end user may wish to investigate further. This level is intended to be lightweight, not adding significant bloat to the payload or requiring additional lookups on the part of the client system. For this, this guide details the use of Security Labels (see [Labeling](#labeling) below). **This level is the baseline requirement of this guide: every AI-influenced Resource SHALL be labeled.**
-- 2nd Level Observability: **Provenance** - there are a number of details that may be of interest to the end user about what and how AI was used, the [AI Observability Factors](#ai-observability-factors) would be recorded using `Provenance`, `Device`, and `DocumentReference`. **This level is optional in this guide: Provenance is recorded when the use-case, policy, or another profile needs those details.**
+- 1st Level Observability: **Labeling** - this provides the indication that AI was involved in some way with the data. It provides no details about AI's involvement, but gives an indication that the end user might wish to investigate further. This level is intended to be lightweight, not adding significant bloat to the payload or requiring additional lookups on the part of the client system. For this, this guide details the use of Security Labels (see [Labeling](#labeling) below). **This level is the baseline requirement of this guide: every AI-influenced Resource SHALL be labeled.**
+- 2nd Level Observability: **Provenance** - there are a number of details that might be of interest to the end user about what and how AI was used, the [AI Observability Factors](#ai-observability-factors) would be recorded using `Provenance`, `Device`, and `DocumentReference`. **This level is optional in this guide: Provenance is recorded when the use-case, policy, or another profile needs those details.**
 
 ### Conformance summary
 
-| Capability | Conformance in this guide |
-| --- | --- |
-| `AIAST` in `.meta.security` on an AI-influenced Resource | **SHALL** - required whenever AI produced or manipulated any part of the Resource |
-| Element-level `inline-sec-label` marking of AI-influenced elements | **MAY** - used when it is useful to show which elements the AI touched; the Resource-level `AIAST` label is still required |
-| `Provenance` conforming to the [AI Provenance profile](StructureDefinition-AI-Provenance.html) | **MAY** - recorded based on need; when recorded it SHALL conform to this guide |
-| `Device`, `DocumentReference` (Model-Card, Input-Prompt) | **MAY** - recorded as needed, referenced from the Provenance |
+- Any Resource **SHALL** have the code `AIAST` in `.meta.security`. The code `AIAST` in `.meta.security` on any Resource [indicates that AI produced or manipulated](#labeling) the Resource
+  - Any Resource element **MAY** also have the element-level extension `inline-sec-label` marking. The `inline-sec-label` [indicates which elements the AI touched](#element-label-within-a-resource); the Resource-level `AIAST` label is still required
+- Use of AI **MAY** be [indicated in more detail](#provenance) using a `Provenance` Resource conforming to the [AI Provenance profile](StructureDefinition-AI-Provenance.html).
+  - Provenance can indicate whole Resource or element-level within a Resource.
+  - Provenance can reference all the data given to the AI system `Provenance.entity` elements.
+- The AI system **MAY** be [described using `Device` Resource](#defining-the-ai-system) conforming to the [AI Device profile](StructureDefinition-AI-Device.html)
+- The AI model **MAY** be [described using `DocumentReference` Resource](#the-model-card) conforming to the [AI DocumentReference profile](StructureDefinition-AI-ModelCard.html)
+- The Prompt given to the AI **MAY** be [recorded using `DocumentReference` Resource](#context-of-ai-usage) conforming to the [AI DocumentReference profile](StructureDefinition-AI-InputPrompt.html)
+{: .grid}
 
-Because Provenance is optional, a Consumer SHALL NOT rely on the absence of Provenance to conclude that AI was not involved. The `.meta.security` label is the authoritative, always-present indicator.
+Because Provenance is optional, a Consumer **SHALL NOT** rely on the absence of Provenance to conclude that AI was not involved. The `.meta.security` label is the authoritative, always-present indicator.
 
 **Note:** that both Security Labels and Provenance can be applied at the whole Resource level or at the Element level within a resource.
 
 <div class="stu-note">
-The use of labeling to achieve 1st level observability provides the end user or client system with a useful indicator of AI involvement without resulting in significant bloat in the payload. The presence of a label can tell the user or system that they may want to look for a Provenance resource that will provide more details.
+The use of labeling to achieve 1st level observability provides the end user or client system with a useful indicator of AI involvement without resulting in significant bloat in the payload. The presence of a label can tell the user or system that they might want to look for a Provenance resource that will provide more details.
 </div>
 
 ### Technical Actors
 
 The Technical Actors defined in this IG are abstract technical roles that have responsibility defined in this IG. These abstract Technical Actors would be implemented in a variety of systems. The AI is important to the overall use-case but is outside the scope of constraints in this IG. The FHIR resources (clinical content) and Patient are also outside the scope of this IG, but are important to the overall use-case. The Technical Actors are:
 
-- **Transparency Creator**: The actor that adds the label, and that creates the Provenance where more detail is needed. This actor SHALL apply the label to every AI-influenced Resource, and MAY create Provenance. The labeling and Provenance are compliant with the requirements of this IG.
-- **Transparency Consumer**: The actor that reads the label, and that uses the Provenance where it is available. This actor SHALL be able to recognize the label, and MAY use Provenance when present. This actor expects the labeling and Provenance to be compliant with the requirements of this IG, but it should be robust to reasonable deviations.
+- **Transparency Creator**: The actor that adds the label, and that creates the Provenance where more detail is needed. This actor **SHALL** apply the label to every AI-influenced Resource, and **MAY** create Provenance. The labeling and Provenance are compliant with the requirements of this IG.
+- **Transparency Consumer**: The actor that reads the label, and that uses the Provenance where it is available. This actor **SHALL** be able to recognize the label, and **MAY** use Provenance when present. This actor expects the labeling and Provenance to be compliant with the requirements of this IG, but it **SHOULD** be robust to reasonable deviations.
 
 <figure>
 {%include actors.svg%}
@@ -36,7 +39,7 @@ The Technical Actors defined in this IG are abstract technical roles that have r
 
 ### AI Observability Factors
 
-Beyond 1st level observability, there are a number of factors that the end user or client system may be interested in knowing about. These factors can be broken down into 3 categories:
+Beyond 1st level observability, there are a number of factors that the end user or client system might be interested in knowing about. These factors can be broken down into 3 categories:
 
 1. AI Model(s) - definition of the AI(s) used (see [Defining the AI](#defining-the-ai-system)) 
   - Name and version of the AI system
@@ -55,11 +58,11 @@ Beyond 1st level observability, there are a number of factors that the end user 
 
 #### Discovering that AI was used
 
-Data conforming to this guide always carries a label, so inspecting `.meta.security` is the definitive method of determining that AI was involved. Where Provenance has been recorded, it additionally explains how the AI was used. Provenance is not necessarily recorded for every AI-influenced Resource or element. A profile may require that it be recorded, and it may also be recorded where nothing requires it.
+Data conforming to this guide always carries a label, so inspecting `.meta.security` is the definitive method of determining that AI was involved. Where Provenance has been recorded, it additionally explains how the AI was used. Provenance is not necessarily recorded for every AI-influenced Resource or element. A profile might require that it be recorded, and it might also be recorded where nothing requires it.
 
 ##### Using the label (always available)
 
-For a given FHIR Resource, a Resource that has been influenced by AI SHALL have the `.meta.security` element populated with the `AIAST` code. Checking this element requires no additional query and no Resource-type specific processing, and is the reliable way to determine AI involvement. See details below.
+For a given FHIR Resource, a Resource that has been influenced by AI **SHALL** have the `.meta.security` element populated with the `AIAST` code. Checking this element requires no additional query and no Resource-type specific processing, and is the reliable way to determine AI involvement. See details below.
 
 ##### Using Provenance (available when recorded)
 
@@ -73,7 +76,7 @@ If results are returned, the Provenance will explain how AI was used. See detail
 
 ### Labeling
 
-Labeling is the mandatory foundation of this guide. A label identifies the Resource or element that AI produced or manipulated. It does not convey the level of that influence, or any details about how the AI was used. Labeling is very light weight and does not add significant bloat to the payload or require additional lookups. A client system that needs more than the fact of AI involvement may fetch the Resource's Provenance, where one has been recorded.
+Labeling is the mandatory foundation of this guide. A label identifies the Resource or element that AI produced or manipulated. It does not convey the level of that influence, or any details about how the AI was used. Labeling is very light weight and does not add significant bloat to the payload or require additional lookups. A client system that needs more than the fact of AI involvement **MAY** fetch the Resource's Provenance, where one has been recorded.
 
 >💡 Tip
 >
@@ -97,7 +100,7 @@ classDiagram
 
 A Resource label indicates that at least some part of the Resource was produced or manipulated by AI. It does not indicate how much of the Resource was affected, or which parts of it.
 
-A Resource that conforms to this guide and that has been influenced by AI in any way SHALL carry the appropriate label in `.meta.security`. This applies whether the AI produced the entire Resource or only a single element within it. Applying the label consistently in this way means that all AI-influenced Resources are identifiable by the same lightweight method.
+A Resource that conforms to this guide and that has been influenced by AI in any way **SHALL** carry the appropriate label in `.meta.security`. This applies whether the AI produced the entire Resource or only a single element within it. Applying the label consistently in this way means that all AI-influenced Resources are identifiable by the same lightweight method.
 
 - [Example Observation with AI Assisted security labels](Observation-glasgow.html)
 
@@ -161,7 +164,7 @@ One of the key portions of that Resource is
 
 There are a number of observability factors beyond simple labeling that are of interest to end users and downstream systems. Chief among these is the nature of the AI itself. The user would like to understand what algorithm / model was used, who developed it, how it was trained, any certifications it has, and so on... To do this, the guide outlines the use of the Provenance resource, which can then be linked to Device and DocumentReference to point to a Model-Card.
 
-Recording Provenance is **optional** in this guide, and is driven by need - a use-case, an organizational policy, a regulation, or another implementation guide may require it. When Provenance is recorded, it SHALL conform to the [AI Provenance profile](StructureDefinition-AI-Provenance.html), and the Resources it targets SHALL still carry the `AIAST` label. Provenance supplements the label; it does not replace it.
+Recording Provenance is **optional** in this guide, and is driven by need - a use-case, an organizational policy, a regulation, or another implementation guide might require it. When Provenance is recorded, it **SHALL** conform to the [AI Provenance profile](StructureDefinition-AI-Provenance.html), and the Resources it targets **SHALL** still carry the `AIAST` label. Provenance supplements the label; it does not replace it.
 
 >💡 Tip
 >
@@ -171,16 +174,16 @@ The overall Provenance model is shown below:
 
 ```mermaid
 classDiagram
-    direction LR
+    direction TB
     class Resource {
-        <<FHIR Resource>>
+        <<Any FHIR Resource>>
         id
         meta.security = AIAST
         ...
     }
 
     class Provenance {
-        <<FHIR Resource>>
+        <<Provenance (AI-Provenance Profile)>>
         target : Reference resource created/updated
         occurred : When
         reason : `AIAST`
@@ -189,11 +192,11 @@ classDiagram
         agent : References to other agents involved
         entity : References to Input-Prompt DocumentReference
         entity : References to Model-Card DocumentReference
-        entity : References to other data used
+        entity : References to other FHIR data used
     }
 
     class Device {
-        <<FHIR Resource>>
+        <<Device (AI-Device Profile)>>
         id
         identifier
         type = "Artificial-Intelligence"
@@ -211,7 +214,7 @@ classDiagram
     }
 
     class DocumentReferenceModelCard {
-        <<FHIR Resource>>
+        <<DocumentReference (AI-ModelCard Profile)>>
         id
         type = AImodelCard
         category = AIModelCardMarkdownFormat  | AImodelCardCHAIformat
@@ -221,7 +224,7 @@ classDiagram
     }
 
     class DocumentReferenceInputPrompt {
-        <<FHIR Resource>>
+        <<DocumentReference (AI-InputPrompt Profile)>>
         id
         type = AIInputPrompt
         description
@@ -229,9 +232,10 @@ classDiagram
         data / url = codeable Input-Prompt details
     }
 
-    Resource "1..*" <-- Provenance : "Provenance.target"
+    Resource <-- Provenance : "Provenance.target"
     Provenance --> Device : "Provenance.agent.who"
     Device --> DocumentReferenceModelCard : "Device.extension.model-card"
+    Provenance --> DocumentReferenceModelCard : "Provenance.entity.what"
     Provenance --> DocumentReferenceInputPrompt : "Provenance.entity.what"
 ```
 
@@ -257,7 +261,7 @@ As with labeling, a Provenance can point at a whole Resource. In this way one ca
 
 ##### Element-level
 
-Provenance can be just about some elements within a Resource. This is a supported use of Provenance, but it is especially important for AI use-cases. The support comes from extensions added to the extension-registry and explained in later versions of FHIR. The Provenance.target SHALL point at a specific element(s) within the targeted resource using the [target element extension](http://hl7.org/fhir/StructureDefinition/targetElement) or [target path extension](http://hl7.org/fhir/StructureDefinition/targetPath).
+Provenance can be just about some elements within a Resource. This is a supported use of Provenance, but it is especially important for AI use-cases. The support comes from extensions added to the extension-registry and explained in later versions of FHIR. The Provenance.target **SHALL** point at a specific element(s) within the targeted resource using the [target element extension](http://hl7.org/fhir/StructureDefinition/targetElement) or [target path extension](http://hl7.org/fhir/StructureDefinition/targetPath).
 
 - [Example Provenance of AI Authored an element in a Resource](Provenance-AI-Authored-Element.html) indicates that AI only authored the `Procedure.followup.text` element.
 
@@ -275,7 +279,7 @@ The Model-Card encoding is defined by other standards organizations, and have di
 
 The industry is converging around standards for providing AI instructions and settings, generally called Model-Cards. Several different standards are emerging, including [Hugging Face](#hugging-face-markdown) and [CHAI Model Cards](#chai-applied-model-cards-xml). This guide does not enforce any particular Model-Card, but does show how to encode any Model-Card in a [AI Model-Card profiled DocumentReference](StructureDefinition-AI-ModelCard.html), and these would be referenced in a [AI profiled Device](StructureDefinition-AI-Device.html) or within the [Provenance](StructureDefinition-AI-Provenance.html).
 
-This specification supports two model-card standards at this time, but recognize that there may be updates and new standards in the future. The choice of which model-card standard to use is up to the implementer, and this guide does not enforce any particular model-card standard.
+This specification supports two model-card standards at this time, but recognize that there might be updates and new standards in the future. The choice of which model-card standard to use is up to the implementer, and this guide does not enforce any particular model-card standard.
 
 - [Profile of DocumentReference to carry a Model-Card](StructureDefinition-AI-ModelCard.html)
   - [Example DocumentReference Hugging Face Model-Card](DocumentReference-ModelCard-sample-huggingface-attached.html)
@@ -341,11 +345,11 @@ There are different kinds of prompts supplied, including but not limited to:
 - **System Prompt:** Instructions to the AI on what to do and how to handle user inputs. These can also include reference information, such as clinical practice guidelines, drug interaction databases, treatment protocols, and evidence-based medicine resources that will enhance the AI decision-making. 
 - **User Prompt:** Input from the user. This often includes the question to answer or problem to solve. In many cases this is a templated text that allows for the inserting of additional data (note some systems allow other prompt types to include files as additional data). This additional data can include patient demographics, clinical notes, laboratory results, imaging data, and other health data that will be useful to the AI decision-making.
 
-In general, inputs SHOULD be captured using a [Input-Prompt DocumentReference](StructureDefinition-AI-InputPrompt.html) linked through the Provenance, but when specific clinical data is involved those Resources would be indicated as additional `Provenance.entity` elements.
+In general, inputs **SHOULD** be captured using a [Input-Prompt DocumentReference](StructureDefinition-AI-InputPrompt.html) linked through the Provenance, but when specific clinical data is involved those Resources would be indicated as additional `Provenance.entity` elements.
 
 > Note
 >
-> There is significant variation in what and how AI systems inputs are supplied, however capturing those inputs SHOULD remain relatively consistent.
+> There is significant variation in what and how AI systems inputs are supplied, however capturing those inputs **SHOULD** remain relatively consistent.
 
 #### Context Examples
 
@@ -382,5 +386,5 @@ The first example is just showing the encapsulating mechanism. The Second exampl
 
 ### Security and Privacy Considerations
 
-- The Input Prompt and Context may contain sensitive information, such as patient data, and SHOULD be protected accordingly.
-- The Model-Card if it contains sensitive information about the AI model that SHOULD not be public.
+- The Input Prompt and Context might contain sensitive information, such as patient data, and **SHOULD** be protected accordingly.
+- The Model-Card if it contains sensitive information about the AI model that **SHOULD** not be public.
