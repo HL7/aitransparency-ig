@@ -31,14 +31,6 @@ Since the ballot publication, this version refines the scope and terminology and
 - [FHIR-54725](https://jira.hl7.org/browse/FHIR-54725) Remove unusable AI-Data Profile on Resource as not usable.
 - [FHIR-54707](https://jira.hl7.org/browse/FHIR-54707) Refrain from using Tag, use Label
 
-#### todo
-
-- assure use of normative words, possibly in requirements resource
-- overall readability and flow of the document
-- need page 1 graphic?
-- FHIR-54729 --> plain language summary
-- FMM increase to FMM3 -- Malte Sussdorff (implemented it in 2 weeks)
-
 ##### Block-Vote-4
 
 - FHIR-54280, FHIR-54580 address if labeling is mandatory or optional -- make the resource level labeling mandatory
