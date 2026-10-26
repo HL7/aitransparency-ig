@@ -5,5 +5,6 @@ In R5/R6 `Provenance.entity.role` has the code `#instantiates` which would be mo
 
 This IG does not address how multiple cascaded AI models are recorded. This might be done using multiple Provenance resources, or by using the `Provenance.entity.agent`, or through some use of future AI standards that support documenting this in the Model-Card or Prompt.
 
-This IG does not address generally "guardrails", which are important controls placed on the output of an AI model to prevent bias, inappropriate responses, or undesired actions. The IG does address if a human-in-the-loop is used, and if so, how that is recorded in the Provenance. 
+This IG does not address generally "guardrails", which are important controls placed on the output of an AI model to prevent bias, inappropriate responses, or undesired actions. The IG does address if a human-in-the-loop is used, and if so, how that is recorded in the Provenance.
 
+FHIR R4/R5 did not allow Device to be an active participant at the native Resource level. For example `Observation.performer`, `Observation.note.authorReference`, `DiagnosticReport.resultsInterpreter` all expect a `Reference` to a `Practitioner`, `Organization`, or `Patient`, but not a `Device`. This limitation is being removed in R6.
