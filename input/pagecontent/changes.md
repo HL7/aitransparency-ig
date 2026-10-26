@@ -30,21 +30,11 @@ Since the ballot publication, this version refines the scope and terminology and
 - [FHIR-54723](https://jira.hl7.org/browse/FHIR-54723) AI device conflicting type binding and property fixed values and extension
 - [FHIR-54725](https://jira.hl7.org/browse/FHIR-54725) Remove unusable AI-Data Profile on Resource as not usable.
 - [FHIR-54707](https://jira.hl7.org/browse/FHIR-54707) Refrain from using Tag, use Label
-
-##### Block-Vote-4
-
 - FHIR-54280, FHIR-54580 address if labeling is mandatory or optional -- make the resource level labeling mandatory
 - FHIR-54894 refine use of "observability" and "transparency" in the document
 - FHIR-55024 Description of algorithm deterministic/nonderministic/hybird
-
-[EHR WG Sep 1?](https://confluence.hl7.org/spaces/EHR/pages/413044356/2026+Minutes)
-
-##### WGM discussion
-
 - FHIR-54757 clarify combining AIdevice profile with other device profiles such as a smart watch.
 - FHIR-54583 clarify use of AI Transparency in post market surveillance
-
-[WGM EHR WG Thursday Q4](https://confluence.hl7.org/spaces/EHR/pages/468257487/EHR+WG+2026-09+HL7+WGM+Bethesda+MD+USA+Agenda+Calendar)
 
 ### 1.0.0-ballot
 
