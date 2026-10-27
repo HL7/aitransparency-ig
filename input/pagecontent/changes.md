@@ -30,11 +30,11 @@ Since the ballot publication, this version refines the scope and terminology and
 - [FHIR-54723](https://jira.hl7.org/browse/FHIR-54723) AI device conflicting type binding and property fixed values and extension
 - [FHIR-54725](https://jira.hl7.org/browse/FHIR-54725) Remove unusable AI-Data Profile on Resource as not usable.
 - [FHIR-54707](https://jira.hl7.org/browse/FHIR-54707) Refrain from using Tag, use Label
-- FHIR-54280, FHIR-54580 address if labeling is mandatory or optional -- make the resource level labeling mandatory
-- FHIR-54894 refine use of "observability" and "transparency" in the document
-- FHIR-55024 Description of algorithm deterministic/nonderministic/hybird
-- FHIR-54757 clarify combining AIdevice profile with other device profiles such as a smart watch.
-- FHIR-54583 clarify use of AI Transparency in post market surveillance
+- [FHIR-54280](https://jira.hl7.org/browse/FHIR-54280), [FHIR-54580](https://jira.hl7.org/browse/FHIR-54580) address if labeling is mandatory or optional -- make the resource level labeling mandatory
+- [FHIR-54894](https://jira.hl7.org/browse/FHIR-54894) refine use of "observability" and "transparency" in the document
+- [FHIR-55024](https://jira.hl7.org/browse/FHIR-55024) Description of algorithm deterministic/nonderministic/hybird
+- [FHIR-54757](https://jira.hl7.org/browse/FHIR-54757) clarify combining AIdevice profile with other device profiles such as a smart watch.
+- [FHIR-54583](https://jira.hl7.org/browse/FHIR-54583) clarify use of AI Transparency in post market surveillance
 
 ### 1.0.0-ballot
 
@@ -43,5 +43,5 @@ Initial Public-Comment
 ### 1.0.0-alpha
 
 - Rewrite guidance page (Sam, need ticket numbers here)
-- FHIR-54421, FHIR-54264, FHIR-54577, FHIR-54259 - Add a profile of DocumentReference for AI Input Prompts as distinct from Model-Cards
-- FHIR-54149 - AIinputsCS - CodeSystem title inconsistent with computable name
+- [FHIR-54421](https://jira.hl7.org/browse/FHIR-54421), [FHIR-54264](https://jira.hl7.org/browse/FHIR-54264), [FHIR-54577](https://jira.hl7.org/browse/FHIR-54577), [FHIR-54259](https://jira.hl7.org/browse/FHIR-54259) - Add a profile of DocumentReference for AI Input Prompts as distinct from Model-Cards
+- [FHIR-54149](https://jira.hl7.org/browse/FHIR-54149) - AIinputsCS - CodeSystem title inconsistent with computable name

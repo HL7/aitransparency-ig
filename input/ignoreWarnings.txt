@@ -16,16 +16,13 @@ WARNING: DocumentReference/ModelCard-sample-CHAI-web: DocumentReference.identifi
 WARNING: DocumentReference/ModelCard-sample-CHAI-binary: DocumentReference.content[0].attachment.url: No definition could be found for URL value 'Binary/ModelCard-sample-CHAI-binary-xml'
 WARNING: DocumentReference/ModelCard-sample-CHAI-binary: DocumentReference.content[1].attachment.url: No definition could be found for URL value 'Binary/ModelCard-sample-CHAI-binary-pdf'
 
-# 07 This is a pattern profile that can't be actually applied. It is thus purely illustrative
-WARNING: StructureDefinition.where(url = 'http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-data'): The Implementation Guide contains no examples for this profile
-
 # 08 These are made up codesystems for examples
 WARNING: Observation/f206: Observation.code.coding[0].system: A definition for CodeSystem 'http://example.org/codes/foobar' could not be found, so the code cannot be validated
 WARNING: Observation/glasgow: Observation.component[0].value.ofType(CodeableConcept).coding[0].system: A definition for CodeSystem 'http://example.org/codes' could not be found, so the code cannot be validated
 WARNING: Observation/glasgow: Observation.component[1].value.ofType(CodeableConcept).coding[0].system: A definition for CodeSystem 'http://example.org/codes' could not be found, so the code cannot be validated
 WARNING: Observation/glasgow: Observation.component[2].value.ofType(CodeableConcept).coding[0].system: A definition for CodeSystem 'http://example.org/codes' could not be found, so the code cannot be validated
 
-# 09 known issue in an examples
+# 09 known issue in an examples, where the examples are simply illustrative and only used as references
 WARNING: Observation/glasgow: Observation.value.ofType(Quantity): UCUM Codes that contain human readable annotations like {score} can be misleading (e.g. they are ignored when comparing units). Best Practice is not to depend on annotations in the UCUM code, so this usage should be checked, and the Quantity.unit SHOULD contain the annotation
 WARNING: Observation/glasgow: Observation.referenceRange[0].high: UCUM Codes that contain human readable annotations like {score} can be misleading (e.g. they are ignored when comparing units). Best Practice is not to depend on annotations in the UCUM code, so this usage should be checked, and the Quantity.unit SHOULD contain the annotation
 WARNING: Observation/glasgow: Observation.referenceRange[1].low: UCUM Codes that contain human readable annotations like {score} can be misleading (e.g. they are ignored when comparing units). Best Practice is not to depend on annotations in the UCUM code, so this usage should be checked, and the Quantity.unit SHOULD contain the annotation
@@ -60,8 +57,6 @@ Terminology_TX_NoValid_3_CC
 WARNING: StructureDefinition/AIconfidence: StructureDefinition.context[1]: Review the extension type for AIconfidence: extensions should not have a context of Element unless it's really intended that they can be used anywhere
 
 # 17 the use of requirements formally will happen in future releases, but is not intended for now
-INFORMATION: en/requirements.html: The html source contains the word 'MAY' but it is not in a text phrase marked as a conformance clause:%
-The html source contains the word 'SHOULD' but it is not in a text phrase marked as a conformance clause:%
 The html source contains the word 'SHALL' but it is not in a text phrase marked as a conformance clause:%
 
 # 18 examples need to have Provenance.entities that are representing example ANY other stuff
@@ -76,5 +71,6 @@ INFORMATION: Provenance/AI-full-lorem-ipsum: Provenance.entity[1]: This element 
 INFORMATION: Provenance/AI-full-lorem-ipsum: Provenance.entity[2]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-Provenance|1.0.0 (this may not be a problem, but you should check that it's not intended to match a slice)
 INFORMATION: Provenance/AI-generated-patient-resource: Provenance.agent[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/aitransparency/StructureDefinition/AI-Provenance|1.0.0 (this may not be a problem, but you should check that it's not intended to match a slice)
 
-# 19 the fixed code is intended to make the profile specific
-WARNING: StructureDefinition/AI-Device: StructureDefinition.snapshot.element[39].fixed.ofType(CodeableConcept): For the complex type CodeableConcept, consider using a pattern rather than a fixed value to avoid over-constraining the instance
+# 19 this is a tooling problem with contained resources in Provenance. Solution has been proposed, but tooling team want to solve this the same for all resources https://github.com/hapifhir/org.hl7.fhir.core/pull/2702
+The link '#hcAI-full-lorem-ipsum/Input-Prompt-lorem-ipsum' for "DocumentReference: status = current; type = AI Input Prompt; description = Generate a lorem ipsum text to serve as placeholder copy for use in design, development, and publishing. 1. Specify the exact amount of text or the number of paragraphs required (e.g., 1 paragraph, 3 paragraphs, etc.). 2. Create the lorem ipsum text using a classic style or introduce slight variations while keeping the nonsensical nature to suit the requested length. Ensure that the text maintains a good balance between readability and the traditional lorem ipsum style, giving a realistic impression of how the text will impact the overall layout and design. # Output Format - Provide a continuous block of lorem ipsum text corresponding to the specified amount needed." cannot be resolved (valid targets: [hcAI-full-lorem-ipsum, segment-header, example-provenance-provenance-for-ai-with-model-card-input-and-output, publish-box, bottom, hl7-logo, segment-post-footer, hl7-search, hl7-search-lnk, family-logo, family-nav, ig-status, top, AI-full-lorem-ipsum, root, stripe, segment-footer, hl7-nav, segment-navbar, segment-content, segment-breadcrumb])
+Hyperlink '#hcAI-full-lorem-ipsum/Input-Prompt-lorem-ipsum' at 'div/table/tr/td/a' for 'DocumentReference: status = current; type = AI Input Prompt; description = Generate a lorem ipsum text to serve as placeholder copy for use in design, development, and publishing. 1. Specify the exact amount of text or the number of paragraphs required (e.g., 1 paragraph, 3 paragraphs, etc.). 2. Create the lorem ipsum text using a classic style or introduce slight variations while keeping the nonsensical nature to suit the requested length. Ensure that the text maintains a good balance between readability and the traditional lorem ipsum style, giving a realistic impression of how the text will impact the overall layout and design. # Output Format - Provide a continuous block of lorem ipsum text corresponding to the specified amount needed.' does not resolve
