@@ -12,7 +12,7 @@ status: active # draft | active | retired | unknown
 version: 1.0.0
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 copyrightYear: 2024+
-releaseLabel: "release" # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
+releaseLabel: "STU 1" # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
 license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
 # jurisdiction: urn:iso:std:iso:3166#US "United States of America" # https://www.hl7.org/fhir/valueset-jurisdiction.html
 jurisdiction: http://unstats.un.org/unsd/methods/m49/m49.htm#001
@@ -63,7 +63,7 @@ pages:
     title: Requirements
     extension: 
       - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
-        valueCode: normative   
+        valueCode: trial-use   
   guidance.md:
     title: Guidance
   about.md:
@@ -93,6 +93,9 @@ parameters:
   pin-canonicals: pin-multiples
   shownav: true
   auto-oid-root: 2.16.840.1.113883.4.642.40.79
+  special-url:
+    - http://terminology.hl7.org/CodeSystem/AIdeviceTypeCS # 2.16.840.1.113883.5.187
+    - http://terminology.hl7.org/CodeSystem/AIinputsCS # 2.16.840.1.113883.5.188
 #   validation: [allow-any-extensions, no-broken-links]
 #
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮

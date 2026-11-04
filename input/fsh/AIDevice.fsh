@@ -3,6 +3,7 @@
 CodeSystem: AIinputsCS
 Title: "Codes for AI ModelCard and Input Prompt"
 Description: "This CodeSystem contains codes for the DocumentReference.type and DocumentReference.category that indicate that the DocumentReference is an Input-Prompt or one of a set of Model-Card(s)."
+* ^url = "http://terminology.hl7.org/CodeSystem/AIinputsCS"
 * ^caseSensitive = true
 * ^experimental = false
 * ^status = #active
@@ -23,6 +24,20 @@ Usage: #definition
 * reason[+] = $ActReason#METAMGT
 * reason[=].text = "Initial CodeSystem created"
 * activity = http://terminology.hl7.org/CodeSystem/v3-DataOperation#CREATE
+* agent[+].type = $ProvPartType#verifier
+* agent[=].who.display = "John F. Moehrke"
+
+Instance:   AIinputsCS-initial-tho-url
+InstanceOf: Provenance  // Note that the CodeSystem rendering the IG publisher does will put this Provenance as "History" at the bottom of the CodeSystem page. If this Provenance uses the AIProvenacne profile, then this History will not be shown. So the IG publisher clearly does not like any meta.profile in the Provenance it uses for history.
+Title: "Root canonical in THO AIinputsCS CodeSystem"
+Description: "Provenance record for the rooting of the AIinputsCS CodeSystem in THO. Next publication the CodeSystem should be moved to THO. The AI space is still developing so it is agreed to keep this in the IG for now."
+Usage: #definition
+* target[+] = Reference(CodeSystem/AIinputsCS)
+* recorded = "2026-11-04T17:00:00.0000Z"
+* occurredDateTime = "2026-11-04"
+* reason[+] = $ActReason#METAMGT
+* reason[=].text = "The AIinputsCS CodeSystem is now rooted in THO. Next publication the CodeSystem should be moved to THO. The AI space is still developing so it is agreed to keep this in the IG for now."
+* activity = http://terminology.hl7.org/CodeSystem/v3-DataOperation#UPDATE
 * agent[+].type = $ProvPartType#verifier
 * agent[=].who.display = "John F. Moehrke"
 
@@ -265,6 +280,7 @@ Usage: #definition
 CodeSystem: AIdeviceTypeCS
 Title: "Device type for Artificial Intelligence"
 Description: "This CodeSystem contains codes for the Device.type that indicate that the Device is an AI. The codes here were created by AI."
+* ^url = "http://terminology.hl7.org/CodeSystem/AIdeviceTypeCS"
 * ^meta.security = $ObsValue#AIAST "Artificial Intelligence asserted"
 * ^caseSensitive = true
 * ^experimental = false
@@ -350,4 +366,18 @@ Usage: #definition
 * agent[+].type = $ProvPartType#verifier
 * agent[=].who.display = "John F. Moehrke"
 
-
+Instance:   AIdeviceTypeCS-rooted-in-tho
+InstanceOf: Provenance  // Note that the CodeSystem rendering the IG publisher does will put this Provenance as "History" at the bottom of the CodeSystem page. If this Provenance uses the AIProvenacne profile, then this History will not be shown. So the IG publisher clearly does not like any meta.profile in the Provenance it uses for history.
+Title: "Root canonical in THO for AIdeviceTypeCS CodeSystem"
+Description: "Provenance record for rooting the AIdeviceTypeCS CodeSystem in THO."
+Usage: #definition
+* target[+] = Reference(CodeSystem/AIdeviceTypeCS)
+* recorded = "2026-11-04T17:00:00.0000Z"
+* occurredDateTime = "2026-11-04"
+* reason[+] = $ActReason#METAMGT
+* reason[=].text = "The AIdeviceTypeCS CodeSystem is now rooted in THO. Next publication the CodeSystem should be moved to THO. The AI space is still developing so it is agreed to keep this in the IG for now."
+* activity = http://terminology.hl7.org/CodeSystem/v3-DataOperation#UPDATE
+* agent[+].type = $ProvPartType#author
+* agent[=].who.display = "John F. Moehrke"
+* agent[+].type = $ProvPartType#verifier
+* agent[=].who.display = "John F. Moehrke"
