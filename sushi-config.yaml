@@ -94,7 +94,7 @@ parameters:
   shownav: true
   auto-oid-root: 2.16.840.1.113883.4.642.40.79
   special-url:
-    - http://terminology.hl7.org/CodeSystem/AIdeviceTypeCS # 2.16.840.1.113883.5.187
+    - http://terminology.hl7.org/CodeSystem/AIdeviceTypeCS # 2.16.840.1.113883.5.189
     - http://terminology.hl7.org/CodeSystem/AIinputsCS # 2.16.840.1.113883.5.188
 #   validation: [allow-any-extensions, no-broken-links]
 #
